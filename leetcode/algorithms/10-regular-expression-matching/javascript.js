@@ -3,6 +3,4 @@
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function (s, p) {
-  
-};
+var isMatch = function (s, p) {};
