@@ -14,8 +14,8 @@ class Solution(object):
             'M': 1000,
         }
 
-        s = s.replace("IV", "IIII").replace("IX", "VIIII").replace("XL", "XXXX").replace(
-            "XC", "LXXXX").replace("CD", "CCCC").replace("CM", "DCCCC")
+        s = s.replace("CM", "DCCCC").replace("CD", "CCCC").replace("XC", "LXXXX").replace(
+            "XL", "XXXX").replace("IX", "VIIII").replace("IV", "IIII")
 
         result = 0
 
