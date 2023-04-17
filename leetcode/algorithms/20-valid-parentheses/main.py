@@ -4,14 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        sMap = {'(': ')', '{': '}', '[': ']'}
-        lastIndex = s.rfind('(')
-        if s.rfind('[') > lastIndex:
-            lastIndex = s.rfind('[')
-        if s.rfind('{') > lastIndex:
-            lastIndex = s.rfind('{')
-        print(lastIndex)
-        return null
+        return false
 
     # best solution
     def bestSolution(self, s):
