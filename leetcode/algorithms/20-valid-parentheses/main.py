@@ -4,6 +4,13 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        sMap = {'(': ')', '{': '}', '[': ']'}
+        lastIndex = s.rfind('(')
+        if s.rfind('[') > lastIndex:
+            lastIndex = s.rfind('[')
+        if s.rfind('{') > lastIndex:
+            lastIndex = s.rfind('{')
+        print(lastIndex)
         return null
 
     # best solution
@@ -14,6 +21,7 @@ class Solution(object):
         d = {'(': ')', '{': '}', '[': ']'}
         stack = []
         for i in s:
+            print(stack)
             if i in d:  # 1
                 stack.append(i)
             elif len(stack) == 0 or d[stack.pop()] != i:  # 2
