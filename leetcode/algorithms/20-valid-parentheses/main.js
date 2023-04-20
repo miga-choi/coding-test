@@ -6,7 +6,7 @@ var isValid = function (s) {
   return null;
 };
 
-// best solution
+// Best Solution
 var bestSolution = function (s) {
   // Initialize stack to store the closing brackets expected...
   let stack = [];

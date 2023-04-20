@@ -4,15 +4,15 @@ class Solution(object):
         :type strs: List[str]
         :rtype: str
         """
-        result = ''
+        result = ""
         length = len(strs[0])
         if len(strs) == 0:
-            return ''
+            return ""
         if len(strs) == 1:
             return strs[0]
         for strc in strs:
             if len(strc) == 0:
-                return ''
+                return ""
             if length > len(strc):
                 length = len(strc)
         for i in range(0, length):
@@ -20,7 +20,7 @@ class Solution(object):
             for j in range(0, len(strs)):
                 if j >= len(strs) - 1:
                     continue
-                if strs[j][i] != strs[j+1][i]:
+                if strs[j][i] != strs[j + 1][i]:
                     same = False
             if same:
                 result += strs[j][i]
@@ -39,7 +39,7 @@ class Solution(object):
         l = list(zip(*strs))
         prefix = ""
         for i in l:
-            if (len(set(i)) == 1):
+            if len(set(i)) == 1:
                 prefix += i[0]
             else:
                 break
