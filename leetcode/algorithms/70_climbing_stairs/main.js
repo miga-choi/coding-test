@@ -7,15 +7,16 @@ var climbStairs = function (n) {
     return 1;
   }
 
-  let dp = [];
-  dp[1] = 1;
-  dp[2] = 2;
-
   // Fibonacci numbers
-  for (let i = 3; i <= n; i++) {
+  let dp = [];
+  dp[0] = 1;
+  dp[1] = 2;
+
+  for (let i = 2; i < n; i++) {
     dp[i] = dp[i - 1] + dp[i - 2];
   }
-  return dp[n];
+
+  return dp[n - 1];
 };
 
 // Best Solution
