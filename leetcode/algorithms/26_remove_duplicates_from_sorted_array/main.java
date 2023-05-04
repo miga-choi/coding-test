@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-class Solution {
+class RemoveDuplicatesFromSortedArray {
 
   public int removeDuplicates(int[] nums) {
     Set<Integer> numsSet = new HashSet<Integer>();

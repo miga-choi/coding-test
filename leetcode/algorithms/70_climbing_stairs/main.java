@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-class Solution {
+class ClimbingStairs {
 
   public int climbStairs(int n) {
     if (n < 2) {

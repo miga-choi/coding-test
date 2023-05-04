@@ -25,7 +25,7 @@ class ListNode {
   }
 }
 
-class Solution {
+class MergeTwoSortedLists {
 
   public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
     return null;

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Solution {
+class LengthOfLastWord {
 
   public int lengthOfLastWord(String s) {
     String[] sArray = s.split(" ");

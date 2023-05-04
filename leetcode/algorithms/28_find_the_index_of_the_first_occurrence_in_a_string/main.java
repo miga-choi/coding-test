@@ -1,4 +1,4 @@
-class Solution {
+class FindTheIndexOfTheFirstOccurrenceInAString {
 
   public int strStr(String haystack, String needle) {
     if (haystack == null || haystack.equals("")) {

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Solution {
+class RemoveElement {
 
   public int removeElement(int[] nums, int val) {
     List<Integer> newNums = new ArrayList<>();
