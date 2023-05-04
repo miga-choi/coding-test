@@ -2,9 +2,10 @@ import java.util.HashMap;
 import java.util.Stack;
 
 // Best Solution
-class BestSolution {
+class ValidParentheses {
 
-  public boolean isValid(String s) {
+  // Best Solution
+  public boolean bestSolution(String s) {
     // Create hashmap to store the pairs...
     HashMap<Character, Character> Hmap = new HashMap<Character, Character>();
     Hmap.put(')', '(');

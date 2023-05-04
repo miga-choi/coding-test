@@ -19,7 +19,7 @@ import java.util.Stack;
  */
 class BinaryTreeInorderTraversal {
 
-  class TreeNode {
+  public class TreeNode {
 
     int val;
     TreeNode left;

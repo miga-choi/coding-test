@@ -17,7 +17,7 @@ import java.util.Stack;
  */
 class SameTree {
 
-  class TreeNode {
+  public class TreeNode {
 
     int val;
     TreeNode left;

@@ -17,7 +17,7 @@ import java.util.Stack;
  */
 class SymmetricTree {
 
-  class TreeNode {
+  public class TreeNode {
 
     int val;
     TreeNode left;
