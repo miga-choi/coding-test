@@ -37,7 +37,18 @@ class Solution {
   }
 
   public TreeNode sortedArrayToBST(int[] nums) {
-    return null;
+    if (nums == null || nums.length == 0) {
+      return null;
+    }
+
+    int mid = Math.floorDiv(nums.length, 2);
+    TreeNode root = new TreeNode(nums[mid]);
+
+    root.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, mid));
+    root.right =
+      sortedArrayToBST(Arrays.copyOfRange(nums, mid + 1, nums.length));
+
+    return root;
   }
 
   // Best Solution
