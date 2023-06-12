@@ -9,7 +9,7 @@ var reverseBits = function (n) {
     n.push('0');
   }
 
-  return parseInt(n.toString().replaceAll(',', ''), 2);
+  return parseInt(n.join(''), 2);
 };
 
 // Best Solution
