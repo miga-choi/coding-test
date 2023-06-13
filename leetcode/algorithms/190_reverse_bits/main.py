@@ -1,6 +1,6 @@
 class Solution:
     def reverseBits(self, n: int) -> int:
-        n = str(bin(n).replace("0b", ""))[::-1]
+        n = bin(n).replace("0b", "")[::-1]
 
         while len(n) < 32:
             n += "0"
