@@ -8,7 +8,7 @@ class Solution {
       stringBuilder.append("0");
     }
 
-    return Integer.parseInt(stringBuilder.toString());
+    return (int) Long.parseLong(stringBuilder.toString(), 2);
   }
 
   // Best Solution
