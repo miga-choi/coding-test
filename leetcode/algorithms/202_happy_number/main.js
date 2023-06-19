@@ -2,7 +2,23 @@
  * @param {number} n
  * @return {boolean}
  */
-var isHappy = function (n) {};
+var isHappy = function (n) {
+  const set = {};
+  while (n > 1) {
+    let nString = n.toString();
+    if (set[nString]) {
+      return false;
+    }
+    set[nString] = true;
+    n = nString.split('').reduce((total_, current_) => {
+      return parseInt(total_) + Math.pow(parseInt(current_), 2);
+    }, 0);
+    if (n === 1) {
+      return true;
+    }
+  }
+  return n === 1;
+};
 
 // Best Solution
 var bestSolution1 = function (n) {
