@@ -14,7 +14,7 @@
  * }
  */
 
-class Solution {
+class BalancedBinaryTree {
 
   public class TreeNode {
 

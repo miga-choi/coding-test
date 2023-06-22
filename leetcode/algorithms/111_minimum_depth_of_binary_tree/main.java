@@ -13,7 +13,8 @@
  *     }
  * }
  */
-class Solution {
+
+class MinimumDepthOfBinaryTree {
 
   public class TreeNode {
 

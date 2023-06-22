@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Solution {
+class Pascals_riangle2 {
 
   public List<Integer> getRow(int rowIndex) {
     List<List<Integer>> rows = new ArrayList<List<Integer>>();

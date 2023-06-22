@@ -13,7 +13,7 @@ import java.util.List;
  * }
  */
 
-class Solution {
+class LinkedListCycle {
 
   public class ListNode {
 

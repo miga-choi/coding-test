@@ -21,26 +21,26 @@ import java.util.List;
  * }
  */
 
-class TreeNode {
+class BinaryTreePostorderTraversal {
 
-  int val;
-  TreeNode left;
-  TreeNode right;
+  public class TreeNode {
 
-  TreeNode() {}
+    int val;
+    TreeNode left;
+    TreeNode right;
 
-  TreeNode(int val) {
-    this.val = val;
+    TreeNode() {}
+
+    TreeNode(int val) {
+      this.val = val;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+      this.val = val;
+      this.left = left;
+      this.right = right;
+    }
   }
-
-  TreeNode(int val, TreeNode left, TreeNode right) {
-    this.val = val;
-    this.left = left;
-    this.right = right;
-  }
-}
-
-class Solution {
 
   public List<Integer> postorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<Integer>();

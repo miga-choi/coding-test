@@ -1,10 +1,12 @@
-class Solution {
+class ExcelSheetColumnNumber {
 
   public int titleToNumber(String columnTitle) {
     int result = 0;
 
     for (int i = columnTitle.length() - 1; i >= 0; i--) {
-      result += Math.pow(26, columnTitle.length() - 1 - i) * ((int) columnTitle.charAt(i) - 64);
+      result +=
+        Math.pow(26, columnTitle.length() - 1 - i) *
+        ((int) columnTitle.charAt(i) - 64);
     }
 
     return result;

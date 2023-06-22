@@ -13,7 +13,9 @@
  *     }
  * }
  */
-class Solution {
+
+
+class MaximumDepthOfBinaryTree {
 
   public class TreeNode {
 

@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Solution {
+class HappyNumber {
 
   public boolean isHappy(int n) {
     if (n <= 1) {

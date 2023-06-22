@@ -1,8 +1,9 @@
-class Solution {
+class ReverseBits {
 
   // you need treat n as an unsigned value
   public int reverseBits(int n) {
-    StringBuilder stringBuilder = new StringBuilder(Integer.toBinaryString(n)).reverse();
+    StringBuilder stringBuilder = new StringBuilder(Integer.toBinaryString(n))
+      .reverse();
 
     while (stringBuilder.length() < 32) {
       stringBuilder.append("0");

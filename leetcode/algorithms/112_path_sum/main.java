@@ -15,7 +15,7 @@ import java.util.Stack;
  *     }
  * }
  */
-class Solution {
+class PathSum {
 
   public class TreeNode {
 
@@ -43,7 +43,10 @@ class Solution {
     if (root.left == null && root.right == null) {
       return root.val == targetSum;
     } else {
-      return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+      return (
+        hasPathSum(root.left, targetSum - root.val) ||
+        hasPathSum(root.right, targetSum - root.val)
+      );
     }
   }
 
@@ -83,6 +86,9 @@ class Solution {
     // recursion method
     if (root == null) return false;
     if (root.left == null && root.right == null && root.val == sum) return true;
-    return bestSolution2(root.left, sum - root.val) || bestSolution2(root.right, sum - root.val);
+    return (
+      bestSolution2(root.left, sum - root.val) ||
+      bestSolution2(root.right, sum - root.val)
+    );
   }
 }

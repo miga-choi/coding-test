@@ -15,7 +15,8 @@ import java.util.Arrays;
  *     }
  * }
  */
-class Solution {
+
+class ConvertSortedArrayToBinarySearchTree {
 
   public class TreeNode {
 

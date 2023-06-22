@@ -10,18 +10,18 @@
  * }
  */
 
-class ListNode {
+class IntersectionOfTwoLinkedLists {
 
-  int val;
-  ListNode next;
+  public class ListNode {
 
-  ListNode(int x) {
-    val = x;
-    next = null;
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+      val = x;
+      next = null;
+    }
   }
-}
-
-class Solution {
 
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
     ListNode a = headA;
