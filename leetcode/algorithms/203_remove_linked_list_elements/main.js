@@ -23,6 +23,7 @@ var removeElements = function (head, val) {
 
   let currentHead = head;
   let nextHead = head.next;
+  
   while (nextHead) {
     if (nextHead.val === val) {
       nextHead = nextHead.next;
