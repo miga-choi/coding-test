@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-class Solution {
+class ContainsDuplicate {
 
   public boolean containsDuplicate(int[] nums) {
     Map<Integer, Boolean> numsMap = new HashMap<Integer, Boolean>();

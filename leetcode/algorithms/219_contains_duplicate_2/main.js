@@ -16,8 +16,9 @@ var containsNearbyDuplicate = function (nums, k) {
   return false;
 };
 
+
 // Best Solution
-function bestSolution(nums, k) {
+function bestSolution1(nums, k) {
   // Create an empty object to store the last index of each number in nums
   let map = {};
   // Iterate through each number in nums
@@ -30,5 +31,17 @@ function bestSolution(nums, k) {
     map[nums[i]] = i;
   }
   // Return false if no such pair exists
+  return false;
+}
+
+function bestSolution2(nums, k) {
+  const hasmap = new Map();
+  for (let idx = 0; idx < nums.length; idx++) {
+    // Check if the difference betweend duplicates is less than k
+    if (idx - hasmap.get(nums[idx]) <= k) {
+      return true;
+    }
+    hasmap.set(nums[idx], idx);
+  }
   return false;
 }
