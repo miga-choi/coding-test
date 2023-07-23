@@ -9,7 +9,6 @@ var summaryRanges = function (nums) {
     let num = nums[0];
     let numArray = [num];
     for (let i = 1; i < nums.length; i++) {
-      console.log(num, nums[i]);
       if (nums[i] - num === 1) {
         numArray.push(nums[i]);
       } else {
