@@ -2,11 +2,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-class MyStack {
+class ImplementStackUsingQueues {
     Stack<Integer> inputStack;
     Stack<Integer> outputStack;
 
-    public MyStack() {
+    public ImplementStackUsingQueues() {
         inputStack = new Stack<Integer>();
         outputStack = new Stack<Integer>();
 
