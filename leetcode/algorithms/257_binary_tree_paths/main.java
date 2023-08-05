@@ -18,7 +18,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class binaryTreePaths {
+class BinaryTreePaths {
 
     public class TreeNode {
         int val;
