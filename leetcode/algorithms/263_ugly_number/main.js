@@ -22,6 +22,7 @@ var isUgly = function (n) {
   return true;
 };
 
+
 // Best Solution
 var bestSolution = function (n) {
   if (n <= 0) return false;
