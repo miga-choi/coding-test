@@ -13,7 +13,7 @@
  *     }
  * }
  */
-class Solution {
+class CountCompleteTreeNodes {
     public class TreeNode {
         int val;
         TreeNode left;
