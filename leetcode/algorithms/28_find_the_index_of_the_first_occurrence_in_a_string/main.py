@@ -1,3 +1,6 @@
+import sys
+
+
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         if haystack == "":
@@ -5,6 +8,7 @@ class Solution:
         if needle == "":
             return 0
         return haystack.find(needle)
+
 
     # Best Solution
     def strStr(self, haystack, needle):

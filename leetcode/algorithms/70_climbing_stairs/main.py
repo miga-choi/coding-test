@@ -13,6 +13,7 @@ class Solution:
 
         return dp[n - 1]
 
+
     # Best Solution
     # pure recursive (Can't pass the test case :does not work for big number, result time-exced limit)
     #   - The base case will be when only 1 or 2 steps left
@@ -66,4 +67,4 @@ class Solution:
             print(dp)
             return dp[n]
 
-    return climb(n)
+        return climb(n)

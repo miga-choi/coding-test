@@ -4,6 +4,7 @@ class Solution:
             if i * i <= x and (i + 1) * (i + 1) > x:
                 return i
 
+
     # Best Solution
     def bestSolution(self, x: int) -> int:
         if x == 0:

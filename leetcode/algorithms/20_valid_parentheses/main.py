@@ -4,7 +4,8 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        return false
+        return False
+
 
     # Best Solution
     def bestSolution(self, s):

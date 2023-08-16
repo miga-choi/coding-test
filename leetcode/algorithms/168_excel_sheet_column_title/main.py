@@ -37,6 +37,7 @@ class Solution:
 
         return result
 
+
     # Best Solution
     def bestSolution1(self, columnNumber):
         # Create an empty string for storing the characters...
@@ -51,4 +52,4 @@ class Solution:
         return output
 
     def bestSolution2(self, columnNumber):
-        return "" if num == 0 else self.convertToTitle((num - 1) / 26) + chr((num - 1) % 26 + ord("A"))
+        return "" if columnNumber == 0 else self.convertToTitle((columnNumber - 1) / 26) + chr((columnNumber - 1) % 26 + ord("A"))

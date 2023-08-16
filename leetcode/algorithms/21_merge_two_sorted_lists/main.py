@@ -1,8 +1,12 @@
+from typing import Optional
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
@@ -16,12 +20,11 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        return null
+        return None
+
 
     # Best Solution
-    def bestSolution(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def bestSolution(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         cur = dummy = ListNode()
         while list1 and list2:
             if list1.val < list2.val:

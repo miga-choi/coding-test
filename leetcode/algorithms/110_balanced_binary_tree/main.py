@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -30,6 +32,7 @@ class Solution:
             return -1
 
         return max(leftDepth, rightDepth) + 1
+
 
     # Best Solution
     def bestSolution(self, root: Optional[TreeNode]) -> bool:

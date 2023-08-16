@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -37,11 +39,12 @@ class Solution:
             return True
         return self.checkNode(root.left, root.right)
 
+
     # Best Solution
     def bestSolution(self, root):
         # Special case...
         if not root:
-            return true
+            return True
         # Return the function recursively...
         return self.isSame(root.left, root.right)
 

@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -20,6 +22,7 @@ class Solution:
             stack.append(head)
             head = head.next
         return False
+
 
     # Best Solution
     # Dictionary/Hash table

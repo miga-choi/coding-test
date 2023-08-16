@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
         result = []
@@ -10,6 +13,7 @@ class Solution:
                     row.append(result[i - 1][j - 1] + result[i - 1][j])
             result.append(row)
         return result
+
 
     # Best Solution
     def bestSolution(self, numRows):

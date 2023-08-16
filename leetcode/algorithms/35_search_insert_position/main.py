@@ -1,5 +1,6 @@
 import math
 import bisect
+from typing import List
 
 
 class Solution:
@@ -12,6 +13,7 @@ class Solution:
             else:
                 hi = mid
         return lo
+
 
     # Best Solution
     # Linear Search

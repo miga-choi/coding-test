@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         for i in range(len(digits) - 1, -1, -1):
@@ -8,6 +11,7 @@ class Solution:
                 return digits
         digits.insert(0, 1)
         return digits
+
 
     # Best Solution
     def bestSolution(self, digits: List[int]) -> List[int]:

@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -19,7 +21,8 @@ class Solution:
                 result.next = result.next.next
             else:
                 result = result.next
-        return hread
+        return head
+
 
     # Best Solution
     def bestSolution1(self, head: ListNode) -> ListNode:

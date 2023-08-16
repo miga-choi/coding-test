@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -20,6 +22,7 @@ class Solution:
         if p is None or q is None or p.val != q.val:
             return False
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
 
     # Best Solution
     def bestSolution(self, p: TreeNode, q: TreeNode) -> bool:

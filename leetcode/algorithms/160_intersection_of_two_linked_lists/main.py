@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -25,6 +27,7 @@ class Solution:
             else:
                 b = b.next
         return a
+
 
     # Best Solution
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:

@@ -1,4 +1,8 @@
 # Python
+from collections import OrderedDict
+from typing import List
+
+
 class Solution(object):
     def removeDuplicates(self, nums):
         """
@@ -7,6 +11,7 @@ class Solution(object):
         """
         nums[:] = sorted(list(dict.fromkeys(nums)))
         return len(nums)
+
 
     # Best Solution
     def bestSolution(self, nums):

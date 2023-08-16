@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
@@ -6,6 +9,7 @@ class Solution:
         for i in range(-1, -1 - n, -1):
             nums1[i] = nums2[i]
         nums1[0:] = sorted(nums1)
+
 
     # Best Solution
     def merge_two_sorted_arrays(A: List[int], m: int, B: List[int], n: int) -> None:

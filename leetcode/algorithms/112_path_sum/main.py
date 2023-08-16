@@ -1,3 +1,5 @@
+from typing import Optional
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -21,6 +23,7 @@ class Solution:
             return root.val == targetSum
         else:
             return self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val)
+
 
     # Best Solution
 
@@ -49,12 +52,12 @@ class Solution:
         stack = [(root, sum)]
         while stack:
             node, curr_sum = stack.pop()
-        if not node:
-            continue
-        if not node.left and not node.right and curr_sum == node.val:
-            return True
-        stack.append((node.left, curr_sum - node.val))
-        stack.append((node.right, curr_sum - node.val))
+            if not node:
+                continue
+            if not node.left and not node.right and curr_sum == node.val:
+                return True
+            stack.append((node.left, curr_sum - node.val))
+            stack.append((node.right, curr_sum - node.val))
         return False
 
     # III. BFS Solution

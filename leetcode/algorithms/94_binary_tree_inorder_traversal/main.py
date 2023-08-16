@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -27,12 +29,13 @@ class Solution:
                 root = root.right
         return result
 
+
     # Best Solution
-    def preorder(root):
-        return [root.val] + preorder(root.left) + preorder(root.right) if root else []
+    def preorder(self, root: Optional[TreeNode]) -> List[int]:
+        return [root.val] + self.preorder(root.left) + self.preorder(root.right) if root else []
 
-    def inorder(root):
-        return inorder(root.left) + [root.val] + inorder(root.right) if root else []
+    def inorder(self, root: Optional[TreeNode]) -> List[int]:
+        return self.inorder(root.left) + [root.val] + self.inorder(root.right) if root else []
 
-    def postorder(root):
-        return postorder(root.left) + postorder(root.right) + [root.val] if root else []
+    def postorder(self, root: Optional[TreeNode]) -> List[int]:
+        return self.postorder(root.left) + self.postorder(root.right) + [root.val] if root else []

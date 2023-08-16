@@ -1,3 +1,7 @@
+from functools import reduce
+from typing import List
+
+
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         nums.sort()
