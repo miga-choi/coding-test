@@ -48,9 +48,9 @@ class ImplementQueueUsingStacks {
  * boolean param_4 = obj.empty();
  */
 
- 
+
 // Best Solution
-class BestSolution {
+class ImplementQueueUsingStacks_BestSolution {
     Stack<Integer> input = new Stack<Integer>();
     Stack<Integer> output = new Stack<Integer>();
 
