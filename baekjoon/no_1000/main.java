@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class No1000 {
-  void main(String[] args) {
+  public void no1000(String[] args) {
     Scanner sc = new Scanner(System.in);
     int a = sc.nextInt();
     int b = sc.nextInt();
