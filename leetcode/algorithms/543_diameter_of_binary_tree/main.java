@@ -56,7 +56,6 @@ class DiameterOfBinaryTree {
         int maxY = 0;
         int maxDistance = 0;
         boolean going = true;
-        Set<BigInteger[]> fakeSet;
         ArrayList<BigInteger> topSet = new ArrayList<BigInteger>();
         ArrayList<BigInteger[]> finalSet = new ArrayList<BigInteger[]>();
         while (going) {
@@ -172,7 +171,6 @@ class DiameterOfBinaryTree {
         int ldia = diameterOfBinaryTree(root.left);
         int rdia = diameterOfBinaryTree(root.right);
         return Math.max(dia, Math.max(ldia, rdia));
-
     }
 
     public int depth(TreeNode root) {
