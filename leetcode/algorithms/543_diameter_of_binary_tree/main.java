@@ -3,7 +3,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 class DiameterOfBinaryTree {
     class TreeNode {
