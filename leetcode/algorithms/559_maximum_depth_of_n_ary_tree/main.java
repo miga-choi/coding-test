@@ -2,14 +2,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class Solution {
+class MaximumDepthOfNAryTree {
 
   class Node {
 
     public int val;
     public List<Node> children;
 
-    public Node() {}
+    public Node() {
+    }
 
     public Node(int _val) {
       val = _val;
