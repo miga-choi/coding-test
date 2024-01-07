@@ -1,4 +1,4 @@
-class Solution:
+class PalindromeNumber:
     def isPalindrome(self, x: int) -> bool:
         result = True
         if x < 0:

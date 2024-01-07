@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Solution
+public class TwoSum
 {
     public int[] TwoSum(int[] nums, int target)
     {
