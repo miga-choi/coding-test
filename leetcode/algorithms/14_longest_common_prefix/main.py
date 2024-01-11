@@ -1,9 +1,8 @@
-class Solution(object):
-    def longestCommonPrefix(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
+from typing import List
+
+
+class LongestCommonPrefix:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
         result = ""
         length = len(strs[0])
         if len(strs) == 0:
@@ -29,13 +28,45 @@ class Solution(object):
         return result
 
 
-# Best Solution:
-class Solution(object):
-    def longestCommonPrefix(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
+    # Best Solution:
+    # Best Solution 1:
+    def bestSolution1(self, strs: List[str]) -> str:
+        ans = ""
+        strs = sorted(strs)
+        first = strs[0]
+        last = strs[-1]
+        for i in range(min(len(first), len(last))):
+            if first[i] != last[i]:
+                return ans
+            ans += first[i]
+        return ans
+
+    # Best Solution 2:
+    def bestSolution2(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        shortest = min(strs, key=len)
+        for i, ch in enumerate(shortest):
+            for other in strs:
+                if other[i] != ch:
+                    return shortest[:i]
+        return shortest
+
+    # Best Solution 3:
+    def bestSolution3(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        # since list of string will be sorted and retrieved min max by alphebetic order
+        s1 = min(strs)
+        s2 = max(strs)
+
+        for i, c in enumerate(s1):
+            if c != s2[i]:
+                return s1[:i]  # stop until hit the split index
+        return s1
+
+    # Best Solution 4:
+    def bestSolution(self, strs: List[str]) -> str:
         l = list(zip(*strs))
         prefix = ""
         for i in l:
