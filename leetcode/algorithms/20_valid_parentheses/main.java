@@ -1,8 +1,27 @@
 import java.util.HashMap;
 import java.util.Stack;
 
-// Best Solution
 class ValidParentheses {
+  public boolean isValid(String s) {
+    Stack<String> stack = new Stack<String>();
+
+    for (String c : s.split("")) {
+      if (c.equals("(")) {
+        stack.push(")");
+      } else if (c.equals("[")) {
+        stack.push("]");
+      } else if (c.equals("{")) {
+        stack.push("}");
+      } else {
+        if (stack.size() == 0 || !stack.pop().equals(c)) {
+          return false;
+        }
+      }
+    }
+
+    return stack.size() <= 0;
+  }
+
 
   // Best Solution
   public boolean bestSolution(String s) {
@@ -16,13 +35,12 @@ class ValidParentheses {
     // Traverse each charater in input string...
     for (int idx = 0; idx < s.length(); idx++) {
       // If open parentheses are present, push it to stack...
-      if (
-        s.charAt(idx) == '(' || s.charAt(idx) == '{' || s.charAt(idx) == '['
-      ) {
+      if (s.charAt(idx) == '(' || s.charAt(idx) == '{' || s.charAt(idx) == '[') {
         stack.push(s.charAt(idx));
         continue;
       }
-      // If the character is closing parentheses, check that the same type opening parentheses is being pushed to the stack or not...
+      // If the character is closing parentheses, check that the same type opening
+      // parentheses is being pushed to the stack or not...
       // If not, we need to return false...
       if (stack.size() == 0 || Hmap.get(s.charAt(idx)) != stack.pop()) {
         return false;
