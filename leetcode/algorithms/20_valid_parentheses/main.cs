@@ -10,13 +10,11 @@ public class ValidParentheses
             {
                 stack.Push(')');
             }
-            else
-            if (c == '[')
+            else if (c == '[')
             {
                 stack.Push(']');
             }
-            else
-            if (c == '{')
+            else if (c == '{')
             {
                 stack.Push('}');
             }
@@ -31,6 +29,7 @@ public class ValidParentheses
 
         return stack.Count <= 0;
     }
+
 
     // Best Solution
     // Best Solution 1: Stack
