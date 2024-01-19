@@ -10,6 +10,7 @@ var removeDuplicates = function (nums) {
     }).length;
 };
 
+
 // Best Solution
 var bestSolution = function (nums) {
   let i = 0;
