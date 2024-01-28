@@ -3,7 +3,7 @@ import bisect
 from typing import List
 
 
-class Solution:
+class SearchInsertPosition:
     def searchInsert(self, nums: List[int], target: int) -> int:
         lo, hi = 0, len(nums)
         while lo < hi:
@@ -16,8 +16,8 @@ class Solution:
 
 
     # Best Solution
-    # Linear Search
-    def linearSearch(self, nums: List[int], target: int) -> int:
+    # Best Solution 1: Linear Search
+    def bestSolution1(self, nums: List[int], target: int) -> int:
         if not nums:
             return 0
 
@@ -27,12 +27,12 @@ class Solution:
 
         return len(nums)
 
-    # Using bisect module
-    def bisectModule(self, nums: List[int], target: int) -> int:
+    # Best Solution 2: Using bisect module
+    def bestSolution2(self, nums: List[int], target: int) -> int:
         return bisect.bisect_left(nums, target)
 
-    # Binary Search By Hand
-    def binarySearch(self, nums: List[int], target: int) -> int:
+    # Best Solution 3: Binary Search By Hand
+    def bestSolution3(self, nums: List[int], target: int) -> int:
         low, high = 0, len(nums)
         while low < high:
             mid = (low + high) // 2
