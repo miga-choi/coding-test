@@ -7,12 +7,12 @@ var addBinary = function (a, b) {
   const count = Math.abs(a.length - b.length);
   for (let i = 0; i < count; i++) {
     if (a.length > b.length) {
-      b = '0'.concat(b);
+      b = "0".concat(b);
     } else {
-      a = '0'.concat(a);
+      a = "0".concat(a);
     }
   }
-  let result = '';
+  let result = "";
   let up = 0;
   for (let i = a.length - 1; i >= 0; i--) {
     let num = parseInt(a[i]) + parseInt(b[i]) + up;
@@ -29,10 +29,17 @@ var addBinary = function (a, b) {
   return result;
 };
 
+
 // Best Solution
-var bestSolution = function (a, b) {
+// Best Solution 1:
+var bestSolution1 = function (a, b) {
   const aBin = `0b${a}`;
   const bBin = `0b${b}`;
   const sum = BigInt(aBin) + BigInt(bBin);
   return sum.toString(2);
+};
+
+// Best Solution 2:
+var bestSolution2 = function (a, b) {
+  return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 };
