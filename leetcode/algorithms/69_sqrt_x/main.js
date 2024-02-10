@@ -10,8 +10,10 @@ var mySqrt = function (x) {
   }
 };
 
+
 // Best Solution
-var bestSolution = function (x) {
+// Best Solution 1:
+var bestSolution1 = function (x) {
   var left = 1;
   var right = Math.floor(x / 2) + 1;
   var mid;
@@ -29,4 +31,32 @@ var bestSolution = function (x) {
   }
 
   return right;
+};
+
+// Best Solution 2:
+var bestSolution2 = function (x) {
+  let result = 1;
+  while (result * result <= x) {
+    result++;
+  }
+  return result - 1;
+};
+
+// Best Solution 3:
+var bestSolution3 = function (x) {
+  let start = 0;
+  let end = x;
+  let res = 0;
+  while (start < end) {
+    res = Math.ceil((start + end) / 2); // 1.
+    if (res * res <= x && (res + 1) * (res + 1) > x) {
+      return res; // 2.
+    }
+    if (res * res < x) {
+      start = res; // 3.
+    } else {
+      end = res; // 4.
+    }
+  }
+  return res;
 };
