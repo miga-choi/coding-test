@@ -1,12 +1,12 @@
 # 83. Remove Duplicates from Sorted List
 
-Given the `head` of a sorted linked list, delete all duplicates such that each element appears only once. Return _the linked list **sorted** as well._
+Given the `head` of a sorted linked list, _delete all duplicates such that each element appears only once_. Return _the linked list **sorted** as well._
 
 ## Example 1:
 
 ![Alt text](https://assets.leetcode.com/uploads/2021/01/04/list1.jpg)
 
-```java
+```
 Input: head = [1,1,2]
 Output: [1,2]
 ```
@@ -15,7 +15,7 @@ Output: [1,2]
 
 ![Alt text](https://assets.leetcode.com/uploads/2021/01/04/list2.jpg)
 
-```java
+```
 Input: head = [1,1,2,3,3]
 Output: [1,2,3]
 ```
