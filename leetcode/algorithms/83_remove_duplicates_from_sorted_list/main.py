@@ -1,11 +1,5 @@
 from typing import Optional
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -13,7 +7,7 @@ class ListNode:
         self.next = next
 
 
-class Solution:
+class RemoveDuplicatesFromSortedList:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         result = head
         while result:
@@ -25,19 +19,21 @@ class Solution:
 
 
     # Best Solution
+    # Best Solution 1: iterative
     def bestSolution1(self, head: ListNode) -> ListNode:
         cur = head
         while cur:
             while cur.next and cur.next.val == cur.val:
-                cur.next = cur.next.next
-            cur = cur.next
+                cur.next = cur.next.next  # skip duplicated node
+            cur = cur.next  # not duplicate of current node, move to next node
         return head
 
+    # Best Solution 2:
     def bestSolution2(self, head: ListNode) -> ListNode:
-        cur = head
-        while cur:
-            if cur.next and cur.next.val == cur.val:
-                cur.next = cur.next.next
-            else:
-                cur = cur.next
+        temp = head
+        while temp and temp.next:
+            if temp.next.val == temp.val:
+                temp.next = temp.next.next
+                continue
+            temp = temp.next
         return head
