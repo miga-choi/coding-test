@@ -8,7 +8,7 @@ The final sorted array should not be returned by the function, but instead be _s
 
 ## Example 1:
 
-```java
+```
 Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
 Output: [1,2,2,3,5,6]
 Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
@@ -17,7 +17,7 @@ The result of the merge is [1,2,2,3,5,6] with the underlined elements coming fro
 
 ## Example 2:
 
-```java
+```
 Input: nums1 = [1], m = 1, nums2 = [], n = 0
 Output: [1]
 Explanation: The arrays we are merging are [1] and [].
@@ -26,7 +26,7 @@ The result of the merge is [1].
 
 ## Example 3:
 
-```java
+```
 Input: nums1 = [0], m = 0, nums2 = [1], n = 1
 Output: [1]
 Explanation: The arrays we are merging are [] and [1].
