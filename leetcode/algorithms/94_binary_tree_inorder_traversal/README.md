@@ -6,21 +6,21 @@ Given the `root` of a binary tree, return _the inorder traversal of its nodes' v
 
 ![Alt text](https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg)
 
-```java
+```
 Input: root = [1,null,2,3]
 Output: [1,3,2]
 ```
 
 ## Example 2:
 
-```java
+```
 Input: root = []
 Output: []
 ```
 
 ## Example 3:
 
-```java
+```
 Input: root = [1]
 Output: [1]
 ```
