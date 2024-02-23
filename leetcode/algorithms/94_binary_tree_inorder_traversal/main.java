@@ -2,31 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-
 class BinaryTreeInorderTraversal {
-
   public class TreeNode {
 
     int val;
     TreeNode left;
     TreeNode right;
 
-    TreeNode() {}
+    TreeNode() {
+    }
 
     TreeNode(int val) {
       this.val = val;
@@ -56,8 +40,10 @@ class BinaryTreeInorderTraversal {
     return result;
   }
 
+
   // Best Solution
-  public List<Integer> bestSolution(TreeNode root) {
+  // Best Solution 1: Iterative
+  public List<Integer> bestSolution1(TreeNode root) {
     List<Integer> list = new ArrayList<Integer>();
 
     Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -74,5 +60,20 @@ class BinaryTreeInorderTraversal {
     }
 
     return list;
+  }
+
+  // Best Solution 2: DFS
+  public List<Integer> bestSolution2(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    helper(root, res);
+    return res;
+  }
+
+  public void helper(TreeNode root, List<Integer> res) {
+    if (root != null) {
+      helper(root.left, res);
+      res.add(root.val);
+      helper(root.right, res);
+    }
   }
 }
