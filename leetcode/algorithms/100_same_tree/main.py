@@ -19,22 +19,8 @@ class SameTree:
 
 
     # Best Solution
-    # Best Solution 1: Recursive
+    # Best Solution 1: Recursive (DFS) Preorder traversal
     def bestSolution1(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # If both nodes are None, they are identical
-        if p is None and q is None:
-            return True
-        # If only one of the nodes is None, they are not identical
-        if p is None or q is None:
-            return False
-        # Check if values are equal and recursively check left and right subtrees
-        if p.val == q.val:
-            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        # Values are not equal, they are not identical
-        return False
-
-    # Best Solution 2: Recursive (DFS) Preorder traversal
-    def bestSolution2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # Base case: If both trees are empty, they are identical.
         if not p and not q:
             return True
@@ -47,10 +33,12 @@ class SameTree:
             return False
 
         # Recursively check the left and right subtrees.
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        return self.bestSolution1(p.left, q.left) and self.bestSolution1(
+            p.right, q.right
+        )
 
-    # Best Solution 3: Level-order traversal using Queues
-    def bestSolution3(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    # Best Solution 2: Level-order traversal using Queues
+    def bestSolution2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # Create queues for both trees.
         queue1 = deque()
         queue2 = deque()
@@ -78,8 +66,8 @@ class SameTree:
         # If both queues are empty, the trees are identical.
         return not queue1 and not queue2
 
-    # Best Solution 4: Level-order traversal using Stack
-    def bestSolution4(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    # Best Solution 3: Level-order traversal using Stack
+    def bestSolution3(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         stack1, stack2 = [p], [q]
 
         while stack1 and stack2:
