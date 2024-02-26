@@ -1,0 +1,153 @@
+using System.Collections.Generic;
+
+
+public class TreeNode
+{
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+    {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class SameTree
+{
+    public bool IsSameTree(TreeNode p, TreeNode q)
+    {
+        return checkNode(p, q);
+    }
+
+    public bool checkNode(TreeNode node1, TreeNode node2)
+    {
+        if (node1 == null && node2 == null)
+        {
+            return true;
+        }
+
+        if (node1 == null || node2 == null || node1.val != node2.val)
+        {
+            return false;
+        }
+
+        return checkNode(node1.left, node2.left) && checkNode(node1.right, node2.right);
+    }
+
+
+    //  Best Solution
+    //  Best Solution 1: Recursive (DFS) Preorder traversal
+    public bool bestSolution1(TreeNode p, TreeNode q)
+    {
+        // Base case: If both trees are empty, they are identical.
+        if (p == null && q == null)
+        {
+            return true;
+        }
+
+        // If one of the trees is empty and the other is not, they are not identical.
+        if (p == null || q == null)
+        {
+            return false;
+        }
+
+        // Compare the values of the current nodes.
+        if (p.val != q.val)
+        {
+            return false;
+        }
+
+        // Recursively check the left and right subtrees.
+        return bestSolution1(p.left, q.left) && bestSolution1(p.right, q.right);
+    }
+
+    //  Best Solution 2: Level-order traversal using Queues
+    public bool bestSolution2(TreeNode p, TreeNode q)
+    {
+        // Create queues for both trees.
+        Queue<TreeNode> queue1 = new Queue<TreeNode>();
+        Queue<TreeNode> queue2 = new Queue<TreeNode>();
+
+        // Start by adding the root nodes of both trees to their respective queues.
+        queue1.Enqueue(p);
+        queue2.Enqueue(q);
+
+        while (queue1.Count > 0 && queue2.Count > 0)
+        {
+            TreeNode node1 = queue1.Dequeue();
+            TreeNode node2 = queue2.Dequeue();
+
+            // If the values of the current nodes are not equal, the trees are not identical.
+            if (node1 == null && node2 == null)
+            {
+                continue;
+            }
+            if (node1 == null || node2 == null || node1.val != node2.val)
+            {
+                return false;
+            }
+
+            // Add the left and right children of both nodes to their respective queues.
+            queue1.Enqueue(node1.left);
+            queue1.Enqueue(node1.right);
+            queue2.Enqueue(node2.left);
+            queue2.Enqueue(node2.right);
+        }
+
+        // If both queues are empty, the trees are identical.
+        return queue1.Count == 0 && queue2.Count == 0;
+    }
+
+    //  Best Solution 3: Level-order traversal using Stack
+    public bool bestSolution3(TreeNode p, TreeNode q)
+    {
+        Stack<TreeNode> stack1 = new Stack<TreeNode>();
+        Stack<TreeNode> stack2 = new Stack<TreeNode>();
+
+        stack1.Push(p);
+        stack2.Push(q);
+
+        while (stack1.Count > 0 && stack2.Count > 0)
+        {
+            TreeNode node1 = stack1.Pop();
+            TreeNode node2 = stack2.Pop();
+
+            if (node1 == null && node2 == null)
+            {
+                continue;
+            }
+            else if (node1 == null || node2 == null || node1.val != node2.val)
+            {
+                return false;
+            }
+
+            stack1.Push(node1.left);
+            stack2.Push(node2.left);
+            stack1.Push(node1.right);
+            stack2.Push(node2.right);
+        }
+
+        return stack1.Count == 0 && stack2.Count == 0;
+    }
+
+    //  Best Solution 4: Tree Hashing
+    public bool bestSolution4(TreeNode p, TreeNode q)
+    {
+        string hash1 = bestSolution4_computeTreeHash(p);
+        string hash2 = bestSolution4_computeTreeHash(q);
+        return hash1.Equals(hash2);
+    }
+
+    private string bestSolution4_computeTreeHash(TreeNode node)
+    {
+        if (node == null)
+        {
+            return "null";
+        }
+        string leftHash = bestSolution4_computeTreeHash(node.left);
+        string rightHash = bestSolution4_computeTreeHash(node.right);
+        return $"({node.val}{leftHash}{rightHash})";
+    }
+}
