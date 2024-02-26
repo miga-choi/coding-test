@@ -24,6 +24,7 @@ class SameTree:
         # Base case: If both trees are empty, they are identical.
         if not p and not q:
             return True
+
         # If one of the trees is empty and the other is not, they are not identical.
         if not p or not q:
             return False

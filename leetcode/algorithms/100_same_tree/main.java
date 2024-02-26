@@ -46,6 +46,7 @@ class SameTree {
     if (p == null && q == null) {
       return true;
     }
+
     // If one of the trees is empty and the other is not, they are not identical.
     if (p == null || q == null) {
       return false;

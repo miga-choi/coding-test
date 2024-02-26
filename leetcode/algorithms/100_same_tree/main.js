@@ -13,6 +13,11 @@ var isSameTree = function (p, q) {
   return checkNode(p, q);
 };
 
+/**
+ * @param {TreeNode} node1
+ * @param {TreeNode} node2
+ * @return {boolean}
+ */
 var checkNode = function (node1, node2) {
   if (!node1 && !node2) {
     return true;
