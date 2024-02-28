@@ -1,12 +1,5 @@
 from typing import Optional
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -15,7 +8,12 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class SymmetricTree:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+        return self.checkNode(root.left, root.right)
+
     def checkNode(
         self, leftNode: Optional[TreeNode], rightNode: Optional[TreeNode]
     ) -> bool:
@@ -34,14 +32,10 @@ class Solution:
                 ) and self.checkNode(leftNode.right, rightNode.left)
         return False
 
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        if root is None:
-            return True
-        return self.checkNode(root.left, root.right)
-
 
     # Best Solution
-    def bestSolution(self, root):
+    # Best Solution 1:
+    def bestSolution1(self, root: Optional[TreeNode]) -> bool:
         # Special case...
         if not root:
             return True
@@ -63,3 +57,48 @@ class Solution:
         return self.isSame(leftroot.left, rightroot.right) and self.isSame(
             leftroot.right, rightroot.left
         )
+
+    # Best Solution 2: Recursively
+    def bestSolution2(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+        else:
+            return self.isMirror(root.left, root.right)
+
+    def isMirror(self, left, right):
+        if left is None and right is None:
+            return True
+
+        if left is None or right is None:
+            return False
+
+        if left.val == right.val:
+            outPair = self.isMirror(left.left, right.right)
+            inPiar = self.isMirror(left.right, right.left)
+            return outPair and inPiar
+        else:
+            return False
+
+    # Best Solution 3: Iterativey
+    def bestSolution3(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+
+        stack = [[root.left, root.right]]
+
+        while len(stack) > 0:
+            pair = stack.pop(0)
+            left = pair[0]
+            right = pair[1]
+
+            if left is None and right is None:
+                continue
+            if left is None or right is None:
+                return False
+            if left.val == right.val:
+                stack.insert(0, [left.left, right.right])
+                stack.insert(0, [left.right, right.left])
+            else:
+                return False
+
+        return True
