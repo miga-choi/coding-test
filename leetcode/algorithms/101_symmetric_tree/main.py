@@ -58,7 +58,7 @@ class SymmetricTree:
             leftroot.right, rightroot.left
         )
 
-    # Best Solution 2: Recursively
+    # Best Solution 2: Recursive
     def bestSolution2(self, root: Optional[TreeNode]) -> bool:
         if root is None:
             return True
@@ -79,7 +79,7 @@ class SymmetricTree:
         else:
             return False
 
-    # Best Solution 3: Iterativey
+    # Best Solution 3: Iterative
     def bestSolution3(self, root: Optional[TreeNode]) -> bool:
         if root is None:
             return True
