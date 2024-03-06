@@ -1,12 +1,3 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-
 function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val;
   this.left = left === undefined ? null : left;
@@ -48,27 +39,74 @@ const checkDepth = (root_) => {
   }
 };
 
+
 // Best Solution
-var bestSolution = function (root) {
+// Best Solution 1:
+var bestSolution1 = function (root) {
   // If the tree is empty, we can say it’s balanced...
-  if (root == null) return true;
+  if (root == null) {
+    return true;
+  }
   // Height Function will return -1, when it’s an unbalanced tree...
-  if (Height(root) == -1) return false;
+  if (bestSolution1_height(root) == -1) {
+    return false;
+  }
   return true;
 };
 
 // Create a function to return the “height” of a current subtree using recursion...
-var Height = function (root) {
+var bestSolution1_height = function (root) {
   // Base case...
-  if (root == null) return 0;
+  if (root == null) {
+    return 0;
+  }
   // Height of left subtree...
-  let leftHeight = Height(root.left);
+  let leftHeight = bestSolution1_height(root.left);
   // Height of height subtree...
-  let rightHight = Height(root.right);
+  let rightHight = bestSolution1_height(root.right);
   // In case of left subtree or right subtree unbalanced, return -1...
-  if (leftHeight == -1 || rightHight == -1) return -1;
+  if (leftHeight == -1 || rightHight == -1) {
+    return -1;
+  }
   // If their heights differ by more than ‘1’, return -1...
-  if (Math.abs(leftHeight - rightHight) > 1) return -1;
+  if (Math.abs(leftHeight - rightHight) > 1) {
+    return -1;
+  }
   // Otherwise, return the height of this subtree as max(leftHeight, rightHight) + 1...
   return Math.max(leftHeight, rightHight) + 1;
+};
+
+// Best Solution 2: DFS (Postorder)
+var bestSolution2 = function (root) {
+  let dfs = function (node) {
+    if (!node) {
+      return 0;
+    }
+    let left = 1 + dfs(node.left);
+    let right = 1 + dfs(node.right);
+    if (Math.abs(left - right) > 1) {
+      return Infinity;
+    }
+    return Math.max(left, right);
+  };
+
+  return dfs(root) == Infinity ? false : true;
+};
+
+// Best Solution 3: DFS (Top-Down recursion)
+var bestSolution3 = function (root) {
+  if (!root) return true;
+
+  let height = function (node) {
+    if (!node) {
+      return 0;
+    }
+    return 1 + Math.max(height(node.left), height(node.right));
+  };
+
+  return (
+    Math.abs(height(root.left) - height(root.right)) < 2 &&
+    bestSolution3(root.left) &&
+    bestSolution3(root.right)
+  );
 };
