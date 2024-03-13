@@ -1,29 +1,13 @@
 import java.util.Stack;
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class PathSum {
-
   public class TreeNode {
-
     int val;
     TreeNode left;
     TreeNode right;
 
-    TreeNode() {}
+    TreeNode() {
+    }
 
     TreeNode(int val) {
       this.val = val;
@@ -43,17 +27,28 @@ class PathSum {
     if (root.left == null && root.right == null) {
       return root.val == targetSum;
     } else {
-      return (
-        hasPathSum(root.left, targetSum - root.val) ||
-        hasPathSum(root.right, targetSum - root.val)
-      );
+      return (hasPathSum(root.left, targetSum - root.val) ||
+          hasPathSum(root.right, targetSum - root.val));
     }
   }
 
-  // Best Solution
 
-  // I. Iteration
+  // Best Solution
+  // Best Solution 1: Recursion
   public boolean bestSolution1(TreeNode root, int sum) {
+    if (root == null) {
+      return false;
+    }
+
+    if (root.left == null && root.right == null && sum - root.val == 0) {
+      return true;
+    }
+
+    return bestSolution1(root.left, sum - root.val) || bestSolution1(root.right, sum - root.val);
+  }
+
+  // Best Solution 2: Iteration
+  public boolean bestSolution2(TreeNode root, int sum) {
     // iteration method
     if (root == null) {
       return false;
@@ -66,7 +61,9 @@ class PathSum {
       TreeNode temp = path.pop();
       int tempVal = sub.pop();
       if (temp.left == null && temp.right == null) {
-        if (tempVal == sum) return true;
+        if (tempVal == sum) {
+          return true;
+        }
       } else {
         if (temp.left != null) {
           path.push(temp.left);
@@ -81,14 +78,16 @@ class PathSum {
     return false;
   }
 
-  // II. Recursion
-  public boolean bestSolution2(TreeNode root, int sum) {
+  // Best Solution 3: Recursion
+  public boolean bestSolution3(TreeNode root, int sum) {
     // recursion method
-    if (root == null) return false;
-    if (root.left == null && root.right == null && root.val == sum) return true;
-    return (
-      bestSolution2(root.left, sum - root.val) ||
-      bestSolution2(root.right, sum - root.val)
-    );
+    if (root == null) {
+      return false;
+    }
+    if (root.left == null && root.right == null && root.val == sum) {
+      return true;
+    }
+    return (bestSolution3(root.left, sum - root.val) ||
+        bestSolution3(root.right, sum - root.val));
   }
 }
