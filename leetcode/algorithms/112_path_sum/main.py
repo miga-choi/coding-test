@@ -1,11 +1,5 @@
+from collections import deque
 from typing import Optional
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 
 
 class TreeNode:
@@ -15,7 +9,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class PathSum:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if root is None:
             return False
@@ -26,19 +20,85 @@ class Solution:
 
 
     # Best Solution
+    # Best Solution 1: Recursion
+    def bestSolution1(self, root: TreeNode, targetSum: int) -> bool:
+        if not root:
+            return False
 
+        if not root.left and not root.right and root.val == targetSum:
+            return True
+
+        targetSum -= root.val
+
+        return self.bestSolution1(root.left, targetSum) or self.bestSolution1(root.right, targetSum)
+
+    # Best Solution 2: DFS Recursively
+    def bestSolution2(self, root: TreeNode, targetSum: int) -> bool:
+        res = []
+        self.bestSolution2_dfs(root, targetSum, res)
+        return any(res)
+
+    def bestSolution2_dfs(self, root: TreeNode, target: int, res: list):
+        if root:
+            if not root.left and not root.right and root.val == target:
+                res.append(True)
+            if root.left:
+                self.bestSolution2_dfs(root.left, target - root.val, res)
+            if root.right:
+                self.bestSolution2_dfs(root.right, target - root.val, res)
+
+    # Best Solution 3: DFS with stack
+    def bestSolution3(self, root: TreeNode, targetSum: int) -> bool:
+        if not root:
+            return False
+        stack = [(root, root.val)]
+        while stack:
+            curr, val = stack.pop()
+            if not curr.left and not curr.right and val == targetSum:
+                return True
+            if curr.right:
+                stack.append((curr.right, val + curr.right.val))
+            if curr.left:
+                stack.append((curr.left, val + curr.left.val))
+        return False
+
+    # Best Solution 4: BFS with queue
+    def bestSolution4(self, root: TreeNode, targetSum: int) -> bool:
+        if not root:
+            return False
+        queue = [(root, targetSum - root.val)]
+        while queue:
+            curr, val = queue.pop(0)
+            if not curr.left and not curr.right and val == 0:
+                return True
+            if curr.left:
+                queue.append((curr.left, val - curr.left.val))
+            if curr.right:
+                queue.append((curr.right, val - curr.right.val))
+        return False
+
+    # Best Solution 5:
+    def bestSolution5(self, root: TreeNode, targetSum: int) -> bool:
+        if not root:
+            return False
+        if not root.left and not root.right and root.val == targetSum:
+            return True
+        return self.bestSolution5(root.left, targetSum - root.val) or self.bestSolution5(root.right, targetSum - root.val)
+
+    # Best Solution 6:
     # I. DFS recursive solution
     # Algorithm:
     #   1. Visit a node and check that node is leaf and node.val == sum. If it's true - return True, else continue traverse
     #   2. Traverse the left subtree and decrease current sum by value of current node , i.e., call hasPathSum(node.left, curr_sum - node.val)
     #   3. Traverse the right subtree and decrease current sum by value of current node , i.e., call hasPathSum(node.right, curr_sum - node.val)
-    def bestSolution1(self, root: TreeNode, sum: int) -> bool:
+    def bestSolution6(self, root: TreeNode, targetSum: int) -> bool:
         if not root:
             return False
-        if not root.left and not root.right and root.val == sum:
+        if not root.left and not root.right and root.val == targetSum:
             return True
-        return self.bestSolution1(root.left, sum - root.val) or self.bestSolution1(root.right, sum - root.val)
+        return self.bestSolution6(root.left, targetSum - root.val) or self.bestSolution6(root.right, targetSum - root.val)
 
+    # Best Solution 7:
     # II. DFS iterative solution
     # Algorithm:
     #   1. Create empty stack and push root node and current sum to stack.
@@ -48,8 +108,8 @@ class Solution:
     #     - Push left child of popped node and current sum decreased by popped node value (node.left, curr_sum - node.val).
     #     - Push right child of popped node and current sum decreased by popped node value (node.right, curr_sum - node.val).
     #     - Return False if sum is not found.
-    def bestSolution2(self, root: TreeNode, sum: int) -> bool:
-        stack = [(root, sum)]
+    def bestSolution7(self, root: TreeNode, targetSum: int) -> bool:
+        stack = [(root, targetSum)]
         while stack:
             node, curr_sum = stack.pop()
             if not node:
@@ -60,6 +120,7 @@ class Solution:
             stack.append((node.right, curr_sum - node.val))
         return False
 
+    # Best Solution 8:
     # III. BFS Solution
     # Algorithm:
     #   1. Create empty deque (double-ended queue) and push root node and current sum to queue.
@@ -70,11 +131,9 @@ class Solution:
     #     - Push left child of popped node and current sum decreased by popped node value (node.left, curr_sum - node.val) to the queue.
     #     - Push right child of popped node and current sum decreased by popped node value (node.right, curr_sum - node.val) to the queue.
     #   3. Return False if sum is not found.
-    from collections import deque
-
-    def bestSolution3(self, root: TreeNode, sum: int) -> bool:
+    def bestSolution8(self, root: TreeNode, targetSum: int) -> bool:
         deq = deque()
-        deq.append((root, sum))
+        deq.append((root, targetSum))
         while deq:
             node, curr_sum = deq.popleft()
             if not node:
