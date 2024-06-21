@@ -19,23 +19,70 @@ var generate = function (numRows) {
 };
 
 // Best Solution
-var bestSolution = function (numRows) {
-  var i = 0;
-  var j = 0;
-  // Create an array list to store the output result...
-  var res = [];
-  // For generating each row of the triangle...
-  for (i = 0; i < numRows; i++) {
-    res.push(Array(i + 1)); // Initialize the first row of the pascal triangle as {1}...
-    for (j = 0; j <= i; j++) {
-      // Primary...
-      if (j === 0 || j === i) {
-        res[i][j] = 1;
-      } else {
-        // Calculate the elements of a row, add each pair of adjacent elements of the previous row in each step of the inner loop.
-        res[i][j] = res[i - 1][j - 1] + res[i - 1][j];
-      }
-    }
+// Best Solution 1: Recursion
+var bestSolution1 = function (numRows) {
+  if (numRows === 0) {
+    return [];
   }
-  return res; // Return the output list of pascal values...
+  if (numRows === 1) {
+    return [[1]];
+  }
+
+  let prevRows = bestSolution1(numRows - 1);
+  let newRow = new Array(numRows).fill(1);
+
+  for (let i = 1; i < numRows - 1; i++) {
+    newRow[i] = prevRows[numRows - 2][i - 1] + prevRows[numRows - 2][i];
+  }
+
+  prevRows.push(newRow);
+  return prevRows;
+};
+
+// Best Solution 2: Combinatorial Formula
+var bestSolution2 = function (numRows) {
+  let result = [];
+  if (numRows === 0) {
+    return result;
+  }
+
+  let firstRow = [1];
+  result.push(firstRow);
+
+  for (let i = 1; i < numRows; i++) {
+    let prevRow = result[i - 1];
+    let currentRow = [1];
+
+    for (let j = 1; j < i; j++) {
+      currentRow.push(prevRow[j - 1] + prevRow[j]);
+    }
+
+    currentRow.push(1);
+    result.push(currentRow);
+  }
+
+  return result;
+};
+
+// Best Solution 3: Dynamic Programming with 1D Array
+var bestSolution3 = function (numRows) {
+  if (numRows === 0) {
+    return [];
+  }
+  if (numRows === 1) {
+    return [[1]];
+  }
+
+  let prevRows = generate(numRows - 1);
+  let prevRow = prevRows[prevRows.length - 1];
+  let currentRow = [1];
+
+  for (let i = 1; i < numRows - 1; i++) {
+    currentRow.push(prevRow[i - 1] + prevRow[i]);
+  }
+
+  currentRow.push(1);
+  prevRows.push(currentRow);
+
+  return prevRows;
 };
