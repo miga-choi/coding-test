@@ -34,17 +34,16 @@ class BinaryTreeInorderTraversal {
 
   // Best Solution
   List<int> bestSolution(TreeNode? root) {
-    inOrderHelper(TreeNode? root, List<int> list) {
-      if (root != null) {
-        inOrderHelper(root.left, list);
-        list.add(root.val);
-        inOrderHelper(root.right, list);
-      }
-    }
-
     List<int> list = [];
     inOrderHelper(root, list);
-
     return list;
+  }
+
+  inOrderHelper(TreeNode? root, List<int> list) {
+    if (root != null) {
+      inOrderHelper(root.left, list);
+      list.add(root.val);
+      inOrderHelper(root.right, list);
+    }
   }
 }
