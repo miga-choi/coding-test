@@ -1,4 +1,4 @@
-class Solution {
+class ValidPalindrome {
   bool isPalindrome(String s) {
     int prefix = 0;
     int suffix = s.length - 1;
