@@ -9,7 +9,6 @@ class ImplementStackUsingQueues {
     public ImplementStackUsingQueues() {
         inputStack = new Stack<Integer>();
         outputStack = new Stack<Integer>();
-
     }
 
     public void push(int x) {
@@ -42,7 +41,6 @@ class ImplementStackUsingQueues {
 
     // Best Solution
     class BestSolution {
-
         private Queue<Integer> queue = new LinkedList<>();
 
         public void push(int x) {
