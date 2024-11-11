@@ -26,8 +26,8 @@ public:
     TreeNode *bestSolution(TreeNode *root)
     {
         // Base Case
-        if (root == NULL)
-            return NULL;
+        if (root == nullptr)
+            return nullptr;
 
         invertTree(root->left);  // Call the left substree
         invertTree(root->right); // Call the right substree
