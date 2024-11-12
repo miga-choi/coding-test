@@ -5,6 +5,43 @@
  */
 char **summaryRanges(int *nums, int numsSize, int *returnSize)
 {
+    char **stringArray = (char **)malloc(sizeof(char *) * 20);
+    int count = 0;
+    *returnSize = 0;
+    if (numsSize > 0)
+    {
+        int begin = nums[0];
+        for (int i = 1; i < numsSize; i++)
+        {
+            if ((nums[i] - 1) > nums[i - 1])
+            {
+                stringArray[count] = (char *)malloc(sizeof(char) * 30);
+                if (begin < nums[i - 1])
+                {
+                    snprintf(stringArray[count], 30, "%d->%d", begin,
+                             nums[i - 1]);
+                }
+                else
+                {
+                    snprintf(stringArray[count], 30, "%d", begin);
+                }
+                begin = nums[i];
+                count++;
+            }
+        }
+        stringArray[count] = (char *)malloc(sizeof(char) * 30);
+        if (begin < nums[numsSize - 1])
+        {
+            snprintf(stringArray[count], 30, "%d->%d", begin,
+                     nums[numsSize - 1]);
+        }
+        else
+        {
+            snprintf(stringArray[count], 30, "%d", begin);
+        }
+        *returnSize = count + 1;
+    }
+    return stringArray;
 }
 
 // Best Solution 1
