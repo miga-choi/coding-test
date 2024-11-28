@@ -1,11 +1,54 @@
 #include <stdbool.h>
 #include <string.h>
 
+// Wrong
 bool wordPattern(char *pattern, char *s) {
+    int patternNum[26] = {0};
+    int ifPatternNumNull[26] = {0};
+    int wordCount = 0;
+    int wordNum = 0;
+    int patternLength = strlen(pattern);
+
+    for (int i = 0;; i++) {
+        if (wordCount > (patternLength - 1)) {
+            return false;
+        }
+        int alphabetNum = pattern[wordCount] - 97;
+        if (s[i] == ' ' || s[i] == '\0') {
+            if (!ifPatternNumNull[alphabetNum]) {
+                for (int j = 0; j < 26; j++) {
+                    if (j != alphabetNum) {
+                        if (patternNum[j] == wordNum) {
+                            return false;
+                        }
+                    }
+                }
+                ifPatternNumNull[alphabetNum] = 1;
+                patternNum[alphabetNum] = wordNum;
+            } else {
+                if (patternNum[alphabetNum] != wordNum) {
+                    return false;
+                }
+            }
+
+            if (s[i] == '\0') {
+                if (wordCount != (patternLength - 1)) {
+                    return false;
+                }
+                break;
+            }
+            wordNum = 0;
+            wordCount++;
+        } else {
+            wordNum += s[i];
+        }
+    }
+
+    return true;
 }
 
-// Best Solution 1
-bool bestSolution1(char *pattern, char *s) {
+// Best Solution
+bool bestSolution(char *pattern, char *s) {
     int patternLen = strlen(pattern);
     int sLen = strlen(s);
 
