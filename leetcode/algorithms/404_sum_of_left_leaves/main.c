@@ -14,7 +14,7 @@ int sumOfLeftLeaves1(struct TreeNode *root) {
                 sum += root->left->val;
             }
         }
-        sum += sumOfLeftLeaves(root->left) + sumOfLeftLeaves(root->right);
+        sum += sumOfLeftLeaves1(root->left) + sumOfLeftLeaves1(root->right);
     }
 
     return sum;
