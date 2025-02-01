@@ -2,11 +2,8 @@
 
 Given two strings `a` and `b`, return _the length of the **longest uncommon subsequence** between_ `a` _and_ `b`. If the longest uncommon subsequence does not exist, return `-1`.
 
-An **uncommon subsequence** between two strings is a string that is a **subsequence of one but not the other**.
+An **uncommon subsequence** between two strings is a string that is a **[subsequence](## "A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.") of one but not the other**.
 
-A **subsequence** of a string `s` is a string that can be obtained after deleting any number of characters from `s`.
-
-- For example, `"abc"` is a subsequence of `"aebdc"` because you can delete the underlined characters in <code>"a<u>e</u>b<u>d</u>c"</code> to get `"abc"`. Other subsequences of `"aebdc"` include `"aebdc"`, `"aeb"`, and `""` (empty string).
 
 ## Example 1:
 
