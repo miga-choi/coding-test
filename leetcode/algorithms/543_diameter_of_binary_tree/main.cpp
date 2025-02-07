@@ -12,13 +12,13 @@ struct TreeNode {
 
 class DiameterOfBinaryTree {
 public:
-    int returnDepth(TreeNode* root, int& n) {
-        if (!root) {
+    int returnDepth(TreeNode* node, int& n) {
+        if (!node) {
             return 0;
         }
 
-        int left = returnDepth(root->left, n);
-        int right = returnDepth(root->right, n);
+        int left = returnDepth(node->left, n);
+        int right = returnDepth(node->right, n);
 
         if (left + right > n) {
             n = left + right;
