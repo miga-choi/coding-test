@@ -6,11 +6,42 @@
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
 
-int** matrixReshape(int** mat, int matSize, int* matColSize, int r, int c, int* returnSize, int** returnColumnSizes) {
+ int** matrixReshape(int** mat, int matSize, int* matColSize,
+    int r, int c, int* returnSize, int** returnColumnSizes) {
+    if (matSize * *matColSize != r * c) {
+        *returnSize = matSize;
+        *returnColumnSizes = matColSize;
+        return mat;
+    }
+
+    *returnSize = r;
+    *returnColumnSizes = (int*)malloc(sizeof(int) * r);
+
+    int** result = (int**)malloc(sizeof(int*) * r);
+
+    for (int i = 0; i < r; i++) {
+        result[i] = (int*)malloc(sizeof(int) * c);
+        (*returnColumnSizes)[i] = c;
+    }
+
+    int row = 0, col = 0;
+    for (int i = 0; i < matSize; i++) {
+        for (int j = 0; j < matColSize[i]; j++) {
+            result[row][col] = mat[i][j];
+            col++;
+            if (col >= c) {
+                col = 0;
+                row++;
+            }
+        }
+    }
+
+    return result;
 }
 
 // Solution
-int** solution(int** mat, int matSize, int* matColSize, int r, int c, int* returnSize, int** returnColumnSizes) {
+int** solution(int** mat, int matSize, int* matColSize,
+    int r, int c, int* returnSize, int** returnColumnSizes) {
     int cols = *matColSize;
 
     if (matSize * cols != r * c) {
