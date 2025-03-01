@@ -26,7 +26,7 @@ insert into Orders (order_id, order_date, com_id, sales_id, amount) values ('4',
 
 **Pandas Schema**
 
-```sql
+```python
 data = [[1, 'John', 100000, 6, '4/1/2006'], [2, 'Amy', 12000, 5, '5/1/2010'], [3, 'Mark', 65000, 12, '12/25/2008'], [4, 'Pam', 25000, 25, '1/1/2005'], [5, 'Alex', 5000, 10, '2/3/2007']]
 sales_person = pd.DataFrame(data, columns=['sales_id', 'name', 'salary', 'commission_rate', 'hire_date']).astype({'sales_id':'Int64', 'name':'object', 'salary':'Int64', 'commission_rate':'Int64', 'hire_date':'datetime64[ns]'})
 data = [[1, 'RED', 'Boston'], [2, 'ORANGE', 'New York'], [3, 'YELLOW', 'Boston'], [4, 'GREEN', 'Austin']]
@@ -92,7 +92,7 @@ The result format is in the following example.
 ## Example 1:
 
 ```
-Input: 
+Input:
 SalesPerson table:
 +----------+------+--------+-----------------+------------+
 | sales_id | name | salary | commission_rate | hire_date  |
@@ -124,7 +124,7 @@ Orders table:
 | 4        | 4/1/2014   | 1      | 4        | 25000  |
 +----------+------------+--------+----------+--------+
 
-Output: 
+Output:
 +------+
 | name |
 +------+
@@ -133,6 +133,6 @@ Output:
 | Alex |
 +------+
 
-Explanation: 
+Explanation:
 According to orders 3 and 4 in the Orders table, it is easy to tell that only salesperson John and Pam have sales to company RED, so we report all the other names in the table salesperson.
 ```
