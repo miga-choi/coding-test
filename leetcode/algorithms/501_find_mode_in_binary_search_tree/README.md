@@ -1,6 +1,6 @@
 # 501. Find Mode in Binary Search Tree
 
-Given the `root` of a binary search tree (BST) with duplicates, return _all the [mode(s)](https://en.wikipedia.org/wiki/Mode_(statistics)) (i.e., the most frequently occurred element) in it_.
+Given the `root` of a binary search tree (BST) with duplicates, return _all the [mode(s)](https://en.wikipedia.org/wiki/Mode_(statistics)) (i.e., the most frequently occurred element) in it\_.
 
 If the tree has more than one mode, return them in **any order**.
 
@@ -12,7 +12,7 @@ Assume a BST is defined as follows:
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/03/11/mode-tree.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [1,null,2,2]

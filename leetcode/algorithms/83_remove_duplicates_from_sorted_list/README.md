@@ -4,7 +4,7 @@ Given the `head` of a sorted linked list, _delete all duplicates such that each 
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/01/04/list1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: head = [1,1,2]
@@ -13,7 +13,7 @@ Output: [1,2]
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/01/04/list2.jpg)
+![Example 2](example2.png)
 
 ```
 Input: head = [1,1,2,3,3]

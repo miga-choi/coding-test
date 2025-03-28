@@ -4,7 +4,7 @@ Given the `root` of a Binary Search Tree (BST), return _the minimum absolute dif
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/02/05/bst1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [4,2,6,1,3]
@@ -13,7 +13,7 @@ Output: 1
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/02/05/bst2.jpg)
+![Example 2](example2.png)
 
 ```
 Input: root = [1,0,48,null,null,12,49]

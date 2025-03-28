@@ -6,7 +6,7 @@ A **leaf** is a node with no children.
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/03/12/paths-tree.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [1,2,3,null,5]

@@ -4,7 +4,7 @@ Given the `root` of a binary tree, return _the average value of the nodes on eac
 
 ## Example 1:
 
-![alt text](https://assets.leetcode.com/uploads/2021/03/09/avg1-tree.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [3,9,20,null,null,15,7]
@@ -15,7 +15,7 @@ Hence return [3, 14.5, 11].
 
 ## Example 2:
 
-![alt text](https://assets.leetcode.com/uploads/2021/03/09/avg2-tree.jpg)
+![Example 2](example2.png)
 
 ```
 Input: root = [3,9,20,15,7]

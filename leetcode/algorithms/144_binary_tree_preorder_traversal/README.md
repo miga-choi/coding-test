@@ -1,26 +1,37 @@
 # 144. Binary Tree Preorder Traversal
 
-Given the `root` of a binary tree, return _the preorder traversal of its nodes' values_.
+Given the root of a binary tree, return the preorder traversal of its nodes' values.
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg)
-
-```java
+```
 Input: root = [1,null,2,3]
 Output: [1,2,3]
+Explanation:
 ```
+
+![Explanation 1](explanation1.png)
 
 ## Example 2:
 
-```java
+```
+Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
+Output: [1,2,4,5,6,7,3,8,9]
+Explanation:
+```
+
+![Explanation 2](explanation2.png)
+
+## Example 3:
+
+```
 Input: root = []
 Output: []
 ```
 
-## Example 3:
+## Example 4:
 
-```java
+```
 Input: root = [1]
 Output: [1]
 ```

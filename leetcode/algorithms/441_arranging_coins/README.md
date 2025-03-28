@@ -6,7 +6,7 @@ Given the integer `n`, return _the number of **complete rows** of the staircase 
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/04/09/arrangecoins1-grid.jpg)
+![Example 1](example1.png)
 
 ```
 Input: n = 5
@@ -16,7 +16,7 @@ Explanation: Because the 3rd row is incomplete, we return 2.
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/04/09/arrangecoins2-grid.jpg)
+![Example 2](example2.png)
 
 ```
 Input: n = 8

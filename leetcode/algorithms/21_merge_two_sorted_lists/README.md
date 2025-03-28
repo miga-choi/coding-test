@@ -8,7 +8,7 @@ Return _the head of the merged linked list_.
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/10/03/merge_ex1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: (list1 = [1, 2, 4]), (list2 = [1, 3, 4]);

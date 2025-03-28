@@ -4,25 +4,25 @@ Given an integer `rowIndex`, return the `rowIndexᵗʰ` (**0-indexed**) row of t
 
 In **Pascal's triangle**, each number is the sum of the two numbers directly above it as shown:
 
-![Alt text](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)
+![Example](example.gif)
 
 ## Example 1:
 
-```java
+```
 Input: rowIndex = 3
 Output: [1,3,3,1]
 ```
 
 ## Example 2:
 
-```java
+```
 Input: rowIndex = 0
 Output: [1]
 ```
 
 ## Example 3:
 
-```java
+```
 Input: rowIndex = 1
 Output: [1,1]
 ```

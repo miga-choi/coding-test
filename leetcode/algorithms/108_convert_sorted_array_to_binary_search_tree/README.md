@@ -6,7 +6,7 @@ Given an integer array `nums` where the elements are sorted in **ascending order
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/02/18/btree1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: nums = [-10,-3,0,5,9]
@@ -14,11 +14,11 @@ Output: [0,-3,9,-10,null,5]
 Explanation: [0,-10,5,null,-3,null,9] is also accepted:
 ```
 
-![Alt text](https://assets.leetcode.com/uploads/2021/02/18/btree2.jpg)
+![Example 1 Explanation](explanation1.png)
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/02/18/btree.jpg)
+![Example 2](example2.png)
 
 ```
 Input: nums = [1,3]

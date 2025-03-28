@@ -6,7 +6,7 @@ A **leaf** is a node with no children. A **left leaf** is a leaf that is the lef
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/04/08/leftsum-tree.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [3,9,20,null,null,15,7]

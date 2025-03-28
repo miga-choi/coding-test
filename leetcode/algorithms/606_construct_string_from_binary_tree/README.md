@@ -6,7 +6,7 @@ Omit all the empty parenthesis pairs that do not affect the one-to-one mapping r
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/05/03/cons1-tree.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [1,2,3,4]
@@ -16,7 +16,7 @@ Explanation: Originally, it needs to be "1(2(4)())(3()())", but you need to omit
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/05/03/cons2-tree.jpg)
+![Example 2](example2.png)
 
 ```
 Input: root = [1,2,3,null,4]

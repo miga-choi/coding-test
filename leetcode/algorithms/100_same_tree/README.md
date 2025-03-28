@@ -6,7 +6,7 @@ Two binary trees are considered the same if they are structurally identical, and
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/12/20/ex1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: p = [1,2,3], q = [1,2,3]
@@ -15,7 +15,7 @@ Output: true
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/12/20/ex2.jpg)
+![Example 2](example2.png)
 
 ```
 Input: p = [1,2], q = [1,null,2]
@@ -24,7 +24,7 @@ Output: false
 
 ## Example 3:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/12/20/ex3.jpg)
+![Example 3](example3.png)
 
 ```
 Input: p = [1,2,1], q = [1,1,2]

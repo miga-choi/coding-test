@@ -6,7 +6,7 @@ The **tilt** of a tree node is the **absolute difference** between the sum of al
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/10/20/tilt1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [1,2,3]
@@ -20,7 +20,7 @@ Sum of every tilt : 0 + 0 + 1 = 1
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/10/20/tilt2.jpg)
+![Example 2](example2.png)
 
 ```
 Input: root = [4,2,9,3,5,null,7]
@@ -37,7 +37,7 @@ Sum of every tilt : 0 + 0 + 0 + 2 + 7 + 6 = 15
 
 ## Example 3:
 
-![Alt text](https://assets.leetcode.com/uploads/2020/10/20/tilt3.jpg)
+![Example 3](example3.png)
 
 ```
 Input: root = [21,7,14,1,1,2,2,3,3]

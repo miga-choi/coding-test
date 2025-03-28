@@ -6,7 +6,7 @@ Nary-Tree input serialization is represented in their level order traversal. Eac
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2018/10/12/narytreeexample.png)
+![Example 1](example1.png)
 
 ```
 Input: root = [1,null,3,2,4,null,5,6]
@@ -15,7 +15,7 @@ Output: [1,3,5,6,2,4]
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2019/11/08/sample_4_964.png)
+![Example 2](example2.png)
 
 ```
 Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]

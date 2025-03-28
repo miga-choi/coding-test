@@ -10,7 +10,7 @@ _Return the merged tree._
 
 ## Example 1:
 
-![alt text](https://assets.leetcode.com/uploads/2021/02/05/merge.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]

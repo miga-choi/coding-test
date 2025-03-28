@@ -6,7 +6,7 @@ A **leaf** is a node with no children.
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/01/18/pathsum1.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
@@ -16,7 +16,7 @@ Explanation: The root-to-leaf path with the target sum is shown.
 
 ## Example 2:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/01/18/pathsum2.jpg)
+![Example 2](example2.png)
 
 ```
 Input: root = [1,2,3], targetSum = 5

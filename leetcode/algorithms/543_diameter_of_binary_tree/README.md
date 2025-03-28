@@ -8,7 +8,7 @@ The **length** of a path between two nodes is represented by the number of edges
 
 ## Example 1:
 
-![Alt text](https://assets.leetcode.com/uploads/2021/03/06/diamtree.jpg)
+![Example 1](example1.png)
 
 ```
 Input: root = [1,2,3,4,5]
