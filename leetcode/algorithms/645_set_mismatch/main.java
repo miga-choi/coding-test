@@ -1,12 +1,8 @@
-#include <vector>
-using namespace std;
-
 class SetMismatch {
-public:
-    vector<int> findErrorNums(vector<int>& nums) {
+    public int[] findErrorNums(int[] nums) {
         int duplicatedNum = -1, missedNum = -1;
 
-        for (int i = 1; i <= nums.size(); i++) {
+        for (int i = 1; i <= nums.length; i++) {
             int count = 0;
             for (int num : nums) {
                 if (num == i) {
@@ -21,16 +17,16 @@ public:
             }
         }
 
-        return {duplicatedNum, missedNum};
+        return new int[] { duplicatedNum, missedNum };
     }
 
     // Solution
-    vector<int> solution(vector<int>& nums) {
+    public int[] solution(int[] nums) {
         int dup = -1, missing = -1;
 
-        for (int i = 1; i <= nums.size(); i++) {
+        for (int i = 1; i <= nums.length; i++) {
             int count = 0;
-            for (int j = 0; j < nums.size(); j++) {
+            for (int j = 0; j < nums.length; j++) {
                 if (nums[j] == i) {
                     count++;
                 }
@@ -42,6 +38,6 @@ public:
             }
         }
 
-        return {dup, missing};
+        return new int[] { dup, missing };
     }
-};
+}

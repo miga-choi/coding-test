@@ -2,8 +2,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-class Solution {
-    public int LongestHarmoniousSubsequence(int[] nums) {
+class LongestHarmoniousSubsequence {
+    public int findLHS(int[] nums) {
         int result = 0;
         Map<Integer, Integer> numsMap = new HashMap<Integer, Integer>();
 
@@ -26,8 +26,8 @@ class Solution {
     }
 
 
-    // Best Solution
-    // Best Solution 1: Hash table / Hash map
+    // Solution
+    // Solution 1: Hash table / Hash map
     public int bestSolution1(int[] nums) {
         Map<Long, Integer> map = new HashMap<>();
         for (long num : nums) {
@@ -42,7 +42,7 @@ class Solution {
         return result;
     }
 
-    // Best Solution 2: Sorting
+    // Solution 2: Sorting
     public int bestSolution2(int[] nums) {
         if (nums.length == 0) {
             return 0;
