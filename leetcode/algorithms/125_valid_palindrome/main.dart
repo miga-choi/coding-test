@@ -23,8 +23,9 @@ class ValidPalindrome {
     return true;
   }
 
-  // Best Solution
-  bool bestSolution(String s) {
+
+  // Solution
+  bool solution(String s) {
     s = s.toLowerCase();
 
     String bag = '';

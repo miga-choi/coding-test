@@ -18,9 +18,10 @@ var generate = function (numRows) {
   return result;
 };
 
-// Best Solution
-// Best Solution 1: Recursion
-var bestSolution1 = function (numRows) {
+
+// Solution
+// Solution 1: Recursion
+var solution1 = function (numRows) {
   if (numRows === 0) {
     return [];
   }
@@ -28,7 +29,7 @@ var bestSolution1 = function (numRows) {
     return [[1]];
   }
 
-  let prevRows = bestSolution1(numRows - 1);
+  let prevRows = solution1(numRows - 1);
   let newRow = new Array(numRows).fill(1);
 
   for (let i = 1; i < numRows - 1; i++) {
@@ -39,8 +40,8 @@ var bestSolution1 = function (numRows) {
   return prevRows;
 };
 
-// Best Solution 2: Combinatorial Formula
-var bestSolution2 = function (numRows) {
+// Solution 2: Combinatorial Formula
+var solution2 = function (numRows) {
   let result = [];
   if (numRows === 0) {
     return result;
@@ -64,8 +65,8 @@ var bestSolution2 = function (numRows) {
   return result;
 };
 
-// Best Solution 3: Dynamic Programming with 1D Array
-var bestSolution3 = function (numRows) {
+// Solution 3: Dynamic Programming with 1D Array
+var solution3 = function (numRows) {
   if (numRows === 0) {
     return [];
   }

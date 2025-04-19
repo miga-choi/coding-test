@@ -12,27 +12,29 @@ var searchInsert = function (nums, target) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (nums, target) {
-  let lo = 0, hi = nums.length; // we might need to inseart at the end
+// Solution
+// Solution 1:
+var solution1 = function (nums, target) {
+  // we might need to inseart at the end
+  let lo = 0,
+    hi = nums.length;
+
+  // breaks if lo == hi
   while (lo < hi) {
-    // breaks if lo == hi
-    let mid = lo + Math.floor((hi - lo) / 2); // always gives the lower mid
+    // always gives the lower mid
+    let mid = lo + Math.floor((hi - lo) / 2);
     if (target > nums[mid]) {
-      lo = mid + 1; // no way mid is a valid option
+      // no way mid is a valid option
+      lo = mid + 1;
     } else {
-      hi = mid; // it might be possibe to inseart @ mid
+      // it might be possibe to inseart @ mid
+      hi = mid;
     }
   }
   return lo;
 };
 
-// Best Solution 2:
-var bestSolution2 = function (nums, target) {
-  return binarySearch(nums, target, 0, nums.length - 1);
-};
-
+// Solution 2:
 function binarySearch(array, target, start, end) {
   // If the target is less then the very last item then insert it at that item index
   // because anything index less then that has already been confirmed to be less then the target.
@@ -48,12 +50,18 @@ function binarySearch(array, target, start, end) {
   if (array[midPoint] === target) {
     return midPoint;
   }
+
   // search the left side
   if (array[midPoint] > target) {
     return binarySearch(array, target, start, midPoint - 1);
   }
+
   // search the right side
   if (array[midPoint] < target) {
     return binarySearch(array, target, midPoint + 1, end);
   }
 }
+
+var solution2 = function (nums, target) {
+  return binarySearch(nums, target, 0, nums.length - 1);
+};

@@ -26,22 +26,22 @@ class MinimumDepthOfBinaryTree:
         return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
 
 
-    # Best Solution
-    # Best Solution 1: DFS
-    def bestSolution1(self, root: Optional[TreeNode]) -> int:
+    # Solution
+    # Solution 1: DFS
+    def solution1(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
         if None in [root.left, root.right]:
             return (
-                max(self.bestSolution1(root.left), self.bestSolution1(root.right)) + 1
+                max(self.solution1(root.left), self.solution1(root.right)) + 1
             )
         else:
             return (
-                min(self.bestSolution1(root.left), self.bestSolution1(root.right)) + 1
+                min(self.solution1(root.left), self.solution1(root.right)) + 1
             )
 
-    # Best Solution 2: BFS
-    def bestSolution2(self, root: Optional[TreeNode]) -> int:
+    # Solution 2: BFS
+    def solution2(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
         queue = collections.deque([(root, 1)])
@@ -54,16 +54,16 @@ class MinimumDepthOfBinaryTree:
                     queue.append((node.left, level + 1))
                     queue.append((node.right, level + 1))
 
-    # Best Solution 3
-    def bestSolution3(self, root: Optional[TreeNode]) -> int:
+    # Solution 3
+    def solution3(self, root: Optional[TreeNode]) -> int:
         # Base case...
         # If the subtree is empty i.e. root is NULL, return depth as 0...
         if root is None:
             return 0
 
         # Initialize the depth of two subtrees...
-        leftDepth = self.bestSolution3(root.left)
-        rightDepth = self.bestSolution3(root.right)
+        leftDepth = self.solution3(root.left)
+        rightDepth = self.solution3(root.right)
 
         # If the both subtrees are empty...
         if root.left is None and root.right is None:

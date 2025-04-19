@@ -15,10 +15,13 @@ class ClimbingStairs {
     return dp[n - 1];
   }
 
-  // Best Solution
-  int bestSolution(int n) {
+
+  // Solution
+  int solution(int n) {
     int a = 1, b = 1;
-    while (n-- > 0) a = (b += a) - a;
+    while (n-- > 0) {
+      a = (b += a) - a;
+    }
     return a;
   }
 }

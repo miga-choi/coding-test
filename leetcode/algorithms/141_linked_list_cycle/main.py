@@ -1,11 +1,5 @@
 from typing import Optional
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 
 class ListNode:
     def __init__(self, x):
@@ -13,7 +7,7 @@ class ListNode:
         self.next = None
 
 
-class Solution:
+class LinkedListCycle:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         stack = []
         while head != None:
@@ -24,9 +18,9 @@ class Solution:
         return False
 
 
-    # Best Solution
-    # Dictionary/Hash table
-    def bestSolution1(self, head: ListNode) -> bool:
+    # Solution
+    # Solution 1: Dictionary/Hash table
+    def solution1(self, head: ListNode) -> bool:
         dictionary = {}
         while head:
             if head in dictionary:
@@ -36,8 +30,8 @@ class Solution:
             head = head.next
         return False
 
-    # Two pointers
-    def bestSolution2(self, head: ListNode) -> bool:
+    # Solution 2: Two pointers
+    def solution2(self, head: ListNode) -> bool:
         if not head:
             return False
         slow = head

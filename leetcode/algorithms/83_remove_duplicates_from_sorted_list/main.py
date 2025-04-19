@@ -18,18 +18,23 @@ class RemoveDuplicatesFromSortedList:
         return head
 
 
-    # Best Solution
-    # Best Solution 1: iterative
-    def bestSolution1(self, head: ListNode) -> ListNode:
+    # Solution
+    # Solution 1: iterative
+    def solution1(self, head: ListNode) -> ListNode:
         cur = head
+
         while cur:
             while cur.next and cur.next.val == cur.val:
-                cur.next = cur.next.next  # skip duplicated node
-            cur = cur.next  # not duplicate of current node, move to next node
+                # skip duplicated node
+                cur.next = cur.next.next
+
+            # not duplicate of current node, move to next node
+            cur = cur.next
+
         return head
 
-    # Best Solution 2:
-    def bestSolution2(self, head: ListNode) -> ListNode:
+    # Solution 2:
+    def solution2(self, head: ListNode) -> ListNode:
         temp = head
         while temp and temp.next:
             if temp.next.val == temp.val:

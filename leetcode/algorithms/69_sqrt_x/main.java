@@ -19,9 +19,9 @@ class SqrtX {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int bestSolution1(int x) {
+  // Solution
+  // Solution 1:
+  public int solution1(int x) {
     if (x == 0) {
       return 0;
     }
@@ -39,8 +39,8 @@ class SqrtX {
     }
   }
 
-  // Best Solution 2:
-  public int bestSolution2(int x) {
+  // Solution 2:
+  public int solution2(int x) {
     long r = x;
     while (r * r > x) {
       r = (r + x / r) / 2;
@@ -48,8 +48,8 @@ class SqrtX {
     return (int) r;
   }
 
-  // Best Solution 3:
-  public int bestSolution3(int x) {
+  // Solution 3:
+  public int solution3(int x) {
     // For special cases when x is 0 or 1, return x.
     if (x == 0 || x == 1) {
       return x;
@@ -66,9 +66,9 @@ class SqrtX {
       // overflow.
       mid = start + (end - start) / 2;
 
-      // If the square of the middle value is greater than x, move the "end" to the
-      // left (mid - 1).
       if ((long) mid * mid > (long) x) {
+        // If the square of the middle value is greater than x, move the "end" to the
+        // left (mid - 1).
         end = mid - 1;
       } else if (mid * mid == x) {
         // If the square of the middle value is equal to x, we found the square root.

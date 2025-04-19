@@ -20,8 +20,9 @@ class BinaryTreePostorderTraversal {
     return result;
   }
 
-  // Best Solution
-  List<int> bestSolution(TreeNode? root) {
+
+  // Solution
+  List<int> solution(TreeNode? root) {
     if (root == null) {
       return [];
     }

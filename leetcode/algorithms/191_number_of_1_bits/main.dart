@@ -12,8 +12,9 @@ class NumberOf1Bits {
     return count;
   }
 
-  // Best Solution
-  int bestSolution(int n) {
+
+  // Solution
+  int solution(int n) {
     int res = 0;
     while (n > 0) {
       n &= n - 1;

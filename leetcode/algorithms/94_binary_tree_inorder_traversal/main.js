@@ -27,9 +27,9 @@ var inorderTraversal = function (root) {
 };
 
 
-// Best Solution
-// Best Solution 1: Iteration
-function bestSolution1(root) {
+// Solution
+// Solution 1: Iteration
+function solution1(root) {
   const stack = [];
   const res = [];
 
@@ -47,13 +47,7 @@ function bestSolution1(root) {
   return res;
 }
 
-// Best Solution 2: DFS
-function bestSolution2(root) {
-  const result = [];
-  helper(root, result);
-  return result;
-}
-
+// Solution 2: DFS
 function helper(root, result) {
   if (root !== null) {
     helper(root.left, result);
@@ -62,8 +56,14 @@ function helper(root, result) {
   }
 }
 
-// Best Solution 3: Recursion
-function bestSolution3(root) {
+function solution2(root) {
+  const result = [];
+  helper(root, result);
+  return result;
+}
+
+// Solution 3: Recursion
+function solution3(root) {
   const res = [];
 
   function inorder(node) {
@@ -79,8 +79,8 @@ function bestSolution3(root) {
   return res;
 }
 
-// Best Solution 4: Stack
-function bestSolution4(root) {
+// Solution 4: Stack
+function solution4(root) {
   // Initialize an empty array to store the result (in-order traversal)
   const res = [];
 

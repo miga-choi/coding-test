@@ -1,6 +1,8 @@
 class PalindromeNumber {
   bool isPalindrome(int x) {
-    if (x < 0) return false;
+    if (x < 0) {
+      return false;
+    }
 
     final List<String> xList = x.toString().split("");
     for (var i = 0; i < xList.length / 2; i++) {
@@ -10,8 +12,9 @@ class PalindromeNumber {
     return true;
   }
 
-  // Best Solution
-  bool bestSolution(int x) {
+
+  // Solution
+  bool solution(int x) {
     int reverse = 0;
     int copy = x;
 

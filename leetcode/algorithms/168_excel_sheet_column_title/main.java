@@ -1,33 +1,32 @@
 class ExcelSheetColumnTitle {
-
   public String convertToTitle(int columnNumber) {
     String[] alphabet = {
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
     };
 
     String result = "";
@@ -40,8 +39,9 @@ class ExcelSheetColumnTitle {
     return result;
   }
 
-  // Best Solution
-  public String bestSolution(int n) {
+
+  // Solution
+  public String solution(int n) {
     return n == 0 ? "" : convertToTitle(--n / 26) + (char) ('A' + (n % 26));
   }
 }

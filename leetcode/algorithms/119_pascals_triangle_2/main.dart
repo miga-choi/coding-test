@@ -1,4 +1,4 @@
-class PascalsTriangle2 {
+class PascalsTriangleII {
   List<int> getRow(int rowIndex) {
     final List<List<int>> result = List<List<int>>.empty(growable: true);
     for (int i = 0; i <= rowIndex; i++) {
@@ -15,8 +15,9 @@ class PascalsTriangle2 {
     return result[rowIndex];
   }
 
-  // Best Solution
-  List<int> bestSolution(int rowIndex) {
+
+  // Solution
+  List<int> solution(int rowIndex) {
     List<int> result = [];
     int value = 1;
 

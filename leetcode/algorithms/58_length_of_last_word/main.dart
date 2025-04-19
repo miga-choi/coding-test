@@ -9,8 +9,9 @@ class LengthOfLastWord {
     return 0;
   }
 
-  // Best Solution
-  int bestSolution(String s) {
+
+  // Solution
+  int solution(String s) {
     // Initialize the index variable to the last index of the string
     int index = s.length - 1;
     // Loop through any trailing spaces at the end of the string

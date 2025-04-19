@@ -15,8 +15,9 @@ class MajorityElement {
     return result;
   }
 
-  // Best Solution
-  int bestSolution(List<int> nums) {
+
+  // Solution
+  int solution(List<int> nums) {
     nums.sort();
     return nums[nums.length ~/ 2];
   }

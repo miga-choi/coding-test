@@ -21,8 +21,9 @@ class PlusOne {
     return digits;
   }
 
-  // Best Solution
-  List<int> bestSolution(List<int> digits) {
+
+  // Solution
+  List<int> solution(List<int> digits) {
     for (int i = digits.length - 1; i >= 0; i--) {
       if (digits[i] < 9) {
         digits[i]++;

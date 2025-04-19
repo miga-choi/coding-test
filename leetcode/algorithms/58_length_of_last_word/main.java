@@ -15,9 +15,9 @@ class LengthOfLastWord {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int bestSolution1(String s) {
+  // Solution
+  // Solution 1:
+  public int solution1(String s) {
     int length = 0;
 
     // We are looking for the last word so let's go backward
@@ -27,21 +27,22 @@ class LengthOfLastWord {
         length++;
       } else {
         // it's a white space instead
-        if (length > 0)
+        if (length > 0) {
           // Did we already started to count a word ? Yes so we found the last word
           return length;
+        }
       }
     }
     return length;
   }
 
-  // Best Solution 2:
-  public int bestSolution2(String s) {
+  // Solution 2:
+  public int solution2(String s) {
     return s.trim().length() - s.trim().lastIndexOf(" ") - 1;
   }
 
-  // Best Solution 3:
-  public int bestSolution3(String s) {
+  // Solution 3:
+  public int solution3(String s) {
     s = s.trim();
     int lastIndex = s.lastIndexOf(' ') + 1;
     return s.length() - lastIndex;

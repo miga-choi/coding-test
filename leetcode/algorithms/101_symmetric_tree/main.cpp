@@ -1,33 +1,27 @@
 #include <queue>
 using namespace std;
 
-class Solution
-{
-    struct TreeNode
-    {
+class SymmetricTree {
+    struct TreeNode {
         int val;
-        TreeNode *left;
-        TreeNode *right;
+        TreeNode* left;
+        TreeNode* right;
         TreeNode() : val(0), left(nullptr), right(nullptr) {}
         TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+        TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
     };
 
 public:
-    bool isSymmetric(TreeNode *root)
-    {
+    bool isSymmetric(TreeNode* root) {
         return checkNode(root->left, root->right);
     }
 
-    bool checkNode(TreeNode *leftNode, TreeNode *rightNode)
-    {
-        if (leftNode == nullptr && rightNode == nullptr)
-        {
+    bool checkNode(TreeNode* leftNode, TreeNode* rightNode) {
+        if (leftNode == nullptr && rightNode == nullptr) {
             return true;
         }
 
-        if (leftNode == nullptr || rightNode == nullptr || leftNode->val != rightNode->val)
-        {
+        if (leftNode == nullptr || rightNode == nullptr || leftNode->val != rightNode->val) {
             return false;
         }
 
@@ -35,58 +29,48 @@ public:
     }
 
 
-    // Best Solution
-    // Best Solution 1: Recursive
-    bool bestSolution1(TreeNode *root)
-    {
-        if (!root)
-        {
+    // Solution
+    // Solution 1: Recursive
+    bool solution1(TreeNode* root) {
+        if (!root) {
             return true;
         }
-        return bestSolution1_isMirror(root->left, root->right);
+        return solution1_isMirror(root->left, root->right);
     }
 
-    bool bestSolution1_isMirror(TreeNode *left, TreeNode *right)
-    {
-        if (!left && !right)
-        {
+    bool solution1_isMirror(TreeNode* left, TreeNode* right) {
+        if (!left && !right) {
             return true;
         }
-        if (!left || !right)
-        {
+        if (!left || !right) {
             return false;
         }
-        return (left->val == right->val) && bestSolution1_isMirror(left->left, right->right) && bestSolution1_isMirror(left->right, right->left);
+        return (left->val == right->val) && solution1_isMirror(left->left, right->right) && solution1_isMirror(left->right, right->left);
     }
 
-    // Best Solution 2: Iterative
-    bool bestSolution2(TreeNode *root)
-    {
-        TreeNode *left, *right;
-        if (!root)
-        {
+    // Solution 2: Iterative
+    bool solution2(TreeNode* root) {
+        TreeNode* left;
+        TreeNode* right;
+        if (!root) {
             return true;
         }
 
-        queue<TreeNode *> q1, q2;
+        queue<TreeNode*> q1, q2;
         q1.push(root->left);
         q2.push(root->right);
-        while (!q1.empty() && !q2.empty())
-        {
+        while (!q1.empty() && !q2.empty()) {
             left = q1.front();
             q1.pop();
             right = q2.front();
             q2.pop();
-            if (NULL == left && NULL == right)
-            {
+            if (NULL == left && NULL == right) {
                 continue;
             }
-            if (NULL == left || NULL == right)
-            {
+            if (NULL == left || NULL == right) {
                 return false;
             }
-            if (left->val != right->val)
-            {
+            if (left->val != right->val) {
                 return false;
             }
             q1.push(left->left);

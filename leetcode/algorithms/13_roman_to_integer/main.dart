@@ -25,8 +25,9 @@ class RomanToInteger {
     return result;
   }
 
-  // Best Solution
-  int bestSolution(String s) {
+
+  // Solution
+  int solution(String s) {
     final romans = <String, int>{
       'IV': 4,
       'IX': 9,

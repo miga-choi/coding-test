@@ -1,14 +1,11 @@
 #include <stdint.h>
 
-class ReverseBits
-{
+class ReverseBits {
 public:
-    uint32_t reverseBits(uint32_t n)
-    {
+    uint32_t reverseBits(uint32_t n) {
         uint32_t result = 0;
 
-        for (int i = 0; i < 32; i++)
-        {
+        for (int i = 0; i < 32; i++) {
             result = result << 1;
             result = result | (n & 1);
             n = n >> 1;
@@ -17,9 +14,9 @@ public:
         return result;
     }
 
-    // Best Solution
-    uint32_t bestSolution(uint32_t n)
-    {
+
+    // Solution
+    uint32_t solution(uint32_t n) {
         n = ((n & 0xffff0000) >> 16) | ((n & 0x0000ffff) << 16);
         n = ((n & 0xff00ff00) >> 8) | ((n & 0x00ff00ff) << 8);
         n = ((n & 0xf0f0f0f0) >> 4) | ((n & 0x0f0f0f0f) << 4);

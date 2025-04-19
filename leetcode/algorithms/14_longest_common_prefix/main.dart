@@ -19,8 +19,9 @@ class LongestCommonPrefix {
     return result;
   }
 
-  // Best Solution
-  String bestSolution(List<String> strs) {
+
+  // Solution
+  String solution(List<String> strs) {
     String commonPrefix = strs.first;
     for (final word in strs) {
       while (!word.startsWith(commonPrefix)) {

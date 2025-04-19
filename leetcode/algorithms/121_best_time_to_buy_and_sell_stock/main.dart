@@ -15,8 +15,9 @@ class BestTimeToBuyAndSellStock {
     return price;
   }
 
-  // Best Solution
-  int bestSolution(List<int> prices) {
+
+  // Solution
+  int solution(List<int> prices) {
     int profit = 0;
     int minPrice = prices.first;
     for (int i = 1; i < prices.length; i++) {

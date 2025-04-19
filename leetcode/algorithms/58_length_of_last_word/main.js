@@ -8,14 +8,14 @@ var lengthOfLastWord = function (s) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (s) {
+// Solution
+// Solution 1:
+var solution1 = function (s) {
   return s.trim().split(" ").pop().length;
 };
 
-// Best Solution 2:
-var bestSolution2 = function (s) {
+// Solution 2:
+var solution2 = function (s) {
   let trimmedString = s.trim();
   return trimmedString.length - trimmedString.lastIndexOf(" ") - 1;
 };

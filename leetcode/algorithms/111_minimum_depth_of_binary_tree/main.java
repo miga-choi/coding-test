@@ -42,21 +42,21 @@ class MinimumDepthOfBinaryTree {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int bestSolution1(TreeNode root) {
+  // Solution
+  // Solution 1:
+  public int solution1(TreeNode root) {
     if (root == null) {
       return 0;
     }
-    int left = bestSolution1(root.left);
-    int right = bestSolution1(root.right);
+    int left = solution1(root.left);
+    int right = solution1(root.right);
     return (left == 0 || right == 0)
         ? left + right + 1
         : Math.min(left, right) + 1;
   }
 
-  // Best Solution 2:
-  public int bestSolution2(TreeNode root) {
+  // Solution 2:
+  public int solution2(TreeNode root) {
     // Base case...
     // If the subtree is empty i.e. root is NULL, return depth as 0...
     if (root == null) {
@@ -64,8 +64,8 @@ class MinimumDepthOfBinaryTree {
     }
 
     // Initialize the depth of two subtrees...
-    int leftDepth = bestSolution2(root.left);
-    int rightDepth = bestSolution2(root.right);
+    int leftDepth = solution2(root.left);
+    int rightDepth = solution2(root.right);
 
     // If the both subtrees are empty...
     if (root.left == null && root.right == null) {
@@ -91,8 +91,8 @@ class MinimumDepthOfBinaryTree {
     return Math.min(leftDepth, rightDepth) + 1;
   }
 
-  // Best Solution 3: BFS
-  public int bestSolution3(TreeNode root) {
+  // Solution 3: BFS
+  public int solution3(TreeNode root) {
     if (root == null) {
       return 0;
     }

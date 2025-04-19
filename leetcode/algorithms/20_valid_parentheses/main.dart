@@ -23,8 +23,9 @@ class ValidParentheses {
     return stack.length <= 0;
   }
 
-  // Best Solution
-  bool bestSolution(String s) {
+
+  // Solution
+  bool solution(String s) {
     String d1 = "()";
     String d2 = "{}";
     String d3 = "[]";

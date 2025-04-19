@@ -39,9 +39,9 @@ class SameTree {
   }
 
 
-  // Best Solution
-  // Best Solution 1: Recursive (DFS) Preorder traversal
-  public boolean bestSolution1(TreeNode p, TreeNode q) {
+  // Solution
+  // Solution 1: Recursive (DFS) Preorder traversal
+  public boolean solution1(TreeNode p, TreeNode q) {
     // Base case: If both trees are empty, they are identical.
     if (p == null && q == null) {
       return true;
@@ -58,11 +58,11 @@ class SameTree {
     }
 
     // Recursively check the left and right subtrees.
-    return bestSolution1(p.left, q.left) && bestSolution1(p.right, q.right);
+    return solution1(p.left, q.left) && solution1(p.right, q.right);
   }
 
-  // Best Solution 2: Level-order traversal using Queues
-  public boolean bestSolution2(TreeNode p, TreeNode q) {
+  // Solution 2: Level-order traversal using Queues
+  public boolean solution2(TreeNode p, TreeNode q) {
     // Create queues for both trees.
     Queue<TreeNode> queue1 = new LinkedList<>();
     Queue<TreeNode> queue2 = new LinkedList<>();
@@ -95,8 +95,8 @@ class SameTree {
     return queue1.isEmpty() && queue2.isEmpty();
   }
 
-  // Best Solution 3: Level-order traversal using Stack
-  public boolean bestSolution3(TreeNode p, TreeNode q) {
+  // Solution 3: Level-order traversal using Stack
+  public boolean solution3(TreeNode p, TreeNode q) {
     Stack<TreeNode> stack1 = new Stack<>();
     Stack<TreeNode> stack2 = new Stack<>();
 
@@ -131,19 +131,19 @@ class SameTree {
     return stack1.isEmpty() && stack2.isEmpty();
   }
 
-  // Best Solution 4: Tree Hashing
-  public boolean bestSolution4(TreeNode p, TreeNode q) {
-    String hash1 = bestSolution4_computeTreeHash(p);
-    String hash2 = bestSolution4_computeTreeHash(q);
+  // Solution 4: Tree Hashing
+  public boolean solution4(TreeNode p, TreeNode q) {
+    String hash1 = solution4_computeTreeHash(p);
+    String hash2 = solution4_computeTreeHash(q);
     return hash1.equals(hash2);
   }
 
-  private String bestSolution4_computeTreeHash(TreeNode node) {
+  private String solution4_computeTreeHash(TreeNode node) {
     if (node == null) {
       return "null";
     }
-    String leftHash = bestSolution4_computeTreeHash(node.left);
-    String rightHash = bestSolution4_computeTreeHash(node.right);
+    String leftHash = solution4_computeTreeHash(node.left);
+    String rightHash = solution4_computeTreeHash(node.right);
     return "(" + node.val + leftHash + rightHash + ")";
   }
 }

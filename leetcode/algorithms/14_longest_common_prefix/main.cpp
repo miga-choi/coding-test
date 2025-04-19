@@ -2,21 +2,15 @@
 #include <vector>
 using namespace std;
 
-class LongestCommonPrefix
-{
+class LongestCommonPrefix {
 public:
-    string longestCommonPrefix(vector<string> &strs)
-    {
-        for (int i = 0;; i++)
-        {
-            if (strs[0][i] == '\0')
-            {
+    string longestCommonPrefix(vector<string>& strs) {
+        for (int i = 0;; i++) {
+            if (strs[0][i] == '\0') {
                 return strs[0];
             }
-            for (int j = 1; j < strs.size(); j++)
-            {
-                if (strs[j][i] != strs[0][i])
-                {
+            for (int j = 1; j < strs.size(); j++) {
+                if (strs[j][i] != strs[0][i]) {
                     return strs[0].substr(0, i);
                 }
             }
@@ -24,18 +18,15 @@ public:
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    string bestSolution1(vector<string> &strs)
-    {
+    // Solution
+    // Solution 1:
+    string solution1(vector<string>& strs) {
         string ans = "";
         sort(strs.begin(), strs.end());
         int n = strs.size();
         string first = strs[0], last = strs[n - 1];
-        for (int i = 0; i < min(first.size(), last.size()); i++)
-        {
-            if (first[i] != last[i])
-            {
+        for (int i = 0; i < min(first.size(), last.size()); i++) {
+            if (first[i] != last[i]) {
                 return ans;
             }
             ans += first[i];
@@ -43,12 +34,10 @@ public:
         return ans;
     }
 
-    // Best Solution 2:
-    string bestSolution2(vector<string> &strs)
-    {
+    // Solution 2:
+    string solution2(vector<string>& strs) {
         int n = strs.size();
-        if (n == 0)
-        {
+        if (n == 0) {
             return "";
         }
 
@@ -57,14 +46,10 @@ public:
         string a = strs[0];
         string b = strs[n - 1];
 
-        for (int i = 0; i < a.size(); i++)
-        {
-            if (a[i] == b[i])
-            {
+        for (int i = 0; i < a.size(); i++) {
+            if (a[i] == b[i]) {
                 ans = ans + a[i];
-            }
-            else
-            {
+            } else {
                 break;
             }
         }

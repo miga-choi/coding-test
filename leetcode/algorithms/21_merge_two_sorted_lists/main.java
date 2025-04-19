@@ -1,7 +1,5 @@
 class MergeTwoSortedLists {
-
   public class ListNode {
-
     int val;
     ListNode next;
 
@@ -45,9 +43,9 @@ class MergeTwoSortedLists {
   }
 
 
-  // Best Solution
-  // Best Solution 1: recursion
-  public ListNode bestSolution1(ListNode l1, ListNode l2) {
+  // Solution
+  // Solution 1: recursion
+  public ListNode solution1(ListNode l1, ListNode l2) {
     if (l1 == null) {
       return l2;
     }
@@ -55,16 +53,16 @@ class MergeTwoSortedLists {
       return l1;
     }
     if (l1.val < l2.val) {
-      l1.next = mergeTwoLists(l1.next, l2);
+      l1.next = solution1(l1.next, l2);
       return l1;
     } else {
-      l2.next = mergeTwoLists(l1, l2.next);
+      l2.next = solution1(l1, l2.next);
       return l2;
     }
   }
 
-  // Best Solution 2: iteration
-  public ListNode bestSolution2(ListNode l1, ListNode l2) {
+  // Solution 2: iteration
+  public ListNode solution2(ListNode l1, ListNode l2) {
     ListNode head = new ListNode(0);
     ListNode handler = head;
     while (l1 != null && l2 != null) {

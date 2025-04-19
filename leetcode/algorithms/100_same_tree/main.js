@@ -37,14 +37,14 @@ var checkNode = function (node1, node2) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-function bestSolution1(p, q) {
+// Solution
+// Solution 1:
+function solution1(p, q) {
   return JSON.stringify(p) === JSON.stringify(q);
 }
 
 // Best Solution 2: Recursive (DFS) Preorder traversal
-function bestSolution2(p, q) {
+function solution2(p, q) {
   // Base case: If both trees are empty, they are identical.
   if (p === null && q === null) {
     return true;
@@ -61,11 +61,11 @@ function bestSolution2(p, q) {
   }
 
   // Recursively check the left and right subtrees.
-  return bestSolution2(p.left, q.left) && bestSolution2(p.right, q.right);
+  return solution2(p.left, q.left) && solution2(p.right, q.right);
 }
 
-// Best Solution 3: Level-order traversal using Queues
-function bestSolution3(p, q) {
+// Solution 3: Level-order traversal using Queues
+function solution3(p, q) {
   // Create queues for both trees.
   const queue1 = [p];
   const queue2 = [q];
@@ -93,8 +93,8 @@ function bestSolution3(p, q) {
   return queue1.length === 0 && queue2.length === 0;
 }
 
-// Best Solution 4: Level-order traversal using Stack
-function bestSolution4(p, q) {
+// Solution 4: Level-order traversal using Stack
+function solution4(p, q) {
   const stack1 = [p];
   const stack2 = [q];
 
@@ -117,18 +117,18 @@ function bestSolution4(p, q) {
   return stack1.length === 0 && stack2.length === 0;
 }
 
-// Best Solution 5: Tree Hashing
-function bestSolution5(p, q) {
-  const hash1 = bestSolution5_computeTreeHash(p);
-  const hash2 = bestSolution5_computeTreeHash(q);
+// Solution 5: Tree Hashing
+function solution5(p, q) {
+  const hash1 = solution5_computeTreeHash(p);
+  const hash2 = solution5_computeTreeHash(q);
   return hash1 === hash2;
 }
 
-function bestSolution5_computeTreeHash(node) {
+function solution5_computeTreeHash(node) {
   if (node === null) {
     return "null";
   }
-  const leftHash = bestSolution5_computeTreeHash(node.left);
-  const rightHash = bestSolution5_computeTreeHash(node.right);
+  const leftHash = solution5_computeTreeHash(node.left);
+  const rightHash = solution5_computeTreeHash(node.right);
   return `(${node.val}${leftHash}${rightHash})`;
 }

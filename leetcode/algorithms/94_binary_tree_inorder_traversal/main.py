@@ -23,45 +23,33 @@ class BinaryTreeInorderTraversal:
         return result
 
 
-    # Best Solution
-    # Best Solution 1: DFS Preorder
-    def bestSolution1(self, root: Optional[TreeNode]) -> List[int]:
-        return (
-            [root.val] + self.bestSolution1(root.left) + self.bestSolution1(root.right)
-            if root
-            else []
-        )
+    # Solution
+    # Solution 1: DFS Preorder
+    def solution1(self, root: Optional[TreeNode]) -> List[int]:
+        return [root.val] + self.solution1(root.left) + self.solution1(root.right) if root else []
 
-    # Best Solution 2: DFS Inorder
-    def bestSolution2(self, root: Optional[TreeNode]) -> List[int]:
-        return (
-            self.bestSolution2(root.left) + [root.val] + self.bestSolution2(root.right)
-            if root
-            else []
-        )
+    # Solution 2: DFS Inorder
+    def solution2(self, root: Optional[TreeNode]) -> List[int]:
+        return self.solution2(root.left) + [root.val] + self.solution2(root.right) if root else []
 
-    # Best Solution 3: DFS Postorder
-    def bestSolution3(self, root: Optional[TreeNode]) -> List[int]:
-        return (
-            self.bestSolution3(root.left) + self.bestSolution3(root.right) + [root.val]
-            if root
-            else []
-        )
+    # Solution 3: DFS Postorder
+    def solution3(self, root: Optional[TreeNode]) -> List[int]:
+        return self.solution3(root.left) + self.solution3(root.right) + [root.val] if root else []
 
-    # Best Solution 4: Recursively
-    def bestSolution4(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-        self.helper(root, res)
-        return res
-
+    # Solution 4: Recursively
     def helper(self, root, res):
         if root:
             self.helper(root.left, res)
             res.append(root.val)
             self.helper(root.right, res)
 
-    # Best Solution 5: Iteratively
-    def bestSolution5(self, root: Optional[TreeNode]) -> List[int]:
+    def solution4(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        self.helper(root, res)
+        return res
+
+    # Solution 5: Iteratively
+    def solution5(self, root: Optional[TreeNode]) -> List[int]:
         res, stack = [], []
         while True:
             while root:

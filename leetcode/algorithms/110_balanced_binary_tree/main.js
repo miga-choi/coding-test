@@ -5,24 +5,16 @@ function TreeNode(val, left, right) {
 }
 
 /**
- * @param {TreeNode} root
- * @return {boolean}
- */
-var isBalanced = function (root) {
-  return checkDepth(root) === -1 ? false : true;
-};
-
-/**
- * @param {TreeNode} root_
+ * @param {TreeNode} node
  * @return {number}
  */
-const checkDepth = (root_) => {
-  if (!root_) {
+const checkDepth = (node) => {
+  if (!node) {
     return 0;
   }
 
-  const leftDepth = checkDepth(root_.left);
-  const rightDepth = checkDepth(root_.right);
+  const leftDepth = checkDepth(node.left);
+  const rightDepth = checkDepth(node.right);
 
   if (leftDepth === -1 || rightDepth === -1) {
     return -1;
@@ -39,31 +31,39 @@ const checkDepth = (root_) => {
   }
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function (root) {
+  return checkDepth(root) === -1 ? false : true;
+};
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (root) {
+
+// Solution
+// Solution 1:
+var solution1 = function (root) {
   // If the tree is empty, we can say it’s balanced...
   if (root == null) {
     return true;
   }
   // Height Function will return -1, when it’s an unbalanced tree...
-  if (bestSolution1_height(root) == -1) {
+  if (solution1_height(root) == -1) {
     return false;
   }
   return true;
 };
 
 // Create a function to return the “height” of a current subtree using recursion...
-var bestSolution1_height = function (root) {
+var solution1_height = function (root) {
   // Base case...
   if (root == null) {
     return 0;
   }
   // Height of left subtree...
-  let leftHeight = bestSolution1_height(root.left);
+  let leftHeight = solution1_height(root.left);
   // Height of height subtree...
-  let rightHight = bestSolution1_height(root.right);
+  let rightHight = solution1_height(root.right);
   // In case of left subtree or right subtree unbalanced, return -1...
   if (leftHeight == -1 || rightHight == -1) {
     return -1;
@@ -76,8 +76,8 @@ var bestSolution1_height = function (root) {
   return Math.max(leftHeight, rightHight) + 1;
 };
 
-// Best Solution 2: DFS (Postorder)
-var bestSolution2 = function (root) {
+// olution 2: DFS (Postorder)
+var solution2 = function (root) {
   let dfs = function (node) {
     if (!node) {
       return 0;
@@ -93,9 +93,11 @@ var bestSolution2 = function (root) {
   return dfs(root) == Infinity ? false : true;
 };
 
-// Best Solution 3: DFS (Top-Down recursion)
-var bestSolution3 = function (root) {
-  if (!root) return true;
+// Solution 3: DFS (Top-Down recursion)
+var solution3 = function (root) {
+  if (!root) {
+    return true;
+  }
 
   let height = function (node) {
     if (!node) {
@@ -106,7 +108,7 @@ var bestSolution3 = function (root) {
 
   return (
     Math.abs(height(root.left) - height(root.right)) < 2 &&
-    bestSolution3(root.left) &&
-    bestSolution3(root.right)
+    solution3(root.left) &&
+    solution3(root.right)
   );
 };

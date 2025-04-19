@@ -44,30 +44,30 @@ class BalancedBinaryTree {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public boolean bestSolution1(TreeNode root) {
+  // Solution
+  // Solution 1:
+  public boolean solution1(TreeNode root) {
     // If the tree is empty, we can say it’s balanced...
     if (root == null) {
       return true;
     }
     // Height Function will return -1, when it’s an unbalanced tree...
-    if (bestSolution1_height(root) == -1) {
+    if (solution1_height(root) == -1) {
       return false;
     }
     return true;
   }
 
   // Create a function to return the “height” of a current subtree using recursion...
-  public int bestSolution1_height(TreeNode root) {
+  public int solution1_height(TreeNode root) {
     // Base case...
     if (root == null) {
       return 0;
     }
     // Height of left subtree...
-    int leftHeight = bestSolution1_height(root.left);
+    int leftHeight = solution1_height(root.left);
     // Height of height subtree...
-    int rightHight = bestSolution1_height(root.right);
+    int rightHight = solution1_height(root.right);
     // In case of left subtree or right subtree unbalanced, return -1...
     if (leftHeight == -1 || rightHight == -1) {
       return -1;
@@ -80,8 +80,8 @@ class BalancedBinaryTree {
     return Math.max(leftHeight, rightHight) + 1;
   }
 
-  // Best Solution 2: Iterative PostOrder Traversal
-  public boolean bestSolution2(TreeNode root) {
+  // Solution 2: Iterative PostOrder Traversal
+  public boolean solution2(TreeNode root) {
     if (root == null) {
       return true;
     }

@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class PascalsTriangleII:
     def getRow(self, rowIndex: int) -> List[int]:
         rows = []
         for i in range(rowIndex + 1):
@@ -15,8 +15,8 @@ class Solution:
         return rows[rowIndex]
 
 
-    # Best Solution
-    def bestSolution(self, rowIndex: int) -> List[int]:
+    # Solution
+    def solution(self, rowIndex: int) -> List[int]:
         row = [1] * (rowIndex + 1)
         if rowIndex == 0:
             return row

@@ -1,25 +1,20 @@
 using System;
 using System.Collections.Generic;
 
-public class MaximumDepthOfBinaryTree
-{
-    public class TreeNode
-    {
+public class MaximumDepthOfBinaryTree {
+    public class TreeNode {
         public int val;
         public TreeNode left;
         public TreeNode right;
-        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
-        {
+        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
             this.val = val;
             this.left = left;
             this.right = right;
         }
     }
 
-    public int MaxDepth(TreeNode root)
-    {
-        if (root == null)
-        {
+    public int MaxDepth(TreeNode root) {
+        if (root == null) {
             return 0;
         }
 
@@ -30,26 +25,22 @@ public class MaximumDepthOfBinaryTree
     }
 
 
-    // Best Solution
-    // Best Solution 1: Depth-First Search
-    public int bestSolution1(TreeNode root)
-    {
-        if (root == null)
-        {
+    // Solution
+    // Solution 1: Depth-First Search
+    public int solution1(TreeNode root) {
+        if (root == null) {
             return 0;
         }
 
-        int leftMaxDepth = bestSolution1(root.left);
-        int rightMaxDepth = bestSolution1(root.right);
+        int leftMaxDepth = solution1(root.left);
+        int rightMaxDepth = solution1(root.right);
 
         return Math.Max(leftMaxDepth, rightMaxDepth) + 1;
     }
 
-    // Best Solution 2: Breadth-First Search
-    public int bestSolution2(TreeNode root)
-    {
-        if (root == null)
-        {
+    // Solution 2: Breadth-First Search
+    public int solution2(TreeNode root) {
+        if (root == null) {
             return 0;
         }
 
@@ -58,21 +49,15 @@ public class MaximumDepthOfBinaryTree
 
         var depth = 0;
 
-        while (queue.Count != 0)
-        {
+        while (queue.Count != 0) {
             var size = queue.Count;
 
-            for (var i = 0; i < size; i++)
-            {
+            for (var i = 0; i < size; i++) {
                 var current = queue.Dequeue();
-
-                if (current.left != null)
-                {
+                if (current.left != null) {
                     queue.Enqueue(current.left);
                 }
-
-                if (current.right != null)
-                {
+                if (current.right != null) {
                     queue.Enqueue(current.right);
                 }
             }

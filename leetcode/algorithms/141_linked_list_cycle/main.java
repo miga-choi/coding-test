@@ -1,22 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-
 class LinkedListCycle {
-
   public class ListNode {
-
     int val;
     ListNode next;
 
@@ -38,13 +24,15 @@ class LinkedListCycle {
     return false;
   }
 
-  // Best Solution
-  public boolean bestSolution(ListNode head) {
+  // Solution
+  public boolean solution(ListNode head) {
     ListNode slow = head, fast = head;
     while (fast != null && fast.next != null) {
       fast = fast.next.next;
       slow = slow.next;
-      if (fast == slow) return true;
+      if (fast == slow) {
+        return true;
+      }
     }
     return false;
   }

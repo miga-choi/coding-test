@@ -19,9 +19,9 @@ var longestCommonPrefix = function (strs) {
 };
 
 
-// Best Solution
-// Best Solution 1: reduce
-var bestSolution = function (strs) {
+// Solution
+// Solution 1: reduce
+var solution1 = function (strs) {
   if (strs === undefined || strs.length === 0) {
     return "";
   }
@@ -35,8 +35,8 @@ var bestSolution = function (strs) {
   });
 };
 
-// Best Solution 2:
-var bestSolution = function (strs) {
+// Solution 2:
+var solution2 = function (strs) {
   if (!strs.length) {
     return "";
   }

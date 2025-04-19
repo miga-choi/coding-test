@@ -55,6 +55,7 @@ public:
         return false;
     }
 
+
     // Solution
     bool solution(string s) {
         for (int left = 0, right = s.size() - 1; left < right; left++, right--) {

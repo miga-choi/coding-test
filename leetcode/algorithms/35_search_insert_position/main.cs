@@ -1,23 +1,15 @@
-public class SearchInsertPosition
-{
-    public int SearchInsert(int[] nums, int target)
-    {
+public class SearchInsertPosition {
+    public int SearchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.Length - 1;
 
-        while (left <= right)
-        {
+        while (left <= right) {
             int mid = (left + right) / 2;
-            if (target > nums[mid])
-            {
+            if (target > nums[mid]) {
                 left = mid + 1;
-            }
-            else if (target < nums[mid])
-            {
+            } else if (target < nums[mid]) {
                 right = mid - 1;
-            }
-            else
-            {
+            } else {
                 return mid;
             }
         }
@@ -26,44 +18,33 @@ public class SearchInsertPosition
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    public int bestSolution1(int[] nums, int target)
-    {
+    // Solution
+    // Solution 1:
+    public int solution1(int[] nums, int target) {
         int left = 0, right = nums.Length - 1, mid;
-        while (left <= right)
-        {
+        while (left <= right) {
             mid = (right + left) / 2;
-            if (nums[mid] < target)
-            {
+            if (nums[mid] < target) {
                 left = mid + 1;
-            }
-            else if (nums[mid] > target)
-            {
+            } else if (nums[mid] > target) {
                 right = mid - 1;
-            }
-            else
-            {
+            } else {
                 return mid;
             }
         }
         return left;
     }
 
-    // Best Solution 2:
-    public int bestSolution2(int[] nums, int target)
-    {
+    // Solution 2:
+    public int solution2(int[] nums, int target) {
         var index = Array.BinarySearch(nums, target);
         return index >= 0 ? index : ~index;
     }
 
-    // Best Solution 3:
-    public int bestSolution3(int[] nums, int target)
-    {
-        for (int i = 0; i < nums.Length; i++)
-        {
-            if (target == nums[i] || nums[i] > target)
-            {
+    // Solution 3:
+    public int solution3(int[] nums, int target) {
+        for (int i = 0; i < nums.Length; i++) {
+            if (target == nums[i] || nums[i] > target) {
                 return i;
             }
         }

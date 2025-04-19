@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class BestTimeToBuyAndSellStock:
     def maxProfit(self, prices: List[int]) -> int:
         buy = 0
         profit = 0
@@ -16,8 +16,8 @@ class Solution:
         return profit
 
 
-    # Best Solution
-    def bestSolution(self, prices: List[int]) -> int:
+    # Solution
+    def colution(self, prices: List[int]) -> int:
         if not prices:
             return 0
 

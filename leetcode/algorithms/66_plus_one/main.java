@@ -21,9 +21,9 @@ class PlusOne {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int[] bestSolution1(int[] digits) {
+  // Solution
+  // Solution 1:
+  public int[] solution1(int[] digits) {
     int n = digits.length;
     for (int i = n - 1; i >= 0; i--) {
       if (digits[i] < 9) {
@@ -40,8 +40,8 @@ class PlusOne {
     return newNumber;
   }
 
-  // Best Solution 2:
-  public int[] bestSolution2(int[] digits) {
+  // Solution 2:
+  public int[] solution2(int[] digits) {
     int carry = 1;
     for (int i = digits.length - 1; i >= 0; i--) {
       digits[i] += carry;

@@ -1,21 +1,17 @@
 #include <stdbool.h>;
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
-bool isSameTree(struct TreeNode *p, struct TreeNode *q)
-{
-    if (!p && !q)
-    {
+bool isSameTree(struct TreeNode* p, struct TreeNode* q) {
+    if (!p && !q) {
         return true;
     }
 
-    if (!p || !q || p->val != q->val)
-    {
+    if (!p || !q || p->val != q->val) {
         return false;
     }
 
@@ -23,27 +19,23 @@ bool isSameTree(struct TreeNode *p, struct TreeNode *q)
 }
 
 
-// Best Solution
-bool bestSolution(struct TreeNode *p, struct TreeNode *q)
-{
+// Solution
+bool solution(struct TreeNode* p, struct TreeNode* q) {
     // Base case: If both trees are empty, they are identical.
-    if (!p && !q)
-    {
+    if (!p && !q) {
         return true;
     }
 
     // If one of the trees is empty and the other is not, they are not identical.
-    if (!p || !q)
-    {
+    if (!p || !q) {
         return false;
     }
 
     // Compare the values of the current nodes.
-    if (p->val != q->val)
-    {
+    if (p->val != q->val) {
         return false;
     }
 
     // Recursively check the left and right subtrees.
-    return bestSolution1(p->left, q->left) && bestSolution1(p->right, q->right);
+    return solution(p->left, q->left) && solution(p->right, q->right);
 }

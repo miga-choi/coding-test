@@ -14,9 +14,9 @@ class SearchInsertPosition {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int bestSolution1(int[] nums, int target) {
+  // Solution
+  // Solution 1:
+  public int solution1(int[] nums, int target) {
     if (nums == null || nums.length == 0) {
       return 0;
     }
@@ -41,8 +41,8 @@ class SearchInsertPosition {
     return nums[l] < target ? l + 1 : l;
   }
 
-  // Best Solution 2:
-  public int bestSolution2(int[] nums, int target) {
+  // Solution 2:
+  public int solution2(int[] nums, int target) {
     int start = 0;
     int end = nums.length - 1;
 
@@ -60,8 +60,8 @@ class SearchInsertPosition {
     return start;
   }
 
-  // Best Solution 3:
-  public int bestSolution3(int[] nums, int target) {
+  // Solution 3:
+  public int solution3(int[] nums, int target) {
     int low = 0, high = nums.length - 1;
     while (low <= high) {
       int mid = (low + high) / 2;

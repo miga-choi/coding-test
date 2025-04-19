@@ -29,18 +29,18 @@ class RemoveDuplicatesFromSortedList {
   }
 
 
-  // Best Solution
-  // Best Solution 1: Recursive
-  public ListNode bestSolution1(ListNode head) {
+  // Solution
+  // Solution 1: Recursive
+  public ListNode solution1(ListNode head) {
     if (head == null || head.next == null) {
       return head;
     }
-    head.next = bestSolution1(head.next);
+    head.next = solution1(head.next);
     return head.val == head.next.val ? head.next : head;
   }
 
-  // Best Solution 2:
-  public ListNode bestSolution2(ListNode head) {
+  // Solution 2:
+  public ListNode solution2(ListNode head) {
     ListNode list = head;
 
     while (list != null) {

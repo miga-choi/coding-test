@@ -14,9 +14,9 @@ class TwoSum {
     }
 
 
-    // Best Solution
-    // Best Solution 1: Brute Force
-    public int[] bestSolution1(int[] nums, int target) {
+    // Solution
+    // Solution 1: Brute Force
+    public int[] solution1(int[] nums, int target) {
         int n = nums.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = i + 1; j < n; j++) {
@@ -28,8 +28,8 @@ class TwoSum {
         return new int[] {}; // No solution found
     }
 
-    // Best Solution 2: Two-pass Hash Table
-    public int[] bestSolution2(int[] nums, int target) {
+    // Solution 2: Two-pass Hash Table
+    public int[] solution2(int[] nums, int target) {
         Map<Integer, Integer> numMap = new HashMap<>();
         int n = nums.length;
 
@@ -49,8 +49,8 @@ class TwoSum {
         return new int[] {}; // No solution found
     }
 
-    // Best Solution 3: One-pass Hash Table
-    public int[] bestSolution3(int[] nums, int target) {
+    // Solution 3: One-pass Hash Table
+    public int[] solution3(int[] nums, int target) {
         Map<Integer, Integer> numMap = new HashMap<>();
         int n = nums.length;
 

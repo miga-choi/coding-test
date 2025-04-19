@@ -3,7 +3,7 @@
  * @return {string}
  */
 var longestPalindrome = function (s) {
-  let result = '';
+  let result = "";
 
   for (let i = 0; i < s.length; i++) {
     checkPalindromic(i, i); // for odd string

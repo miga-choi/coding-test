@@ -27,9 +27,9 @@ class RomanToInteger:
         return result
 
 
-    # Best Solution
-    # Best Solution 1:
-    def bestSolution1(self, s: str) -> int:
+    # Solution
+    # Solution 1:
+    def solution1(self, s: str) -> int:
         translations = {
             "I": 1,
             "V": 5,
@@ -47,8 +47,8 @@ class RomanToInteger:
             number += translations[char]
         return number
 
-    # Best Solution 2:
-    def bestSolution2(self, s: str) -> int:
+    # Solution 2:
+    def solution2(self, s: str) -> int:
         m = {
             "I": 1,
             "V": 5,

@@ -1,7 +1,8 @@
+from functools import reduce
 from typing import List
 
 
-class Solution:
+class SingleNumber:
     def singleNumber(self, nums: List[int]) -> int:
         result = 0
         for num in nums:
@@ -9,6 +10,6 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, nums: List[int]) -> int:
+    # Solution
+    def solution(self, nums: List[int]) -> int:
         return reduce(lambda total, el: total ^ el, nums)

@@ -8,9 +8,7 @@ class ListNode:
 
 
 class MergeTwoSortedLists:
-    def mergeTwoLists(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         result: ListNode = ListNode()
         currentNode: ListNode = result
 
@@ -33,12 +31,11 @@ class MergeTwoSortedLists:
         return result.next
 
 
-    # Best Solution
-    # Best Solution 1:
-    def bestSolution1(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    # Solution
+    # Solution 1:
+    def bestSolution1(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         cur = dummy = ListNode()
+
         while list1 and list2:
             if list1.val < list2.val:
                 cur.next = list1
@@ -52,11 +49,10 @@ class MergeTwoSortedLists:
 
         return dummy.next
 
-    # Best Solution 2: iteratively
-    def bestSolution2(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    # Solution 2: iteratively
+    def solution2(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dummy = cur = ListNode(0)
+
         while list1 and list2:
             if list1.val < list2.val:
                 cur.next = list1
@@ -65,30 +61,31 @@ class MergeTwoSortedLists:
                 cur.next = list2
                 list2 = list2.next
             cur = cur.next
+
         cur.next = list1 or list2
+
         return dummy.next
 
-    # Best Solution 3: recursively
-    def bestSolution3(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    # Solution 3: recursively
+    def solution3(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         if not list1 or not list2:
             return list1 or list2
+            
         if list1.val < list2.val:
-            list1.next = self.mergeTwoLists(list1.next, list2)
+            list1.next = self.solution3(list1.next, list2)
             return list1
         else:
-            list2.next = self.mergeTwoLists(list1, list2.next)
+            list2.next = self.solution3(list1, list2.next)
             return list2
 
-    # Best Solution 4: in-place, iteratively
-    def bestSolution4(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    # Solution 4: in-place, iteratively
+    def solution4(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         if None in (list1, list2):
             return list1 or list2
+
         dummy = cur = ListNode(0)
         dummy.next = list1
+
         while list1 and list2:
             if list1.val < list2.val:
                 list1 = list1.next
@@ -98,6 +95,9 @@ class MergeTwoSortedLists:
                 tmp = list2.next
                 list2.next = nxt
                 list2 = tmp
+
             cur = cur.next
+
         cur.next = list1 or list2
+
         return dummy.next

@@ -19,8 +19,9 @@ class RemoveDuplicatesFromSortedList {
     return head;
   }
 
-  // BestSolution
-  ListNode? bestSolution(ListNode? head) {
+
+  // Solution
+  ListNode? solution(ListNode? head) {
     ListNode? value = head;
 
     while (value != null && value.next != null) {

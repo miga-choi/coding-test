@@ -5,17 +5,6 @@ function TreeNode(val, left, right) {
 }
 
 /**
- * @param {TreeNode} root
- * @return {boolean}
- */
-var isSymmetric = function (root) {
-  if (!root) {
-    return true;
-  }
-  return checkNode(root.left, root.right);
-};
-
-/**
  * @param {TreeNode} leftNode
  * @param {TreeNode} rightNode
  */
@@ -34,20 +23,30 @@ function checkNode(leftNode, rightNode) {
   }
 }
 
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+  if (!root) {
+    return true;
+  }
+  return checkNode(root.left, root.right);
+};
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (root) {
+// Solution
+// Solution 1
+var solution1 = function (root) {
   // Special case...
   if (!root) {
     return true;
   }
   // Return the function recursively...
-  return bestSolution1_isSame(root.left, root.right);
+  return solution1_isSame(root.left, root.right);
 };
 
 // A tree is called symmetric if the left subtree must be a mirror reflection of the right subtree...
-var bestSolution1_isSame = function (leftroot, rightroot) {
+var solution1_isSame = function (leftroot, rightroot) {
   // If both root nodes are null pointers, return true...
   // If exactly one of them is a null node, return false...
   // If root nodes haven't same value, return false...
@@ -66,8 +65,8 @@ var bestSolution1_isSame = function (leftroot, rightroot) {
   return true;
 };
 
-// Best Solution 2: Recursive - Preorder traversal
-var bestSolution2 = function (root) {
+// Solution 2: Recursive - Preorder traversal
+var solution2 = function (root) {
   if (!root) {
     // Sanity check
     return true;
@@ -89,8 +88,8 @@ var bestSolution2 = function (root) {
   return isMirror(root.left, root.right);
 };
 
-// Best Solution 3: Iterative - Traverse using stack
-var bestSolution3 = function (root) {
+// Solution 3: Iterative - Traverse using stack
+var solution3 = function (root) {
   if (!root) {
     // Sanity check
     return true;
@@ -129,8 +128,8 @@ var bestSolution3 = function (root) {
   return isMirror(root.left, root.right);
 };
 
-// Best Solution 4: BFS - Traverse both subtrees in level order
-var bestSolution4 = function (root) {
+// Solution 4: BFS - Traverse both subtrees in level order
+var solution4 = function (root) {
   if (!root) {
     // Sanity check
     return true;

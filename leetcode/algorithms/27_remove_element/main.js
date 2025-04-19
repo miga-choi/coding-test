@@ -13,9 +13,9 @@ var removeElement = function (nums, val) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (nums, val) {
+// Solution
+// Solution 1:
+var solution1 = function (nums, val) {
   var zeroStartIdx = 0;
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] !== val) {
@@ -26,8 +26,8 @@ var bestSolution1 = function (nums, val) {
   return zeroStartIdx;
 };
 
-// Best Solution 2:
-var bestSolution2 = function (nums, val) {
+// Solution 2:
+var solution2 = function (nums, val) {
   let left = 0;
   let right = nums.length - 1;
 
@@ -43,8 +43,8 @@ var bestSolution2 = function (nums, val) {
   return left;
 };
 
-// Best Solution 3:
-var bestSolution3 = function (nums, val) {
+// Solution 3:
+var solution3 = function (nums, val) {
   // Counter for keeping track of elements other than val
   let count = 0;
   // Loop through all the elements of the array

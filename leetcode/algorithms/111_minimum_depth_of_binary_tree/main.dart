@@ -27,12 +27,16 @@ class Solution {
     return min(leftDepth, rightDepth) + 1;
   }
 
-  // Best Solution
-  int bestSolution(TreeNode? root) {
-    if (root == null) return 0;
-    int l = minDepth(root.left);
-    int r = minDepth(root.right);
-    if (l == 0 || r == 0) return l + r + 1;
+  // Solution
+  int solution(TreeNode? root) {
+    if (root == null) {
+      return 0;
+    }
+    int l = solution(root.left);
+    int r = solution(root.right);
+    if (l == 0 || r == 0) {
+      return l + r + 1;
+    }
     return min(l, r) + 1;
   }
 }

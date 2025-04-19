@@ -3,8 +3,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-class ContainsDuplicate2 {
-
+class ContainsDuplicateII {
   public boolean containsNearbyDuplicate(int[] nums, int k) {
     Map<Integer, Integer> numsMap = new HashMap<Integer, Integer>();
 

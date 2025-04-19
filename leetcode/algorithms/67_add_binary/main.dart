@@ -4,8 +4,9 @@ class AddBinary {
         .toRadixString(2);
   }
 
-  // Best Solution
-  String bestSolution(String a, String b) {
+
+  // Solution
+  String solution(String a, String b) {
     // result string
     String sum = "";
 
@@ -19,10 +20,14 @@ class AddBinary {
     // even if we covered both strings but carry still remains
     while (i >= 0 || j >= 0 || c > 0) {
       // carry=carry+ int value of a[i]
-      if (i >= 0) c += int.parse(a[i--]);
+      if (i >= 0) {
+        c += int.parse(a[i--]);
+      }
 
       // carry = carry + int value of b[j]
-      if (j >= 0) c += int.parse(b[j--]);
+      if (j >= 0) {
+        c += int.parse(b[j--]);
+      }
 
       // c % 2 means insert 0
       // if carry == 0 or carry == 2 (1+1)

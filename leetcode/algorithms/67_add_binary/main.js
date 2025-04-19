@@ -30,16 +30,16 @@ var addBinary = function (a, b) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (a, b) {
+// Solution
+// Solution 1:
+var solution1 = function (a, b) {
   const aBin = `0b${a}`;
   const bBin = `0b${b}`;
   const sum = BigInt(aBin) + BigInt(bBin);
   return sum.toString(2);
 };
 
-// Best Solution 2:
-var bestSolution2 = function (a, b) {
+// Solution 2:
+var solution2 = function (a, b) {
   return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 };

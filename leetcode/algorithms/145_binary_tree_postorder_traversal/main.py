@@ -1,12 +1,5 @@
 from typing import List, Optional
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -15,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class BinaryTreePostorderTraversal:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         nodes = []
@@ -37,8 +30,8 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, root):
+    # Solution
+    def solution(self, root):
         # Base case...
         if not root:
             return []

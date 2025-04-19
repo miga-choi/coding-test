@@ -23,10 +23,11 @@ var isValid = function (s) {
 };
 
 
-// Best Solution
-var bestSolution = function (s) {
+// Solution
+var solution = function (s) {
   // Initialize stack to store the closing brackets expected...
   let stack = [];
+
   // Traverse each charater in input string...
   for (let idx = 0; idx < s.length; idx++) {
     // If open parentheses are present, push it to stack...
@@ -42,5 +43,6 @@ var bestSolution = function (s) {
       return false;
     }
   }
+
   return !stack.length;
 };

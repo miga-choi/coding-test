@@ -1,4 +1,4 @@
-class Solution:
+class ExcelSheetColumnTitle:
     def convertToTitle(self, columnNumber: int) -> str:
         alphabet = [
             "A",
@@ -38,8 +38,9 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution1(self, columnNumber):
+    # Solution
+    # Solution 1:
+    def solution1(self, columnNumber):
         # Create an empty string for storing the characters...
         output = ""
         # Run a while loop while columnNumber is positive...
@@ -51,5 +52,6 @@ class Solution:
         # Return the output string.
         return output
 
-    def bestSolution2(self, columnNumber):
-        return "" if columnNumber == 0 else self.convertToTitle((columnNumber - 1) / 26) + chr((columnNumber - 1) % 26 + ord("A"))
+    # Solution 2:
+    def solution2(self, columnNumber):
+        return "" if columnNumber == 0 else self.solution2((columnNumber - 1) / 26) + chr((columnNumber - 1) % 26 + ord("A"))

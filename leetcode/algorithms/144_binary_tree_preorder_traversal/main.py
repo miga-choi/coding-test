@@ -1,12 +1,5 @@
 from typing import List, Optional
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -15,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class BinaryTreePreorderTraversal:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         totalNodes = []
@@ -35,9 +28,9 @@ class Solution:
         return result
 
 
-    # Best Solution
-    # The iterative version
-    def bestSolution1(self, root: Optional[TreeNode]) -> List[int]:
+    # Solution
+    # Solution 1: The iterative version
+    def solution1(self, root: Optional[TreeNode]) -> List[int]:
                                           #  Ex: root = [1, 2,None, 3,4]
         if not root:                      #
             return []                     #         1
@@ -55,8 +48,8 @@ class Solution:
                                           #       4        None        None       [4]     [1,2,3,4]
         return ans
 
-    # The recursive version
-    def bestSolution2(self, root: Optional[TreeNode]) -> List[int]:
+    # Solution 2: The recursive version
+    def solution2(self, root: Optional[TreeNode]) -> List[int]:
         def dfs(node):
             if not node:
                 return
@@ -74,6 +67,6 @@ class Solution:
 
         return ans
 
-    # And here's a one-liner:
-    def bestSolution3(self, root: TreeNode) -> list[int]:
+    # Solution 3: And here's a one-liner:
+    def solution3(self, root: TreeNode) -> list[int]:
         return [] if not root else ([root.val]+self.preorderTraversal(root.left)+self.preorderTraversal(root.right))

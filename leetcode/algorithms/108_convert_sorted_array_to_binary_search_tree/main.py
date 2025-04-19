@@ -23,9 +23,9 @@ class ConvertSortedArrayToBinarySearchTree:
         return root
 
 
-    # Best Solution
-    # Best Solution 1: Recursion
-    def bestSolution1(self, nums: List[int]) -> Optional[TreeNode]:
+    # Solution
+    # Solution 1: Recursion
+    def solution1(self, nums: List[int]) -> Optional[TreeNode]:
         total_nums = len(nums)
         if not total_nums:
             return None
@@ -33,25 +33,25 @@ class ConvertSortedArrayToBinarySearchTree:
         mid_node = total_nums // 2
         return TreeNode(
             nums[mid_node],
-            self.sortedArrayToBST(nums[:mid_node]),
-            self.sortedArrayToBST(nums[mid_node + 1 :]),
+            self.solution1(nums[:mid_node]),
+            self.solution1(nums[mid_node + 1 :]),
         )
 
-    # Best Solution 2: Recursion
-    def bestSolution2(self, nums: List[int]) -> Optional[TreeNode]:
+    # Solution 2: Recursion
+    def solution2(self, nums: List[int]) -> Optional[TreeNode]:
         if not nums:
             return None
 
         mid = len(nums) // 2
 
         root = TreeNode(nums[mid])
-        root.left = self.sortedArrayToBST(nums[:mid])
-        root.right = self.sortedArrayToBST(nums[mid + 1 :])
+        root.left = self.solution2(nums[:mid])
+        root.right = self.solution2(nums[mid + 1 :])
 
         return root
 
-    # Best Solution 3:
-    def bestSolution3(self, nums: List[int]) -> Optional[TreeNode]:
+    # Solution 3:
+    def solution3(self, nums: List[int]) -> Optional[TreeNode]:
         def convert(left, right):
             if left > right:
                 return None

@@ -27,18 +27,26 @@ class BalancedBinaryTree {
     return isBalanced(root.left) && isBalanced(root.right);
   }
 
-  // Best Solution
-  bool bestSolution(TreeNode? root) {
+  // Solution
+  bool solution(TreeNode? root) {
     return cnt(root) != -1;
   }
 
   int cnt(TreeNode? nod) {
-    if (nod == null) return 0;
+    if (nod == null) {
+      return 0;
+    }
     int l = cnt(nod.left);
-    if (l == -1) return -1;
+    if (l == -1) {
+      return -1;
+    }
     int r = cnt(nod.right);
-    if (r == -1) return -1;
-    if ((r - l > 1) || (l - r > 1)) return -1;
+    if (r == -1) {
+      return -1;
+    }
+    if ((r - l > 1) || (l - r > 1)) {
+      return -1;
+    }
     return (l >= r ? l + 1 : r + 1);
   }
 }

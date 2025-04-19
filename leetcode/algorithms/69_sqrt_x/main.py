@@ -5,9 +5,9 @@ class SqrtX:
                 return i
 
 
-    # Best Solution
-    # Best Solution 1:
-    def bestSolution1(self, x: int) -> int:
+    # Solution
+    # Solution 1:
+    def solution1(self, x: int) -> int:
         if x == 0:
             return 0
         first, last = 1, x
@@ -21,8 +21,8 @@ class SqrtX:
                 first = mid + 1
         return last
 
-    # Best Solution 2:
-    def bestSolution2(self, x: int) -> int:
+    # Solution 2:
+    def solution2(self, x: int) -> int:
         l, r = 0, x
         while l <= r:
             mid = l + (r - l) // 2

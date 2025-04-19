@@ -1,34 +1,28 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
-bool hasPathSum(struct TreeNode *root, int targetSum)
-{
-    if (!root)
-    {
+bool hasPathSum(struct TreeNode* root, int targetSum) {
+    if (!root) {
         return false;
     }
 
     targetSum -= root->val;
 
-    if (!root->left && !root->right)
-    {
+    if (!root->left && !root->right) {
         return targetSum == 0;
     }
 
-    if (!root->left)
-    {
+    if (!root->left) {
         return hasPathSum(root->right, targetSum);
     }
 
-    if (!root->right)
-    {
+    if (!root->right) {
         return hasPathSum(root->left, targetSum);
     }
 
@@ -36,19 +30,16 @@ bool hasPathSum(struct TreeNode *root, int targetSum)
 }
 
 
-// Best Solution
-// Best Solution 1:
-bool bestSolution1(struct TreeNode *root, int targetSum)
-{
+// Solution
+// Solution 1:
+bool solution1(struct TreeNode* root, int targetSum) {
     // If the tree is empty i.e. root is NULL, return false...
-    if (root == NULL)
-    {
+    if (root == NULL) {
         return false;
     }
 
     // If there is only a single root node and the value of root node is equal to the targetSum...
-    if (root->val == targetSum && (root->left == NULL && root->right == NULL))
-    {
+    if (root->val == targetSum && (root->left == NULL && root->right == NULL)) {
         return true;
     }
 
@@ -56,16 +47,13 @@ bool bestSolution1(struct TreeNode *root, int targetSum)
     return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
 }
 
-// Best Solution 2:
-bool bestSolution2(struct TreeNode *root, int targetSum)
-{
-    if (!root)
-    {
+// Solution 2:
+bool solution2(struct TreeNode* root, int targetSum) {
+    if (!root) {
         return false;
     }
 
-    if (!root->right && !root->left)
-    {
+    if (!root->right && !root->left) {
         return targetSum == root->val;
     }
 

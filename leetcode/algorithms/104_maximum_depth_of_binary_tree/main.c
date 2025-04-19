@@ -1,14 +1,11 @@
-struct TreeNode
-{
+struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
-int maxDepth(struct TreeNode *root)
-{
-    if (!root)
-    {
+int maxDepth(struct TreeNode* root) {
+    if (!root) {
         return 0;
     }
 
@@ -18,11 +15,9 @@ int maxDepth(struct TreeNode *root)
     return left >= right ? left + 1 : right + 1;
 }
 
-// Best Solution
-int bestSolution(struct TreeNode *root)
-{
-    if (!root)
-    {
+// Solution
+int solution(struct TreeNode* root) {
+    if (!root) {
         return 0;
     }
 

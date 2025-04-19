@@ -1,30 +1,21 @@
 #include <string.h>;
 
-int strStr(char *haystack, char *needle)
-{
+int strStr(char* haystack, char* needle) {
     int needleSize = 0;
-    for (int i = 0; needle[i] != '\0'; i++)
-    {
+    for (int i = 0; needle[i] != '\0'; i++) {
         needleSize++;
     }
 
-    if (needleSize == 0)
-    {
+    if (needleSize == 0) {
         return 0;
     }
 
-    for (int i = 0; haystack[i] != '\0'; i++)
-    {
-        if (haystack[i] == needle[0])
-        {
-            for (int j = 0; needle[j] != '\0'; j++)
-            {
-                if (haystack[i + j] != needle[j])
-                {
+    for (int i = 0; haystack[i] != '\0'; i++) {
+        if (haystack[i] == needle[0]) {
+            for (int j = 0; needle[j] != '\0'; j++) {
+                if (haystack[i + j] != needle[j]) {
                     break;
-                }
-                else if (needle[j + 1] == '\0')
-                {
+                } else if (needle[j + 1] == '\0') {
                     return i;
                 }
             }
@@ -35,19 +26,15 @@ int strStr(char *haystack, char *needle)
 }
 
 
-// Best Solution
-// Best Solution 1:
-int bestSolution1(char *haystack, char *needle)
-{
-    if (strlen(needle) > strlen(haystack))
-    {
+// Solution
+// Solution 1:
+int solution1(char* haystack, char* needle) {
+    if (strlen(needle) > strlen(haystack)) {
         return -1;
     }
 
-    for (int i = 0; i < strlen(haystack); i++)
-    {
-        if (!strncmp(haystack + i, needle, strlen(needle)))
-        {
+    for (int i = 0; i < strlen(haystack); i++) {
+        if (!strncmp(haystack + i, needle, strlen(needle))) {
             return i;
         }
     }
@@ -55,18 +42,14 @@ int bestSolution1(char *haystack, char *needle)
     return -1;
 }
 
-// Best Solution 2:
-int bestSolution2(char *haystack, char *needle)
-{
-    if (strlen(needle) > strlen(haystack))
-    {
+// Solution 2:
+int solution2(char* haystack, char* needle) {
+    if (strlen(needle) > strlen(haystack)) {
         return -1;
     }
 
-    for (int i = 0; i < strlen(haystack); i++)
-    {
-        if (!strncmp(haystack + i, needle, strlen(needle)))
-        {
+    for (int i = 0; i < strlen(haystack); i++) {
+        if (!strncmp(haystack + i, needle, strlen(needle))) {
             return i;
         }
     }

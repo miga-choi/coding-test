@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class IntersectionOfTwoArrays2 {
+class IntersectionOfTwoArraysII {
     public int[] intersect(int[] nums1, int[] nums2) {
         List<Integer> result = new ArrayList<Integer>();
         Map<Integer, Integer> numsMap = new HashMap<Integer, Integer>();

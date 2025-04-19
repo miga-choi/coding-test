@@ -1,30 +1,23 @@
-public class PlusOne
-{
-    public int[] PlusOne(int[] digits)
-    {
+public class PlusOne {
+    public int[] PlusOne(int[] digits) {
         int sum = 0;
         List<int> result = new List<int>();
         int up = 1;
 
-        for (int i = digits.Length - 1; i >= 0; i--)
-        {
+        for (int i = digits.Length - 1; i >= 0; i--) {
             int num = digits[i] + up;
 
-            if (num >= 10)
-            {
+            if (num >= 10) {
                 num -= 10;
                 up = 1;
-            }
-            else
-            {
+            } else {
                 up = 0;
             }
 
             result.Insert(0, num);
         }
 
-        if (up > 0)
-        {
+        if (up > 0) {
             result.Insert(0, 1);
         }
 
@@ -32,15 +25,12 @@ public class PlusOne
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    public int[] bestSolution1(int[] digits)
-    {
+    // Solution
+    // Solution 1:
+    public int[] solution1(int[] digits) {
         int n = digits.Length;
-        for (int i = n - 1; i >= 0; i--)
-        {
-            if (digits[i] < 9)
-            {
+        for (int i = n - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
                 digits[i]++;
                 return digits;
             }
@@ -52,17 +42,12 @@ public class PlusOne
         return newNumber;
     }
 
-    // Best Solution 2:
-    public int[] bestSolution2(int[] digits)
-    {
-        for (int i = digits.Length - 1; i >= 0; i--)
-        {
-            if (digits[i] == 9)
-            {
+    // Solution 2:
+    public int[] solution2(int[] digits) {
+        for (int i = digits.Length - 1; i >= 0; i--) {
+            if (digits[i] == 9) {
                 digits[i] = 0;
-            }
-            else
-            {
+            } else {
                 digits[i]++;
                 return digits;
             }
@@ -71,22 +56,17 @@ public class PlusOne
         return firstOne.Concat(digits).ToArray();
     }
 
-    // Best Solution 3:
-    public int[] bestSolution3(int[] digits)
-    {
+    // Solution 3:
+    public int[] solution3(int[] digits) {
         int len = digits.Length;
         int num;
         int add = 1;
 
-        for (int i = len - 1; i >= 0; i--)
-        {
+        for (int i = len - 1; i >= 0; i--) {
             num = digits[i] + add;
-            if (num == 10)
-            {
+            if (num == 10) {
                 digits[i] = 0;
-            }
-            else
-            {
+            } else {
                 digits[i] = num;
                 return digits;
             }

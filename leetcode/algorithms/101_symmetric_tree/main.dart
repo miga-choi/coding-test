@@ -28,8 +28,8 @@ class SymmetricTree {
     return checkSymmetric(root.left, root.right);
   }
 
-  // Best Solution
-  bool bestSolution(TreeNode? root) => isMirror(root, root);
+  // Solution
+  bool solution(TreeNode? root) => isMirror(root, root);
 
   bool isMirror(TreeNode? t1, TreeNode? t2) {
     if (t1 == null && t2 == null) {

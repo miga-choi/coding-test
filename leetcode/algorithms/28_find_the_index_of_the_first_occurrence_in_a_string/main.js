@@ -8,9 +8,9 @@ var strStr = function (haystack, needle) {
 };
 
 
-// Best Solution
-// Best Solution 1: Built-in function
-var bestsolution1 = function (haystack, needle) {
+// Solution
+// Solution 1: Built-in function
+var solution1 = function (haystack, needle) {
   if (needle === "" || needle === haystack) {
     return 0; // the only mandatory check here is (needle === '')
   }
@@ -38,23 +38,23 @@ var bestsolution1 = function (haystack, needle) {
   return -1; // return -1 if there wasn't a match
 };
 
-// Best Solution 2: Built-in function
-var bestsolution2 = function (haystack, needle) {
+// Solution 2: Built-in function
+var solution2 = function (haystack, needle) {
   return haystack.indexof(needle);
 };
 
-// Best Solution 3: Find Position with Regex
-var bestSolution3 = function (haystack, needle) {
+// Solution 3: Find Position with Regex
+var solution3 = function (haystack, needle) {
   const regex = new RegExp(needle);
   return haystack.search(regex);
 };
 
 /**
- * Best Solution 4: Brute Force Time: O(N*M)
+ * Solution 4: Brute Force Time: O(N*M)
  * Loop through the haystack. For each character, loop through the needle and compare.
  * If they are all equal, return the index of the haystack
  */
-var bestSolution4 = function (haystack, needle) {
+var solution4 = function (haystack, needle) {
   if (!needle) {
     return 0;
   }
@@ -127,7 +127,8 @@ var bestSolution6 = function (haystack, needle) {
  */
 var bestSolution7 = function (haystack, needle) {
   const needleLength = needle.length;
-  let i = 0, j = -1;
+  let i = 0,
+    j = -1;
 
   // LPS - Longest Prefix Suffix / Prefix table
   const lps = [-1];

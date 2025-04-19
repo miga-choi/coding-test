@@ -19,15 +19,17 @@ class ConvertSortedArrayToBinarySearchTree {
     return root;
   }
 
-  // Best Solution
-  TreeNode? bestSolution(List<int> nums) {
-    if (nums.isEmpty) return null;
+  // Solution
+  TreeNode? solution(List<int> nums) {
+    if (nums.isEmpty) {
+      return null;
+    }
 
     int mid = nums.length ~/ 2;
     TreeNode root = TreeNode();
     root.val = nums[mid];
-    root.left = sortedArrayToBST(nums.sublist(0, mid));
-    root.right = sortedArrayToBST(nums.sublist(mid + 1));
+    root.left = solution(nums.sublist(0, mid));
+    root.right = solution(nums.sublist(mid + 1));
 
     return root;
   }

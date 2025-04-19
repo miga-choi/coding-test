@@ -53,6 +53,7 @@ bool validPalindrome(char* s) {
     return false;
 }
 
+
 // Solution
 bool solution(char* s) {
     for (int left = 0, right = strlen(s) - 1; left < right; left++, right--) {

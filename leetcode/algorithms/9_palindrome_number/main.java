@@ -10,9 +10,9 @@ class PalindromeNumber {
     }
 
 
-    // Best Solution
-    // Best Solution 1: Reversing the Entire Number
-    public boolean bestSolution1(int x) {
+    // Solution
+    // Solution 1: Reversing the Entire Number
+    public boolean solution1(int x) {
         if (x < 0) {
             return false;
         }
@@ -29,8 +29,8 @@ class PalindromeNumber {
         return (reversed == x);
     }
 
-    // Best Solution 2: Reversing Half of the Number
-    public boolean bestSolution2(int x) {
+    // Solution 2: Reversing Half of the Number
+    public boolean solution2(int x) {
         if (x < 0 || (x != 0 && x % 10 == 0)) {
             return false;
         }

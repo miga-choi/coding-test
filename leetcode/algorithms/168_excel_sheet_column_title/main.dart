@@ -9,8 +9,9 @@ class ExcelSheetColumnTitle {
     return result;
   }
 
-  // Best Solution
-  String bestSolution(int columnNumber) {
+
+  // Solution
+  String solution(int columnNumber) {
     StringBuffer stringBuffer = StringBuffer();
     while (columnNumber > 0) {
       int reminder = (columnNumber - 1) % 26;

@@ -1,11 +1,3 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-
 function ListNode(val) {
   this.val = val;
   this.next = null;
@@ -31,8 +23,8 @@ var getIntersectionNode = function (headA, headB) {
   return null;
 };
 
-// Best Solution
 
+// Solution
 // Idea:
 // The naive approach here would be to store each node reference in a data structure until we saw the same one twice,
 // but that would take O(N) extra space.
@@ -48,7 +40,12 @@ var getIntersectionNode = function (headA, headB) {
 // the value of a and b will be the same (null) when we come to the end of the merged lists,
 // so we can use that as our exit condition.
 // We just need to make sure to string headB onto a and vice versa if one (but not both) list ends.
-var bestSolution = function (headA, headB) {
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var solution = function (headA, headB) {
   let a = headA, b = headB;
   while (a !== b) {
     a = !a ? headB : a.next;

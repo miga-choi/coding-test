@@ -15,8 +15,9 @@ var singleNumber = function (nums) {
   }
 };
 
-// Best Solution
-var bestSolution = function (nums) {
+
+// Solution
+var solution = function (nums) {
   // Initialize the unique number...
   let uniqNum = 0;
   // TRaverse all elements through the loop...

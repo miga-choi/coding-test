@@ -35,36 +35,35 @@ class ConvertSortedArrayToBinarySearchTree {
 
     return root;
   }
-  
 
-  // Best Solution
-  // Best Solution 1: Recursion
-  public TreeNode bestSolution1(int[] nums) {
+  // Solution
+  // Solution 1: Recursion
+  public TreeNode solution1(int[] nums) {
     if (nums.length == 0) {
       return null;
     }
-    TreeNode head = bestSolution1_helper(nums, 0, nums.length - 1);
+    TreeNode head = solution1_helper(nums, 0, nums.length - 1);
     return head;
   }
 
-  public TreeNode bestSolution1_helper(int[] nums, int low, int high) {
+  public TreeNode solution1_helper(int[] nums, int low, int high) {
     if (low > high) {
       // Done
       return null;
     }
     int mid = (low + high) / 2;
     TreeNode node = new TreeNode(nums[mid]);
-    node.left = bestSolution1_helper(nums, low, mid - 1);
-    node.right = bestSolution1_helper(nums, mid + 1, high);
+    node.left = solution1_helper(nums, low, mid - 1);
+    node.right = solution1_helper(nums, mid + 1, high);
     return node;
   }
 
-  // Best Solution 2: Recursion
-  public TreeNode bestSolution2(int[] nums) {
-    return bestSolution2_createBST(nums, 0, nums.length - 1);
+  // Solution 2: Recursion
+  public TreeNode solution2(int[] nums) {
+    return solution2_createBST(nums, 0, nums.length - 1);
   }
 
-  private TreeNode bestSolution2_createBST(int nums[], int l, int r) {
+  private TreeNode solution2_createBST(int nums[], int l, int r) {
     if (l > r) {
       // Base Condition or Recursion Stoping Condition
       return null;
@@ -84,16 +83,16 @@ class ConvertSortedArrayToBinarySearchTree {
     TreeNode root = new TreeNode(nums[mid]);
 
     // assign the value for left of subtree that is l to mid -1 for given array
-    root.left = bestSolution2_createBST(nums, l, mid - 1);
+    root.left = solution2_createBST(nums, l, mid - 1);
 
     // assign the value for right go subtree that is mid+1 to r for given array
-    root.right = bestSolution2_createBST(nums, mid + 1, r);
+    root.right = solution2_createBST(nums, mid + 1, r);
 
     return root;
   }
 
-  // Best Solution 3: Iteration
-  public TreeNode bestSolution3(int[] nums) {
+  // Solution 3: Iteration
+  public TreeNode solution3(int[] nums) {
     int len = nums.length;
     if (len == 0) {
       return null;

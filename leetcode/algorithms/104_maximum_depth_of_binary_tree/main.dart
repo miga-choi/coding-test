@@ -19,8 +19,8 @@ class MaximumDepthOfBinaryTree {
     return returnDepth(root, 0);
   }
 
-  // Best Solution
-  int bestSolution(TreeNode? root) {
+  // Solution
+  int solution(TreeNode? root) {
     return visiter(root);
   }
 

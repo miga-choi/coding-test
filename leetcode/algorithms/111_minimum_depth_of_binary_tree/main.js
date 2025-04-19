@@ -34,9 +34,9 @@ const getMinDepth = (node_) => {
 };
 
 
-// Best Solution
-// Best Solution 1
-var bestSolution1 = function (root) {
+// Solution
+// Solution 1
+var solution1 = function (root) {
   // Base case...
   // If the subtree is empty i.e. root is NULL, return depth as 0...
   if (root == null) {
@@ -50,21 +50,21 @@ var bestSolution1 = function (root) {
 
   // If the left subtree is empty, return the depth of right subtree after adding 1 to it...
   if (root.left == null) {
-    return bestSolution1(root.right) + 1;
+    return solution1(root.right) + 1;
   }
 
   // If the right subtree is empty, return the depth of left subtree after adding 1 to it...
   if (root.right == null) {
-    return bestSolution1(root.left) + 1;
+    return solution1(root.left) + 1;
   }
 
   // When the two child function return its depth...
   // Pick the minimum out of these two subtrees and return this value after adding 1 to it...
-  return Math.min(bestSolution1(root.left), bestSolution1(root.right)) + 1; // Adding 1 is the current node which is the parent of the two subtrees...
+  return Math.min(solution1(root.left), solution1(root.right)) + 1; // Adding 1 is the current node which is the parent of the two subtrees...
 };
 
-// Best Solution 2
-var bestSolution2 = function (root) {
+// Solution 2
+var solution2 = function (root) {
   if (!root) {
     return 0;
   }

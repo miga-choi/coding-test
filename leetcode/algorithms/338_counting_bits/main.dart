@@ -17,8 +17,9 @@ class CountingBits {
     return result;
   }
 
-  // Best Solution
-  List<int> bestSolution(int n) {
+
+  // Solution
+  List<int> solution(int n) {
     List<int> result = List.filled(n + 1, 0);
 
     for (int i = 1; i <= n; i++) {

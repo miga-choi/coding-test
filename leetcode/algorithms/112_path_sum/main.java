@@ -33,9 +33,9 @@ class PathSum {
   }
 
 
-  // Best Solution
-  // Best Solution 1: Recursion
-  public boolean bestSolution1(TreeNode root, int sum) {
+  // Solution
+  // Solution 1: Recursion
+  public boolean solution1(TreeNode root, int sum) {
     if (root == null) {
       return false;
     }
@@ -44,11 +44,11 @@ class PathSum {
       return true;
     }
 
-    return bestSolution1(root.left, sum - root.val) || bestSolution1(root.right, sum - root.val);
+    return solution1(root.left, sum - root.val) || solution1(root.right, sum - root.val);
   }
 
-  // Best Solution 2: Iteration
-  public boolean bestSolution2(TreeNode root, int sum) {
+  // Solution 2: Iteration
+  public boolean solution2(TreeNode root, int sum) {
     // iteration method
     if (root == null) {
       return false;
@@ -78,8 +78,8 @@ class PathSum {
     return false;
   }
 
-  // Best Solution 3: Recursion
-  public boolean bestSolution3(TreeNode root, int sum) {
+  // Solution 3: Recursion
+  public boolean solution3(TreeNode root, int sum) {
     // recursion method
     if (root == null) {
       return false;
@@ -87,7 +87,7 @@ class PathSum {
     if (root.left == null && root.right == null && root.val == sum) {
       return true;
     }
-    return (bestSolution3(root.left, sum - root.val) ||
-        bestSolution3(root.right, sum - root.val));
+    return (solution3(root.left, sum - root.val) ||
+        solution3(root.right, sum - root.val));
   }
 }

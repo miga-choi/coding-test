@@ -18,9 +18,9 @@ class SameTree:
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
 
-    # Best Solution
-    # Best Solution 1: Recursive (DFS) Preorder traversal
-    def bestSolution1(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    # Solution
+    # Solution 1: Recursive (DFS) Preorder traversal
+    def solution1(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # Base case: If both trees are empty, they are identical.
         if not p and not q:
             return True
@@ -34,12 +34,12 @@ class SameTree:
             return False
 
         # Recursively check the left and right subtrees.
-        return self.bestSolution1(p.left, q.left) and self.bestSolution1(
+        return self.solution1(p.left, q.left) and self.solution1(
             p.right, q.right
         )
 
-    # Best Solution 2: Level-order traversal using Queues
-    def bestSolution2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    # Solution 2: Level-order traversal using Queues
+    def solution2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # Create queues for both trees.
         queue1 = deque()
         queue2 = deque()
@@ -67,8 +67,8 @@ class SameTree:
         # If both queues are empty, the trees are identical.
         return not queue1 and not queue2
 
-    # Best Solution 3: Level-order traversal using Stack
-    def bestSolution3(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    # Solution 3: Level-order traversal using Stack
+    def solution3(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         stack1, stack2 = [p], [q]
 
         while stack1 and stack2:
@@ -93,15 +93,15 @@ class SameTree:
         # If both stacks are empty, and no mismatches have been found, the trees are identical.
         return not stack1 and not stack2
 
-    # Best Solution 4: Tree Hashing
-    def bestSolution4(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        hash1 = self.bestSolution4_computeTreeHash(p)
-        hash2 = self.bestSolution4_computeTreeHash(q)
+    # Solution 4: Tree Hashing
+    def solution4(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        hash1 = self.solution4_computeTreeHash(p)
+        hash2 = self.solution4_computeTreeHash(q)
         return hash1 == hash2
 
-    def bestSolution4_computeTreeHash(self, node: TreeNode) -> str:
+    def solution4_computeTreeHash(self, node: TreeNode) -> str:
         if node is None:
             return "null"
-        left_hash = self.bestSolution4_computeTreeHash(node.left)
-        right_hash = self.bestSolution4_computeTreeHash(node.right)
+        left_hash = self.solution4_computeTreeHash(node.left)
+        right_hash = self.solution4_computeTreeHash(node.right)
         return f"({node.val}{left_hash}{right_hash})"

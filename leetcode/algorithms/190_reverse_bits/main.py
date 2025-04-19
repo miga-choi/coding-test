@@ -1,4 +1,4 @@
-class Solution:
+class ReverseBits:
     def reverseBits(self, n: int) -> int:
         n = bin(n).replace("0b", "")[::-1]
 
@@ -7,8 +7,9 @@ class Solution:
 
         return int(n, 2)
 
-    # Best Solution
-    def bestSolution(self, n: int) -> int:
+
+    # Solution
+    def solution(self, n: int) -> int:
         res = 0
         for _ in range(32):
             res = (res << 1) + (n & 1)

@@ -38,17 +38,17 @@ var returnDepth = function (depth_, node_) {
 };
 
 
-// Best Solution
-// Best Solution 1: Recursive
-var bestSolution1 = function (root) {
+// Solution
+// Solution 1: Recursive
+var solution1 = function (root) {
   if (root === undefined || root === null) {
     return 0;
   }
-  return Math.max(bestSolution1(root.left), bestSolution1(root.right)) + 1;
+  return Math.max(solution1(root.left), solution1(root.right)) + 1;
 };
 
-// Best Solution 2: Non-recursive
-var bestSolution2 = function (root) {
+// Solution 2: Non-recursive
+var solution2 = function (root) {
   if (!root) {
     return 0;
   }

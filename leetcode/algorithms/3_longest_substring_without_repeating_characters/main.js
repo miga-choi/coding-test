@@ -6,7 +6,7 @@ var lengthOfLongestSubstring = function (s) {
   const map = {};
   var length = 0;
 
-  return s.split('').reduce((maxLength, v, i) => {
+  return s.split("").reduce((maxLength, v, i) => {
     if (map[v] >= length) {
       length = map[v] + 1;
     }

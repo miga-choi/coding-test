@@ -1,7 +1,7 @@
 import re
 
 
-class Solution:
+class ValidPalindrome:
     def isPalindrome(self, s: str) -> bool:
         s = re.sub("[^0-9a-zA-Z]+", "", s).lower()
         for i in range(len(s)):
@@ -11,14 +11,15 @@ class Solution:
                 return False
         return True
 
-    # Best Solution
+
+    # Solution
     # Solution 1: Two Lines
-    def bestSolution1(self, s: str) -> bool:
+    def solution1(self, s: str) -> bool:
         s = [i for i in s.lower() if i.isalnum()]
         return s == s[::-1]
 
     # Solution 2: O(1) space (two-pointer)
-    def bestSolution2(self, s: str) -> bool:
+    def solution2(self, s: str) -> bool:
         i, j = 0, len(s) - 1
         while i < j:
             a, b = s[i].lower(), s[j].lower()

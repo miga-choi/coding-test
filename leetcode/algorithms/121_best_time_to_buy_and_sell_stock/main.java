@@ -1,5 +1,4 @@
 class BestTimeToBuyAndSellStock {
-
   public int maxProfit(int[] prices) {
     int buy = 0;
     int profit = 0;
@@ -17,8 +16,8 @@ class BestTimeToBuyAndSellStock {
     return profit;
   }
 
-  // Best Solution
-  public int bestSolution(int[] prices) {
+  // Solution
+  public int solution(int[] prices) {
     int lsf = Integer.MAX_VALUE;
     int op = 0;
     int pist = 0;

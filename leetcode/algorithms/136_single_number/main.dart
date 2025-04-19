@@ -7,8 +7,9 @@ class SingleNumber {
     return result;
   }
 
-  // Best Solution
-  int bestSolution(List<int> nums) {
+
+  // Solution
+  int solution(List<int> nums) {
     int result = 0;
     for (int num in nums) {
       result = result ^ num;

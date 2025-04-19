@@ -20,9 +20,9 @@ var deleteDuplicates = function (head) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (head) {
+// Solution
+// Solution 1:
+var solution1 = function (head) {
   var current = head;
 
   while (current) {
@@ -36,14 +36,16 @@ var bestSolution1 = function (head) {
   return head;
 };
 
-// Best Solution 2:
-var bestSolution2 = function (head) {
+// Solution 2:
+var solution2 = function (head) {
   // Special case...
   if (head == null || head.next == null) {
     return head;
   }
+
   // Initialize a pointer curr with the address of head node...
   let curr = head;
+
   // Traverse all element through a while loop if curr node and the next node of curr node are present...
   while (curr != null && curr.next != null) {
     // If the value of curr is equal to the value of prev...
@@ -52,11 +54,11 @@ var bestSolution2 = function (head) {
       // Hence we do not need to include curr again in the linked list...
       // So we increment the value of curr...
       curr.next = curr.next.next;
-    }
-    // Otherwise, we increment the curr pointer...
-    else {
+    } else {
+      // Otherwise, we increment the curr pointer...
       curr = curr.next;
     }
   }
+
   return head; // Return the sorted linked list without any duplicate element...
 };

@@ -12,8 +12,9 @@ var reverseBits = function (n) {
   return parseInt(n.join(''), 2);
 };
 
-// Best Solution
-var bestSolution = function (n) {
+
+// Solution
+var solution = function (n) {
   var result = 0;
   var count = 32;
 

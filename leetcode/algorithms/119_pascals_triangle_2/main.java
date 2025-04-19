@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Pascals_riangle2 {
-
+class PascalsRiangleII {
   public List<Integer> getRow(int rowIndex) {
     List<List<Integer>> rows = new ArrayList<List<Integer>>();
     for (int i = 0; i <= rowIndex; i++) {
@@ -20,8 +19,9 @@ class Pascals_riangle2 {
     return rows.get(rowIndex);
   }
 
-  // Best Solution
-  public List<Integer> bestSolution(int k) {
+
+  // Solution
+  public List<Integer> solution(int k) {
     Integer[] arr = new Integer[k + 1];
     Arrays.fill(arr, 0);
     arr[0] = 1;

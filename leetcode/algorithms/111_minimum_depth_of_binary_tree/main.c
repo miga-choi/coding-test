@@ -1,24 +1,20 @@
 #include <stdlib.h>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
-int minDepth(struct TreeNode *root)
-{
-    if (!root)
-    {
+int minDepth(struct TreeNode* root) {
+    if (!root) {
         return 0;
     }
 
     int left = minDepth(root->left);
     int right = minDepth(root->right);
 
-    if (!left || !right)
-    {
+    if (!left || !right) {
         return (left > right ? left : right) + 1;
     }
 
@@ -26,51 +22,39 @@ int minDepth(struct TreeNode *root)
 }
 
 
-// Best Solution
-// Best Solution 1:
-int bestSolution1(struct TreeNode *root)
-{
-    if (root == NULL)
-    {
+// Solution
+// Solution 1:
+int solution1(struct TreeNode* root) {
+    if (root == NULL) {
         return 0;
-    }
-    else
-    {
-        int leftDepth = minDepth(root->left);
-        int rightDepth = minDepth(root->right);
-        if (leftDepth > rightDepth)
-        {
+    } else {
+        int leftDepth = solution1(root->left);
+        int rightDepth = solution1(root->right);
+        if (leftDepth > rightDepth) {
             return rightDepth + 1;
-        }
-        else
-        {
+        } else {
             return leftDepth + 1;
         }
     }
 }
 
-// Best Solution 2: Recursive
-int bestSolution2(struct TreeNode *root)
-{
-    if (!root)
-    {
+// Solution 2: Recursive
+int solution2(struct TreeNode* root) {
+    if (!root) {
         return 0;
     }
 
-    if (!root->left && !root->right)
-    {
+    if (!root->left && !root->right) {
         return 1;
     }
 
-    if (!root->left)
-    {
-        return minDepth(root->right) + 1;
+    if (!root->left) {
+        return solution2(root->right) + 1;
     }
 
-    if (!root->right)
-    {
-        return minDepth(root->left) + 1;
+    if (!root->right) {
+        return solution2(root->left) + 1;
     }
 
-    return minDepth(root->left) > minDepth(root->right) ? minDepth(root->right) + 1 : minDepth(root->left) + 1;
+    return solution2(root->left) > solution2(root->right) ? solution2(root->right) + 1 : solution2(root->left) + 1;
 }

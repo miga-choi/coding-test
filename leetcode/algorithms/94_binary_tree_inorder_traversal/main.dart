@@ -32,18 +32,19 @@ class BinaryTreeInorderTraversal {
     return result;
   }
 
-  // Best Solution
-  List<int> bestSolution(TreeNode? root) {
-    List<int> list = [];
-    inOrderHelper(root, list);
-    return list;
-  }
 
+  // Solution
   inOrderHelper(TreeNode? root, List<int> list) {
     if (root != null) {
       inOrderHelper(root.left, list);
       list.add(root.val);
       inOrderHelper(root.right, list);
     }
+  }
+
+  List<int> solution(TreeNode? root) {
+    List<int> list = [];
+    inOrderHelper(root, list);
+    return list;
   }
 }

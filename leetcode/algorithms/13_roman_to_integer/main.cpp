@@ -1,21 +1,16 @@
+#include <unordered_map>
 #include <string>
 using namespace std;
 
-class RomanToInteger
-{
+class RomanToInteger {
 public:
-    int romanToInt(string s)
-    {
+    int romanToInt(string s) {
         int result = 0;
 
-        for (int i = 0; s[i] != '\0'; i++)
-        {
-            if (getNumber(s[i]) < getNumber(s[i + 1]))
-            {
+        for (int i = 0; s[i] != '\0'; i++) {
+            if (getNumber(s[i]) < getNumber(s[i + 1])) {
                 result -= getNumber(s[i]);
-            }
-            else
-            {
+            } else {
                 result += getNumber(s[i]);
             }
         }
@@ -23,34 +18,31 @@ public:
         return result;
     }
 
-    int getNumber(char c)
-    {
-        switch (c)
-        {
-        case 'I':
-            return 1;
-        case 'V':
-            return 5;
-        case 'X':
-            return 10;
-        case 'L':
-            return 50;
-        case 'C':
-            return 100;
-        case 'D':
-            return 500;
-        case 'M':
-            return 1000;
-        default:
-            return -1;
+    int getNumber(char c) {
+        switch (c) {
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return -1;
         }
     }
 
 
-    // Best Solution
-    // Best Solution 1: Hash table
-    int bestSolution1(string s)
-    {
+    // Solution
+    // Solution 1: Hash table
+    int solution1(string s) {
         unordered_map<char, int> m{
             {'I', 1},
             {'V', 5},
@@ -71,14 +63,10 @@ public:
 
         int ans = 0;
 
-        for (int i = 0; i < s.length(); i++)
-        {
-            if (m[s[i]] < m[s[i + 1]])
-            {
+        for (int i = 0; i < s.length(); i++) {
+            if (m[s[i]] < m[s[i + 1]]) {
                 ans -= m[s[i]];
-            }
-            else
-            {
+            } else {
                 ans += m[s[i]];
             }
         }
@@ -86,47 +74,45 @@ public:
         return ans;
     }
 
-    // Best Solution 2: Switch
-    int bestSolution1(string s)
-    {
+    // Solution 2: Switch
+    int solution2(string s) {
         int ret = 0;  // to store the return value
         int temp = 0; // to store the previous value
 
-        for (size_t i = 0; i < s.size(); i++)
-        {
+        for (size_t i = 0; i < s.size(); i++) {
             char curr = s[i];
             int pos = 0; // to store the current value
 
-            switch (curr)
-            {
-            case 'I':
-                pos = 1;
-                break;
-            case 'V':
-                pos = 5;
-                break;
-            case 'X':
-                pos = 10;
-                break;
-            case 'L':
-                pos = 50;
-                break;
-            case 'C':
-                pos = 100;
-                break;
-            case 'D':
-                pos = 500;
-                break;
-            case 'M':
-                pos = 1000;
-                break;
-            default:
-                return 0;
+            switch (curr) {
+                case 'I':
+                    pos = 1;
+                    break;
+                case 'V':
+                    pos = 5;
+                    break;
+                case 'X':
+                    pos = 10;
+                    break;
+                case 'L':
+                    pos = 50;
+                    break;
+                case 'C':
+                    pos = 100;
+                    break;
+                case 'D':
+                    pos = 500;
+                    break;
+                case 'M':
+                    pos = 1000;
+                    break;
+                default:
+                    return 0;
             }
 
             ret += pos;
-            if (temp < pos)
+            if (temp < pos) {
                 ret -= temp * 2; // ex: IV, ret = 1 + 5 - 1*2 = 4
+            }
             temp = pos;
         }
 

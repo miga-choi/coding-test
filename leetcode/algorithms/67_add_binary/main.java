@@ -6,9 +6,9 @@ class AddBinary {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public String bestSolution1(String a, String b) {
+  // Solution
+  // Solution 1:
+  public String solution1(String a, String b) {
     StringBuilder sb = new StringBuilder();
     int i = a.length() - 1, j = b.length() - 1, carry = 0;
     while (i >= 0 || j >= 0) {
@@ -28,8 +28,8 @@ class AddBinary {
     return sb.reverse().toString();
   }
 
-  // Best Solution 2:
-  public String bestSolution2(String a, String b) {
+  // Solution 2:
+  public String solution2(String a, String b) {
     StringBuilder res = new StringBuilder();
     int i = a.length() - 1;
     int j = b.length() - 1;

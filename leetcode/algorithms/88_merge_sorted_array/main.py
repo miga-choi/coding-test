@@ -11,15 +11,15 @@ class MergeSortedArray:
         nums1[0:] = sorted(nums1)
 
 
-    # Best Solution
-    # Best Solution 1: STL
-    def bestSolution1(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    # Solution
+    # Solution 1: STL
+    def solution1(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         for j in range(n):
             nums1[m + j] = nums2[j]
         nums1.sort()
 
-    # Best Solution 2: Two Pointer
-    def bestSolution2(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    # Solution 2: Two Pointer
+    def solution2(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         i = m - 1
         j = n - 1
         k = m + n - 1
@@ -33,8 +33,8 @@ class MergeSortedArray:
                 j -= 1
             k -= 1
 
-    # Best Solution 3:
-    def bestSolution3(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    # Solution 3:
+    def solution3(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         while m > 0 and n > 0:
             if nums1[m - 1] >= nums2[n - 1]:
                 nums1[m + n - 1] = nums1[m - 1]
@@ -45,8 +45,8 @@ class MergeSortedArray:
         if n > 0:
             nums1[:n] = nums2[:n]
 
-    # Best Solution 3:
-    def bestSolution3(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    # Solution 3:
+    def solution3(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         # Initialize nums1's index
         i = m - 1
         # Initialize nums2's index
@@ -63,8 +63,8 @@ class MergeSortedArray:
                 k -= 1
                 j -= 1
 
-    # Best Solution 4:
-    def bestSolution4(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    # Solution 4:
+    def solution4(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         idx = 0
         for i in range(len(nums1)):
             if idx >= n:

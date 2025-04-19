@@ -27,9 +27,9 @@ class BalancedBinaryTree:
         return max(leftDepth, rightDepth) + 1
 
 
-    # Best Solution
-    # Best Solution 1: Recursion
-    def bestSolution1(self, root: Optional[TreeNode]) -> bool:
+    # Solution
+    # Solution 1: Recursion
+    def solution1(self, root: Optional[TreeNode]) -> bool:
         def check(root: Optional[TreeNode]):
             if root is None:
                 return 0
@@ -41,8 +41,8 @@ class BalancedBinaryTree:
 
         return check(root) != -1
 
-    # Best Solution 2: Iterative (Postorder traversal)
-    def bestSolution2(self, root: Optional[TreeNode]) -> bool:
+    # Solution 2: Iterative (Postorder traversal)
+    def solution2(self, root: Optional[TreeNode]) -> bool:
         stack, node, last, depths = [], root, None, {}
         while stack or node:
             if node:
@@ -62,15 +62,15 @@ class BalancedBinaryTree:
                     node = node.right
         return True
 
-    # Best Solution 3: Iterative (Postorder traversal)
-    def bestSolution3(self, root: Optional[TreeNode]) -> bool:
-        return self.bestSolution3_height(root) >= 0
+    # Solution 3: Iterative (Postorder traversal)
+    def solution3(self, root: Optional[TreeNode]) -> bool:
+        return self.solution3_height(root) >= 0
 
-    def bestSolution3_height(self, root: Optional[TreeNode]):
+    def solution3_height(self, root: Optional[TreeNode]):
         if root is None:
             return 0
-        leftheight = self.bestSolution3_height(root.left)
-        rightheight = self.bestSolution3_height(root.right)
+        leftheight = self.solution3_height(root.left)
+        rightheight = self.solution3_height(root.right)
         if leftheight < 0 or rightheight < 0 or abs(leftheight - rightheight) > 1:
             return -1
         return max(leftheight, rightheight) + 1

@@ -1,52 +1,42 @@
 #include <stdbool.h>
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
-bool checkNode(struct TreeNode *leftNode, struct TreeNode *rightNode)
-{
-    if (!leftNode && !rightNode)
-    {
+bool checkNode(struct TreeNode* leftNode, struct TreeNode* rightNode) {
+    if (!leftNode && !rightNode) {
         return true;
     }
 
-    if (!leftNode || !rightNode || leftNode->val != rightNode->val)
-    {
+    if (!leftNode || !rightNode || leftNode->val != rightNode->val) {
         return false;
     }
 
     return checkNode(leftNode->left, rightNode->right) && checkNode(leftNode->right, rightNode->left);
 }
 
-bool isSymmetric(struct TreeNode *root)
-{
+bool isSymmetric(struct TreeNode *root) {
     return checkNode(root->left, root->right);
 }
 
 
-// Best Solution
-bool bestSolution_isMirror(struct TreeNode *left, struct TreeNode *right)
-{
-    if (!left && !right)
-    {
+// Solution
+bool solution_isMirror(struct TreeNode* left, struct TreeNode* right) {
+    if (!left && !right) {
         return true;
     }
-    if (!left || !right)
-    {
+    if (!left || !right) {
         return false;
     }
-    return (left->val == right->val) && bestSolution_isMirror(left->left, right->right) && bestSolution_isMirror(left->right, right->left);
+    return (left->val == right->val) && solution_isMirror(left->left, right->right) && solution_isMirror(left->right, right->left);
 }
 
-bool bestSolution(struct TreeNode *root)
-{
-    if (!root)
-    {
+bool solution(struct TreeNode *root) {
+    if (!root) {
         return true;
     }
-    return bestSolution_isMirror(root->left, root->right);
+    return solution_isMirror(root->left, root->right);
 }

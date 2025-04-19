@@ -1,12 +1,3 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-
 function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val;
   this.left = left === undefined ? null : left;
@@ -38,10 +29,13 @@ var postorderTraversal = function (root) {
   return result.reverse();
 };
 
-// Best Solution
-// Iterative Solution
-var bestSolution1 = function (root) {
-  if (!root) return [];
+
+// Solution
+// Solution 1: Iterative
+var solution1 = function (root) {
+  if (!root) {
+    return [];
+  }
   let stack = [], res = [];
   stack.push(root);
   while (stack.length) {
@@ -52,21 +46,25 @@ var bestSolution1 = function (root) {
     } else if (node.right) {
       stack.push(node.right);
       node.right = null;
-    } else res.push(stack.pop().val);
+    } else {
+      res.push(stack.pop().val);
+    }
   }
   return res;
   // Time Complexity: O(n)
   // Space Complexity: O(n)
 };
 
-// Recursive Solution
-var bestSolution2 = function (root) {
+// Solution 2: Recursive
+var solution2 = function (root) {
   let res = [];
   traverse(root);
   return res;
 
   function traverse(node) {
-    if (!node) return;
+    if (!node) {
+      return;
+    }
     traverse(node.left);
     traverse(node.right);
     res.push(node.val);

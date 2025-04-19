@@ -3,7 +3,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 class RemoveDuplicatesFromSortedArray {
-
   public int removeDuplicates(int[] nums) {
     Set<Integer> numsSet = new HashSet<Integer>();
     for (int num : nums) {
@@ -18,9 +17,9 @@ class RemoveDuplicatesFromSortedArray {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int bestSolution1(int[] nums) {
+  // Solution
+  // Solution 1:
+  public int solution1(int[] nums) {
     int j = 1;
     for (int i = 1; i < nums.length; i++) {
       if (nums[i] != nums[i - 1]) {
@@ -31,8 +30,8 @@ class RemoveDuplicatesFromSortedArray {
     return j;
   }
 
-  // Best Solution 2:
-  public int bestSolution2(int[] nums) {
+  // Solution 2:
+  public int solution2(int[] nums) {
     int i = nums.length > 0 ? 1 : 0;
     for (int n : nums) {
       if (n > nums[i - 1]) {

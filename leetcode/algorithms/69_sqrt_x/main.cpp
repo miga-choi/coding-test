@@ -1,32 +1,23 @@
 #include <cmath>
 
-class SqrtX
-{
+class SqrtX {
 public:
-    int mySqrt(int x)
-    {
-        if (x == 0)
-        {
+    int mySqrt(int x) {
+        if (x == 0) {
             return 0;
         }
 
         long low = 1;
         long high = x;
 
-        while (low <= high)
-        {
+        while (low <= high) {
             long mid = (low + high) / 2;
 
-            if (mid == x / mid)
-            {
+            if (mid == x / mid) {
                 return (int)mid;
-            }
-            else if (mid > x / mid)
-            {
+            } else if (mid > x / mid) {
                 high = mid - 1;
-            }
-            else
-            {
+            } else {
                 low = mid + 1;
             }
         }
@@ -35,25 +26,20 @@ public:
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    int bestSolution1(int x)
-    {
+    // Solution
+    // Solution 1:
+    int solution1(int x) {
         long r = x;
-        while (r * r > x)
-        {
+        while (r * r > x) {
             r = (r + x / r) / 2;
         }
         return r;
     }
 
-    // Best Solution 2:
-    int bestSolution2(int x)
-    {
+    // Solution 2:
+    int solution2(int x) {
         // For special cases when x is 0 or 1, return x.
-        // For special cases when x is 0 or 1, return x.
-        if (x == 0 || x == 1)
-        {
+        if (x == 0 || x == 1) {
             return x;
         }
 
@@ -63,8 +49,7 @@ public:
         int mid = -1;
 
         // Perform binary search to find the square root of x.
-        while (start <= end)
-        {
+        while (start <= end) {
             // Calculate the middle point using "start + (end - start) / 2" to avoid integer overflow.
             mid = start + (end - start) / 2;
 
@@ -72,17 +57,12 @@ public:
             long long square = static_cast<long long>(mid) * mid;
 
             // If the square of the middle value is greater than x, move the "end" to the left (mid - 1).
-            if (square > x)
-            {
+            if (square > x) {
                 end = mid - 1;
-            }
-            else if (square == x)
-            {
+            } else if (square == x) {
                 // If the square of the middle value is equal to x, we found the square root.
                 return mid;
-            }
-            else
-            {
+            } else {
                 // If the square of the middle value is less than x, move the "start" to the right (mid + 1).
                 start = mid + 1;
             }

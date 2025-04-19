@@ -47,13 +47,13 @@ class SymmetricTree {
   }
 
 
-  // Best Solution
-  // Best Solution 1: Recursive
-  public boolean bestSolution1(TreeNode root) {
-    return root == null || bestSolution1_isSymmetricHelp(root.left, root.right);
+  // Solution
+  // Solution 1: Recursive
+  public boolean solution1(TreeNode root) {
+    return root == null || solution1_isSymmetricHelp(root.left, root.right);
   }
 
-  private boolean bestSolution1_isSymmetricHelp(TreeNode left, TreeNode right) {
+  private boolean solution1_isSymmetricHelp(TreeNode left, TreeNode right) {
     if (left == null || right == null) {
       return left == right;
     }
@@ -62,12 +62,12 @@ class SymmetricTree {
       return false;
     }
 
-    return (bestSolution1_isSymmetricHelp(left.left, right.right) &&
-        bestSolution1_isSymmetricHelp(left.right, right.left));
+    return (solution1_isSymmetricHelp(left.left, right.right) &&
+        solution1_isSymmetricHelp(left.right, right.left));
   }
 
-  // Best Solution 2: Non-recursive (use Stack):
-  public boolean bestSolution2(TreeNode root) {
+  // Solution 2: Non-recursive (use Stack):
+  public boolean solution2(TreeNode root) {
     if (root == null) {
       return true;
     }

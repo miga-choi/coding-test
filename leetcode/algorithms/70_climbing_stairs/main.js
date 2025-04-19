@@ -20,9 +20,9 @@ var climbStairs = function (n) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (n) {
+// Solution
+// Solution 1:
+var solution1 = function (n) {
   if (n < 2) {
     return 1;
   }
@@ -44,8 +44,8 @@ var bestSolution1 = function (n) {
   return thirdStep;
 };
 
-// Best Solution 2: Math
-var bestSolution2 = function (n) {
+// Solution 2: Math
+var solution2 = function (n) {
   let ways = 1;
 
   for (let i = 1; i <= n / 2; i++) {
@@ -61,12 +61,7 @@ var bestSolution2 = function (n) {
   return ways;
 };
 
-// Best Solution 3: Top-Down DP
-var bestSolution3 = function (n) {
-  const dp = new Array(n + 1).fill(-1);
-  return solve3(n, dp);
-};
-
+// Solution 3: Top-Down DP
 var solve3 = function (n, dp) {
   if (n < 0) {
     return 0;
@@ -84,12 +79,12 @@ var solve3 = function (n, dp) {
   return dp[n];
 };
 
-// Best Solution 4: Bottom-Up DP
-var bestSolution4 = function (n) {
+var solution3 = function (n) {
   const dp = new Array(n + 1).fill(-1);
-  return solve4(0, n, dp);
+  return solve3(n, dp);
 };
 
+// Solution 4: Bottom-Up DP
 var solve4 = function (i, n, dp) {
   if (i === n) {
     return 1;
@@ -107,8 +102,13 @@ var solve4 = function (i, n, dp) {
   return dp[i];
 };
 
-// Best Solution 5: Bottom-Up DP
-var bestSolution5 = function (n) {
+var solution4 = function (n) {
+  const dp = new Array(n + 1).fill(-1);
+  return solve4(0, n, dp);
+};
+
+// Solution 5: Bottom-Up DP
+var solution5 = function (n) {
   let a = 0;
   let b = 1;
   let c = 0;

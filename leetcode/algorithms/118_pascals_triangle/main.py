@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class PascalsTriangle:
     def generate(self, numRows: int) -> List[List[int]]:
         result = []
         for i in range(0, numRows):
@@ -14,9 +14,10 @@ class Solution:
             result.append(row)
         return result
 
-    # Best Solution
-    # Best Solution 1: Recursion
-    def bestSolution1(self, numRows: int) -> List[List[int]]:
+
+    # Solution
+    # Solution 1: Recursion
+    def solution1(self, numRows: int) -> List[List[int]]:
         if numRows == 0:
             return []
         if numRows == 1:
@@ -31,8 +32,8 @@ class Solution:
         prevRows.append(newRow)
         return prevRows
 
-    # Best Solution 2: Combinatorial Formula
-    def bestSolution2(self, numRows: int) -> List[List[int]]:
+    # Solution 2: Combinatorial Formula
+    def solution2(self, numRows: int) -> List[List[int]]:
         result = []
         if numRows == 0:
             return result
@@ -52,8 +53,8 @@ class Solution:
 
         return result
 
-    # Best Solution 3: Dynamic Programming with 1D Array
-    def bestSolution3(self, numRows: int) -> List[List[int]]:
+    # Solution 3: Dynamic Programming with 1D Array
+    def solution3(self, numRows: int) -> List[List[int]]:
         if numRows == 0:
             return []
         if numRows == 1:

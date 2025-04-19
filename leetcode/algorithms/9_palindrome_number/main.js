@@ -32,9 +32,9 @@ var isPalindrome = function (x) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (x) {
+// Solution
+// Solution 1:
+var solution1 = function (x) {
   var reverse = 0;
   var copy = x;
 
@@ -49,8 +49,8 @@ var bestSolution1 = function (x) {
   return reverse == x;
 };
 
-// Best Solution 2:
-var bestSolution2 = function (x) {
+// Solution 2:
+var solution2 = function (x) {
   if (x < 0) {
     return false;
   }

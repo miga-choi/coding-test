@@ -14,8 +14,9 @@ class MergeSortedArray {
     }
   }
 
-  // Best Solution
-  void bestSolution(List<int> nums1, int m, List<int> nums2, int n) {
+
+  // Solution
+  void solution(List<int> nums1, int m, List<int> nums2, int n) {
     int i = m - 1, j = n - 1;
     while (i >= 0 && j >= 0) {
       if (nums1[i] >= nums2[j]) {

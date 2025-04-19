@@ -15,9 +15,9 @@ class SearchInsertPosition:
         return lo
 
 
-    # Best Solution
-    # Best Solution 1: Linear Search
-    def bestSolution1(self, nums: List[int], target: int) -> int:
+    # Solution
+    # Solution 1: Linear Search
+    def solution1(self, nums: List[int], target: int) -> int:
         if not nums:
             return 0
 
@@ -27,12 +27,12 @@ class SearchInsertPosition:
 
         return len(nums)
 
-    # Best Solution 2: Using bisect module
-    def bestSolution2(self, nums: List[int], target: int) -> int:
+    # Solution 2: Using bisect module
+    def solution2(self, nums: List[int], target: int) -> int:
         return bisect.bisect_left(nums, target)
 
-    # Best Solution 3: Binary Search By Hand
-    def bestSolution3(self, nums: List[int], target: int) -> int:
+    # Solution 3: Binary Search By Hand
+    def solution3(self, nums: List[int], target: int) -> int:
         low, high = 0, len(nums)
         while low < high:
             mid = (low + high) // 2

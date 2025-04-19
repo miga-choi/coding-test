@@ -19,14 +19,17 @@ class PathSum {
         hasPathSum(root.right, targetSum - root.val);
   }
 
-  // Best Solution
-  bool bestSolution(TreeNode? root, int targetSum) {
-    if (root == null) return false;
+  // Solution
+  bool solution(TreeNode? root, int targetSum) {
+    if (root == null) {
+      return false;
+    }
 
-    if (root.left == null && root.right == null && root.val == targetSum)
+    if (root.left == null && root.right == null && root.val == targetSum) {
       return true;
+    }
 
-    return hasPathSum(root.left, targetSum - root.val) ||
-        hasPathSum(root.right, targetSum - root.val);
+    return solution(root.left, targetSum - root.val) ||
+        solution(root.right, targetSum - root.val);
   }
 }

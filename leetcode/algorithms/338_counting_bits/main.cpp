@@ -19,8 +19,10 @@ public:
         return result;
     }
 
-    // Best Solution 1
-    vector<int> bestSolution1(int n) {
+
+    // Solution
+    // Solution 1
+    vector<int> solution1(int n) {
         vector<int> ans;
 
         // iterating fromt 0 to n
@@ -41,8 +43,8 @@ public:
         return ans;
     }
 
-    // Best Solution 2
-    vector<int> bestSolution2(int n) {
+    // Solution 2
+    vector<int> solution2(int n) {
         // n+1 as we are going to count from 0 to n
         vector<int> t(n + 1);
 
@@ -54,8 +56,9 @@ public:
 
         // i%2 will be 0 for even number ans 1 for odd number
 
-        for (int i = 1; i <= n; ++i)
+        for (int i = 1; i <= n; ++i) {
             t[i] = t[i / 2] + i % 2;
+        }
 
         return t;
     }

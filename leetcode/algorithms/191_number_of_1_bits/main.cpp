@@ -1,14 +1,10 @@
-class NumberOf1Bits
-{
+class NumberOf1Bits {
 public:
-    int hammingWeight(int n)
-    {
+    int hammingWeight(int n) {
         int count = 0;
 
-        for (size_t i = 0; i < 32; i++)
-        {
-            if (n & 1)
-            {
+        for (int i = 0; i < 32; i++) {
+            if (n & 1) {
                 count++;
             }
             n = n >> 1;
@@ -17,13 +13,12 @@ public:
         return count;
     }
 
-    // Best Solution
-    int bestSolution(int n)
-    {
+
+    // Solution
+    int solution(int n) {
         int count = 0;
 
-        while (n)
-        {
+        while (n) {
             n &= (n - 1);
             count++;
         }

@@ -11,9 +11,9 @@ class TwoSum:
                     return [i, j]
 
 
-    # Best Solution
-    # Best Solution 1: Brute Force
-    def bestSolution1(self, nums: List[int], target: int) -> List[int]:
+    # Solution
+    # Solution 1: Brute Force
+    def solution1(self, nums: List[int], target: int) -> List[int]:
         n = len(nums)
         for i in range(n - 1):
             for j in range(i + 1, n):
@@ -21,8 +21,8 @@ class TwoSum:
                     return [i, j]
         return []  # No solution found
 
-    # Best Solution 2: Two-pass Hash Table
-    def bestSolution2(self, nums: List[int], target: int) -> List[int]:
+    # Solution 2: Two-pass Hash Table
+    def solution2(self, nums: List[int], target: int) -> List[int]:
         numMap = {}
         n = len(nums)
 
@@ -38,8 +38,8 @@ class TwoSum:
 
         return []  # No solution found
 
-    # Best Solution 3: One-pass Hash Table
-    def bestSolution3(self, nums: List[int], target: int) -> List[int]:
+    # Solution 3: One-pass Hash Table
+    def solution3(self, nums: List[int], target: int) -> List[int]:
         numMap = {}
         n = len(nums)
 

@@ -1,12 +1,8 @@
-public class LengthOfLastWord
-{
-    public int LengthOfLastWord(string s)
-    {
+public class LengthOfLastWord {
+    public int LengthOfLastWord(string s) {
         String[] sArray = s.Split(" ");
-        for (int i = sArray.Length - 1; i >= 0; i--)
-        {
-            if (sArray[i].Length > 0)
-            {
+        for (int i = sArray.Length - 1; i >= 0; i--) {
+            if (sArray[i].Length > 0) {
                 return sArray[i].Length;
             }
         }
@@ -14,28 +10,22 @@ public class LengthOfLastWord
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    public int bestSolution1(string s)
-    {
+    // Solution
+    // Solution 1:
+    public int solution1(string s) {
         int res = 0;
-        for (int i = s.Length - 1; i >= 0;)
-        {
-            if (s[i--] != ' ')
-            {
+        for (int i = s.Length - 1; i >= 0;) {
+            if (s[i--] != ' ') {
                 res++;
-            }
-            else if (res > 0)
-            {
+            } else if (res > 0) {
                 return res;
             }
         }
         return res;
     }
 
-    // Best Solution 2:
-    public int bestSolution2(string s)
-    {
+    // Solution 2:
+    public int solution2(string s) {
         return (s.TrimEnd()).Split(' ').Last().Length;
     }
 }

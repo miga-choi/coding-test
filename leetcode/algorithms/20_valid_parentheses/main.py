@@ -16,8 +16,8 @@ class validParentheses(object):
         return len(stack) <= 0
 
 
-    # Best Solution
-    def bestSolution(self, s: str) -> bool:
+    # Solution
+    def solution(self, s: str) -> bool:
         # 1. if it's the left bracket then we append it to the stack
         # 2. else if it's the right bracket and the stack is empty(meaning no matching left bracket), or the left bracket doesn't match
         # 3. finally check if the stack still contains unmatched left bracket

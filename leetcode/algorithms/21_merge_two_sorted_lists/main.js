@@ -34,24 +34,25 @@ var mergeTwoLists = function (list1, list2) {
   }
 };
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (l1, l2) {
+
+// Solution
+// Solution 1:
+var solution1 = function (l1, l2) {
   if (!l1) {
     return l2;
   } else if (!l2) {
     return l1;
   } else if (l1.val <= l2.val) {
-    l1.next = mergeTwoLists(l1.next, l2);
+    l1.next = solution1(l1.next, l2);
     return l1;
   } else {
-    l2.next = mergeTwoLists(l1, l2.next);
+    l2.next = solution1(l1, l2.next);
     return l2;
   }
 };
 
-// Best Solution 2:
-var bestSolution12 = function (l1, l2) {
+// Solution 2:
+var solution2 = function (l1, l2) {
   var mergedHead = { val: -1, next: null }, crt = mergedHead;
   while (l1 && l2) {
     if (l1.val > l2.val) {

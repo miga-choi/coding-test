@@ -17,8 +17,8 @@ class PascalsTriangle {
     return result;
   }
 
-  // Best Solution
-  List<List<int>> bestSolution(int numRows) {
+  // Solution
+  List<List<int>> solution(int numRows) {
     List<List<int>> triangle = [];
 
     if (numRows <= 0) {

@@ -12,9 +12,9 @@ class PalindromeNumber:
         return result
 
 
-    # Best Solution
-    # Best Solution 1: Reversing the Entire Number
-    def bestSolution1(self, x: int) -> bool:
+    # Solution
+    # Solution 1: Reversing the Entire Number
+    def solution1(self, x: int) -> bool:
         if x < 0:
             return False
 
@@ -28,8 +28,8 @@ class PalindromeNumber:
 
         return reversed_num == x
 
-    # Best Solution 2: Reversing Half of the Number
-    def bestSolution2(self, x: int) -> bool:
+    # Solution 2: Reversing Half of the Number
+    def solution2(self, x: int) -> bool:
         if x < 0 or (x != 0 and x % 10 == 0):
             return False
 

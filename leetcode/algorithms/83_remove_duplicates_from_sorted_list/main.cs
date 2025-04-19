@@ -1,27 +1,19 @@
-public class RemoveDuplicatesFromSortedList
-{
-    public class ListNode
-    {
+public class RemoveDuplicatesFromSortedList {
+    public class ListNode {
         public int val;
         public ListNode next;
-        public ListNode(int val = 0, ListNode next = null)
-        {
+        public ListNode(int val = 0, ListNode next = null) {
             this.val = val;
             this.next = next;
         }
     }
 
-    public ListNode DeleteDuplicates(ListNode head)
-    {
+    public ListNode DeleteDuplicates(ListNode head) {
         ListNode current = head;
-        while (current != null)
-        {
-            if (current.next != null && current.next.val == current.val)
-            {
+        while (current != null) {
+            if (current.next != null && current.next.val == current.val) {
                 current.next = current.next.next;
-            }
-            else
-            {
+            } else {
                 current = current.next;
             }
         }
@@ -29,16 +21,13 @@ public class RemoveDuplicatesFromSortedList
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    public ListNode bestSolution1(ListNode head)
-    {
+    // Solution
+    // Solution 1:
+    public ListNode solution1(ListNode head) {
         ListNode n = head;
 
-        while (n is not null)
-        {
-            while (n.val == n.next?.val)
-            {
+        while (n is not null) {
+            while (n.val == n.next?.val) {
                 n.next = n.next.next;
             }
             n = n.next;
@@ -47,28 +36,21 @@ public class RemoveDuplicatesFromSortedList
         return head;
     }
 
-    // Best Solution 2:
-    public ListNode bestSolution2(ListNode head)
-    {
-        if (head == null)
-        {
+    // Solution 2:
+    public ListNode bestSolution2(ListNode head) {
+        if (head == null) {
             return null;
         }
 
-        if (head.next == null)
-        {
+        if (head.next == null) {
             return head;
         }
 
         ListNode prevNode = head;
-        for (ListNode node = head.next; node != null; node = node.next)
-        {
-            if (node.val == prevNode.val)
-            {
+        for (ListNode node = head.next; node != null; node = node.next) {
+            if (node.val == prevNode.val) {
                 prevNode.next = node.next;
-            }
-            else
-            {
+            } else {
                 prevNode = node;
             }
         }
@@ -76,28 +58,29 @@ public class RemoveDuplicatesFromSortedList
         return head;
     }
 
-    // Best Solution 3:
-    public ListNode bestSolution3(ListNode head)
-    {
-        if (head == null)
-        {
-            return null; // Don't forget this edge case
+    // Solution 3:
+    public ListNode bestSolution3(ListNode head) {
+        if (head == null) {
+            // Don't forget this edge case
+            return null;
         }
-        ListNode ptr = head; // Helps for returning at the end
 
-        while (ptr.next != null)
-        {
-            // Terminates if there is no next node(end of list)
-            if (ptr.next.val == ptr.val)
-            {
+        // Helps for returning at the end
+        ListNode ptr = head;
+
+        // Terminates if there is no next node(end of list)
+        while (ptr.next != null) {
+            if (ptr.next.val == ptr.val) {
                 // Check for duplicate next node
-                ptr.next = ptr.next.next; // Delete next node
-            }
-            else
-            {
-                ptr = ptr.next;  // Advance if no duplicate is found
+                // Delete next node
+                ptr.next = ptr.next.next; 
+            } else {
+                // Advance if no duplicate is found
+                ptr = ptr.next;
             }
         }
-        return head; //Return the original start of list
+
+        // Return the original start of list
+        return head;
     }
 }

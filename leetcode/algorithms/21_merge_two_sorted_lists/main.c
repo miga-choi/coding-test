@@ -1,43 +1,31 @@
 #include <stdio.h>
 
-struct ListNode
-{
+struct ListNode {
     int val;
-    struct ListNode *next;
+    struct ListNode* next;
 };
 
-struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2)
-{
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
     struct ListNode result;
-    struct ListNode *currentNode = &result;
+    struct ListNode* currentNode = &result;
 
-    if (list1 == NULL && list2 == NULL)
-    {
+    if (list1 == NULL && list2 == NULL) {
         return NULL;
     }
 
-    while (list1 != NULL || list2 != NULL)
-    {
-        if (list1 != NULL && list2 != NULL)
-        {
-            if (list1->val > list2->val)
-            {
+    while (list1 != NULL || list2 != NULL) {
+        if (list1 != NULL && list2 != NULL) {
+            if (list1->val > list2->val) {
                 currentNode->next = list2;
                 list2 = list2->next;
-            }
-            else
-            {
+            } else {
                 currentNode->next = list1;
                 list1 = list1->next;
             }
-        }
-        else if (list1 != NULL)
-        {
+        } else if (list1 != NULL) {
             currentNode->next = list1;
             list1 = list1->next;
-        }
-        else
-        {
+        } else {
             currentNode->next = list2;
             list2 = list2->next;
         }
@@ -48,81 +36,65 @@ struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2)
 }
 
 
-// Best Solution
-// Best Solution 1:
-struct ListNode *bestSolution1(struct ListNode *list1, struct ListNode *list2)
-{
+// Solution
+// Solution 1:
+struct ListNode* bestSolution1(struct ListNode* list1, struct ListNode* list2) {
     struct ListNode head;
-    struct ListNode *h = &head;
+    struct ListNode* h = &head;
 
-    if (list1 == NULL && list2 == NULL)
-    {
+    if (list1 == NULL && list2 == NULL) {
         return NULL;
     }
 
-    while (list1 && list2)
-    {
-        if (list1->val < list2->val)
-        {
+    while (list1 && list2) {
+        if (list1->val < list2->val) {
             h->next = list1;
             list1 = list1->next;
             h = h->next;
-        }
-        else
-        {
+        } else {
             h->next = list2;
             list2 = list2->next;
             h = h->next;
         }
     }
 
-    if (list1)
-    {
+    if (list1) {
         h->next = list1;
     }
-    if (list2)
-    {
+    if (list2) {
         h->next = list2;
     }
 
     return head.next;
 }
 
-// Best Solution 2:
-struct ListNode *bestSolution2(struct ListNode *list1, struct ListNode *list2)
-{
-    if (!list1)
-    {
+// Solution 2:
+struct ListNode* solution2(struct ListNode* list1, struct ListNode* list2) {
+    if (!list1) {
         return list2;
     }
-    if (!list2)
-    {
+    if (!list2) {
         return list1;
     }
-    struct ListNode *head = list1->val <= list2->val ? list1 : list2;
+    struct ListNode* head = list1->val <= list2->val ? list1 : list2;
     head->next = list1->val <= list2->val ? mergeTwoLists(list1->next, list2) : mergeTwoLists(list1, list2->next);
     return head;
 }
 
-// Best Solution 3:
-struct ListNode *bestSolution3(struct ListNode *list1, struct ListNode *list2)
-{
-    struct ListNode *res = NULL;
+// Solution 3:
+struct ListNode* solution3(struct ListNode* list1, struct ListNode* list2) {
+    struct ListNode* res = NULL;
     if (list1 == NULL)
     {
         return list2;
-    }
-    else if (list2 == NULL)
-    {
+    } else if (list2 == NULL) {
         return list1;
     }
     if (list1->val <= list2->val)
     {
         res = list1;
         res->next = mergeTwoLists(list1->next, list2);
-    }
-    else
-    {
+    } else {
         res = list2;
         res->next = mergeTwoLists(list1, list2->next);
     }

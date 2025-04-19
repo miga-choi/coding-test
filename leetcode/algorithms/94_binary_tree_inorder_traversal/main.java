@@ -4,7 +4,6 @@ import java.util.Stack;
 
 class BinaryTreeInorderTraversal {
   public class TreeNode {
-
     int val;
     TreeNode left;
     TreeNode right;
@@ -41,9 +40,9 @@ class BinaryTreeInorderTraversal {
   }
 
 
-  // Best Solution
-  // Best Solution 1: Iterative
-  public List<Integer> bestSolution1(TreeNode root) {
+  // Solution
+  // Solution 1: Iterative
+  public List<Integer> solution1(TreeNode root) {
     List<Integer> list = new ArrayList<Integer>();
 
     Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -62,18 +61,18 @@ class BinaryTreeInorderTraversal {
     return list;
   }
 
-  // Best Solution 2: DFS
-  public List<Integer> bestSolution2(TreeNode root) {
-    List<Integer> res = new ArrayList<>();
-    helper(root, res);
-    return res;
-  }
-
+  // Solution 2: DFS
   public void helper(TreeNode root, List<Integer> res) {
     if (root != null) {
       helper(root.left, res);
       res.add(root.val);
       helper(root.right, res);
     }
+  }
+
+  public List<Integer> solution2(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    helper(root, res);
+    return res;
   }
 }

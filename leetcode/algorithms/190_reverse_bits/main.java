@@ -1,5 +1,4 @@
 class ReverseBits {
-
   // you need treat n as an unsigned value
   public int reverseBits(int n) {
     StringBuilder stringBuilder = new StringBuilder(Integer.toBinaryString(n))
@@ -12,7 +11,8 @@ class ReverseBits {
     return (int) Long.parseLong(stringBuilder.toString(), 2);
   }
 
-  // Best Solution
+
+  // Solution
   /*
     Let's understand in terms of decimal number to understand how the code is implemented
     Suppose we have a number 12345678 and we have to reverse it to get 87654321 as desired output
@@ -181,7 +181,7 @@ class ReverseBits {
       break the 4 bits into half(2 - 2 each) and right shift to 2 positions and left shift to 2 positions
       break the 2 bits into half(1 - 1 each) and right shift to 1 positions and left shift to 1 positions
    */
-  public int bestSolution(int num) {
+  public int solution(int num) {
     num = ((num & 0xffff0000) >>> 16) | ((num & 0x0000ffff) << 16);
     num = ((num & 0xff00ff00) >>> 8) | ((num & 0x00ff00ff) << 8);
     num = ((num & 0xf0f0f0f0) >>> 4) | ((num & 0x0f0f0f0f) << 4);

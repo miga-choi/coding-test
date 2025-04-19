@@ -13,8 +13,9 @@ int* countBits(int n, int* returnSize) {
     return result;
 }
 
-// Best Solution
-int* bestSolution(int n, int* returnSize) {
+
+// Solution
+int* solution(int n, int* returnSize) {
     n++;
     *returnSize = n;
     int* arr = (int*)malloc(sizeof(int) * n);

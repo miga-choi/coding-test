@@ -28,9 +28,9 @@ class MaximumDepthOfBinaryTree:
         return depth
 
 
-    # Best Solution
-    # Best Solution 1: RECURSIVE DFS
-    def bestSolution1(self, root: Optional[TreeNode]) -> int:
+    # Solution
+    # Solution 1: RECURSIVE DFS
+    def solution1(self, root: Optional[TreeNode]) -> int:
         def dfs(root, depth):
             if not root:
                 return depth
@@ -38,14 +38,14 @@ class MaximumDepthOfBinaryTree:
 
         return dfs(root, 0)
 
-    # Best Solution 2: Recursive
-    def bestSolution2(self, root: Optional[TreeNode]) -> int:
+    # Solution 2: Recursive
+    def solution2(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        return max(self.bestSolution2(root.left), self.bestSolution2(root.right)) + 1
+        return max(self.solution2(root.left), self.solution2(root.right)) + 1
 
-    # Best Solution 3: Iterative
-    def bestSolution3(self, root: Optional[TreeNode]) -> int:
+    # Solution 3: Iterative
+    def solution3(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
         worklist = deque([root])

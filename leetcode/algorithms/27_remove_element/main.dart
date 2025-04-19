@@ -4,8 +4,9 @@ class RemoveElement {
     return 0;
   }
 
-  // Best Solution
-  int bestSolution(List<int> nums, int val) {
+
+  // Solution
+  int solution(List<int> nums, int val) {
     int cnt = 0;
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] != val) {

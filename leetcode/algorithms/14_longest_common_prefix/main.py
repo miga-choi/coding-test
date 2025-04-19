@@ -28,9 +28,9 @@ class LongestCommonPrefix:
         return result
 
 
-    # Best Solution:
-    # Best Solution 1:
-    def bestSolution1(self, strs: List[str]) -> str:
+    # Solution:
+    # Solution 1:
+    def solution1(self, strs: List[str]) -> str:
         ans = ""
         strs = sorted(strs)
         first = strs[0]
@@ -41,8 +41,8 @@ class LongestCommonPrefix:
             ans += first[i]
         return ans
 
-    # Best Solution 2:
-    def bestSolution2(self, strs: List[str]) -> str:
+    # Solution 2:
+    def solution2(self, strs: List[str]) -> str:
         if not strs:
             return ""
         shortest = min(strs, key=len)
@@ -52,8 +52,8 @@ class LongestCommonPrefix:
                     return shortest[:i]
         return shortest
 
-    # Best Solution 3:
-    def bestSolution3(self, strs: List[str]) -> str:
+    # Solution 3:
+    def solution3(self, strs: List[str]) -> str:
         if not strs:
             return ""
         # since list of string will be sorted and retrieved min max by alphebetic order
@@ -65,8 +65,8 @@ class LongestCommonPrefix:
                 return s1[:i]  # stop until hit the split index
         return s1
 
-    # Best Solution 4:
-    def bestSolution(self, strs: List[str]) -> str:
+    # Solution 4:
+    def solution(self, strs: List[str]) -> str:
         l = list(zip(*strs))
         prefix = ""
         for i in l:

@@ -47,22 +47,22 @@ class MaximumDepthOfBinaryTree {
   }
 
 
-  // Best Solution
-  // Best Solution 1: Recursive
-  public int bestSolution1(TreeNode root) {
+  // Solution
+  // Solution 1: Recursive
+  public int solution1(TreeNode root) {
     // Base Condition
     if (root == null) {
       return 0;
     }
     // Hypothesis
-    int left = bestSolution1(root.left);
-    int right = bestSolution1(root.right);
+    int left = solution1(root.left);
+    int right = solution1(root.right);
     // Induction
     return Math.max(left, right) + 1;
   }
 
-  // Best Solution 2: Iterative - DFS
-  public int bestSolution2(TreeNode root) {
+  // Solution 2: Iterative - DFS
+  public int solution2(TreeNode root) {
     if (root == null) {
       return 0;
     }
@@ -88,8 +88,8 @@ class MaximumDepthOfBinaryTree {
     return max;
   }
 
-  // Best Solution 3: Iterative - BFS
-  public int bestSolution3(TreeNode root) {
+  // Solution 3: Iterative - BFS
+  public int solution3(TreeNode root) {
     if (root == null) {
       return 0;
     }

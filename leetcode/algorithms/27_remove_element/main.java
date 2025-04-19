@@ -18,9 +18,9 @@ class RemoveElement {
   }
 
 
-  // Best Solution
-  // Best Solution 1:
-  public int bestSolution1(int[] nums, int val) {
+  // Solution
+  // Solution 1:
+  public int solution1(int[] nums, int val) {
     int index = 0;
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] != val) {
@@ -31,8 +31,8 @@ class RemoveElement {
     return index;
   }
 
-  // Best Solution 2:
-  public int bestSolution2(int[] nums, int val) {
+  // Solution 2:
+  public int solution2(int[] nums, int val) {
     int i = 0;
     for (int j = 0; j < nums.length; j++) {
       if (nums[j] != val) {
@@ -45,8 +45,8 @@ class RemoveElement {
     return i;
   }
 
-  // Best Solution 3:
-  public int bestSolution3(int[] nums, int val) {
+  // Solution 3:
+  public int solution3(int[] nums, int val) {
     int l = nums.length;
     for (int i = 0; i < l; i++) {
       if (nums[i] == val) {

@@ -10,16 +10,16 @@ class FindTheIndexOfTheFirstOccurrenceInAString:
         return haystack.find(needle)
 
 
-    # Best Solution
-    # Best Solution 1:
-    def bestSolution1(self, haystack, needle):
+    # Solution
+    # Solution 1:
+    def solution1(self, haystack, needle):
         for i in range(len(haystack) - len(needle) + 1):
-            if haystack[i : i + len(needle)] == needle:
+            if haystack[i: i + len(needle)] == needle:
                 return i
         return -1
 
-    # Best Solution 2:
-    def bestSolution2(self, haystack, needle):
+    # Solution 2:
+    def solution2(self, haystack, needle):
         if needle == "":
             return 0
         for i in range(len(haystack) - len(needle) + 1):
@@ -30,27 +30,28 @@ class FindTheIndexOfTheFirstOccurrenceInAString:
                     return i
         return -1
 
-    # Best Solution 3:
-    def bestSolution3(self, haystack, needle):
+    # Solution 3:
+    def solution3(self, haystack, needle):
         return haystack.find(needle)
 
-    # Best Solution 4: Rabin Karp, built-in hash, constant time
-    def bestSolution4(self, haystack, needle):
+    # Solution 4: Rabin Karp, built-in hash, constant time
+    def solution4(self, haystack, needle):
         n, h = len(needle), len(haystack)
         hash_n = hash(needle)
         for i in range(h - n + 1):
-            if hash(haystack[i : i + n]) == hash_n:
+            if hash(haystack[i: i + n]) == hash_n:
                 return i
         return -1
 
-    # Best Solution 4:
+    # Solution 4:
     # Rabin Karp, numeral base for both uppercase
     # and lowercase letters, constant time
-    def bestSolution4(self, haystack, needle):
+    def solution4(self, haystack, needle):
         def f(c):
             return ord(c) - ord("A")
 
-        n, h, d, m = len(needle), len(haystack), ord("z") - ord("A") + 1, sys.maxint
+        n, h, d, m = len(needle), len(haystack), ord(
+            "z") - ord("A") + 1, sys.maxint
 
         if n > h:
             return -1
@@ -69,8 +70,8 @@ class FindTheIndexOfTheFirstOccurrenceInAString:
                 return i
         return -1
 
-    # Best Solution 5: KMP
-    def bestSolution5(self, haystack, needle):
+    # Solution 5: KMP
+    def solution5(self, haystack, needle):
         n, h = len(needle), len(haystack)
         i, j, nxt = 1, 0, [-1] + [0] * n
         while i < n:

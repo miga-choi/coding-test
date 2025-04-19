@@ -16,8 +16,8 @@ var countBits = function (n) {
 };
 
 
-// Best Solution
-const bestSolution = (n) => {
+// Solution
+const solution = (n) => {
   let result = Array(n + 1).fill(0);
   let offset = 1;
   for (let i = 1; i < n + 1; i++) {
@@ -26,6 +26,5 @@ const bestSolution = (n) => {
     }
     result[i] = 1 + result[i - offset];
   }
-
   return result;
 };

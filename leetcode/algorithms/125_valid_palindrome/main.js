@@ -3,7 +3,7 @@
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-  s = s.toLowerCase().replace(/[^a-z0-9]/gi, '');
+  s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
   i = 0;
   while (i < s.length - 1 - i) {
     if (s[i] !== s[s.length - 1 - i]) {
@@ -14,8 +14,11 @@ var isPalindrome = function (s) {
   return true;
 };
 
-var isPalindrome = function (s) {
-  s = s.toLowerCase().replace(/[^a-z0-9]/gi, '');
+
+// Solution
+// Solution 1
+var solution1 = function (s) {
+  s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
   for (let i = 0; i < s.length; i++) {
     if (i === s.length - 1 - i) {
       break;
@@ -27,9 +30,9 @@ var isPalindrome = function (s) {
   return true;
 };
 
-// Best Solution
-const bestSolution = (s) => {
-  s = s.toLowerCase().replace(/[^a-z0-9]/gi, '');
+// Solution 2
+const solution2 = (s) => {
+  s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
   for (let i = 0, j = s.length - 1; i <= j; i++, j--) {
     if (s.charAt(i) !== s.charAt(j)) return false;
   }
