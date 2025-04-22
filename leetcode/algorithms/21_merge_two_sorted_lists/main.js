@@ -36,7 +36,7 @@ var mergeTwoLists = function (list1, list2) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (l1, l2) {
   if (!l1) {
     return l2;
@@ -51,7 +51,7 @@ var solution1 = function (l1, l2) {
   }
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (l1, l2) {
   var mergedHead = { val: -1, next: null }, crt = mergedHead;
   while (l1 && l2) {

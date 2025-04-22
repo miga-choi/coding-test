@@ -24,12 +24,15 @@ class BinaryTreePaths {
     return stringArray;
   }
 
-  // Best Solution
+
+  // Solution
   List<String> ans = [];
   String arrow = '->';
 
-  List<String> bestSolution(TreeNode? root) {
-    if (root == null) return [];
+  List<String> solution(TreeNode? root) {
+    if (root == null) {
+      return [];
+    }
     void helper(TreeNode? root, String s) {
       if (root == null) return;
       s += '${root.val}';

@@ -1,35 +1,24 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-
 import java.util.ArrayList;
 import java.util.List;
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
 class PalindromeLinkedList {
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
     public boolean isPalindrome(ListNode head) {
         ListNode newHead = head;
         List<Integer> obverse = new ArrayList<Integer>();
@@ -65,8 +54,8 @@ class PalindromeLinkedList {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(ListNode head) {
+    // Solution
+    public boolean solution(ListNode head) {
         ListNode slow = head, fast = head, prev, temp;
 
         while (fast != null && fast.next != null) {

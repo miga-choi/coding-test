@@ -1,5 +1,4 @@
 class IsomorphicStrings {
-
   public boolean isIsomorphic(String s, String t) {
     if (s.length() != t.length()) {
       return false;
@@ -20,17 +19,19 @@ class IsomorphicStrings {
   }
 
 
-  // Best Solution
-  public boolean bestSolution(String s, String t) {
+  // Solution
+  public boolean solution(String s, String t) {
     int map1[] = new int[200];
     int map2[] = new int[200];
 
-    if (s.length() != t.length())
+    if (s.length() != t.length()) {
       return false;
+    }
 
     for (int i = 0; i < s.length(); i++) {
-      if (map1[s.charAt(i)] != map2[t.charAt(i)])
+      if (map1[s.charAt(i)] != map2[t.charAt(i)]) {
         return false;
+      }
 
       map1[s.charAt(i)] = i + 1;
       map2[t.charAt(i)] = i + 1;

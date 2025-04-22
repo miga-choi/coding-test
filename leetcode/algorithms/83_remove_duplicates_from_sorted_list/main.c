@@ -21,7 +21,7 @@ struct ListNode* deleteDuplicates(struct ListNode* head) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 struct ListNode* solution1(struct ListNode* head) {
     struct ListNode* temp = head;
     while (temp && temp->next) {
@@ -34,7 +34,7 @@ struct ListNode* solution1(struct ListNode* head) {
     return head;
 }
 
-// Solution 2:
+// Solution 2
 struct ListNode* solution2(struct ListNode* head) {
     struct ListNode* cur = head;
     while (cur) {
@@ -46,8 +46,8 @@ struct ListNode* solution2(struct ListNode* head) {
     return head;
 }
 
-// Solution 3:
-struct ListNode* bestSolution3(struct ListNode* head) {
+// Solution 3
+struct ListNode* solution3(struct ListNode* head) {
     // Special case...
     if (head == NULL || head->next == NULL) {
         return head;

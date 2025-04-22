@@ -1,14 +1,7 @@
 from typing import List, Optional
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 
-
-class Solution:
+class BinaryTreePaths:
     class TreeNode:
         def __init__(self, val=0, left=None, right=None):
             self.val = val
@@ -31,8 +24,8 @@ class Solution:
         return left + right
 
 
-    # Best Solution
-    def bestSolution(self, root: TreeNode) -> List[str]:
+    # Solution
+    def solution(self, root: TreeNode) -> List[str]:
         result = []
 
         # ----------------------------------------
@@ -49,7 +42,6 @@ class Solution:
                 # general case
                 helper(node.left, cur + [str(node.val)])
                 helper(node.right, cur + [str(node.val)])
-
         # ----------------------------------------
 
         helper(node=root, cur=[])

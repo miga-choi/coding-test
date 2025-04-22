@@ -74,11 +74,11 @@ var solution4 = function (haystack, needle) {
 };
 
 /**
- * Best Solution 5: Loop through haystack and compare substrings
+ * Solution 5: Loop through haystack and compare substrings
  * Loop through the haystack. For each character, loop through the needle and compare.
  * If they are all equal, return the index of the haystack
  */
-var bestSolution5 = function (haystack, needle) {
+var solution5 = function (haystack, needle) {
   let haystackLength = haystack.length;
   let needleLength = needle.length;
   if (haystackLength < needleLength) {
@@ -94,13 +94,13 @@ var bestSolution5 = function (haystack, needle) {
 };
 
 /**
- * Best Solution 6: Tracking Loop Search
+ * Solution 6: Tracking Loop Search
  * Loop through the haystack string and compare each character
  * of the substring to the corresponding character in the haystack.
  * If all characters match, the index is returned.
  * If the substring is not found, return -1.
  */
-var bestSolution6 = function (haystack, needle) {
+var solution6 = function (haystack, needle) {
   let haystackLength = haystack.length;
   let needleLength = needle.length;
   if (haystackLength < needleLength) {
@@ -120,12 +120,12 @@ var bestSolution6 = function (haystack, needle) {
 };
 
 /**
- * Best Solution 7: KMP - Time: O(N+M) | KMP - Knuth-Morris-Pratt String Matching Algorithm
+ * Solution 7: KMP - Time: O(N+M) | KMP - Knuth-Morris-Pratt String Matching Algorithm
  * Preprocess the needle to form an array to store the occurs before.
  * Loop through the haystack and compare with needle.
  * If mismatch occurs, move the haystack index by the occurs before array.
  */
-var bestSolution7 = function (haystack, needle) {
+var solution7 = function (haystack, needle) {
   const needleLength = needle.length;
   let i = 0,
     j = -1;

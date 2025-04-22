@@ -18,7 +18,7 @@ class RemoveDuplicatesFromSortedArray {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int solution1(int[] nums) {
     int j = 1;
     for (int i = 1; i < nums.length; i++) {
@@ -30,7 +30,7 @@ class RemoveDuplicatesFromSortedArray {
     return j;
   }
 
-  // Solution 2:
+  // Solution 2
   public int solution2(int[] nums) {
     int i = nums.length > 0 ? 1 : 0;
     for (int n : nums) {

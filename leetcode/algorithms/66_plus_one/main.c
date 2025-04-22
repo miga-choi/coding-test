@@ -32,7 +32,7 @@ int* plusOne(int* digits, int digitsSize, int* returnSize) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int* solution1(int* digits, int digitsSize, int* returnSize) {
     *returnSize = digitsSize;
     int* plusOne = (int*)malloc(digitsSize * sizeof(int));
@@ -64,7 +64,7 @@ int* solution1(int* digits, int digitsSize, int* returnSize) {
     return (plusOne);
 }
 
-// Solution 2:
+// Solution 2
 int* solution2(int* digits, int digitsSize, int* returnSize) {
     for (int i = digitsSize - 1; i >= 0; i--) {
         digits[i]++;
@@ -83,7 +83,7 @@ int* solution2(int* digits, int digitsSize, int* returnSize) {
     return result;
 }
 
-// Solution 3:
+// Solution 3
 int* solution3(int* digits, int digitsSize, int* returnSize) {
     int* res = (int*)malloc(sizeof(int) * 100);
     int cf = 1;

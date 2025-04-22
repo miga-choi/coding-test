@@ -1,4 +1,4 @@
-class Solution:
+class UglyNumber:
     def isUgly(self, n: int) -> bool:
         if n < 1:
             return False
@@ -16,8 +16,8 @@ class Solution:
         return True
 
 
-    # Best Solution
-    def bestSolution(self, num: int) -> bool:
+    # Solution
+    def solution(self, num: int) -> bool:
         if num == 0:
             return False
         while num % 5 == 0:

@@ -19,7 +19,7 @@ public class SearchInsertPosition {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(int[] nums, int target) {
         int left = 0, right = nums.Length - 1, mid;
         while (left <= right) {
@@ -35,13 +35,13 @@ public class SearchInsertPosition {
         return left;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(int[] nums, int target) {
         var index = Array.BinarySearch(nums, target);
         return index >= 0 ? index : ~index;
     }
 
-    // Solution 3:
+    // Solution 3
     public int solution3(int[] nums, int target) {
         for (int i = 0; i < nums.Length; i++) {
             if (target == nums[i] || nums[i] > target) {

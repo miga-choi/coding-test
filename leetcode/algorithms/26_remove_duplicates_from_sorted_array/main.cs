@@ -13,7 +13,7 @@ public class RemoveDuplicatesFromSortedArray {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(int[] nums) {
         int i = 1;
 
@@ -26,7 +26,7 @@ public class RemoveDuplicatesFromSortedArray {
         return i;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(int[] nums) {
         int k = 1;
         int previouse = nums[0];
@@ -40,7 +40,7 @@ public class RemoveDuplicatesFromSortedArray {
         return k;
     }
 
-    // Solution 3:
+    // Solution 3
     public int solution3(int[] nums) {
         HashSet<int> secondary = new HashSet<int>();
         int counter = 0;
@@ -52,7 +52,7 @@ public class RemoveDuplicatesFromSortedArray {
         return counter;
     }
 
-    // Solution 4:
+    // Solution 4
     public int solution4(int[] nums) {
         int i = 0;
         for (int j = 0; j < nums.Length; j++) {

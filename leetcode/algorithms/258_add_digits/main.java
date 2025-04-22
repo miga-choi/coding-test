@@ -12,8 +12,8 @@ class AddDigits {
     }
 
 
-    // Best Solution
-    public int bestSolution(int num) {
+    // Solution
+    public int solution(int num) {
         if (num == 0) {
             return 0;
         } else if (num % 9 == 0) {

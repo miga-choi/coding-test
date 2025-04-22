@@ -23,5 +23,6 @@ var solution = function (n) {
     result += n & 1;
     n = n >> 1;
   }
+
   return result;
 };

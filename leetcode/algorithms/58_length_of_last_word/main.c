@@ -20,7 +20,7 @@ int lengthOfLastWord(char* s) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int solution1(char* s) {
     int c = 0;
     for (int i = strlen(s) - 1; i >= 0; i--) {
@@ -41,7 +41,7 @@ int solution1(char* s) {
     return c1;
 }
 
-// Solution 2:
+// Solution 2
 int solution2(char* s) {
     int lastSize = 0;
     int i = strlen(s) - 1;
@@ -65,8 +65,8 @@ int solution2(char* s) {
     return lastSize;
 }
 
-// Solution 2:
-int solution2(char* s) {
+// Solution 3
+int solution3(char* s) {
     int len = 0;
     int i = strlen(s) - 1;
 

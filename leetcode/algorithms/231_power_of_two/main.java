@@ -13,8 +13,8 @@ class PowerOfTwo {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(int n) {
+    // Solution
+    public boolean solution(int n) {
         return n > 0 && Integer.bitCount(n) == 1;
     }
 }

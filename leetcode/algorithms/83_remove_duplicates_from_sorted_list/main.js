@@ -21,7 +21,7 @@ var deleteDuplicates = function (head) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (head) {
   var current = head;
 
@@ -36,7 +36,7 @@ var solution1 = function (head) {
   return head;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (head) {
   // Special case...
   if (head == null || head.next == null) {

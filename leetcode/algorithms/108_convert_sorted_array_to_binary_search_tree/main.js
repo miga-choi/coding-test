@@ -24,7 +24,7 @@ var sortedArrayToBST = function (nums) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (nums) {
   // Call the function recursively...
   return solution1_convToBST(nums, 0, nums.length - 1);

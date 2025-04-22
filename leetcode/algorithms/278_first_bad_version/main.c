@@ -1,7 +1,7 @@
 #include <stdbool.h>
 
 // The API isBadVersion is defined for you.
-// bool isBadVersion(int version);
+bool isBadVersion(int version);
 
 int firstBadVersion(int n) {
     int low = 1;
@@ -18,15 +18,17 @@ int firstBadVersion(int n) {
     return low;
 }
 
-// Best Solution
-int bestSolution(int n) {
+
+// Solution
+int solution(int n) {
     int start = 0, end = n;
     while (end - start > 1) {
         int mid = start + (end - start) / 2;
-        if (isBadVersion(mid))
+        if (isBadVersion(mid)) {
             end = mid;
-        else
+        } else {
             start = mid;
+        }
     }
     return end;
 }

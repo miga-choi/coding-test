@@ -17,6 +17,7 @@ class PascalsTriangle {
     return result;
   }
 
+
   // Solution
   List<List<int>> solution(int numRows) {
     List<List<int>> triangle = [];

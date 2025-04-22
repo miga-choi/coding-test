@@ -26,7 +26,7 @@ public class PlusOne {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int[] solution1(int[] digits) {
         int n = digits.Length;
         for (int i = n - 1; i >= 0; i--) {
@@ -42,7 +42,7 @@ public class PlusOne {
         return newNumber;
     }
 
-    // Solution 2:
+    // Solution 2
     public int[] solution2(int[] digits) {
         for (int i = digits.Length - 1; i >= 0; i--) {
             if (digits[i] == 9) {
@@ -56,7 +56,7 @@ public class PlusOne {
         return firstOne.Concat(digits).ToArray();
     }
 
-    // Solution 3:
+    // Solution 3
     public int[] solution3(int[] digits) {
         int len = digits.Length;
         int num;

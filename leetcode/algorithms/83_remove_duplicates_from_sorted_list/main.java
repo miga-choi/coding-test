@@ -39,7 +39,7 @@ class RemoveDuplicatesFromSortedList {
     return head.val == head.next.val ? head.next : head;
   }
 
-  // Solution 2:
+  // Solution 2
   public ListNode solution2(ListNode head) {
     ListNode list = head;
 

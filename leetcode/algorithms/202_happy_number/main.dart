@@ -26,7 +26,8 @@ class HappyNumber {
     return true;
   }
 
-  // Best Solution
+
+  // Solution
   int getNext(int n) {
     int totalSum = 0;
     while (n > 0) {
@@ -37,7 +38,7 @@ class HappyNumber {
     return totalSum;
   }
 
-  bool bestSolution(int n) {
+  bool solution(int n) {
     while (n != 1 && n != 4) n = getNext(n);
     return n == 1;
   }

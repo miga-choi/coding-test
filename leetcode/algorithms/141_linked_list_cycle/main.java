@@ -24,6 +24,7 @@ class LinkedListCycle {
     return false;
   }
 
+
   // Solution
   public boolean solution(ListNode head) {
     ListNode slow = head, fast = head;

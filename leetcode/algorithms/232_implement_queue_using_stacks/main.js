@@ -1,3 +1,12 @@
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
+
 var MyQueue = function () {
   this.inputStack = [];
   this.outputStack = [];
@@ -43,17 +52,9 @@ MyQueue.prototype.empty = function () {
   return false;
 };
 
-/**
- * Your MyQueue object will be instantiated and called as such:
- * var obj = new MyQueue()
- * obj.push(x)
- * var param_2 = obj.pop()
- * var param_3 = obj.peek()
- * var param_4 = obj.empty()
- */
 
-// Best Solution
-var BestSolution = function () {
+// Solution
+var Solution = function () {
   this.stack1 = [];
   this.stack2 = [];
   this.front = null;
@@ -63,7 +64,7 @@ var BestSolution = function () {
  * @param {number} x
  * @return {void}
  */
-BestSolution.prototype.push = function (x) {
+Solution.prototype.push = function (x) {
   if (this.stack1.length == 0) {
     this.front = x;
   }
@@ -73,7 +74,7 @@ BestSolution.prototype.push = function (x) {
 /**
  * @return {number}
  */
-BestSolution.prototype.pop = function () {
+Solution.prototype.pop = function () {
   if (this.stack2.length == 0) {
     while (this.stack1.length != 0) {
       this.stack2.push(this.stack1.pop());
@@ -85,7 +86,7 @@ BestSolution.prototype.pop = function () {
 /**
  * @return {number}
  */
-BestSolution.prototype.peek = function () {
+Solution.prototype.peek = function () {
   return this.stack2.length == 0
     ? this.front
     : this.stack2[this.stack2.length - 1];
@@ -94,6 +95,6 @@ BestSolution.prototype.peek = function () {
 /**
  * @return {boolean}
  */
-BestSolution.prototype.empty = function () {
+Solution.prototype.empty = function () {
   return this.stack1.length == 0 && this.stack2.length == 0;
 };

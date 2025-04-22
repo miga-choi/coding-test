@@ -22,9 +22,7 @@ import java.util.List;
  */
 
 class BinaryTreePostorderTraversal {
-
   public class TreeNode {
-
     int val;
     TreeNode left;
     TreeNode right;
@@ -67,9 +65,10 @@ class BinaryTreePostorderTraversal {
     return result;
   }
 
-  // Best Solution
-  // Pre Order Traverse
-  public List<Integer> preOrderTraversal(TreeNode root) {
+
+  // Solution
+  // Solution 1: Pre Order Traverse
+  public List<Integer> solution1(TreeNode root) {
     List<Integer> result = new ArrayList<>();
     Deque<TreeNode> stack = new ArrayDeque<>();
     TreeNode p = root;
@@ -86,8 +85,8 @@ class BinaryTreePostorderTraversal {
     return result;
   }
 
-  // In Order Traverse
-  public List<Integer> inOrderTraversal(TreeNode root) {
+  // Solution 2: In Order Traverse
+  public List<Integer> solution2(TreeNode root) {
     List<Integer> result = new ArrayList<>();
     Deque<TreeNode> stack = new ArrayDeque<>();
     TreeNode p = root;
@@ -104,8 +103,8 @@ class BinaryTreePostorderTraversal {
     return result;
   }
 
-  // Post Order Traverse
-  public List<Integer> postOrderTraversal(TreeNode root) {
+  // Solution 3: Post Order Traverse
+  public List<Integer> solution3(TreeNode root) {
     LinkedList<Integer> result = new LinkedList<>();
     Deque<TreeNode> stack = new ArrayDeque<>();
     TreeNode p = root;

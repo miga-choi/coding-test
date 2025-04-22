@@ -129,7 +129,7 @@ int solution3(char* s) {
     return sum;
 }
 
-// Solution 4:
+// Solution 4
 int solution4(char* s) {
     int result = 0;
 

@@ -1,5 +1,14 @@
-class MyStack:
+from collections import deque
 
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
+
+class MyStack:
     def __init__(self):
         self.inputStack = []
         self.outputStack = []
@@ -8,7 +17,6 @@ class MyStack:
         if len(self.inputStack) > 0:
             self.outputStack.append(self.inputStack.pop())
         self.inputStack.append(x)
-        
 
     def pop(self) -> int:
         if len(self.inputStack) > 0:
@@ -27,25 +35,15 @@ class MyStack:
             return False
         return True
 
-# Your MyStack object will be instantiated and called as such:
-# obj = MyStack()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.top()
-# param_4 = obj.empty()
 
-
-# Best Solution
-from collections import deque 
-
-class BestSolution:
-
+# Solution
+class Solution:
     def __init__(self):
         """
         Initialize your data structure here.
         """
         self.queue = deque()
-        
+
     def push(self, x: int) -> None:
         """
         Push element x onto stack.
@@ -53,7 +51,7 @@ class BestSolution:
         tmp = deque([x])
         tmp.extend(self.queue)
         self.queue = tmp
-        
+
     def pop(self) -> int:
         """
         Removes the element on top of the stack and returns that element.
@@ -71,3 +69,4 @@ class BestSolution:
         Returns whether the stack is empty.
         """
         return len(self.queue) == 0
+

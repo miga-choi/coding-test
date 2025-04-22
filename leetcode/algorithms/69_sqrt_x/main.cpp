@@ -27,7 +27,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     int solution1(int x) {
         long r = x;
         while (r * r > x) {
@@ -36,7 +36,7 @@ public:
         return r;
     }
 
-    // Solution 2:
+    // Solution 2
     int solution2(int x) {
         // For special cases when x is 0 or 1, return x.
         if (x == 0 || x == 1) {

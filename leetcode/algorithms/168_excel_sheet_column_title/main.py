@@ -39,7 +39,7 @@ class ExcelSheetColumnTitle:
 
 
     # Solution
-    # Solution 1:
+    # Solution 1
     def solution1(self, columnNumber):
         # Create an empty string for storing the characters...
         output = ""
@@ -52,6 +52,6 @@ class ExcelSheetColumnTitle:
         # Return the output string.
         return output
 
-    # Solution 2:
+    # Solution 2
     def solution2(self, columnNumber):
         return "" if columnNumber == 0 else self.solution2((columnNumber - 1) / 26) + chr((columnNumber - 1) % 26 + ord("A"))

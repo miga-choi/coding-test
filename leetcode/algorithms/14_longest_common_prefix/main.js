@@ -35,7 +35,7 @@ var solution1 = function (strs) {
   });
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (strs) {
   if (!strs.length) {
     return "";

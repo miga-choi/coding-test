@@ -45,7 +45,7 @@ class BalancedBinaryTree {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public boolean solution1(TreeNode root) {
     // If the tree is empty, we can say it’s balanced...
     if (root == null) {

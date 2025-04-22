@@ -21,6 +21,7 @@ public:
         return result[rowIndex];
     }
 
+
     // Solution
     vector<int> solution(int rowIndex) {
         vector<int> res(1, 1);

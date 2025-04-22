@@ -26,7 +26,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     ListNode* solution1(ListNode* head) {
         ListNode* cur = head;
         while (cur) {
@@ -38,7 +38,7 @@ public:
         return head;
     }
 
-    // Solution 2:
+    // Solution 2
     ListNode* solution2(ListNode* head) {
         ListNode* temp = head;
         while (temp && temp->next) {
@@ -51,7 +51,7 @@ public:
         return head;
     }
 
-    // Solution 3:
+    // Solution 3
     ListNode* solution3(ListNode* head) {
         // Special case...
         if (head == NULL || head->next == NULL) {

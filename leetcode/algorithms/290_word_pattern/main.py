@@ -1,4 +1,4 @@
-class Solution:
+class WordPattern:
     def wordPattern(self, pattern: str, s: str) -> bool:
         sArray: list = s.split(" ")
 
@@ -20,8 +20,8 @@ class Solution:
         return True
 
 
-    # Best Solution
-    def bestSolution(self, pattern: str, str: str) -> bool:
+    # Solution
+    def solution(self, pattern: str, str: str) -> bool:
         # dictionary approach
         # Time complexity: O(n)
         # Space complexity: O(n)
@@ -42,4 +42,5 @@ class Solution:
             else:
                 if not mapping[pattern[i]] == words[i]:
                     return False
+
         return True

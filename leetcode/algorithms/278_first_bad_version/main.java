@@ -1,6 +1,5 @@
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
-
 class VersionControl {
     boolean isBadVersion(int version) {
         return false;
@@ -25,13 +24,13 @@ class FirstBadVersion extends VersionControl {
     }
 
 
-    // Best Solution
-    public int firstBadVersionLeft(int n) {
+    // Solution
+    // Solution 1: First Bad Version Left
+    public int solution1(int n) {
         int i = 1;
         int j = n;
 
         while (i < j) {
-
             int mid = i + (j - i) / 2;
 
             if (isBadVersion(mid)) {
@@ -39,14 +38,13 @@ class FirstBadVersion extends VersionControl {
             } else {
                 i = mid + 1;
             }
-
         }
 
         return i;
-
     }
 
-    public int firstBadVersionRight(int n) {
+    // Solution 2: First Bad Version Right
+    public int solution2(int n) {
         if (isBadVersion(1)) {
             return 1;
         }

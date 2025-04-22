@@ -14,8 +14,10 @@ class PowerOfTwo {
     return true;
   }
 
-  // Best Solution 1
-  bool bestSolution1(int n) {
+
+  // Solution
+  // Solution 1
+  bool solution1(int n) {
     if (n <= 0) {
       return false;
     }
@@ -28,8 +30,8 @@ class PowerOfTwo {
     return true;
   }
 
-  // Best Solution 2
-  bool bestSolution2(int n) {
+  // Solution 2
+  bool solution2(int n) {
     return n > 0 && (n & (n - 1)) == 0;
   }
 }

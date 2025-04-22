@@ -10,12 +10,14 @@ int missingNumber(int *nums, int numsSize) {
     return originSum - sum;
 }
 
-// Best Solution 1: Naive Approach - Sorting
+
+// Solution
+// Solution 1: Naive Approach - Sorting
 int compare(const void *a, const void *b) {
     return (*(int *)a - *(int *)b);
 }
 
-int bestSolution1(int *nums, int numsSize) {
+int solution1(int *nums, int numsSize) {
     qsort(nums, numsSize, sizeof(int), compare);
     for (int i = 0; i < numsSize; i++) {
         if (nums[i] != i) {
@@ -25,8 +27,8 @@ int bestSolution1(int *nums, int numsSize) {
     return numsSize;
 }
 
-// Best Solution 2: Mathematical Formula
-int bestSolution2(int *nums, int numsSize) {
+// Solution 2: Mathematical Formula
+int solution2(int *nums, int numsSize) {
     int sum = numsSize * (numsSize + 1) / 2;
     for (int i = 0; i < numsSize; i++) {
         sum -= nums[i];
@@ -34,8 +36,8 @@ int bestSolution2(int *nums, int numsSize) {
     return sum;
 }
 
-// Best Solution 3: Bit Manipulation (XOR)
-int bestSolution3(int *nums, int numsSize) {
+// Solution 3: Bit Manipulation (XOR)
+int solution3(int *nums, int numsSize) {
     int missing = 0;
     for (int i = 0; i < numsSize; i++) {
         missing ^= i ^ nums[i];
@@ -44,8 +46,8 @@ int bestSolution3(int *nums, int numsSize) {
     return missing;
 }
 
-// Best Solution 4: Hash Table
-int bestSolution4(int *nums, int numsSize) {
+// Solution 4: Hash Table
+int solution4(int *nums, int numsSize) {
     int hashTable[numsSize + 1];
     memset(hashTable, 0, sizeof(hashTable));
     for (int i = 0; i < numsSize; i++) {

@@ -4,7 +4,7 @@ FROM Employee a
 WHERE a.salary > (SELECT salary FROM Employee WHERE id = a.managerId);
 
 
--- Best Solution
+-- Solution
 SELECT e2.name AS Employee
 FROM employee e1
 INNER JOIN employee e2 ON e1.id = e2.managerId

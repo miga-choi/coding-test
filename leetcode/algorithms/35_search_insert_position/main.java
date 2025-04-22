@@ -15,7 +15,7 @@ class SearchInsertPosition {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int solution1(int[] nums, int target) {
     if (nums == null || nums.length == 0) {
       return 0;
@@ -41,7 +41,7 @@ class SearchInsertPosition {
     return nums[l] < target ? l + 1 : l;
   }
 
-  // Solution 2:
+  // Solution 2
   public int solution2(int[] nums, int target) {
     int start = 0;
     int end = nums.length - 1;
@@ -60,7 +60,7 @@ class SearchInsertPosition {
     return start;
   }
 
-  // Solution 3:
+  // Solution 3
   public int solution3(int[] nums, int target) {
     int low = 0, high = nums.length - 1;
     while (low <= high) {

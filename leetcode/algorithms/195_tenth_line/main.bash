@@ -2,7 +2,7 @@
 sed -n 10p file.txt;
 
 
-# Best Solution
+# Solution
 # Solution 1
 cnt=0
 while read line && [ $cnt -le 10 ]; do let 'cnt = cnt + 1' if [ $cnt -eq 10 ]; then
@@ -11,10 +11,10 @@ while read line && [ $cnt -le 10 ]; do let 'cnt = cnt + 1' if [ $cnt -eq 10 ]; t
   fi
 done < file.txt
 
-# Solution 2
+# Solution 2-1
 awk 'FNR == 10 {print }'  file.txt
 
-# OR
+# Solution 2-2
 awk 'NR == 10' file.txt
 
 # Solution 3

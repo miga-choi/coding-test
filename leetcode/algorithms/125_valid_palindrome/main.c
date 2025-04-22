@@ -34,6 +34,7 @@ bool isPalindrome(char* s) {
     return true;
 }
 
+
 // Solution
 int isAlphanum(char c) {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9');

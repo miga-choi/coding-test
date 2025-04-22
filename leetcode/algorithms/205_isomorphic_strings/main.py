@@ -1,4 +1,4 @@
-class Solution:
+class IsomorphicStrings:
     def isIsomorphic(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
@@ -14,9 +14,9 @@ class Solution:
 
         return True
 
-    
-    # Best Solution
-    def bestSolution(self, s: str, t: str) -> bool:
+
+    # Solution
+    def solution(self, s: str, t: str) -> bool:
         map1 = []
         map2 = []
         for idx in s:

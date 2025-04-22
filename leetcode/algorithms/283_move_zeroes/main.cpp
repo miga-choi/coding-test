@@ -3,7 +3,7 @@ using namespace std;
 
 class MoveZeroes {
 public:
-    void moveZeroes(vector<int> &nums) {
+    void moveZeroes(vector<int>& nums) {
         int newNums[nums.size()];
         int count = 0;
         for (int i = 0; i < nums.size(); i++) {
@@ -21,8 +21,10 @@ public:
         }
     }
 
-    // Best Solution 1
-    void bestSolution1(vector<int> &nums) {
+
+    // Solution
+    // Solution 1
+    void solution1(vector<int>& nums) {
         int j = 0;
 
         // move all the non-zero elements advance
@@ -37,8 +39,8 @@ public:
         }
     }
 
-    // Best Solution 2
-    void bestSolution2(vector<int> &nums) {
+    // Solution 2
+    void solution2(vector<int>& nums) {
         int left = 0;
 
         for (int right = 0; right < nums.size(); right++) {

@@ -41,7 +41,7 @@ public class PathSum {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public bool solution1(TreeNode root, int targetSum) {
         if (root == null) {
             return false;
@@ -57,7 +57,7 @@ public class PathSum {
         return leftSum || rightSum;
     }
 
-    // Solution 2:
+    // Solution 2
     public bool solution2(TreeNode root, int targetSum) {
         if (root == null) {
             return false;

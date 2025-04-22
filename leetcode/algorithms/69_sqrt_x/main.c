@@ -23,7 +23,7 @@ int mySqrt(int x) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int solution1(int x) {
     long r = x;
     while (r * r > x) {
@@ -32,7 +32,7 @@ int solution1(int x) {
     return r;
 }
 
-// Solution 2:
+// Solution 2
 int solution2(int x) {
     // long long due to some of test cases overflows integer limit.
     long long s = 0, e = x, ans, mid;
@@ -55,7 +55,7 @@ int solution2(int x) {
     return ans;
 }
 
-// Solution 3:
+// Solution 3
 int solution3(int x) {
     long long i = 0;
     while (i * i <= x) {

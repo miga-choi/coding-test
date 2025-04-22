@@ -1,11 +1,5 @@
 from typing import Optional
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 
 class ListNode:
     def __init__(self, x):
@@ -13,7 +7,7 @@ class ListNode:
         self.next = None
 
 
-class Solution:
+class IntersectionOfTwoLinkedLists:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         a = headA
         b = headB
@@ -29,8 +23,8 @@ class Solution:
         return a
 
 
-    # Best Solution
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+    # Solution
+    def solution(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         stackA = ["A"]
         stackB = ["B"]
 

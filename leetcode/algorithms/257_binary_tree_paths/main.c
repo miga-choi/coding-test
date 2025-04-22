@@ -3,19 +3,19 @@
 
 struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-void calculatePath(struct TreeNode *root, char *string, char **stringArray, int *size) {
+void calculatePath(struct TreeNode* root, char* string, char** stringArray, int* size) {
     if (!root) {
         return;
     }
 
-    char *stringEndPoint = string + strlen(string);
+    char* stringEndPoint = string + strlen(string);
     sprintf(stringEndPoint, "%s%d", strlen(string) == 0 ? "" : "->", root->val);
 
     if (!root->left && !root->right) {
@@ -30,8 +30,8 @@ void calculatePath(struct TreeNode *root, char *string, char **stringArray, int 
     *stringEndPoint = '\0';
 }
 
-char **binaryTreePaths(struct TreeNode *root, int *returnSize) {
-    char **stringArray = calloc(100, sizeof(char *));
+char** binaryTreePaths(struct TreeNode* root, int* returnSize) {
+    char** stringArray = calloc(100, sizeof(char*));
     int size = 0;
     char buffer[100] = {0};
     calculatePath(root, buffer, stringArray, &size);
@@ -39,16 +39,18 @@ char **binaryTreePaths(struct TreeNode *root, int *returnSize) {
     return stringArray;
 }
 
-// Best Solution
+
+// Solution
 #define SIZE_BUFF 100
 
 int size;
-char **ret;
+char** ret;
 
-void binaryTreePaths_r(struct TreeNode *root, char *prefix) {
-    if (root == NULL)
+void binaryTreePaths_r(struct TreeNode* root, char* prefix) {
+    if (root == NULL) {
         return;
-    char *p = prefix + strlen(prefix);
+    }
+    char* p = prefix + strlen(prefix);
     sprintf(p, "%s%d", strlen(prefix) == 0 ? "" : "->", root->val);
     if (root->left == NULL && root->right == NULL) {
         ret[size] = calloc(strlen(prefix) + 1, sizeof(char));
@@ -61,9 +63,9 @@ void binaryTreePaths_r(struct TreeNode *root, char *prefix) {
     *p = '\0';
 }
 
-char **bestSolution(struct TreeNode *root, int *returnSize) {
+char** solution(struct TreeNode* root, int* returnSize) {
     char buff[SIZE_BUFF] = {0};
-    ret = calloc(SIZE_BUFF, sizeof(char *));
+    ret = calloc(SIZE_BUFF, sizeof(char*));
     size = 0;
 
     binaryTreePaths_r(root, buff);

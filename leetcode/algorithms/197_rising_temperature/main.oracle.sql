@@ -5,14 +5,14 @@ WHERE DATEDIFF(w2.recordDate, w1.recordDate) = 1
 AND w2.temperature > w1.temperature;
 
 
--- Best Solution
--- best solution1
+-- Solution
+-- Solution1
 SELECT Today.id 
 FROM Weather Today, Weather Yesterday 
 WHERE DATEDIFF(Today.recordDate, Yesterday.recordDate) = 1 
 AND Today.temperature > Yesterday.temperature;
 
--- best solution2
+-- Solution2
 SELECT Today.id 
 FROM Weather Today, Weather Yesterday 
 WHERE DATEDIFF(DAY, Today.recordDate, Yesterday.recordDate) = -1 

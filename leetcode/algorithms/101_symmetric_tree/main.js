@@ -34,6 +34,7 @@ var isSymmetric = function (root) {
   return checkNode(root.left, root.right);
 };
 
+
 // Solution
 // Solution 1
 var solution1 = function (root) {

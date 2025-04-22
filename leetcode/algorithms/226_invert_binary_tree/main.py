@@ -1,14 +1,7 @@
 from typing import Optional
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 
-
-class Solution:
+class InvertBinaryTree:
     class TreeNode:
         def __init__(self, val=0, left=None, right=None):
             self.val = val
@@ -23,12 +16,21 @@ class Solution:
             return root
         return root
 
-    # Best Solution
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:  # Base Case
+
+    # Solution
+    def solution(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        # Base Case
+        if not root:
             return root
-        self.invertTree(root.left)  # Call the left substree
-        self.invertTree(root.right)  # Call the right substree
+
+        # Call the left substree
+        self.solution(root.left)
+
+        # Call the right substree
+        self.solution(root.right)
+
         # Swap the nodes
         root.left, root.right = root.right, root.left
-        return root  # Return the root
+
+        # Return the root
+        return root

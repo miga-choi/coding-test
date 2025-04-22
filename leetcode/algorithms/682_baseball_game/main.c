@@ -24,6 +24,7 @@ int calPoints(char** operations, int operationsSize) {
     return sum;
 }
 
+
 // Solution
 int solution(char** operations, int operationsSize) {
     int* record = (int*)malloc(sizeof(int) * operationsSize);

@@ -1,24 +1,16 @@
-#include <stdlib.h>
 #include <unordered_map>
 #include <vector>
 using namespace std;
 
-class ContainsDuplicateII
-{
+class ContainsDuplicateII {
 public:
-    bool containsNearbyDuplicate(vector<int> &nums, int k)
-    {
+    bool containsNearbyDuplicate(vector<int> &nums, int k) {
         unordered_map<int, int> numsMap;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            if (numsMap.count(nums[i]) == 0)
-            {
+        for (int i = 0; i < nums.size(); i++) {
+            if (numsMap.count(nums[i]) == 0) {
                 numsMap.insert(make_pair(nums[i], i));
-            }
-            else
-            {
-                if (abs(numsMap.find(nums[i])->second - i) <= k)
-                {
+            } else {
+                if (abs(numsMap.find(nums[i])->second - i) <= k) {
                     return true;
                 }
                 numsMap.find(nums[i])->second = i;
@@ -27,20 +19,17 @@ public:
         return false;
     }
 
-    // Best Solution
-    bool bestSolution(vector<int> &nums, int k)
-    {
+
+    // Solution
+    bool solution(vector<int> &nums, int k) {
         unordered_map<int, int> mp;
         int n = nums.size();
 
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             // mp.count() will tell whatever ith index that I want, have I seen it before?
-            if (mp.count(nums[i]))
-            {
+            if (mp.count(nums[i])) {
                 // if I have already seen this number, then check for condition abs(i - j) <= k
-                if (abs(i - mp[nums[i]]) <= k)
-                {
+                if (abs(i - mp[nums[i]]) <= k) {
                     return true;
                 }
             }

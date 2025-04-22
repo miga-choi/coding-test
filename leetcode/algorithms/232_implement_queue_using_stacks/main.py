@@ -1,3 +1,11 @@
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+
 class MyQueue:
     def __init__(self):
         self.inputStack = []
@@ -21,16 +29,8 @@ class MyQueue:
         return len(self.inputStack) == 0 and len(self.outputStack) == 0
 
 
-# Your MyQueue object will be instantiated and called as such:
-# obj = MyQueue()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.peek()
-# param_4 = obj.empty()
-
-
-# Best Solution
-class BestSolution(object):
+# Solution
+class Solution(object):
     def __init__(self):
         self.in_stk = []
         self.out_stk = []

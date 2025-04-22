@@ -26,7 +26,7 @@ var plusOne = function (digits) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (digits) {
   for (var i = digits.length - 1; i >= 0; i--) {
     digits[i]++;
@@ -40,7 +40,7 @@ var solution1 = function (digits) {
   return digits;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (digits) {
   for (var i = digits.length - 1; i >= 0; i--) {
     if (++digits[i] > 9) {
@@ -53,7 +53,7 @@ var solution2 = function (digits) {
   return digits;
 };
 
-// Solution 3:
+// Solution 3
 var solution3 = function (digits) {
   for (let i = digits.length - 1; i >= 0; i--) {
     if (digits[i] === 9) {

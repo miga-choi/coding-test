@@ -1,60 +1,53 @@
-struct TreeNode
-{
+#include <cmath>
+using namespace std;
+
+struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
 
-class CountCompleteTreeNodes
-{
+class CountCompleteTreeNodes {
 public:
-    int countNodes(TreeNode *root)
-    {
+    int countNodes(TreeNode* root) {
         int count = 0;
-        if (root)
-        {
+        if (root) {
             count++;
-            if (root->left)
-            {
+            if (root->left) {
                 count += countNodes(root->left);
             }
-            if (root->right)
-            {
+            if (root->right) {
                 count += countNodes(root->right);
             }
         }
         return count;
     }
 
-    // Best Solution
-    int bestSolution(TreeNode *root)
-    {
-        if (!root)
-        {
+
+    // Solution
+    int solution(TreeNode* root) {
+        if (!root) {
             return 0;
         }
 
         int hl = 0, hr = 0;
 
-        TreeNode *l = root, *r = root;
+        TreeNode* l = root, *r = root;
 
-        while (l)
-        {
+        while (l) {
             hl++;
             l = l->left;
         }
 
-        while (r)
-        {
+        while (r) {
             hr++;
             r = r->right;
         }
 
-        if (hl == hr)
-        {
+        if (hl == hr) {
             return pow(2, hl) - 1;
         }
 

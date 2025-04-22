@@ -16,6 +16,7 @@ class BestTimeToBuyAndSellStock {
     return profit;
   }
 
+
   // Solution
   public int solution(int[] prices) {
     int lsf = Integer.MAX_VALUE;

@@ -38,7 +38,7 @@ var solution2 = function (nums1, m, nums2, n) {
   }
 };
 
-// Solution 3:
+// Solution 3
 var solution3 = function (nums1, m, nums2, n) {
   // Initialize i and j to store indices of the last element of 1st and 2nd array respectively...
   let i = m - 1, j = n - 1;

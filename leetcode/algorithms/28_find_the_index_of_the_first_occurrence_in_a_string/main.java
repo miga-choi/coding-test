@@ -11,7 +11,7 @@ class FindTheIndexOfTheFirstOccurrenceInAString {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int solution1(String haystack, String needle) {
     for (int i = 0;; i++) {
       for (int j = 0;; j++) {
@@ -28,7 +28,7 @@ class FindTheIndexOfTheFirstOccurrenceInAString {
     }
   }
 
-  // Solution 2:
+  // Solution 2
   public int solution2(String haystack, String needle) {
     int haylength = haystack.length();
     int needlelength = needle.length();
@@ -47,7 +47,7 @@ class FindTheIndexOfTheFirstOccurrenceInAString {
     return -1;
   }
 
-  // Solution 3:
+  // Solution 3
   public int solution3(String haystack, String needle) {
     int hLen = haystack.length();
     int nLen = needle.length();

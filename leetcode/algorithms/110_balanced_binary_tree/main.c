@@ -32,6 +32,7 @@ bool isBalanced(struct TreeNode* root) {
     return true;
 }
 
+
 // Solution
 int solution_maxdepth(struct TreeNode* root, int depth) {
     if (depth < 0 || root == NULL) {

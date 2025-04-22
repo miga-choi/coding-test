@@ -1,12 +1,12 @@
-class Solution:
+class NimGame:
     def canWinNim(self, n: int) -> bool:
         if n % 4 == 0:
             return False
         return True
 
 
-    # Best Solution
-    def canWinNim(self, n: int) -> bool:
+    # Solution
+    def solution(self, n: int) -> bool:
         if n <= 3:
             return True
         new_size = n + 1

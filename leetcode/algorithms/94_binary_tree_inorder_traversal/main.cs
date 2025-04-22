@@ -28,7 +28,7 @@ public class BinaryTreeInorderTraversal {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     List<int> ans = new List<int>();
 
     public IList<int> solution1(TreeNode root) {

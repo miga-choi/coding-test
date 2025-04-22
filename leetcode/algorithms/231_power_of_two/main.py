@@ -1,4 +1,4 @@
-class Solution:
+class PowerOfTwo:
     def isPowerOfTwo(self, n: int) -> bool:
         m = 0
 
@@ -10,11 +10,11 @@ class Solution:
         return False
 
 
-    # Best Solution
-    # O(1)
-    def isPowerOfTwo(self, n: int) -> bool:
+    # Solution
+    # Solution 1: O(1)
+    def solution1(self, n: int) -> bool:
         return n > 0 and n & (n - 1) == 0
 
-    # O(n)
-    def isPowerOfTwo(self, n: int) -> bool:
+    # Solution 2: O(n)
+    def solution2(self, n: int) -> bool:
         return n > 0 and sum(list(map(int, bin(n)[2:]))) == 1

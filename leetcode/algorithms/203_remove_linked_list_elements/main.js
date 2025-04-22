@@ -1,11 +1,3 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
@@ -23,7 +15,7 @@ var removeElements = function (head, val) {
 
   let currentHead = head;
   let nextHead = head.next;
-  
+
   while (nextHead) {
     if (nextHead.val === val) {
       nextHead = nextHead.next;
@@ -41,9 +33,12 @@ var removeElements = function (head, val) {
   return head;
 };
 
-// Best Solution
-var bestSolution = function (head, val) {
-  if (!head) return head;
+
+// Solution
+var solution = function (head, val) {
+  if (!head) {
+    return head;
+  }
 
   // if head is the value were deleting and if there is any repetition lets handle that case first otherwise we'll just break out of the loop
   while (head) {

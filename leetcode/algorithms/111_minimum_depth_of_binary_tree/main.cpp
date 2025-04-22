@@ -30,7 +30,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     int solution1(TreeNode* root) {
         if (!root) {
             return 0;
@@ -39,7 +39,7 @@ public:
         return 1 + (min(L, R) ? min(L, R) : max(L, R));
     }
 
-    // Solution 2:
+    // Solution 2
     int solution2(TreeNode* root) {
         if (!root) {
             return 0;
@@ -48,7 +48,7 @@ public:
         return 1 + (L && R ? min(L, R) : max(L, R));
     }
 
-    // Solution 3:
+    // Solution 3
     int solution3(TreeNode* root) {
         if (!root) {
             return 0;
@@ -57,7 +57,7 @@ public:
         return 1 + (!L - !R ? max(L, R) : min(L, R));
     }
 
-    // Solution 4:
+    // Solution 4
     int solution4(TreeNode* root) {
         if (!root) {
             return 0;

@@ -19,8 +19,9 @@ class ReverseLinkedList {
     return result;
   }
 
-  // Best Solution
-  ListNode? bestSolution(ListNode? head) {
+
+  // Solution
+  ListNode? solution(ListNode? head) {
     final tm = ListNode();
     while (head != null) {
       tm.next = ListNode(head.val, tm.next);

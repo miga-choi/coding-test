@@ -23,7 +23,7 @@ int minDepth(struct TreeNode* root) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int solution1(struct TreeNode* root) {
     if (root == NULL) {
         return 0;

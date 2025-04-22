@@ -21,7 +21,7 @@ var climbStairs = function (n) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (n) {
   if (n < 2) {
     return 1;

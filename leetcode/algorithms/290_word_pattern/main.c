@@ -1,8 +1,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-// Wrong
-bool wordPattern(char *pattern, char *s) {
+bool wordPattern(char* pattern, char* s) {
     int patternNum[26] = {0};
     int ifPatternNumNull[26] = {0};
     int wordCount = 0;
@@ -47,19 +46,21 @@ bool wordPattern(char *pattern, char *s) {
     return true;
 }
 
-// Best Solution
-bool bestSolution(char *pattern, char *s) {
+
+// Solution
+bool solution(char* pattern, char* s) {
     int patternLen = strlen(pattern);
     int sLen = strlen(s);
 
-    if (patternLen == 0 || sLen == 0)
+    if (patternLen == 0 || sLen == 0) {
         return false;
+    }
 
-    char *hashMap[26];
-    memset(hashMap, 0, sizeof(char *) * 26);
+    char* hashMap[26];
+    memset(hashMap, 0, sizeof(char*) * 26);
 
-    char *word;
-    char *token = strtok(s, " ");
+    char* word;
+    char* token = strtok(s, " ");
     int i = 0;
 
     while (token != NULL) {

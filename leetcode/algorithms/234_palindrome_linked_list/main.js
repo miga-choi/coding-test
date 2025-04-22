@@ -1,11 +1,3 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
@@ -50,8 +42,8 @@ var isPalindrome = function (head) {
 };
 
 
-// Best Solution
-var bestSolution = function (head) {
+// Solution
+var solution = function (head) {
   let slow = head;
   let fast = head;
   let prev;

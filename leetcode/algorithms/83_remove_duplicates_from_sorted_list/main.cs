@@ -22,7 +22,7 @@ public class RemoveDuplicatesFromSortedList {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public ListNode solution1(ListNode head) {
         ListNode n = head;
 
@@ -36,8 +36,8 @@ public class RemoveDuplicatesFromSortedList {
         return head;
     }
 
-    // Solution 2:
-    public ListNode bestSolution2(ListNode head) {
+    // Solution 2
+    public ListNode solution2(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -58,8 +58,8 @@ public class RemoveDuplicatesFromSortedList {
         return head;
     }
 
-    // Solution 3:
-    public ListNode bestSolution3(ListNode head) {
+    // Solution 3
+    public ListNode solution3(ListNode head) {
         if (head == null) {
             // Don't forget this edge case
             return null;

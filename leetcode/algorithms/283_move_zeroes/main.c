@@ -1,4 +1,4 @@
-void moveZeroes(int *nums, int numsSize) {
+void moveZeroes(int* nums, int numsSize) {
     int newNums[numsSize];
     int count = 0;
 
@@ -17,8 +17,10 @@ void moveZeroes(int *nums, int numsSize) {
     }
 }
 
-// Best Solution 1
-void bestSolution1(int *nums, int numsSize) {
+
+// Solution
+// Solution 1
+void solution1(int* nums, int numsSize) {
     int j = 0;
 
     // move all the non-zero elements advance
@@ -33,8 +35,8 @@ void bestSolution1(int *nums, int numsSize) {
     }
 }
 
-// Best Solution 2
-void bestSolution2(int *nums, int numsSize) {
+// Solution 2
+void solution2(int* nums, int numsSize) {
     int slow = 0;
     int fast = 0;
     while (fast < numsSize) {
@@ -44,6 +46,7 @@ void bestSolution2(int *nums, int numsSize) {
         }
         fast++;
     }
-    for (int i = slow; i < numsSize; i++)
+    for (int i = slow; i < numsSize; i++) {
         nums[i] = 0;
+    }
 }

@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class MoveZeroes:
     def moveZeroes(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -14,8 +14,8 @@ class Solution:
                     nums[j] = temp
 
 
-    # Best Solution
-    def bestSolution(self, nums):
+    # Solution
+    def solution(self, nums):
         n = len(nums)
         i = 0
         for j in range(n):

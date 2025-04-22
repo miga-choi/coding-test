@@ -1,14 +1,12 @@
 import math
 
+
 # The isBadVersion API is already defined for you.
 # def isBadVersion(version: int) -> bool:
-
-
 def isBadVersion(version: int) -> bool:
     return False
 
-
-class Solution:
+class FirstBadVersion:
     def firstBadVersion(self, n: int) -> int:
         left = 0
         right = n
@@ -23,14 +21,19 @@ class Solution:
         return left
 
 
-    # Best Solution
-    def bestSolution(self, n):
+    # Solution
+    def solution(self, n):
         i = 1
         j = n
+
         while i < j:
             pivot = (i + j) // 2
+
             if isBadVersion(pivot):
-                j = pivot  # keep track of the leftmost bad version
+                # keep track of the leftmost bad version
+                j = pivot
             else:
-                i = pivot + 1  # the one after the rightmost good version
+                # the one after the rightmost good version
+                i = pivot + 1
+
         return i

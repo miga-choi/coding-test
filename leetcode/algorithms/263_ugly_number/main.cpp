@@ -19,11 +19,14 @@ public:
         return false;
     }
 
-    // Best Solution
-    bool bestSolution(int n) {
-        for (int i = 2; i < 6 && n; i++)
-            while (n % i == 0)
+
+    // Solution
+    bool solution(int n) {
+        for (int i = 2; i < 6 && n; i++) {
+            while (n % i == 0) {
                 n /= i;
+            }
+        }
         return n == 1;
     }
 };

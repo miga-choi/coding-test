@@ -28,8 +28,8 @@ class LongestCommonPrefix:
         return result
 
 
-    # Solution:
-    # Solution 1:
+    # Solution
+    # Solution 1
     def solution1(self, strs: List[str]) -> str:
         ans = ""
         strs = sorted(strs)
@@ -41,7 +41,7 @@ class LongestCommonPrefix:
             ans += first[i]
         return ans
 
-    # Solution 2:
+    # Solution 2
     def solution2(self, strs: List[str]) -> str:
         if not strs:
             return ""
@@ -52,7 +52,7 @@ class LongestCommonPrefix:
                     return shortest[:i]
         return shortest
 
-    # Solution 3:
+    # Solution 3
     def solution3(self, strs: List[str]) -> str:
         if not strs:
             return ""
@@ -65,7 +65,7 @@ class LongestCommonPrefix:
                 return s1[:i]  # stop until hit the split index
         return s1
 
-    # Solution 4:
+    # Solution 4
     def solution(self, strs: List[str]) -> str:
         l = list(zip(*strs))
         prefix = ""

@@ -7,8 +7,10 @@ class MissingNumber {
     return result;
   }
 
-  // Best Solution 1
-  int bestSolution1(List<int> nums) {
+
+  // Solution
+  // Solution 1
+  int solution1(List<int> nums) {
     nums.sort();
     int count = 0;
     int result = 0;
@@ -26,8 +28,8 @@ class MissingNumber {
     return result;
   }
 
-  // Best Solution 2
-  int bestSolution2(List<int> nums) {
+  // Solution 2
+  int solution2(List<int> nums) {
     int n = nums.length;
     int sum = nums.reduce((a, b) => a + b);
     return n * (n + 1) ~/ 2 - sum;

@@ -38,6 +38,7 @@ public:
         return 0;
     }
 
+
     // Solution
     bool solution(TreeNode* root) {
         // If the tree is empty, we can say it’s balanced...

@@ -31,8 +31,8 @@ class ValidAnagram {
     }
 
     
-    // Best Solution
-    public boolean bestSolution(String s, String t) {
+    // Solution
+    public boolean solution(String s, String t) {
         int[] alphabet = new int[26];
         for (int i = 0; i < s.length(); i++) {
             alphabet[s.charAt(i) - 'a']++;

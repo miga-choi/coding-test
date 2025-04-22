@@ -37,7 +37,7 @@ char* addbinary(char* a, char* b) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 char* solution1(char* a, char* b) {
     int i, j, k, c = 0;
     char* res;
@@ -68,8 +68,8 @@ char* solution1(char* a, char* b) {
     return res;
 }
 
-// Best Solution 2:
-char* bestSolution2(char* a, char* b) {
+// Solution 2
+char* solution2(char* a, char* b) {
     int sizeA = strlen(a);
     int sizeB = strlen(b);
     int sizeOutput = (sizeA > sizeB ? sizeA : sizeB) + 1;
@@ -91,8 +91,8 @@ char* bestSolution2(char* a, char* b) {
     return output + sizeOutput;
 }
 
-// Solution 2:
-char* solution2(char* a, char* b) {
+// Solution 3
+char* solution3(char* a, char* b) {
     int la = strlen(a);
     int lb = strlen(b);
     int lr = la > lb ? la : lb;

@@ -14,6 +14,7 @@ class SummaryRanges {
           begin = nums[i];
         }
       }
+
       if (begin < nums.last) {
         stringList.add("$begin->${nums.last}");
       } else {
@@ -24,8 +25,9 @@ class SummaryRanges {
     return stringList;
   }
 
-  // Best Solution
-  List<String> BestSolution(List<int> nums) {
+
+  // Solution
+  List<String> solution(List<int> nums) {
     final res = <String>[];
 
     if (nums.isEmpty) {

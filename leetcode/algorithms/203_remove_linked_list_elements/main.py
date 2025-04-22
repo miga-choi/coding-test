@@ -1,11 +1,5 @@
 from typing import Optional
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -13,7 +7,7 @@ class ListNode:
         self.next = next
 
 
-class Solution:
+class RemoveLinkedListElements:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         if head == None:
             return None
@@ -30,9 +24,10 @@ class Solution:
 
         return newHead.next
 
-    # Best Solution
-    # best solution 1
-    def bestSolution(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+
+    # Solution
+    # solution 1
+    def solution1(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         dummy_head = ListNode(-1)
         dummy_head.next = head
 
@@ -45,8 +40,8 @@ class Solution:
 
         return dummy_head.next
 
-    # best solution 2
-    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+    # solution 2
+    def solution2(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         prev, curr = None, head
         while curr:
             if curr.val == val:

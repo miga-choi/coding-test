@@ -1,4 +1,4 @@
-class Solution:
+class AddDigits:
     def addDigits(self, num: int) -> int:
         numString = str(num)
         while len(numString) > 1:
@@ -9,8 +9,8 @@ class Solution:
         return num
 
 
-    # Best Solution
-    def bestSolution(self, num: int) -> int:
+    # Solution
+    def solution(self, num: int) -> int:
         while num > 9:
             num = num % 10 + num // 10
         return num

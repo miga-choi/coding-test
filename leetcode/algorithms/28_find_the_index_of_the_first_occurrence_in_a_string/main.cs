@@ -5,7 +5,7 @@ public class FindTheIndexOfTheFirstOccurrenceInAString {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(string haystack, string needle) {
         for (var i = 0; i < haystack.Length - needle.Length + 1; i++) {
             if (haystack.Substring(i, needle.Length) == needle) {
@@ -16,12 +16,12 @@ public class FindTheIndexOfTheFirstOccurrenceInAString {
         return -1;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(string haystack, string needle) {
         return haystack.IndexOf(needle);
     }
 
-    // Solution 3:
+    // Solution 3
     public int solution3(string haystack, string needle) {
         int result = -1;
         int matchLoc = 0;

@@ -13,8 +13,9 @@ var missingNumber = function (nums) {
 };
 
 
-// Best Solution
-var bestSolution1 = function (nums) {
+// Solution
+// Solution 1
+var solution1 = function (nums) {
   const n = nums.length;
   const expectedSum = (n * (n + 1)) / 2;
   let actualSum = 0;
@@ -26,11 +27,10 @@ var bestSolution1 = function (nums) {
   return expectedSum - actualSum;
 };
 
-var bestSolution2 = function (nums) {
+// Solution 2
+var solution2 = function (nums) {
   const n = nums.length;
-
   const expectedSum = (n * (n + 1)) / 2;
   const actualSum = nums.reduce((sum, num) => sum + num, 0);
-
   return expectedSum - actualSum;
 };

@@ -1,4 +1,4 @@
-class Solution:
+class ValidAnagram:
     def isAnagram(self, s: str, t: str) -> bool:
         sMap: dict = {}
 
@@ -21,8 +21,8 @@ class Solution:
         return True
 
 
-    # Best Solution
-    def bestSolution(self, s: str, t: str) -> bool:
+    # Solution
+    def solution(self, s: str, t: str) -> bool:
         sorted_s = sorted(s)
         sorted_t = sorted(t)
         return sorted_s == sorted_t

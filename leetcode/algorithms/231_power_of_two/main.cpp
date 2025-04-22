@@ -1,17 +1,12 @@
-class PowerOfTwo
-{
+class PowerOfTwo {
 public:
-    bool isPowerOfTwo(int n)
-    {
-        if (n <= 0)
-        {
+    bool isPowerOfTwo(int n) {
+        if (n <= 0) {
             return false;
         }
 
-        while (n / 2)
-        {
-            if (n > 1 && (n % 2))
-            {
+        while (n / 2) {
+            if (n > 1 && (n % 2)) {
                 return false;
             }
             n /= 2;
@@ -20,9 +15,9 @@ public:
         return true;
     }
 
-    // Best Solution
-    bool bestSolution(int n)
-    {
+
+    // Solution
+    bool solution(int n) {
         return n > 0 && not(n & n - 1);
     }
 };

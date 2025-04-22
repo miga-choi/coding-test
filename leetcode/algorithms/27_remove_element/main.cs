@@ -14,7 +14,7 @@ public class RemoveElement {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(int[] nums, int val) {
         int result = 0;
         foreach (var item in nums) {
@@ -26,7 +26,7 @@ public class RemoveElement {
         return result;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(int[] nums, int val) {
         var j = 0;
         for (var i = 0; i < nums.length; i++) {

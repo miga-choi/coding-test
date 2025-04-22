@@ -38,12 +38,12 @@ var checkNode = function (node1, node2) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 function solution1(p, q) {
   return JSON.stringify(p) === JSON.stringify(q);
 }
 
-// Best Solution 2: Recursive (DFS) Preorder traversal
+// Solution 2: Recursive (DFS) Preorder traversal
 function solution2(p, q) {
   // Base case: If both trees are empty, they are identical.
   if (p === null && q === null) {

@@ -33,7 +33,7 @@ class MergeTwoSortedLists:
 
     # Solution
     # Solution 1:
-    def bestSolution1(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def solution1(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         cur = dummy = ListNode()
 
         while list1 and list2:

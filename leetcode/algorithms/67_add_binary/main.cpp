@@ -40,7 +40,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     string solution1(string a, string b) {
         string res;
         int i = a.length() - 1;
@@ -64,7 +64,7 @@ public:
         return res;
     }
 
-    // Solution 2:
+    // Solution 2
     string solution2(string a, string b) {
         string ans;
         int carry = 0;
@@ -86,7 +86,7 @@ public:
         return ans;
     }
 
-    // Solution 3:
+    // Solution 3
     string solution3(string a, string b) {
         string s = "";
 

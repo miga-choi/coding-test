@@ -7,8 +7,8 @@ class NimGame {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(int n) {
+    // Solution
+    public boolean solution(int n) {
         return (n % 4 != 0);
     }
 }

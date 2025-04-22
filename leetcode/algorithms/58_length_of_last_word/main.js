@@ -9,12 +9,12 @@ var lengthOfLastWord = function (s) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (s) {
   return s.trim().split(" ").pop().length;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (s) {
   let trimmedString = s.trim();
   return trimmedString.length - trimmedString.lastIndexOf(" ") - 1;

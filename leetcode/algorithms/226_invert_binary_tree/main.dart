@@ -15,8 +15,9 @@ class InvertBinaryTree {
     return root;
   }
 
-  // Best Solution
-  TreeNode? bestSolution(TreeNode? root) {
-    return root == null ? root : TreeNode(root.val, invertTree(root.right), invertTree(root.left));
+
+  // Solution
+  TreeNode? solution(TreeNode? root) {
+    return root == null ? root : TreeNode(root.val, solution(root.right), solution(root.left));
   }
 }

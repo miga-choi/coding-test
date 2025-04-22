@@ -32,8 +32,8 @@ var isAnagram = function (s, t) {
 };
 
 
-// Best Solution
-var bestSolution = function (s, t) {
+// Solution
+var solution = function (s, t) {
   if (s.length !== t.length) {
     return false;
   }

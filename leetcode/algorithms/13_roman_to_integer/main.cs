@@ -26,7 +26,7 @@ public class RomanToInteger {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(string s) {
         var chars = s.ToCharArray();
         var result = 0;
@@ -52,7 +52,7 @@ public class RomanToInteger {
         return 0;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(string s) {
         var map = new Dictionary<char, int>();
         map.Add('I', 1);
@@ -77,7 +77,7 @@ public class RomanToInteger {
         return sum;
     }
 
-    // Solution 3:
+    // Solution 3
     public int solution3(string s) {
         int[] Key = new int[] { 8, 21, 23, 11, 2, 3, 12 };
         int[] value = new int[] { 1, 5, 10, 50, 100, 500, 1000 };
@@ -94,7 +94,7 @@ public class RomanToInteger {
         return res;
     }
 
-    // Solution 4:
+    // Solution 4
     public int solution4(string s) {
         var map = new Dictionary<Char, int> {
             { 'I', 1 },
@@ -116,7 +116,7 @@ public class RomanToInteger {
         return sum;
     }
 
-    // Solution 5:
+    // Solution 5
     public int solution5(string s) {
         var map = new Dictionary<Char, int> {
         { 'I' , 1 }, { 'V' , 5 }, { 'X' , 10 }, { 'L' , 50 }, { 'C' , 100 }, { 'D' , 500 }, { 'M' , 1000 } };

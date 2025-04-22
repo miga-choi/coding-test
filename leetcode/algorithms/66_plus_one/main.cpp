@@ -29,7 +29,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     vector<int> solution1(vector<int>& digits) {
         int n = digits.size();
         for (int i = n - 1; i >= 0; i--) {
@@ -49,7 +49,7 @@ public:
         return digits;
     }
 
-    // Solution 2:
+    // Solution 2
     vector<int> solution2(vector<int>& digits) {
         int n = digits.size() - 1;
 

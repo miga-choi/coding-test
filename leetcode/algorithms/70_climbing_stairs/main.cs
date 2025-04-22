@@ -39,7 +39,7 @@ public class ClimbingStairs {
     public int solution2(int n) {
         int[] dp = new int[n + 1];
         Array.Fill(dp, -1);
-        int k = bestSolution2Helper(n, dp);
+        int k = solution2Helper(n, dp);
         return k;
     }
 

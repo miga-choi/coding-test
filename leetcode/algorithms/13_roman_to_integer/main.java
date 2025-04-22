@@ -29,7 +29,7 @@ class RomanToInteger {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(String s) {
         Map<Character, Integer> m = new HashMap<>();
 
@@ -54,7 +54,7 @@ class RomanToInteger {
         return ans;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(String s) {
         int ans = 0, num = 0;
         for (int i = s.length() - 1; i >= 0; i--) {

@@ -27,6 +27,7 @@ class BalancedBinaryTree {
     return isBalanced(root.left) && isBalanced(root.right);
   }
 
+
   // Solution
   bool solution(TreeNode? root) {
     return cnt(root) != -1;

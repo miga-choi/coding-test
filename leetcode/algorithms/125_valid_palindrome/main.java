@@ -9,6 +9,7 @@ class ValidPalindrome {
     return true;
   }
 
+
   // Solution
   public boolean solution(String s) {
     if (s.isEmpty()) {

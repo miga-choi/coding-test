@@ -1,3 +1,12 @@
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * var obj = new MyStack()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.empty()
+ */
+
 var MyStack = function () {
   this.inputStack = [];
   this.outputStack = [];
@@ -47,21 +56,12 @@ MyStack.prototype.empty = function () {
   }
 };
 
-/**
- * Your MyStack object will be instantiated and called as such:
- * var obj = new MyStack()
- * obj.push(x)
- * var param_2 = obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.empty()
- */
 
-
-// Best Solution
+// Solution
 /**
  * Initialize your data structure here.
  */
-var BestSolution = function () {
+var Solution = function () {
   this.inQueue = [];
   this.outQueue = [];
 };
@@ -71,7 +71,7 @@ var BestSolution = function () {
  * @param {number} x
  * @return {void}
  */
-BestSolution.prototype.push = function (x) {
+Solution.prototype.push = function (x) {
   this.inQueue.push(x);
 };
 
@@ -79,7 +79,7 @@ BestSolution.prototype.push = function (x) {
  * Removes the element on top of the stack and returns that element.
  * @return {number}
  */
-BestSolution.prototype.pop = function () {
+Solution.prototype.pop = function () {
   while (this.inQueue.length > 1) {
     this.outQueue.push(this.inQueue.shift());
   }
@@ -95,7 +95,7 @@ BestSolution.prototype.pop = function () {
  * Get the top element.
  * @return {number}
  */
-BestSolution.prototype.top = function () {
+Solution.prototype.top = function () {
   while (this.inQueue.length > 1) {
     this.outQueue.push(this.inQueue.shift());
   }
@@ -112,6 +112,6 @@ BestSolution.prototype.top = function () {
  * Returns whether the stack is empty.
  * @return {boolean}
  */
-BestSolution.prototype.empty = function () {
+Solution.prototype.empty = function () {
   return this.inQueue.length === 0;
 };

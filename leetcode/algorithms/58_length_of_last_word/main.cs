@@ -11,7 +11,7 @@ public class LengthOfLastWord {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(string s) {
         int res = 0;
         for (int i = s.Length - 1; i >= 0;) {
@@ -24,7 +24,7 @@ public class LengthOfLastWord {
         return res;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(string s) {
         return (s.TrimEnd()).Split(' ').Last().Length;
     }

@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class NumberOf1Bits:
     def hammingWeight(self, n: int) -> int:
         n = bin(n).replace("0b", "")
@@ -11,7 +14,7 @@ class NumberOf1Bits:
     # Solution
     # Solution 1: Using Inbuilt Counter
     def solution1(self, n):
-        counter = collections.Counter(bin(n)[2:])
+        counter = Counter(bin(n)[2:])
         return counter.get("1", 0)
 
     # Solution 2: Using Bit Manipulation

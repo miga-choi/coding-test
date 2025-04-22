@@ -24,6 +24,7 @@ int** generate(int numRows, int* returnSize, int** returnColumnSizes) {
     return result;
 }
 
+
 // Solution
 int** solution(int numRows, int* returnSize, int** returnColumnSizes) {
     *returnSize = numRows;

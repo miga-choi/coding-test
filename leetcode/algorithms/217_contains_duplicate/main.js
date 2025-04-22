@@ -14,8 +14,8 @@ var containsDuplicate = function (nums) {
 };
 
 
-// Best Solution
-var bestSolution = function (nums) {
+// Solution
+var solution = function (nums) {
   const s = new Set(nums);
   return s.size !== nums.length;
 };

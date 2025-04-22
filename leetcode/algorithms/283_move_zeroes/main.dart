@@ -10,8 +10,9 @@ class MoveZeroes {
     nums.addAll(List<int>.filled(zeroCount, 0));
   }
 
-  // Best Solution
-  void bestSolution(List<int> nums) {
+
+  // Solution
+  void solution(List<int> nums) {
     List<int> testValues = [];
     nums.forEach((value) => testValues.add(value));
     testValues.retainWhere((value) => value == 0);

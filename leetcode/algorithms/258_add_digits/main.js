@@ -15,7 +15,7 @@ var addDigits = function (num) {
 };
 
 
-// Best Solution
-var bestSolution = function (num) {
+// Solution
+var solution = function (num) {
   return 1 + ((num - 1) % 9);
 };

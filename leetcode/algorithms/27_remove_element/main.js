@@ -14,7 +14,7 @@ var removeElement = function (nums, val) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (nums, val) {
   var zeroStartIdx = 0;
   for (let i = 0; i < nums.length; i++) {
@@ -26,7 +26,7 @@ var solution1 = function (nums, val) {
   return zeroStartIdx;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (nums, val) {
   let left = 0;
   let right = nums.length - 1;
@@ -43,7 +43,7 @@ var solution2 = function (nums, val) {
   return left;
 };
 
-// Solution 3:
+// Solution 3
 var solution3 = function (nums, val) {
   // Counter for keeping track of elements other than val
   let count = 0;

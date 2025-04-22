@@ -34,7 +34,7 @@ class SymmetricTree:
 
 
     # Solution
-    # Solution 1:
+    # Solution 1
     def solution1(self, root: Optional[TreeNode]) -> bool:
         # Special case...
         if not root:

@@ -1,5 +1,14 @@
 import 'dart:collection';
 
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = MyStack();
+ * obj.push(x);
+ * int param2 = obj.pop();
+ * int param3 = obj.top();
+ * bool param4 = obj.empty();
+ */
+
 class MyStack {
   late final Queue<int> queue1;
   late final Queue<int> queue2;
@@ -36,18 +45,12 @@ class MyStack {
   }
 }
 
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = MyStack();
- * obj.push(x);
- * int param2 = obj.pop();
- * int param3 = obj.top();
- * bool param4 = obj.empty();
- */
 
-class BestSolution {
+// Solution
+class Solution {
   List<int> queue1 = [];
   List<int> queue2 = [];
+
   MyStack() {}
 
   void push(int x) {

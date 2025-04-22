@@ -21,7 +21,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     int solution1(vector<int>& nums) {
         int j = 1;
         for (int i = 1; i < nums.size(); i++) {
@@ -33,7 +33,7 @@ public:
         return j;
     }
 
-    // Solution 2:
+    // Solution 2
     int solution2(vector<int>& nums) {
         int count = 0;
         for (int i = 1; i < nums.size(); i++) {
@@ -46,7 +46,7 @@ public:
         return nums.size() - count;
     }
 
-    // Solution 3:
+    // Solution 3
     int solution3(vector<int>& nums) {
         int i = 0;
         for (int n : nums) {
@@ -57,7 +57,7 @@ public:
         return i;
     }
 
-    // Solution 4:
+    // Solution 4
     int solution4(vector<int>& nums) {
         int i = !nums.empty();
         for (int n : nums) {

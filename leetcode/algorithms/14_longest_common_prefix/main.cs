@@ -17,7 +17,7 @@ public class LongestCommonPrefix {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public string solution1(string[] strs) {
         string shortest = ss.OrderBy(s => s.Length).First();
 
@@ -62,7 +62,7 @@ public class LongestCommonPrefix {
         return sb.ToString();
     }
 
-    // Solution 4:
+    // Solution 4
     public string solution4(string[] strs) {
         if (strs.Length == 1) {
             return strs[0];

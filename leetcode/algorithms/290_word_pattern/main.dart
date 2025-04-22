@@ -24,10 +24,14 @@ class WordPattern {
     return true;
   }
 
-  // Best Solution 1
-  bool bestSolution1(String pattern, String s) {
+
+  // Solution
+  // Solution 1
+  bool solution1(String pattern, String s) {
     var list = s.split(' ');
-    if (pattern.length != list.length) return false;
+    if (pattern.length != list.length) {
+      return false;
+    }
 
     var mapK = {};
     var mapV = {};
@@ -47,8 +51,8 @@ class WordPattern {
     return true;
   }
 
-  // Best Solution 2
-  bool bestSolution2(String pattern, String s) {
+  // Solution 2
+  bool solution2(String pattern, String s) {
     // Split the string `s` into individual words and store them in a list
     List<String> words = s.split(" ");
 
@@ -66,7 +70,8 @@ class WordPattern {
     // Iterate through each character in the pattern and its corresponding word
     for (int i = 0; i < pattern.length; i++) {
       // Check if the character is not already in the dictionary and the word is not already mapped
-      if (!patternType.containsKey(pattern[i]) && !patternType.containsValue(words[i])) {
+      if (!patternType.containsKey(pattern[i]) &&
+          !patternType.containsValue(words[i])) {
         // Add the character-word pair to the dictionary
         patternType.addEntries({pattern[i]: words[i]}.entries);
       }

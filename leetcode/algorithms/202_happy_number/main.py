@@ -1,4 +1,4 @@
-class Solution:
+class HappyNumber:
     def isHappy(self, n: int) -> bool:
         if n <= 1:
             return True
@@ -16,9 +16,17 @@ class Solution:
         return False
 
 
-# Best Solution
-# best solution 1
-def bestSolution1(self, n: int) -> bool:
+# Solution
+# solution 1
+def squared(self, n):
+    result = 0
+    while n > 0:
+        last = n % 10
+        result += last * last
+        n = n // 10
+    return result
+
+def solution1(self, n: int) -> bool:
     # 20 -> 4 -> 16 -> 37 -> 58 -> 89 -> 145 > 42 -> 20
     slow = self.squared(n)
     fast = self.squared(self.squared(n))
@@ -29,18 +37,8 @@ def bestSolution1(self, n: int) -> bool:
 
     return fast == 1
 
-
-def squared(self, n):
-    result = 0
-    while n > 0:
-        last = n % 10
-        result += last * last
-        n = n // 10
-    return result
-
-
-# best solution 2
-def bestSolution2(self, n):
+# solution 2
+def solution2(self, n):
     mem = set()
     while n != 1:
         n = sum([int(i) ** 2 for i in str(n)])

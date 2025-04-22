@@ -26,7 +26,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     int solution1(string haystack, string needle) {
         int m = haystack.size(), n = needle.size();
         for (int i = 0; i <= m - n; i++) {
@@ -43,7 +43,7 @@ public:
         return -1;
     }
 
-    // Solution 2:
+    // Solution 2
     int solution2(string haystack, string needle) {
         int m = haystack.size(), n = needle.size(), p = 0;
         while (p + n - 1 < m) {
@@ -55,7 +55,7 @@ public:
         return -1;
     }
 
-    // Solution 3:
+    // Solution 3
     vector<int> kmpProcess(string needle) {
         int n = needle.size();
         vector<int> lps(n, 0);

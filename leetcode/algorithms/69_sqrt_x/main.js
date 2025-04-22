@@ -12,7 +12,7 @@ var mySqrt = function (x) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (x) {
   var left = 1;
   var right = Math.floor(x / 2) + 1;
@@ -33,7 +33,7 @@ var solution1 = function (x) {
   return right;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (x) {
   let result = 1;
   while (result * result <= x) {
@@ -42,7 +42,7 @@ var solution2 = function (x) {
   return result - 1;
 };
 
-// Solution 3:
+// Solution 3
 var solution3 = function (x) {
   let start = 0;
   let end = x;

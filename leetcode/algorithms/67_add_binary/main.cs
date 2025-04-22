@@ -32,7 +32,7 @@ public class AddBinary {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public string solution1(string a, string b) {
         var sb = new StringBuilder();
         var t = 0;
@@ -46,7 +46,7 @@ public class AddBinary {
         return sb.ToString();
     }
 
-    // Solution 2:
+    // Solution 2
     public string solution2(string a, string b) {
         if (x == 1) {
             return x;

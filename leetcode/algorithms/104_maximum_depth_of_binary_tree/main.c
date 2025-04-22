@@ -15,6 +15,7 @@ int maxDepth(struct TreeNode* root) {
     return left >= right ? left + 1 : right + 1;
 }
 
+
 // Solution
 int solution(struct TreeNode* root) {
     if (!root) {

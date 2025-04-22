@@ -23,9 +23,11 @@ var isUgly = function (n) {
 };
 
 
-// Best Solution
-var bestSolution = function (n) {
-  if (n <= 0) return false;
+// Solution
+var solution = function (n) {
+  if (n <= 0) {
+    return false;
+  }
 
   while (n != 1) {
     if (n % 2 === 0) {

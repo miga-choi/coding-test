@@ -28,6 +28,7 @@ class SymmetricTree {
     return checkSymmetric(root.left, root.right);
   }
 
+
   // Solution
   bool solution(TreeNode? root) => isMirror(root, root);
 

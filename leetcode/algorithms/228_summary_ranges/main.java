@@ -40,16 +40,16 @@ class SummaryRanges {
     }
 
 
-    // Best Solution
+    // Solution
     /**
      * Question is saying wherever you are finding continous elements then keep them
      * in an interval
      * else keep them alone
      * 
      * EX-> [0,1,2,4,5,7]
-     *      [0,1,2]-->[0->2] {2-4 in array is breakpoint}
-     *      [4,5] -->[4->5]
-     *      [7] -->[7]
+     *      [0,1,2] --> [0->2] {2-4 in array is breakpoint}
+     *      [4,5] --> [4->5]
+     *      [7] --> [7]
      * 
      * Approach
      * 
@@ -61,13 +61,14 @@ class SummaryRanges {
      *        check whether nums[i]!=start,if so add it to list start+"->"+nums[i]
      *     3. else add just the start
      */
-    public List<String> bestSolution(int[] nums) {
+    public List<String> solution(int[] nums) {
         ArrayList<String> al = new ArrayList<>();
 
         for (int i = 0; i < nums.length; i++) {
             int start = nums[i];
-            while (i + 1 < nums.length && nums[i] + 1 == nums[i + 1])
+            while (i + 1 < nums.length && nums[i] + 1 == nums[i + 1]) {
                 i++;
+            }
 
             if (start != nums[i]) {
                 al.add("" + start + "->" + nums[i]);
@@ -75,6 +76,7 @@ class SummaryRanges {
                 al.add("" + start);
             }
         }
+
         return al;
     }
 }

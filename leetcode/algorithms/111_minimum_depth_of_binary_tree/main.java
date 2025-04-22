@@ -43,7 +43,7 @@ class MinimumDepthOfBinaryTree {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int solution1(TreeNode root) {
     if (root == null) {
       return 0;
@@ -55,7 +55,7 @@ class MinimumDepthOfBinaryTree {
         : Math.min(left, right) + 1;
   }
 
-  // Solution 2:
+  // Solution 2
   public int solution2(TreeNode root) {
     // Base case...
     // If the subtree is empty i.e. root is NULL, return depth as 0...

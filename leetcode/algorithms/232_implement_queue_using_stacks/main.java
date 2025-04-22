@@ -1,5 +1,14 @@
 import java.util.Stack;
 
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
+
 class ImplementQueueUsingStacks {
     private Stack<Integer> inputStack;
     private Stack<Integer> outputStack;
@@ -39,18 +48,9 @@ class ImplementQueueUsingStacks {
     }
 }
 
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue obj = new MyQueue();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.peek();
- * boolean param_4 = obj.empty();
- */
 
-
-// Best Solution
-class ImplementQueueUsingStacks_BestSolution {
+// Solution
+class ImplementQueueUsingStacks_Solution {
     Stack<Integer> input = new Stack<Integer>();
     Stack<Integer> output = new Stack<Integer>();
 
@@ -64,9 +64,11 @@ class ImplementQueueUsingStacks_BestSolution {
     }
 
     public int peek() {
-        if (output.empty())
-            while (!input.empty())
+        if (output.empty()) {
+            while (!input.empty()) {
                 output.push(input.pop());
+            }
+        }
         return output.peek();
     }
 

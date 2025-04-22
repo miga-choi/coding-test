@@ -22,7 +22,7 @@ class PlusOne {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int[] solution1(int[] digits) {
     int n = digits.length;
     for (int i = n - 1; i >= 0; i--) {
@@ -40,7 +40,7 @@ class PlusOne {
     return newNumber;
   }
 
-  // Solution 2:
+  // Solution 2
   public int[] solution2(int[] digits) {
     int carry = 1;
     for (int i = digits.length - 1; i >= 0; i--) {

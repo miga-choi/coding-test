@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class SummaryRanges:
     def summaryRanges(self, nums: List[int]) -> List[str]:
         result = []
         x = 0
@@ -30,8 +30,8 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, nums: List[int]) -> List[str]:
+    # Solution
+    def solution(self, nums: List[int]) -> List[str]:
         result = []
         start, end = 0, 0
 

@@ -1,3 +1,4 @@
+#include <numeric>
 #include <vector>
 using namespace std;
 
@@ -13,8 +14,10 @@ public:
         return originSum - sum;
     }
 
-    // Best Solution 1: Using Vectors
-    int bestSolution1(vector<int> &nums) {
+
+    // Solution
+    // Solution 1: Using Vectors
+    int solution1(vector<int> &nums) {
         int n = nums.size();
         vector<int> v(n + 1, -1);
         for (int i = 0; i < nums.size(); i++) {
@@ -27,8 +30,8 @@ public:
         return 0;
     }
 
-    // Best Solution 2: XOR Operation
-    int bestSolution2(vector<int> &nums) {
+    // Solution 2: XOR Operation
+    int solution2(vector<int> &nums) {
         int n = nums.size();
         int ans = 0;
         for (int i = 1; i <= n; i++) {
@@ -40,15 +43,15 @@ public:
         return ans;
     }
 
-    // Best Solution 3: Sum of all elememnts
-    int bestSolution3(vector<int> &nums) {
+    // Solution 3: Sum of all elememnts
+    int solution3(vector<int> &nums) {
         int n = nums.size();
         int Tsum = (n * (n + 1)) / 2;
         return Tsum - accumulate(nums.begin(), nums.end(), 0);
     }
 
-    // Best Solution 4: Sorting
-    int bestSolution4(vector<int> &nums) {
+    // Solution 4: Sorting
+    int solution4(vector<int> &nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
         // case 1

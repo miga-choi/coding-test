@@ -1,21 +1,18 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-struct ListNode
-{
+struct ListNode {
     int val;
     struct ListNode *next;
 };
 
-bool isPalindrome(struct ListNode *head)
-{
+bool isPalindrome(struct ListNode *head) {
     struct ListNode *slow = head;
     struct ListNode *fast = head;
     struct ListNode *reverse = 0;
     struct ListNode *temp;
 
-    while (fast && fast->next)
-    {
+    while (fast && fast->next) {
         fast = fast->next->next;
         temp = slow->next;
         slow->next = reverse;
@@ -25,10 +22,8 @@ bool isPalindrome(struct ListNode *head)
 
     slow = (fast ? slow->next : slow);
 
-    while (slow)
-    {
-        if (slow->val != reverse->val)
-        {
+    while (slow) {
+        if (slow->val != reverse->val) {
             return false;
         }
         slow = slow->next;
@@ -38,17 +33,16 @@ bool isPalindrome(struct ListNode *head)
     return true;
 }
 
-// Best Solution
-bool bestSolution(struct ListNode *head)
-{
+
+// Solution
+bool solution(struct ListNode *head) {
     struct ListNode *slow = head;
     struct ListNode *fast = head;
     struct ListNode *prev = NULL;
     struct ListNode *tmp;
 
     // finding mid point
-    while (fast && fast->next)
-    {
+    while (fast && fast->next) {
         fast = fast->next->next;
         tmp = slow->next;
         slow->next = prev;
@@ -60,14 +54,10 @@ bool bestSolution(struct ListNode *head)
     slow = (fast ? slow->next : slow);
 
     // check if linked lists starting at prev and slow are equal
-    while (slow)
-    {
-        if (slow->val != prev->val)
-        {
+    while (slow) {
+        if (slow->val != prev->val) {
             return false;
-        }
-        else
-        {
+        } else {
             slow = slow->next;
             prev = prev->next;
         }

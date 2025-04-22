@@ -7,7 +7,7 @@ class AddBinary {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public String solution1(String a, String b) {
     StringBuilder sb = new StringBuilder();
     int i = a.length() - 1, j = b.length() - 1, carry = 0;
@@ -28,7 +28,7 @@ class AddBinary {
     return sb.reverse().toString();
   }
 
-  // Solution 2:
+  // Solution 2
   public String solution2(String a, String b) {
     StringBuilder res = new StringBuilder();
     int i = a.length() - 1;

@@ -19,8 +19,9 @@ class RemoveLinkedListElements {
     return true;
   }
 
-  // Best Solution
-  bool bestSolution(String s, String t) {
+
+  // Solution
+  bool solution(String s, String t) {
     Map<String, int> mapS = {};
     Map<String, int> mapT = {};
     for (int i = 0; s.length > i; i++) {

@@ -13,11 +13,10 @@ var searchInsert = function (nums, target) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (nums, target) {
   // we might need to inseart at the end
-  let lo = 0,
-    hi = nums.length;
+  let lo = 0, hi = nums.length;
 
   // breaks if lo == hi
   while (lo < hi) {
@@ -34,7 +33,7 @@ var solution1 = function (nums, target) {
   return lo;
 };
 
-// Solution 2:
+// Solution 2
 function binarySearch(array, target, start, end) {
   // If the target is less then the very last item then insert it at that item index
   // because anything index less then that has already been confirmed to be less then the target.

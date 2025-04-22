@@ -2,6 +2,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
+
 class ImplementStackUsingQueues {
     Stack<Integer> inputStack;
     Stack<Integer> outputStack;
@@ -39,8 +48,9 @@ class ImplementStackUsingQueues {
         return true;
     }
 
-    // Best Solution
-    class BestSolution {
+
+    // Solution
+    class Solution {
         private Queue<Integer> queue = new LinkedList<>();
 
         public void push(int x) {
@@ -62,12 +72,3 @@ class ImplementStackUsingQueues {
         }
     }
 }
-
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
- * boolean param_4 = obj.empty();
- */

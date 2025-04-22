@@ -36,7 +36,7 @@ class MergeSortedArray {
     }
   }
 
-  // Solution 3:
+  // Solution 3
   public void solution3(int[] nums1, int m, int[] nums2, int n) {
     int tail1 = m - 1, tail2 = n - 1, finished = m + n - 1;
 
@@ -50,7 +50,7 @@ class MergeSortedArray {
     }
   }
 
-  // Solution 4:
+  // Solution 4
   public void solution4(int[] nums1, int m, int[] nums2, int n) {
     // variables to work as pointers
     int i = m - 1; // will point at m-1 index of nums1 array

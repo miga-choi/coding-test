@@ -20,7 +20,7 @@ class SqrtX {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int solution1(int x) {
     if (x == 0) {
       return 0;
@@ -39,7 +39,7 @@ class SqrtX {
     }
   }
 
-  // Solution 2:
+  // Solution 2
   public int solution2(int x) {
     long r = x;
     while (r * r > x) {
@@ -48,7 +48,7 @@ class SqrtX {
     return (int) r;
   }
 
-  // Solution 3:
+  // Solution 3
   public int solution3(int x) {
     // For special cases when x is 0 or 1, return x.
     if (x == 0 || x == 1) {

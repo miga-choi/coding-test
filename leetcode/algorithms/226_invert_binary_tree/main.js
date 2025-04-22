@@ -1,12 +1,3 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-
 function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val;
   this.left = left === undefined ? null : left;
@@ -29,19 +20,24 @@ var invertTree = function (root) {
 };
 
 
-// Best Solution
-var bestSolution = function (root) {
+// Solution
+var solution = function (root) {
   // Base case...
   if (root == null) {
     return root;
   }
+
   // Call the function recursively for the left subtree...
-  bestSolution(root.left);
+  solution(root.left);
+
   // Call the function recursively for the right subtree...
-  bestSolution(root.right);
+  solution(root.right);
+
   // swapping process...
   const curr = root.left;
   root.left = root.right;
   root.right = curr;
-  return root; // Return the root...
+
+  // Return the root...
+  return root;
 };

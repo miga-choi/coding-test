@@ -11,8 +11,10 @@ class ValidAnagram {
     return t.isEmpty;
   }
 
-  // Best Solution 1
-  bool bestSolution1(String s, String t) {
+
+  // Solution
+  // Solution 1
+  bool solution1(String s, String t) {
     List<String> s1 = s.split('');
     List<String> s2 = t.split('');
     s1.sort();
@@ -31,8 +33,8 @@ class ValidAnagram {
     return result;
   }
 
-  // Best Solution 2
-  bool bestSolution2(String s, String t) {
+  // Solution 2
+  bool solution2(String s, String t) {
     if (s.length != t.length) {
       return false;
     }

@@ -16,7 +16,7 @@ int removeDuplicates(int* nums, int numsSize) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int solution1(int* nums, int numsSize) {
     if (numsSize == 0) {
         return 0;
@@ -36,7 +36,7 @@ int solution1(int* nums, int numsSize) {
     return k;
 }
 
-// Solution 2:
+// Solution 2
 int solution2(int* nums, int numsSize) {
     int new_size = numsSize;
     for (int idx = 0, i = 0, j = 1; i < numsSize; idx++, j++) {

@@ -16,5 +16,5 @@ var isPowerOfTwo = function (n) {
 };
 
 
-// Best Solution
-let bestSolution = (n) => (n > 0 ? !(n & (n - 1)) : false);
+// Solution
+let solution = (n) => (n > 0 ? !(n & (n - 1)) : false);

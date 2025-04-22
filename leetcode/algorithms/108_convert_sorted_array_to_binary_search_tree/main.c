@@ -31,7 +31,7 @@ struct TreeNode* sortedArrayToBST(int* nums, int numsSize) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 struct TreeNode* solution1_convToBST(int* nums, int beg, int end) {
     if (end < beg) {
         return NULL;
@@ -52,7 +52,7 @@ struct TreeNode* solution1(int* nums, int numsSize) {
     }
 }
 
-// Solution 2:
+// Solution 2
 struct TreeNode* solution2(int* nums, int numsSize) {
     if (numsSize == 0) {
         return NULL;

@@ -32,8 +32,9 @@ public class BalancedBinaryTree {
         return Math.Max(getDepth(node.left), getDepth(node.right)) + 1;
     }
 
+
     // Solution
-    // Solution 1:
+    // Solution 1
     public bool solution1(TreeNode root) {
         if (root == null) {
             return true;

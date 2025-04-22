@@ -23,7 +23,7 @@ public class SqrtX {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int solution1(int x) {
         int first = 0, last = x;
         while (first <= last) {
@@ -39,7 +39,7 @@ public class SqrtX {
         return last;
     }
 
-    // Solution 2:
+    // Solution 2
     public int solution2(int x) {
         if (x == 0) {
             return 0;
@@ -64,7 +64,7 @@ public class SqrtX {
         return right;
     }
 
-    // Solution 3:
+    // Solution 3
     public int solution3(int x) {
         if (x == 1) {
             return x;

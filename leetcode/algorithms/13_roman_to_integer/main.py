@@ -28,7 +28,7 @@ class RomanToInteger:
 
 
     # Solution
-    # Solution 1:
+    # Solution 1
     def solution1(self, s: str) -> int:
         translations = {
             "I": 1,
@@ -47,7 +47,7 @@ class RomanToInteger:
             number += translations[char]
         return number
 
-    # Solution 2:
+    # Solution 2
     def solution2(self, s: str) -> int:
         m = {
             "I": 1,

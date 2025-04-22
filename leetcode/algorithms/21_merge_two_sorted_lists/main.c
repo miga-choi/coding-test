@@ -37,8 +37,8 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
 
 
 // Solution
-// Solution 1:
-struct ListNode* bestSolution1(struct ListNode* list1, struct ListNode* list2) {
+// Solution 1
+struct ListNode* solution1(struct ListNode* list1, struct ListNode* list2) {
     struct ListNode head;
     struct ListNode* h = &head;
 
@@ -81,17 +81,15 @@ struct ListNode* solution2(struct ListNode* list1, struct ListNode* list2) {
     return head;
 }
 
-// Solution 3:
+// Solution 3
 struct ListNode* solution3(struct ListNode* list1, struct ListNode* list2) {
     struct ListNode* res = NULL;
-    if (list1 == NULL)
-    {
+    if (list1 == NULL) {
         return list2;
     } else if (list2 == NULL) {
         return list1;
     }
-    if (list1->val <= list2->val)
-    {
+    if (list1->val <= list2->val) {
         res = list1;
         res->next = mergeTwoLists(list1->next, list2);
     } else {

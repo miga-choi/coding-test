@@ -31,7 +31,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     vector<int> solution1(TreeNode* root) {
         vector<int> ans;
         if (root == NULL) {

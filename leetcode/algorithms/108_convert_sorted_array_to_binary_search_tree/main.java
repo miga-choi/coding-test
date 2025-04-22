@@ -36,6 +36,7 @@ class ConvertSortedArrayToBinarySearchTree {
     return root;
   }
 
+
   // Solution
   // Solution 1: Recursion
   public TreeNode solution1(int[] nums) {

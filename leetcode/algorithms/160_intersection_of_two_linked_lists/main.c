@@ -17,6 +17,7 @@ struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* he
     return 0;
 }
 
+
 // Solution
 struct ListNode* solution(struct ListNode* headA, struct ListNode* headB) {
     struct ListNode* a = headA, *b = headB;

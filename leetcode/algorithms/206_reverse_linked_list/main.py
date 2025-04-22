@@ -13,7 +13,7 @@ class ListNode:
         self.next = next
 
 
-class Solution:
+class ReverseLinkedList:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         prev = None
         current = head
@@ -27,8 +27,8 @@ class Solution:
         return prev
 
 
-    # Best Solution
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    # Solution
+    def solution(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # Initialize prev pointer as NULL...
         prev = None
         # Initialize the curr pointer as the head...

@@ -15,7 +15,7 @@ int removeElement(int* nums, int numsSize, int val) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int solution1(int* nums, int numsSize, int val) {
     int count = 0;
 
@@ -30,7 +30,7 @@ int solution1(int* nums, int numsSize, int val) {
     return (numsSize - count);
 }
 
-// Solution 2:
+// Solution 2
 int solution2(int* nums, int numsSize, int val) {
     int appendIndex = 0;
     bool find = false;

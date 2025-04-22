@@ -1,32 +1,26 @@
 #include <stdbool.h>
 
-int sum(int n)
-{
+int sum(int n) {
     int sum = 0;
-    while (n)
-    {
+    while (n) {
         sum += (n % 10) * (n % 10);
         n /= 10;
     }
     return sum;
 }
 
-bool isHappy(int n)
-{
+bool isHappy(int n) {
     int fast = n;
     int slow = n;
 
-    while (true)
-    {
+    while (true) {
         slow = sum(slow);
         fast = sum(fast);
         fast = sum(fast);
-        if (fast == 1)
-        {
+        if (fast == 1) {
             break;
         }
-        if (slow == fast)
-        {
+        if (slow == fast) {
             return false;
         }
     }
@@ -34,12 +28,12 @@ bool isHappy(int n)
     return true;
 }
 
-// Best Solution 1
-int digitSquareSum(int n)
-{
+
+// Solution
+// Solution 1
+int digitSquareSum(int n) {
     int sum = 0, tmp;
-    while (n)
-    {
+    while (n) {
         tmp = n % 10;
         sum += tmp * tmp;
         n /= 10;
@@ -47,37 +41,37 @@ int digitSquareSum(int n)
     return sum;
 }
 
-bool bestSolution1(int n)
-{
+bool solution1(int n) {
     int slow, fast;
     slow = fast = n;
-    do
-    {
+
+    do {
         slow = digitSquareSum(slow);
         fast = digitSquareSum(fast);
         fast = digitSquareSum(fast);
     } while (slow != fast);
-    if (slow == 1)
+
+    if (slow == 1) {
         return 1;
-    else
+    } else {
         return 0;
+    }
 }
 
-// Best Solution 2
-bool bestSolution2(int n)
-{
+// Solution 2
+bool solution2(int n) {
     int total = 0;
-    while (true)
-    {
-        while (n > 0)
-        {
+
+    while (true) {
+        while (n > 0) {
             total += (n % 10) * (n % 10);
             n /= 10;
         }
-        if (total == 1)
+        if (total == 1) {
             return true;
-        else if (total == 4)
+        } else if (total == 4) {
             return false;
+        }
         n = total;
         total = 0;
     }

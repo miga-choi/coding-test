@@ -2,7 +2,8 @@
 grep -E '^([0-9]{3}-[0-9]{3}-[0-9]{4})$|^(\([0-9]{3}\) [0-9]{3}-[0-9]{4})$' file.txt;
 
 
-# Best Solution 1
+# Solution
+# Solution 1
 # this is a grep command accepting two regular expressions
 #   1 .^[0-9]\{3\}\-[0-9]\{3\}\-[0-9]\{4\}$
 #   2 .^([0-9]\{3\}) [0-9]\{3\}\-[0-9]\{4\}$
@@ -15,7 +16,7 @@ grep -E '^([0-9]{3}-[0-9]{3}-[0-9]{4})$|^(\([0-9]{3}\) [0-9]{3}-[0-9]{4})$' file
 #   -e: to include multiple regex
 grep -e "^[0-9]\{3\}\-[0-9]\{3\}\-[0-9]\{4\}$" -e "^([0-9]\{3\}) [0-9]\{3\}\-[0-9]\{4\}$" file.txt
 
-# Best Solution 2
+# Solution 2
 # Common syntax explained:
 #   ^ Start of a line (not just within a line, ex 112-122-2313 not 022121-112-2313)
 #   [0-9] regex expression to represent any digit between 0 and 9.
@@ -26,15 +27,16 @@ grep -e "^[0-9]\{3\}\-[0-9]\{3\}\-[0-9]\{4\}$" -e "^([0-9]\{3\}) [0-9]\{3\}\-[0-
 #   () used to group expressions
 #   \( or\) used for literal parentheses
 #   
-# 1. Using a grep search with the extended regular expressions.
+# Solution 2-1: Using a grep search with the extended regular expressions.
 #   -E Extended regular expressions same as egrep
 grep -E '^(\([0-9]{3}\) [0-9]{3}-[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4})$' file.txt
 
-# or
+# Solution 2-2: Using a grep search with the extended regular expressions.
+#   -E Extended regular expressions same as egrep
 egrep '^(\([0-9]{3}\) [0-9]{3}-[0-9]{4})$|^([0-9]{3}-[0-9]{3}-[0-9]{4})$' file.txt
 
-# 2. Using grep with Perl-flavoured regular expression
+# Solution 3: Using grep with Perl-flavoured regular expression
 grep -P '^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$' file.txt
 
-# 3. Using an awk search with regex values
+# Solution 4: Using an awk search with regex values
 awk '/^((\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4})$/' file.txt

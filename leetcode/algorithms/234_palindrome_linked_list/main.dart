@@ -23,8 +23,9 @@ class PalindromeLinkedList {
     return true;
   }
 
-  // Best Solution
-  bool bestSolution(ListNode? head) {
+
+  // Solution
+  bool solution(ListNode? head) {
     final values = <int>[];
     while (head != null) {
       values.add(head.val);

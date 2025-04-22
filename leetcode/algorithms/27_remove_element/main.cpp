@@ -18,7 +18,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     int solution1(vector<int>& nums, int val) {
         int index = 0;
         for (int i = 0; i < nums.size(); i++) {
@@ -30,7 +30,7 @@ public:
         return index;
     }
 
-    // Solution 2:
+    // Solution 2
     int solution2(vector<int>& nums, int val) {
         int length = nums.size(), index = 0;
         while (index < length) {

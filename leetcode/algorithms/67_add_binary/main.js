@@ -31,7 +31,7 @@ var addBinary = function (a, b) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (a, b) {
   const aBin = `0b${a}`;
   const bBin = `0b${b}`;
@@ -39,7 +39,7 @@ var solution1 = function (a, b) {
   return sum.toString(2);
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (a, b) {
   return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 };

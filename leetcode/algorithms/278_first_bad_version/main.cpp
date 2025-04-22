@@ -1,8 +1,8 @@
-// The API isBadVersion is defined for you.
-// bool isBadVersion(int version);
-
 class FirstBadVersion {
 public:
+    // The API isBadVersion is defined for you.
+    bool isBadVersion(int version);
+
     int firstBadVersion(int n) {
         int low = 1;
         int high = n;
@@ -18,15 +18,17 @@ public:
         return low;
     }
 
-    // Best Solution
-    int bestSolution(int n) {
+
+    // Solution
+    int solution(int n) {
         int start = 0, end = n;
         while (end - start > 1) {
             int mid = start + (end - start) / 2;
-            if (isBadVersion(mid))
+            if (isBadVersion(mid)) {
                 end = mid;
-            else
+            } else {
                 start = mid;
+            }
         }
         return end;
     }

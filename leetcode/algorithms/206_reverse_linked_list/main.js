@@ -1,11 +1,3 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-
 function ListNode(val, next) {
   this.val = val === undefined ? 0 : val;
   this.next = next === undefined ? null : next;
@@ -30,22 +22,29 @@ var reverseList = function (head) {
 };
 
 
-// Best Solution
-// Recursive
-var bestSolution1 = function (head) {
+// Solution
+// Solution 1: Recursive
+var solution1 = function (head) {
   // Special case...
-  if (head == null || head.next == null) return head;
+  if (head == null || head.next == null) {
+    return head;
+  }
+
   // Create a new node to call the function recursively and we get the reverse linked list...
-  var res = bestSolution1(head.next);
+  var res = solution1(head.next);
+
   // Set head node as head.next.next...
   head.next.next = head;
+
   //set head's next to be null...
   head.next = null;
-  return res; // Return the reverse linked list...
+
+  // Return the reverse linked list...
+  return res;
 };
 
-// Iterative
-var bestSolution2 = function (head) {
+// Solution 2: Iterative
+var solution2 = function (head) {
   let prev = null;
   let curr = head;
   let next = null;
@@ -53,8 +52,10 @@ var bestSolution2 = function (head) {
   while (curr !== null) {
     // save next
     next = curr.next;
+
     // reverse
     curr.next = prev;
+
     // advance prev and curr
     prev = curr;
     curr = next;
@@ -62,8 +63,8 @@ var bestSolution2 = function (head) {
   return prev;
 };
 
-// ES6 code
-var bestSolution3 = function (head) {
+// Solution 3: ES6 code
+var solution3 = function (head) {
   let [prev, current] = [null, head];
   while (current) {
     [current.next, prev, current] = [prev, current, current.next];

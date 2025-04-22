@@ -14,8 +14,9 @@ class ContainsDuplicateII {
     return false;
   }
 
-  // Best Solution
-  bool bestSolution(List<int> nums, int k) {
+
+  // Solution
+  bool solution(List<int> nums, int k) {
     for (int i = 0; i < nums.length; i++) {
       for (int j = i + 1; j < nums.length && j <= i + k; j++) {
         if ((nums[i] == nums[j])) {

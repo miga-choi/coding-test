@@ -14,18 +14,18 @@ class ClimbingStairs:
         return dp[n - 1]
 
 
-    # Best Solution
-    # Best Solution 1:
-    def bestSolution1(self, n: int) -> int:
+    # Solution
+    # Solution 1:
+    def solution1(self, n: int) -> int:
         if n == 0 or n == 1:
             return 1
-        return self.climbStairs(n - 1) + self.climbStairs(n - 2)
+        return self.solution1(n - 1) + self.solution1(n - 2)
 
-    # Best Solution 2:
+    # Solution 2:
     # pure recursive (Can't pass the test case :does not work for big number, result time-exced limit)
     #   - The base case will be when only 1 or 2 steps left
     #   - Result time-exced limit
-    def bestSolution2(self, n: int) -> int:
+    def solution2(self, n: int) -> int:
         def climb(n):
             if n == 1:  # only one step option is availble
                 return 1
@@ -37,10 +37,10 @@ class ClimbingStairs:
 
         return climb(n)
 
-    # Best Solution 3:
+    # Solution 3:
     # use dictionary (look-up table) to memorize repeating recursion
     #   - The memory start with the base case and recored every recurssion
-    def bestSolution3(self, n: int) -> int:
+    def solution3(self, n: int) -> int:
         memo = {}
         memo[1] = 1
         memo[2] = 2
@@ -56,10 +56,10 @@ class ClimbingStairs:
 
         return climb(n)
 
-    # Best Solution 4:
+    # Solution 4:
     # Dynamic programming
     #   - store the distinct ways in a dynamic table
-    def bestSolution4(self, n: int) -> int:
+    def solution4(self, n: int) -> int:
         def climb(n):
             # edge cases
             if n == 0:

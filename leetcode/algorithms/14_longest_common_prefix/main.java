@@ -23,7 +23,7 @@ class LongestCommonPrefix {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public String solution1(String[] strs) {
         StringBuilder ans = new StringBuilder();
         Arrays.sort(strs);
@@ -38,7 +38,7 @@ class LongestCommonPrefix {
         return ans.toString();
     }
 
-    // Solution 2:
+    // Solution 2
     public String solution2(String[] strs) {
         Arrays.sort(strs);
         String s1 = strs[0];
@@ -54,7 +54,7 @@ class LongestCommonPrefix {
         return s1.substring(0, idx);
     }
 
-    // Solution 3:
+    // Solution 3
     public String sestSolution3(String[] strs) {
         String prefix = strs[0];
         for (int index = 1; index < strs.length; index++) {

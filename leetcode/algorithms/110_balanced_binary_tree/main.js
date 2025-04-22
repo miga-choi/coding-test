@@ -41,7 +41,7 @@ var isBalanced = function (root) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (root) {
   // If the tree is empty, we can say it’s balanced...
   if (root == null) {

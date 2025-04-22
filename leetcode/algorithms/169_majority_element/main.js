@@ -18,8 +18,8 @@ var majorityElement = function (nums) {
 // Solution
 var solution = function (nums) {
   // Initialize sol and cnt to store the solution and its frequency for respective iterations...
-  let sol = 0,
-    cnt = 0;
+  let sol = 0, cnt = 0;
+
   // For every element i in the array...
   for (let i = 0; i < nums.length; i++) {
     if (cnt == 0) {
@@ -34,6 +34,7 @@ var solution = function (nums) {
       cnt--;
     }
   }
+
   // Return & print the solution...
   return sol;
 };

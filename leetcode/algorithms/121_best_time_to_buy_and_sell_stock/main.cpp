@@ -18,6 +18,7 @@ public:
         return price;
     }
 
+
     // Solution
     int solution(vector<int>& prices) {
         int lsf = INT_MAX;

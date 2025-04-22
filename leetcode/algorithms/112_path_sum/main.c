@@ -31,7 +31,7 @@ bool hasPathSum(struct TreeNode* root, int targetSum) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 bool solution1(struct TreeNode* root, int targetSum) {
     // If the tree is empty i.e. root is NULL, return false...
     if (root == NULL) {
@@ -47,7 +47,7 @@ bool solution1(struct TreeNode* root, int targetSum) {
     return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
 }
 
-// Solution 2:
+// Solution 2
 bool solution2(struct TreeNode* root, int targetSum) {
     if (!root) {
         return false;

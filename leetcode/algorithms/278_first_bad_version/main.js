@@ -16,7 +16,7 @@ isBadVersion = function (version) {
  * @param {function} isBadVersion()
  * @return {function}
  */
-var solution = function (isBadVersion) {
+var firstBadVersion = function (isBadVersion) {
   /**
    * @param {integer} n Total versions
    * @return {integer} The first bad version
@@ -40,8 +40,8 @@ var solution = function (isBadVersion) {
 };
 
 
-// Best Solution
-var bestSolution = function (isBadVersion) {
+// Solution
+var solution = function (isBadVersion) {
   /**
    * @param {integer} n Total versions
    * @return {integer} The first bad version

@@ -27,6 +27,7 @@ class Solution {
     return min(leftDepth, rightDepth) + 1;
   }
 
+
   // Solution
   int solution(TreeNode? root) {
     if (root == null) {

@@ -30,7 +30,7 @@ var romanToInt = function (s) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (s) {
   symbols = {
     I: 1,
@@ -50,7 +50,7 @@ var solution1 = function (s) {
   return value;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (s) {
   const sym = {
     I: 1,

@@ -32,7 +32,7 @@ bool isValid(char* s) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 bool solution1(char* s) {
     char* q = s;
 

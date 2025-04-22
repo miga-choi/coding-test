@@ -29,15 +29,22 @@ class WordPattern {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(String pattern, String str) {
+    // Solution
+    public boolean solution(String pattern, String str) {
         String[] words = str.split(" ");
-        if (words.length != pattern.length())
+
+        if (words.length != pattern.length()) {
             return false;
+        }
+
         Map<String, Integer> index = new HashMap<String, Integer>();
-        for (Integer i = 0; i < words.length; ++i)
-            if (index.put(String.valueOf(pattern.charAt(i)), i) != index.put(words[i], i))
+
+        for (Integer i = 0; i < words.length; ++i) {
+            if (index.put(String.valueOf(pattern.charAt(i)), i) != index.put(words[i], i)) {
                 return false;
+            }
+        }
+
         return true;
     }
 }

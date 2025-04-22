@@ -15,7 +15,7 @@ public class TwoSum {
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     public int[] solution1(int[] nums, int target) {
         Dictionary<int, int> seen = new Dictionary<int, int>();
         for (int i = 0; i < nums.Length; i++) {
@@ -35,7 +35,7 @@ public class TwoSum {
         return null;
     }
 
-    // Solution 2:
+    // Solution 2
     public int[] solution2(int[] nums, int target) {
         Dictionary<int, int> map = new Dictionary<int, int>();
         for (int i = 0; i < nums.Length; i++) {

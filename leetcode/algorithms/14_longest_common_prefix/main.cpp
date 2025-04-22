@@ -19,7 +19,7 @@ public:
 
 
     // Solution
-    // Solution 1:
+    // Solution 1
     string solution1(vector<string>& strs) {
         string ans = "";
         sort(strs.begin(), strs.end());
@@ -34,7 +34,7 @@ public:
         return ans;
     }
 
-    // Solution 2:
+    // Solution 2
     string solution2(vector<string>& strs) {
         int n = strs.size();
         if (n == 0) {

@@ -19,7 +19,7 @@ class RemoveElement {
 
 
   // Solution
-  // Solution 1:
+  // Solution 1
   public int solution1(int[] nums, int val) {
     int index = 0;
     for (int i = 0; i < nums.length; i++) {
@@ -31,7 +31,7 @@ class RemoveElement {
     return index;
   }
 
-  // Solution 2:
+  // Solution 2
   public int solution2(int[] nums, int val) {
     int i = 0;
     for (int j = 0; j < nums.length; j++) {
@@ -45,7 +45,7 @@ class RemoveElement {
     return i;
   }
 
-  // Solution 3:
+  // Solution 3
   public int solution3(int[] nums, int val) {
     int l = nums.length;
     for (int i = 0; i < l; i++) {

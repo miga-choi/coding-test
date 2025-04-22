@@ -27,7 +27,7 @@ int strStr(char* haystack, char* needle) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 int solution1(char* haystack, char* needle) {
     if (strlen(needle) > strlen(haystack)) {
         return -1;
@@ -42,7 +42,7 @@ int solution1(char* haystack, char* needle) {
     return -1;
 }
 
-// Solution 2:
+// Solution 2
 int solution2(char* haystack, char* needle) {
     if (strlen(needle) > strlen(haystack)) {
         return -1;

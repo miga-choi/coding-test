@@ -33,7 +33,7 @@ var isPalindrome = function (x) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 var solution1 = function (x) {
   var reverse = 0;
   var copy = x;
@@ -49,7 +49,7 @@ var solution1 = function (x) {
   return reverse == x;
 };
 
-// Solution 2:
+// Solution 2
 var solution2 = function (x) {
   if (x < 0) {
     return false;

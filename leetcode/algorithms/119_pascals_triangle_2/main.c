@@ -20,6 +20,7 @@ int* getRow(int rowIndex, int* returnSize) {
     return result[rowIndex];
 }
 
+
 // Solution
 int* solution(int rowIndex, int* returnSize) {
     int* ans = calloc(rowIndex + 1, sizeof(int));

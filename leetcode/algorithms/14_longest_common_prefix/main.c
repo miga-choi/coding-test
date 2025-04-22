@@ -16,7 +16,7 @@ char* longestCommonPrefix(char** strs, int strsSize) {
 
 
 // Solution
-// Solution 1:
+// Solution 1
 char* solution1(char** strs, int strsSize) {
     for (int c = 0;; ++c) {
         // the longest common prefix is the first string
@@ -35,7 +35,7 @@ char* solution1(char** strs, int strsSize) {
     }
 }
 
-// Solution 2:
+// Solution 2
 char* solution2(char** strs, int strsSize) {
     if (strsSize == 0) {
         return "";
@@ -71,7 +71,7 @@ br:
     return "";
 }
 
-// Solution 3:
+// Solution 3
 char* solution3(char** strs, int strsSize) {
     if (strsSize == 1) {
         return strs[0];

@@ -1,14 +1,7 @@
 from typing import Optional
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 
-
-class Solution:
+class CountCompleteTreeNodes:
     class TreeNode:
         def __init__(self, val=0, left=None, right=None):
             self.val = val
@@ -21,8 +14,8 @@ class Solution:
         return self.countNodes(root.left) + self.countNodes(root.right) + 1
 
 
-    # Best Solution
-    def bestSolution(self, root: TreeNode) -> int:
+    # Solution
+    def solution(self, root: TreeNode) -> int:
         ## RC ##
         ## APPROACH : RECURSION ##
         ## TIME COMPLEXICITY : LOG N * LOG N ##
