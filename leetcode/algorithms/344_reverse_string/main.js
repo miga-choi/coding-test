@@ -11,9 +11,9 @@ var reverseString = function (s) {
 };
 
 
-// Best Solution
-// Implementation by mirror image:
-var bestSolution1 = function (s) {
+// Solution
+// Solution 1: Implementation by mirror image:
+var solution1 = function (s) {
   let size = s.length;
 
   // reverse string by mirror image
@@ -24,8 +24,8 @@ var bestSolution1 = function (s) {
   return;
 };
 
-// Implementation by two pointers:
-var bestSolution2 = function (s) {
+// Solution 2: Implementation by two pointers:
+var solution2 = function (s) {
   // one points to head position, the other points to tail position
   let [left, right] = [0, s.length - 1];
 
@@ -40,8 +40,8 @@ var bestSolution2 = function (s) {
   return;
 };
 
-// Implementation by recursion:
-var bestSolution3 = function (s) {
+// Solution 3: Implementation by recursion:
+var solution3 = function (s) {
   function helper(left, right) {
     // base case aka stop condition
     if (left >= right) {

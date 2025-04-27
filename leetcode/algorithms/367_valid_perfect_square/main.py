@@ -1,7 +1,4 @@
-import math
-
-
-class Solution:
+class ValidPerfectSquare:
     def isPerfectSquare(self, num: int) -> bool:
         i = 0
         while True:
@@ -13,6 +10,6 @@ class Solution:
                 i = i + 1
 
 
-    # Best Solution
-    def bestSolution(self, num: int) -> bool:
+    # Solution
+    def solution(self, num: int) -> bool:
         return int(num**0.5) == num**0.5

@@ -21,8 +21,9 @@ public:
         return ' ';
     }
 
-    // Best Solution
-    char bestSolution(string s, string t) {
+
+    // Solution
+    char solution(string s, string t) {
         // Passing the diff: (t[i]-s[i]) to t[i+1]
         for (int i = 0; i < s.size(); i++) {
             t[i + 1] += t[i] - s[i];

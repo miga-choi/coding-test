@@ -9,10 +9,12 @@ class FirstUniqueCharacterInAString {
     }
 
 
-    // Best Solution
-    public int bestSolution1(String s) {
+    // Solution
+    // Solution 1
+    public int solution1(String s) {
         // Stores lowest index / first index
         int ans = Integer.MAX_VALUE;
+
         // Iterate from a to z which is 26 which makes it constant
         for (char c = 'a'; c <= 'z'; c++) {
             // indexOf will return first index of alphabet and lastIndexOf will return last
@@ -30,13 +32,20 @@ class FirstUniqueCharacterInAString {
         return ans == Integer.MAX_VALUE ? -1 : ans;
     }
 
-    public int bestSolution2(String s) {
+    // Solution 22
+    public int solution2(String s) {
         int freq[] = new int[26];
-        for (int i = 0; i < s.length(); i++)
+
+        for (int i = 0; i < s.length(); i++) {
             freq[s.charAt(i) - 'a']++;
-        for (int i = 0; i < s.length(); i++)
-            if (freq[s.charAt(i) - 'a'] == 1)
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            if (freq[s.charAt(i) - 'a'] == 1) {
                 return i;
+            }
+        }
+
         return -1;
     }
 }

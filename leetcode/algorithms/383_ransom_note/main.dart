@@ -17,8 +17,9 @@ class RansomNote {
     return true;
   }
 
-  // Best Solution
-  bool bestSolution(String ransomNote, String magazine) {
+
+  // Solution
+  bool solution(String ransomNote, String magazine) {
     if (ransomNote.length > magazine.length) {
       return false;
     } else if (ransomNote == magazine) {

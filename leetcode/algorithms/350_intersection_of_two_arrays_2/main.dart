@@ -13,12 +13,15 @@ class IntersectionOfTwoArraysII {
     return result;
   }
 
-  // Best Solution
-  List<int> bestSolution(List<int> nums1, List<int> nums2) {
+
+  // Solution
+  List<int> solution(List<int> nums1, List<int> nums2) {
     nums1.sort();
     nums2.sort();
+
     List<int> res = [];
     int i = 0, j = 0;
+
     while (i < nums1.length && j < nums2.length) {
       if (nums1[i] == nums2[j]) {
         res.add(nums1[i]);
@@ -26,9 +29,11 @@ class IntersectionOfTwoArraysII {
         j++;
       } else if (nums1[i] > nums2[j])
         j++;
-      else
+      else {
         i++;
+      }
     }
+
     return res;
   }
 }

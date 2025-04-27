@@ -1,15 +1,15 @@
 import math
 
 
-class Solution:
+class PowerOfThree:
     def isPowerOfThree(self, n: int) -> bool:
         if n > 0 and math.log10(n) / math.log10(3) % 1 == 0:
             return True
         return False
 
 
-    # Best Solution
-    def bestSolution(self, n: int) -> bool:
+    # Solution
+    def solution(self, n: int) -> bool:
         # Since error exist, can't use float.is_integer() to check
         # So I choose to check it back
         if n <= 0:

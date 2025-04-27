@@ -15,8 +15,10 @@ public:
         return s[i] == '\0';
     }
 
-    // Best Solution 1: Two pointer
-    bool bestSolution1(string s, string t) {
+
+    // Solution
+    // Solution 1: Two pointer
+    bool solution1(string s, string t) {
         int n = s.length(), m = t.length();
 
         // For index of s (or subsequence)
@@ -37,7 +39,7 @@ public:
         return (j == n);
     }
 
-    // Best Solution 2: Recursion
+    // Solution 2: Recursion
     int isSubSequence(string &s1, string &s2, int i, int j) {
         if (i == 0 || j == 0) {
             return 0;
@@ -50,7 +52,7 @@ public:
         }
     }
 
-    bool bestSolution2(string s, string t) {
+    bool solution2(string s, string t) {
         int m = s.size();
         int n = t.size();
 

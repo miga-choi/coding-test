@@ -6,8 +6,9 @@ void reverseString(char *s, int sSize) {
     }
 }
 
-// Best Solution
-void bestSolution(char *s, int sSize) {
+
+// Solution
+void solution(char *s, int sSize) {
     int i = 0;
     int j = sSize - 1;
 

@@ -37,19 +37,19 @@ class GuessNumberHigherOrLower extends GuessGame {
     }
 
 
-    // Best Solution
-    public int bestSolution(int n) {
+    // Solution
+    public int solution(int n) {
         long start = 1, end = n, mid;
+
         while (start <= end) {
-
             mid = (start + end) / 2;
-
-            if (guess((int) mid) == 0)
+            if (guess((int) mid) == 0) {
                 return (int) mid;
-            else if (guess((int) mid) == 1)
+            } else if (guess((int) mid) == 1) {
                 start = mid + 1;
-            else
+            } else {
                 end = mid - 1;
+            }
         }
 
         return -1;

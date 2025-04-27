@@ -6,9 +6,11 @@ class RansomNote {
 public:
     bool canConstruct(string ransomNote, string magazine) {
         int alphabet[26] = {0};
+
         for (char c : magazine) {
             alphabet[c - 'a']++;
         }
+
         for (char c : ransomNote) {
             if (alphabet[c - 'a'] > 0) {
                 alphabet[c - 'a']--;
@@ -16,11 +18,14 @@ public:
                 return false;
             }
         }
+
         return true;
     }
 
-    // Best Solution 1: Map
-    bool bestSolution1(string ransomNote, string magazine) {
+
+    // Solution
+    // Solution 1: Map
+    bool solution1(string ransomNote, string magazine) {
         unordered_map<char, int> dictionary;
 
         // Iterate through the magazine and count characters
@@ -44,8 +49,8 @@ public:
         return true;
     }
 
-    // Best Solution 2
-    bool bestSolution2(string ransomNote, string magazine) {
+    // Solution 2
+    bool solution2(string ransomNote, string magazine) {
         // Initialize an array of count with the size 26...
         int counter[26] = {0};
 

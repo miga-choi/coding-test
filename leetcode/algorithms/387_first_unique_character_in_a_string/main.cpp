@@ -20,8 +20,10 @@ public:
         return -1;
     }
 
-    // Best Solution 1
-    int bestSolution1(string s) {
+
+    // Solution
+    // Solution 1
+    int solution1(string s) {
         unordered_map<char, int> m;
 
         for (char &c : s) {
@@ -29,15 +31,16 @@ public:
         }
 
         for (int i = 0; i < s.size(); i++) {
-            if (m[s[i]] == 1)
+            if (m[s[i]] == 1) {
                 return i;
+            }
         }
 
         return -1;
     }
 
-    // Best Solution 2
-    int bestSolution2(string s) {
+    // Solution 2
+    int solution2(string s) {
         unordered_map<char, pair<int, int>> m;
         int idx = s.size();
 

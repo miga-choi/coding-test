@@ -5,18 +5,20 @@
  */
 var intersection = function (nums1, nums2) {
   const result = [];
+
   for (const num1 of nums1) {
     if (nums2.indexOf(num1) >= 0) {
       result.push(num1);
     }
   }
+
   return result.filter((v, i) => result.indexOf(v) === i);
 };
 
 
-// Best Solution
-// Brute Force Solution
-function bestSolution1(nums1, nums2) {
+// Solution
+// Solution 1: Brute Force
+function solution1(nums1, nums2) {
   let sortedNums1 = nums1.sort((a, b) => a - b);
   let sortedNums2 = nums2.sort((a, b) => a - b);
   let result = [];
@@ -31,11 +33,12 @@ function bestSolution1(nums1, nums2) {
     } else if (sortedNums1[i] < sortedNums2[j]) i++;
     else j++;
   }
+
   return result;
 }
 
-// HashMap Solution
-function bestSolution2(nums1, nums2) {
+// Solution 2: HashMap
+function solution2(nums1, nums2) {
   let map = new Map();
   for (let num of nums1) {
     if (!map.has(num)) map.set(num, 1);

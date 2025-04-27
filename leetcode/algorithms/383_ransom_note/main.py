@@ -1,7 +1,7 @@
 from typing import Counter
 
 
-class Solution:
+class RansomNote:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         magazineMap: dict = {}
 
@@ -20,8 +20,8 @@ class Solution:
         return True
 
 
-    # Best Solution
-    def bestSolution(self, ransomNote, magazine):
+    # Solution
+    def solution(self, ransomNote, magazine):
         st1, st2 = Counter(ransomNote), Counter(magazine)
         if st1 & st2 == st1:
             return True

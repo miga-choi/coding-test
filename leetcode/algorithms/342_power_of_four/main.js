@@ -10,5 +10,5 @@ var isPowerOfFour = function (n) {
 };
 
 
-// Best Solution
-var isPowerOfFour = (n) => n > 0 && Math.log2(n) % 2 === 0;
+// Solution
+var solution = (n) => n > 0 && Math.log2(n) % 2 === 0;

@@ -6,6 +6,7 @@ public:
     string reverseVowels(string s) {
         int i = 0;
         int j = s.size();
+
         while (i < j) {
             if (s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' ||
                 s[i] == 'U' || s[i] == 'a' || s[i] == 'e' || s[i] == 'i' ||
@@ -30,8 +31,9 @@ public:
         return s;
     }
 
-    // Best Solution
-    string bestSolution(string s) {
+
+    // Solution
+    string solution(string s) {
         // Convert the input string to a character array.
         string word = s;
         int start = 0;

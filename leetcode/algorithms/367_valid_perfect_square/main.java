@@ -1,4 +1,3 @@
-
 class ValidPerfectSquare {
     public boolean isPerfectSquare(int num) {
         int i = 0;
@@ -14,11 +13,12 @@ class ValidPerfectSquare {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(int num) {
+    // Solution
+    public boolean solution(int num) {
         long r = num;
-        while (r * r > num)
+        while (r * r > num) {
             r = (r + num / r) / 2;
+        }
         return r * r == num;
     }
 }

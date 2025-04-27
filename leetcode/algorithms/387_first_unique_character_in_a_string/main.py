@@ -1,7 +1,7 @@
 import collections
 
 
-class Solution:
+class FirstUniqueCharacterInAString:
     def firstUniqChar(self, s: str) -> int:
         for c in s:
             if s.index(c) == s.rindex(c):
@@ -9,8 +9,8 @@ class Solution:
         return -1
 
 
-    # Best Solution
-    def bestSolution(self, s: str) -> int:
+    # solution
+    def solution(self, s: str) -> int:
         hset = collections.Counter(s)
 
         # Traverse the string from the beginning...

@@ -10,9 +10,9 @@ class ReverseString {
     }
 
 
-    // Best Solution
-    // Two Pointer's
-    public void bestSolution1(char[] s) {
+    // Solution
+    // Solution 1: Two Pointer's
+    public void solution1(char[] s) {
         int i = 0;
         int j = s.length - 1;
 
@@ -25,24 +25,25 @@ class ReverseString {
         }
     }
 
-    // Recursive Call
-    public void bestSolution2(char[] s) {
+    // Solution 2: Recursive Call
+    public void solution2(char[] s) {
         int i = 0;
         int j = s.length - 1;
         solve(s, i, j);
     }
 
     public void solve(char[] s, int i, int j) {
-        if (i >= j)
+        if (i >= j) {
             return;
+        }
         char temp = s[i];
         s[i] = s[j];
         s[j] = temp;
         solve(s, ++i, --j);
     }
 
-    // Stack
-    public void bestSolution3(char[] s) {
+    // Solution 3: Stack
+    public void solution3(char[] s) {
         Stack<Character> st = new Stack<>();
         String str = new String(s);
         for (int i = 0; i < str.length(); i++) {

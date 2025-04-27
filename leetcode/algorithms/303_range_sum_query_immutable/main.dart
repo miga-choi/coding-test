@@ -1,3 +1,9 @@
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = NumArray(nums);
+ * int param1 = obj.sumRange(left,right);
+ */
+
 class NumArray {
   late final List<int> _numArray;
 
@@ -14,17 +20,12 @@ class NumArray {
   }
 }
 
-/**
- * Your NumArray object will be instantiated and called as such:
- * NumArray obj = NumArray(nums);
- * int param1 = obj.sumRange(left,right);
- */
 
-// Best Solution
-class BestSolution {
+// Solution
+class Solution {
   List<int> arr = [];
 
-  BestSolution(List<int> nums) {
+  Solution(List<int> nums) {
     List<int> sums = [];
     var currentSum = 0;
     for (var num in nums) {

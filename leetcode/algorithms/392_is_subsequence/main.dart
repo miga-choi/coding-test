@@ -19,8 +19,9 @@ class IsSubsequence {
     return i == s.length;
   }
 
-  // Best Solution
-  bool bestSolution(String s, String t) {
+
+  // Solution
+  bool solution(String s, String t) {
     int index = 0;
     int pointer = 0;
 

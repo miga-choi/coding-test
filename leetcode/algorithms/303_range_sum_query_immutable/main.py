@@ -1,6 +1,11 @@
 from typing import List
 
 
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(left,right)
+
+
 class NumArray:
     def __init__(self, nums: List[int]):
         self.nums = nums
@@ -12,13 +17,8 @@ class NumArray:
         return sum
 
 
-# Your NumArray object will be instantiated and called as such:
-# obj = NumArray(nums)
-# param_1 = obj.sumRange(left,right)
-
-
-# Best Solution
-class BestSolution:
+# Solution
+class Solution:
     def __init__(self, nums: List[int]):
         self.sum = []
         sum_till = 0

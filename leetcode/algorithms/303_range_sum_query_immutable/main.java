@@ -19,11 +19,11 @@ class NumArray {
     }
 
 
-    // Best Solution
-    class BestSolution {
+    // Solution
+    class Solution {
         int[] prefixSum;
 
-        public BestSolution(int[] nums) {
+        public Solution(int[] nums) {
             if (nums == null) {
                 throw new IllegalArgumentException("Input is null");
             }

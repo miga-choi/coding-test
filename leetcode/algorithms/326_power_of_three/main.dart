@@ -8,8 +8,10 @@ class PowerOfThree {
     return n == 1;
   }
 
-  // Best Solution 1
-  bool bestSolution1(int n) {
+
+  // Solution
+  // Solution 1
+  bool solution1(int n) {
     if (n <= 0) {
       return false;
     }
@@ -21,8 +23,8 @@ class PowerOfThree {
     return n == 1;
   }
 
-  // Best Solution 2
-  bool bestSolution2(int n) {
+  // Solution 2
+  bool solution2(int n) {
     for (var i = 1; i <= n; i *= 3) {
       if (i == n) {
         return true;

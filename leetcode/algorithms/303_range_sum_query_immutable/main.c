@@ -1,5 +1,12 @@
 #include <stdlib.h>
 
+/**
+ * Your NumArray struct will be instantiated and called as such:
+ * NumArray* obj = numArrayCreate(nums, numsSize);
+ * int param_1 = numArraySumRange(obj, left, right);
+ * numArrayFree(obj);
+*/
+
 typedef struct {
     int* numArray;
 } NumArray;
@@ -26,21 +33,14 @@ void numArrayFree(NumArray* obj) {
     free(obj);
 }
 
-/**
- * Your NumArray struct will be instantiated and called as such:
- * NumArray* obj = numArrayCreate(nums, numsSize);
- * int param_1 = numArraySumRange(obj, left, right);
 
- * numArrayFree(obj);
-*/
-
-// Best Solution
+// Solution
 typedef struct {
     int* arr;
-} BestSolution_NumArray;
+} Solution_NumArray;
 
-BestSolution_NumArray* bestSolution_numArrayCreate(int* nums, int numsSize) {
-    BestSolution_NumArray* ptr = (BestSolution_NumArray*)malloc(sizeof(BestSolution_NumArray));
+Solution_NumArray* solution_numArrayCreate(int* nums, int numsSize) {
+    Solution_NumArray* ptr = (Solution_NumArray*)malloc(sizeof(Solution_NumArray));
     ptr->arr = (int*)malloc(sizeof(int) * numsSize);
     for (int i = 0; i < numsSize; i++) {
         ptr->arr[i] = nums[i];
@@ -48,7 +48,7 @@ BestSolution_NumArray* bestSolution_numArrayCreate(int* nums, int numsSize) {
     return ptr;
 }
 
-int bestSolution_numArraySumRange(BestSolution_NumArray* obj, int left, int right) {
+int solution_numArraySumRange(Solution_NumArray* obj, int left, int right) {
     int sum = 0;
     for (int i = left; i <= right; i++) {
         sum += obj->arr[i];
@@ -56,7 +56,7 @@ int bestSolution_numArraySumRange(BestSolution_NumArray* obj, int left, int righ
     return sum;
 }
 
-void bestSolution_numArrayFree(BestSolution_NumArray* obj) {
+void solution_numArrayFree(Solution_NumArray* obj) {
     free(obj->arr);
     free(obj);
 }

@@ -5,11 +5,17 @@ class Solution:
         return t
 
 
-    # Best Solution
-    def bestSolution(self, s: str, t: str) -> str:
+    # Solution
+    def solution(self, s: str, t: str) -> str:
         c = 0
+
+        # ord is ASCII value
         for cs in s:
-            c ^= ord(cs)  # ord is ASCII value
+            c ^= ord(cs)
+
+        # ord is ASCII value
         for ct in t:
             c ^= ord(ct)
-        return chr(c)  # chr = convert ASCII into character
+
+        # chr = convert ASCII into character
+        return chr(c)

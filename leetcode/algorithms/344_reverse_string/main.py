@@ -2,7 +2,7 @@ import math
 from typing import List
 
 
-class Solution:
+class ReverseString:
     def reverseString(self, s: List[str]) -> None:
         """
         Do not return anything, modify s in-place instead.
@@ -13,6 +13,6 @@ class Solution:
             s[len(s) - 1 - i] = temp
 
 
-    # Best Solution
-    def bestSolution(self, s: List[str]) -> None:
+    # Solution
+    def solution(self, s: List[str]) -> None:
         s[:] = s[::-1]

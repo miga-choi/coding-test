@@ -7,22 +7,24 @@ class PowerOfThree {
     }
 
 
-    // Best Solution
-    // Naive Approch using loops
-    public boolean bestSolution1(int n) {
-        if (n == 0)
+    // Solution
+    // Solution 1: Naive Approch using loops
+    public boolean solution1(int n) {
+        if (n == 0) {
             return false;
+        }
         while (n != 1) {
             int r = n % 3; // r: remainder
             n = n / 3;
-            if (r != 0)
+            if (r != 0) {
                 return false;
+            }
         }
         return true;
     }
 
-    public boolean bestSolution2(int n) {
-
+    // Solution 2
+    public boolean solution2(int n) {
         while (n >= 3) {
             if (n % 3 != 0)
                 return false;
@@ -31,8 +33,8 @@ class PowerOfThree {
         return n == 1;
     }
 
-    // Mathematics
-    public boolean bestSolution3(int n) {
+    // Solution 3: Mathematics
+    public boolean solution3(int n) {
         return (Math.log10(n) / Math.log10(3)) % 1 == 0;
     }
 }

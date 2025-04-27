@@ -13,16 +13,18 @@ bool isSubsequence(char* s, char* t) {
     return s[i] == '\0';
 }
 
-// Best Solution 1
-bool bestSolution1(char* s, char* t) {
+
+// Solution
+// Solution 1
+bool solution1(char* s, char* t) {
     while (*t) {
         s += *s == *t++;
     }
     return !*s;
 }
 
-// Best Solution 2
-bool bestSolution2(char* s, char* t) {
+// Solution 2
+bool solution2(char* s, char* t) {
     int n = strlen(s);
     int m = strlen(t);
 
@@ -42,7 +44,7 @@ bool bestSolution2(char* s, char* t) {
     return (j == n);
 }
 
-// Best Solution 3
+// Solution 3
 int isSubSequence(char* s1, char* s2, int i, int j) {
     if (i == 0 || j == 0) {
         return 0;
@@ -55,9 +57,10 @@ int isSubSequence(char* s1, char* s2, int i, int j) {
     }
 }
 
-bool bestSolution3(char* s, char* t) {
+bool solution3(char* s, char* t) {
     int m = strlen(s);
     int n = strlen(t);
+
     if (m > n) {
         return false;
     }

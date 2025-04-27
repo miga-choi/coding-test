@@ -23,8 +23,9 @@ class ReverseVowelsOfAString {
     return sArray.join("");
   }
 
-  // Best Solution
-  String bestSolution(String s) {
+
+  // Solution
+  String solution(String s) {
     List<String> word = s.split('');
     int start = 0;
     int end = s.length - 1;

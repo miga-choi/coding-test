@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class ContainsDuplicate:
     def containsDuplicate(self, nums: List[int]) -> bool:
         numsMap: dict = {}
         for i in range(len(nums)):
@@ -11,7 +11,7 @@ class Solution:
         return False
 
     
-    # Best Solution
+    # Solution
     def containsDuplicate(self, nums: List[int]) -> bool:
         hset = set()
         for idx in nums:

@@ -26,8 +26,8 @@ var intersect = function (nums1, nums2) {
 };
 
 
-// Best Solution
-var bestSolution = function (nums1, nums2) {
+// Solution
+var solution = function (nums1, nums2) {
   const map = new Map();
   for (const n of nums1) {
     if (map.has(n)) {
@@ -36,6 +36,7 @@ var bestSolution = function (nums1, nums2) {
       map.set(n, 1);
     }
   }
+
   const result = [];
   for (const n of nums2) {
     if (map.has(n) && map.get(n) > 0) {
@@ -43,5 +44,6 @@ var bestSolution = function (nums1, nums2) {
       map.set(n, map.get(n) - 1);
     }
   }
+
   return result;
 };

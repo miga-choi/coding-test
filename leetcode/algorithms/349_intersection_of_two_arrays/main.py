@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class IntersectionOfTwoArrays:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result = []
         for num1 in nums1:
@@ -10,8 +10,8 @@ class Solution:
         return list(set(result))
 
 
-    # Best Solution
-    def bestSolution(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    # Solution
+    def solution(self, nums1: List[int], nums2: List[int]) -> List[int]:
         d = {}
         res = []
         for n in nums1:
@@ -23,4 +23,5 @@ class Solution:
                 res.append(n)
                 # It will set the value of d[n] = 0 which will indicate we already added n in result
                 d[n] -= 1
+
         return res

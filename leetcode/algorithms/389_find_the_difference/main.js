@@ -11,8 +11,10 @@ var findTheDifference = function (s, t) {
 };
 
 
-// Best Solution
-var bestSolution = function (s, t) {
-  for (let letter of s) t = t.replace(letter, "");
+// Solution
+var solution = function (s, t) {
+  for (let letter of s) {
+    t = t.replace(letter, "");
+  }
   return t;
 };

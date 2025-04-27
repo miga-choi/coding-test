@@ -13,6 +13,7 @@ int guessNumber(int n) {
     int low = 1;
     int high = n;
     int mid;
+
     while (low <= high) {
         mid = (high - low) / 2 + low;
         if (guess(mid) == -1) {
@@ -23,12 +24,16 @@ int guessNumber(int n) {
             break;
         }
     }
+
     return mid;
 }
 
-int guessNumber(int n) {
+
+// Solution
+int solution(int n) {
     int lo = 1;
     int hi = n;
+
     while (lo < hi) {
         int mid = (hi - lo) / 2 + lo;
         if (guess(mid) == 1) {
@@ -37,5 +42,6 @@ int guessNumber(int n) {
             hi = mid;
         }
     }
+
     return lo;
 }

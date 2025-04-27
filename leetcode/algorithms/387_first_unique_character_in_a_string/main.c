@@ -16,8 +16,9 @@ int firstUniqChar(char* s) {
     return -1;
 }
 
-// Best Solution
-int bestSolution(char* s) {
+
+// Solution
+int solution(char* s) {
     int i = 0, map[26], sSize = strlen(s);
 
     for (i; i < 26; i++) {

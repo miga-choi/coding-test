@@ -25,16 +25,18 @@ class ReverseVowelsOfAString {
     }
 
 
-    // Best Solution
-    public String bestSolution(String s) {
-        if (s == null || s.length() == 0)
+    // Solution
+    public String solution(String s) {
+        if (s == null || s.length() == 0) {
             return s;
+        }
+
         String vowels = "aeiouAEIOU";
         char[] chars = s.toCharArray();
         int start = 0;
         int end = s.length() - 1;
-        while (start < end) {
 
+        while (start < end) {
             while (start < end && !vowels.contains(chars[start] + "")) {
                 start++;
             }
@@ -50,6 +52,7 @@ class ReverseVowelsOfAString {
             start++;
             end--;
         }
+
         return new String(chars);
     }
 }

@@ -9,8 +9,9 @@ class PowerOfFour {
     return n == 1;
   }
 
-  // Best Solution
-  bool bestSolution(int n) {
+
+  // Solution
+  bool solution(int n) {
     if (n <= 0) {
       return false;
     }

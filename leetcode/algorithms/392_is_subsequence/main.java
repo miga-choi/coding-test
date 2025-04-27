@@ -12,16 +12,17 @@ class IsSubsequence {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(String s, String t) {
+    // Solution
+    public boolean solution(String s, String t) {
         int i = 0, j = 0;
         int n = t.length();
         int m = s.length();
         char ss[] = s.toCharArray();
         char tt[] = t.toCharArray();
 
-        if (m < 1)
+        if (m < 1) {
             return true;
+        }
 
         while (i < n) {
             if (tt[i] == ss[j]) {
@@ -29,8 +30,9 @@ class IsSubsequence {
             }
             i++;
 
-            if (j == m)
+            if (j == m) {
                 return true;
+            }
         }
 
         return false;

@@ -18,8 +18,9 @@ char findTheDifference(char* s, char* t) {
     return ' ';
 }
 
-// Best Solution
-char bestSolution(char* s, char* t) {
+
+// Solution
+char solution(char* s, char* t) {
     // Passing the diff: (t[i]-s[i]) to t[i+1]
     for (int i = 0; i < strlen(s); i++) {
         t[i + 1] += t[i] - s[i];

@@ -25,8 +25,8 @@ var firstUniqChar = function (s) {
 };
 
 
-// Best Solution
-var bestSolution = function (s) {
+// Solution
+var solution = function (s) {
   for (let idx = 0; idx < s.length; idx++) {
     // If same...
     if (s.indexOf(s[idx]) === s.lastIndexOf(s[idx])) {

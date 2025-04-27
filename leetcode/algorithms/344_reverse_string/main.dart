@@ -7,13 +7,15 @@ class ReverseString {
     }
   }
 
-  // Best Solution 1
-  void bestSolution1(List<String> s) {
+
+  // Solution
+  // Solution 1
+  void solution1(List<String> s) {
     s.setRange(0, s.length, s.reversed);
   }
 
-  // Best Solution 2
-  void bestSolution2(List<String> s) {
+  // Solution 2
+  void solution2(List<String> s) {
     // Initialize a variable `left` to 0, which represents the left index of the list
     int left = 0;
 

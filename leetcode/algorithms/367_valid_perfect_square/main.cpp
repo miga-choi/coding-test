@@ -13,12 +13,13 @@ public:
         return true;
     }
 
-    // Best Solution
-    bool bestSolution(int num) {
-        long r = x;
-        while (r * r > x) {
-            r = (r + x / r) / 2;
+
+    // Solution
+    bool solution(int num) {
+        long r = num;
+        while (r * r > num) {
+            r = (r + num / r) / 2;
         }
-        return r * r == x;
+        return r * r == num;
     }
 };

@@ -1,8 +1,7 @@
 #include <vector>
 using namespace std;
 
-class ReverseString
-{
+class ReverseString {
 public:
     void reverseString(vector<char> &s) {
         for (int i = 0; i < s.size() / 2; i++) {
@@ -12,8 +11,9 @@ public:
         }
     }
 
-    // Best Solution
-    void bestSolution(vector<char> &s) {
+
+    // Solution
+    void solution(vector<char> &s) {
         int i = 0;
         int j = s.size() - 1;
 

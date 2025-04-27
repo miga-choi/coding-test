@@ -15,6 +15,7 @@ var guess = function (num) {};
  */
 var guessNumber = function (n) {
   let size = n / 2;
+
   while (guess(n) !== 0) {
     if (guess(n) === 1) {
       n += size;
@@ -23,13 +24,15 @@ var guessNumber = function (n) {
     }
     size /= 2;
   }
+
   return n;
 };
 
 
-// Best Solution
-var bestSolution = function (n) {
+// Solution
+var solution = function (n) {
   let l = 0, r = n - 1;
+
   while (l <= r) {
     let mid = Math.floor((l + r) / 2);
     let res = guess(mid);
@@ -37,5 +40,6 @@ var bestSolution = function (n) {
     else if (res == 1) l = mid + 1;
     else r = mid - 1;
   }
+
   return l;
 };

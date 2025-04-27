@@ -1,7 +1,7 @@
+#include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
 
-char *reverseVowels(char *s) {
+char* reverseVowels(char* s) {
     int sLength = 0;
     int vowelsLength = 0;
 
@@ -15,7 +15,7 @@ char *reverseVowels(char *s) {
         sLength++;
     }
 
-    char *vowels = (char *)malloc(sizeof(char) * vowelsLength);
+    char* vowels = (char*)malloc(sizeof(char) * vowelsLength);
 
     int count = 0;
     for (int i = 0; i < sLength; i++) {
@@ -41,18 +41,21 @@ char *reverseVowels(char *s) {
     return s;
 }
 
-// Best Solution
+
+// Solution
 bool isVowel(char c) {
     char vowels[] = "aeiouAEIOU";
+
     for (int i = 0; vowels[i] != '\0'; i++) {
         if (c == vowels[i]) {
             return true;
         }
     }
+
     return false;
 }
 
-char *bestSolution(char *s) {
+char* solution(char* s) {
     int start = 0;
     int end = strlen(s) - 1;
 
@@ -72,5 +75,6 @@ char *bestSolution(char *s) {
         start++;
         end--;
     }
+
     return s;
 }

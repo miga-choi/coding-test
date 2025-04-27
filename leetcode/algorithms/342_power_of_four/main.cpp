@@ -10,8 +10,8 @@ public:
         return n == 1;
     }
 
-    // Best Solution
-    bool bestSolution(int n) {
+    // Solution
+    bool solution(int n) {
         return n > 0 && (n & (n - 1)) == 0 && (n - 1) % 3 == 0;
     }
 };

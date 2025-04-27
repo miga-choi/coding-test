@@ -1,4 +1,10 @@
 /**
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(left,right)
+ */
+
+/**
  * @param {number[]} nums
  */
 var NumArray = function (nums) {
@@ -21,15 +27,9 @@ NumArray.prototype.sumRange = function (left, right) {
   return sum;
 };
 
-/**
- * Your NumArray object will be instantiated and called as such:
- * var obj = new NumArray(nums)
- * var param_1 = obj.sumRange(left,right)
- */
 
-
-// Best Solution
-var bestSolution = function (nums) {
+// Solution
+var Solution = function (nums) {
   this.sums = [];
   var sum = 0;
   for (var i = 0; i < nums.length; i++) {
@@ -38,6 +38,6 @@ var bestSolution = function (nums) {
   }
 };
 
-bestSolution.prototype.sumRange = function (i, j) {
+Solution.prototype.sumRange = function (i, j) {
   return this.sums[j] - (i > 0 ? this.sums[i - 1] : 0);
 };

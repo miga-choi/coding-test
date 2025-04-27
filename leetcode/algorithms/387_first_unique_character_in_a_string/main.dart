@@ -39,14 +39,17 @@ class FirstUniqueCharacterInAString {
     return -1;
   }
 
-  // Best Solution
-  int bestSolution(String s) {
+
+  // Solution
+  int solution(String s) {
     final inputArr = s.split('');
+
     for (final value in inputArr) {
       if (inputArr.indexOf(value) == inputArr.lastIndexOf(value)) {
         return inputArr.indexOf(value);
       }
     }
+
     return -1;
   }
 }

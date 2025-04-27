@@ -12,8 +12,9 @@ class ValidPerfectSquare {
     return true;
   }
 
-  // Best Solution
-  bool bestSolution(int num) {
+
+  // Solution
+  bool solution(int num) {
     for (int i = 1; i <= num; i++) {
       if (i * i == num.abs()) {
         return true;
