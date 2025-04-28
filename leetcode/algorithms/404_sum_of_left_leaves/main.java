@@ -1,9 +1,6 @@
 import java.util.Stack;
 
 class SumOfLeftLeaves {
-    /**
-     * Definition for a binary tree node.
-     */
     class TreeNode {
         int val;
         TreeNode left;
@@ -44,27 +41,32 @@ class SumOfLeftLeaves {
     }
 
 
-    // Best Solution
-    // Recursive
-    public int bestSolution1(TreeNode root) {
-        if (root == null)
+    // Solution
+    // Solution 1: Recursive
+    public int solution1(TreeNode root) {
+        if (root == null) {
             return 0;
+        }
+
         int ans = 0;
         if (root.left != null) {
-            if (root.left.left == null && root.left.right == null)
+            if (root.left.left == null && root.left.right == null) {
                 ans += root.left.val;
-            else
-                ans += bestSolution1(root.left);
+            } else {
+                ans += solution1(root.left);
+            }
         }
-        ans += bestSolution1(root.right);
+
+        ans += solution1(root.right);
 
         return ans;
     }
 
-    // Iterative
-    public int bestSolution2(TreeNode root) {
-        if (root == null)
+    // Solution 2: Iterative
+    public int solution2(TreeNode root) {
+        if (root == null) {
             return 0;
+        }
 
         int ans = 0;
 
@@ -73,15 +75,19 @@ class SumOfLeftLeaves {
 
         while (!stack.empty()) {
             TreeNode node = stack.pop();
+
             if (node.left != null) {
-                if (node.left.left == null && node.left.right == null)
+                if (node.left.left == null && node.left.right == null) {
                     ans += node.left.val;
-                else
+                } else {
                     stack.push(node.left);
+                }
             }
+
             if (node.right != null) {
-                if (node.right.left != null || node.right.right != null)
+                if (node.right.left != null || node.right.right != null) {
                     stack.push(node.right);
+                }
             }
         }
 

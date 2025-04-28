@@ -25,8 +25,9 @@ char** fizzBuzz(int n, int* returnSize) {
     return result;
 }
 
-// Best Solution
-char** bestSolution(int n, int* returnSize) {
+
+// Solution
+char** solution(int n, int* returnSize) {
     int i;
 
     // since n = number of elements to be returned

@@ -13,8 +13,8 @@ var findDisappearedNumbers = function (nums) {
 };
 
 
-// Best Solution
-var bestSolution = function (nums) {
+// Solution
+var solution = function (nums) {
   // Loop through each number in nums
   nums.forEach((number) => {
     // Now we choose an index in the nums array based on the value we're currently looking at.

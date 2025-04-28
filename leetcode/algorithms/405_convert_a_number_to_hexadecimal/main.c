@@ -6,7 +6,6 @@ char* toHex(int num) {
     int count = 0;
     char* result = (char*)malloc(sizeof(char) * 9);
     result[8] = '\0';
-
     while (1) {
         result[7 - count] = hex[unum % 16];
         unum >>= 4;
@@ -15,13 +14,13 @@ char* toHex(int num) {
             break;
         }
     }
-
     return &result[8 - count];
 }
 
-// Best Solution
-char* bestSolution(int num) {
-    char *hex = (char *)malloc(sizeof(char) * 10);
+
+// Solution
+char* solution(int num) {
+    char* hex = (char*)malloc(sizeof(char) * 10);
     char nib;
     int i = 0;
     unsigned int x = num;

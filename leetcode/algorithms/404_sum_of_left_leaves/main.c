@@ -1,11 +1,11 @@
 struct TreeNode {
     int val;
-    struct TreeNode *left;
-    struct TreeNode *right;
+    struct TreeNode* left;
+    struct TreeNode* right;
 };
 
-// Solution 1
-int sumOfLeftLeaves1(struct TreeNode *root) {
+// My Solution 1
+int sumOfLeftLeaves1(struct TreeNode* root) {
     int sum = 0;
 
     if (root) {
@@ -20,8 +20,8 @@ int sumOfLeftLeaves1(struct TreeNode *root) {
     return sum;
 }
 
-// Solution 2: with flag
-int addLeftVal(struct TreeNode *root, int isLeft) {
+// My Solution 2: with flag
+int addLeftVal(struct TreeNode* root, int isLeft) {
     int sum = 0;
 
     if (root) {
@@ -35,6 +35,6 @@ int addLeftVal(struct TreeNode *root, int isLeft) {
     return sum;
 }
 
-int sumOfLeftLeaves2(struct TreeNode *root) {
+int sumOfLeftLeaves2(struct TreeNode* root) {
     return addLeftVal(root->left, 1) + addLeftVal(root->right, 0);
 }

@@ -1,13 +1,13 @@
 from typing import List
 
 
-class Solution:
+class BinaryWatch:
     def readBinaryWatch(self, turnedOn: int) -> List[str]:
         result: List = []
 
-        # hours
+        # Hour
         for h in range(12):
-            # minutes
+            # Minute
             for m in range(60):
                 hCount = str(bin(h)[2:]).count("1")
                 mCount = str(bin(m)[2:]).count("1")
@@ -20,8 +20,8 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, turnedOn: int) -> List[str]:
+    # Solution
+    def solution(self, turnedOn: int) -> List[str]:
         return [
             "%d:%02d" % (h, m)
             for h in range(12)

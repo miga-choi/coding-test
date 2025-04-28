@@ -1,7 +1,7 @@
 import collections
 
 
-class Solution:
+class LongestPalindrome:
     def longestPalindrome(self, s: str) -> int:
         result = 0
         sMap: dict = dict()
@@ -19,23 +19,29 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution1(self, s: str) -> int:
+    # Solution
+    # Solution 1
+    def solution1(self, s: str) -> int:
         odd_count = 0
         d = {}
+
         for ch in s:
             if ch in d:
                 d[ch] += 1
             else:
                 d[ch] = 1
+
             if d[ch] % 2 == 1:
                 odd_count += 1
             else:
                 odd_count -= 1
+
         if odd_count > 1:
             return len(s) - odd_count + 1
+
         return len(s)
 
-    def bestSolution2(self, s: str) -> int:
+    # Solution 2
+    def solution2(self, s: str) -> int:
         odds = sum(v & 1 for v in collections.Counter(s).values())
         return len(s) - odds + bool(odds)

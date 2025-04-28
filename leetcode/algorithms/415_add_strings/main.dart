@@ -31,8 +31,10 @@ class AddStrings {
     return up > 0 ? "1" + num : num;
   }
 
-  // Best Solution 1
-  String bestSolution(String num1, String num2) {
+
+  // Solution
+  // Solution 1
+  String solution1(String num1, String num2) {
     final StringBuffer sb = StringBuffer();
 
     int i = num1.length - 1;
@@ -59,8 +61,8 @@ class AddStrings {
     return sb.toString().split('').reversed.join();
   }
 
-  // Best Solution 2
-  String bestSolution2(String num1, String num2) {
+  // Solution 2
+  String solution2(String num1, String num2) {
     int carry = 0;
     int i = num1.length - 1;
     int j = num2.length - 1;

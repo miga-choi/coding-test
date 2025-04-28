@@ -21,8 +21,9 @@ public:
         return result;
     }
 
-    // Best Solution
-    vector<string> bestSolution(int n) {
+
+    // Solution
+    vector<string> solution(int n) {
         vector<string> res(n);
 
         for (int i = 1; i <= n; i++) {

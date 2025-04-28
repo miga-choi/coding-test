@@ -6,7 +6,7 @@ class TreeNode {
 }
 
 class SumOfLeftLeaves {
-  // Solution 1
+  // My Solution 1
   int sumOfLeftLeaves1(TreeNode? root) {
     int sum = 0;
     if (root != null) {
@@ -20,7 +20,7 @@ class SumOfLeftLeaves {
     return sum;
   }
 
-  // Solution 2
+  // My Solution 2
   int addLeftVal(TreeNode? root, bool isLeft) {
     int sum = 0;
     if (root != null) {
@@ -40,11 +40,12 @@ class SumOfLeftLeaves {
     return addLeftVal(root.left, true) + addLeftVal(root.right, false);
   }
 
-  // Best Solution
+
+  // Solution
   int total = 0;
   bool isLeft = false;
 
-  int bestSolution(TreeNode? root) {
+  int solution(TreeNode? root) {
     if (root?.left == null && root?.right == null) {
       if (isLeft) {
         total += root?.val ?? 0;
@@ -52,11 +53,11 @@ class SumOfLeftLeaves {
     }
     if (root?.left != null) {
       isLeft = true;
-      bestSolution(root!.left);
+      solution(root!.left);
     }
     if (root?.right != null) {
       isLeft = false;
-      bestSolution(root!.right);
+      solution(root!.right);
     }
 
     return total;

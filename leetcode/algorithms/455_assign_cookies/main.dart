@@ -14,8 +14,9 @@ class AssignCookies {
     return i;
   }
 
-  // Best Solution
-  int bestSolution(List<int> g, List<int> s) {
+
+  // Solution
+  int solution(List<int> g, List<int> s) {
     g.sort();
     s.sort();
 

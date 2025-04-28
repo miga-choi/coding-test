@@ -5,9 +5,9 @@
 var readBinaryWatch = function (turnedOn) {
   const result = [];
 
-  // hours
+  // Hour
   for (let h = 0; h < 12; h++) {
-    // minutes
+    // Minute
     for (let m = 0; m < 60; m++) {
       const hCount = h.toString(2).replaceAll("0", "").length;
       const mCount = m.toString(2).replaceAll("0", "").length;
@@ -21,9 +21,10 @@ var readBinaryWatch = function (turnedOn) {
 };
 
 
-// Best Solution
-var bestSolution = function (turnedOn) {
+// Solution
+var solution = function (turnedOn) {
   const times = [];
+
   for (let h = 0; h < 12; h++) {
     for (let m = 0; m < 60; m++) {
       const hOnes = h ? h.toString(2).match(/1/g).length : 0;
@@ -33,5 +34,6 @@ var bestSolution = function (turnedOn) {
       }
     }
   }
+
   return times;
 };

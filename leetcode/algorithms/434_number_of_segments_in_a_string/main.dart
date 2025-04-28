@@ -5,8 +5,9 @@ class NumberOfSegmentsInAString {
     return sArray.length;
   }
 
-  // Best Solution
-  int bestSolution(String s) {
+
+  // Solution
+  int solution(String s) {
     List<String> segments = s.trim().split(' ');
     int count = 0;
 

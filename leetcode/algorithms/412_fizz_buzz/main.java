@@ -22,10 +22,11 @@ class FizzBuzz {
 }
 
 
-// Best Solution
-class bestSolution {
+// Solution
+class solution {
     public List<String> fizzBuzz(int n) {
         List<String> ret = new ArrayList<String>(n);
+
         for (int i = 1, fizz = 0, buzz = 0; i <= n; i++) {
             fizz++;
             buzz++;
@@ -43,6 +44,7 @@ class bestSolution {
                 ret.add(String.valueOf(i));
             }
         }
+
         return ret;
     }
 }

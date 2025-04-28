@@ -21,21 +21,27 @@ public:
     return count + begin;
   }
 
-  // Best Solution 1
-  int bestSolution1(string s) {
+
+  // Solution
+  // Solution 1
+  int solution1(string s) {
     int res = 0;
+
     s.push_back(' ');
+
     for (int i = 1; i < s.size(); ++i) {
       if (s[i] == ' ' && s[i - 1] != ' ') {
         ++res;
       }
     }
+
     return res;
   }
 
-  // Best Solution 2: Brute force
-  int bestSolution2(string s) {
+  // Solution 2: Brute force
+  int solution2(string s) {
     istringstream iss(s);
+
     string word;
     int count = 0;
 
@@ -46,8 +52,8 @@ public:
     return count;
   }
 
-  // Best Solution 3: Efficient Method
-  int bestSolution3(string s) {
+  // Solution 3: Efficient Method
+  int solution3(string s) {
     int count = 0;
     bool inSegment = false;
 

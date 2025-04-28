@@ -12,9 +12,9 @@ class ArrangingCoins {
     }
 
 
-    // Best Solution
-    // Optimized Bit Manipulation (With Early Exit)
+    // Solution
     /**
+     * Solution 1
      * Optimized Bit Manipulation (With Early Exit)
      *
      * Number of bits in Int.MAX = log(Int.MAX) = 31 bits
@@ -33,7 +33,7 @@ class ArrangingCoins {
      *
      * N = Input number.
      */
-    public int bestSolution1(int n) {
+    public int solution1(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Input Number is invalid. Only positive numbers are allowed");
         }
@@ -56,8 +56,8 @@ class ArrangingCoins {
         return (int) result;
     }
 
-    // Optimized Binary Search
     /**
+     * Solution 2
      * Optimized binary search
      *
      * Time Complexity: O(log(N/2)). In case of Int.MAX, time complexity can maximum
@@ -67,7 +67,7 @@ class ArrangingCoins {
      *
      * N = Input number
      */
-    public int bestSolution2(int n) {
+    public int solution2(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Input Number is invalid. Only positive numbers are allowed");
         }
@@ -100,8 +100,8 @@ class ArrangingCoins {
         return (int) end;
     }
 
-    // Math: Using Sum of Integers Formula
     /**
+     * Solution 3
      * Math: Using Sum of Integers Formula
      *
      * This problem can be reduced down to:
@@ -118,7 +118,7 @@ class ArrangingCoins {
      *
      * Space Complexity: O(1)
      */
-    public int bestSolution3(int n) {
+    public int solution3(int n) {
         if (n < 0) {
             throw new IllegalArgumentException("Input Number is invalid. Only positive numbers are allowed");
         }

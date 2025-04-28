@@ -12,9 +12,12 @@ class ArrangingCoins {
     return level;
   }
 
-  // Best Solution 1
-  int bestSolution1(int n) {
+
+  // Solution
+  // Solution 1
+  int solution1(int n) {
     int sum = 0;
+
     for (int i = 1; i <= n; i++) {
       sum += i;
       if (sum > n) {
@@ -23,11 +26,12 @@ class ArrangingCoins {
         return i;
       }
     }
+
     return 0;
   }
 
-  // Best Solution 2: Iterative Approach
-  int bestSolution2(int n) {
+  // Solution 2: Iterative Approach
+  int solution2(int n) {
     // which row we are on
     int i = 1;
 
@@ -44,8 +48,8 @@ class ArrangingCoins {
     return i - 1;
   }
 
-  // Best Solution 3: Binary Search Approach
-  int bestSolution3(int n) {
+  // Solution 3: Binary Search Approach
+  int solution3(int n) {
     int left = 0;
     int right = n;
 
@@ -65,12 +69,12 @@ class ArrangingCoins {
     return right;
   }
 
-  // Best Solution 4: Math Approach (using algebra)
-  int bestSolution4(int n) {
+  // Solution 4: Math Approach (using algebra)
+  int solution4(int n) {
     return (sqrt(2 * n + 0.25) - 0.5).toInt();
   }
 
-  // Best Solution 5: Math Approach (using Quadratic Formula)
+  // Solution 5: Math Approach (using Quadratic Formula)
   int bestSolution5(int n) {
     return ((-1 + (sqrt(1 + 8 * n))) / 2).toInt();
   }

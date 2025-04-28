@@ -20,9 +20,10 @@ class BinaryWatch {
     return result;
   }
 
-  // Best Solution
-  List<String> bestSolution(int turnedOn) {
+  // Solution
+  List<String> solution(int turnedOn) {
     List<String> res = [];
+
     for (int hour = 0; hour < 12; hour++) {
       for (int min = 0; min < 60; min++) {
         String temp = hour.toRadixString(2) + min.toRadixString(2);
@@ -35,6 +36,7 @@ class BinaryWatch {
         }
       }
     }
+
     return res;
   }
 }

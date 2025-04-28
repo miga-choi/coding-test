@@ -1,12 +1,13 @@
 from typing import List
 
 
-class Solution:
+class FindAllNumbersDisappearedInAnArray:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         result: List[int] = []
         length = len(nums) + 1
         nums = list(set(sorted(nums, reverse=True)))
         count = 0
+
         for i in range(1, length):
             if count >= len(nums):
                 result.append(i)
@@ -15,11 +16,12 @@ class Solution:
                 result.append(i)
             else:
                 count += 1
+
         return result
 
 
-    # Best Solution
-    def bestSolution(self, nums: List[int]) -> List[int]:
+    # Solution
+    def solution(self, nums: List[int]) -> List[int]:
         # For each number i in nums,
         # we mark the number that i points as negative.
         # Then we filter the list, get all the indexes

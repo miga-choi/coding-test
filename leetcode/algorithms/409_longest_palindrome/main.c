@@ -23,14 +23,17 @@ int longestPalindrome(char* s) {
     return result * 2 + haveSingle;
 }
 
-// Best Solution
-int bestSolution(char* s) {
+
+// Solution
+int solution(char* s) {
     long long freq = 0;
     int len = 0;
+
     for (register int i = 0; s[i] != '\0'; i++) {
         freq ^= (1LL << (s[i] - 'A'));
         len++;
     }
+
     bool hasOdd = 0;
     for (register int i = 0; i < 58; i++) {
         if ((freq >> i) & 1) {
@@ -38,5 +41,6 @@ int bestSolution(char* s) {
             hasOdd = 1;
         }
     }
+
     return len + hasOdd;
 }

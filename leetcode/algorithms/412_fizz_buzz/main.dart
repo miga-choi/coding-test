@@ -17,8 +17,9 @@ class FizzBuzz {
     return result;
   }
 
-  // Best Solution
-  List<String> bestSolution(int n) {
+
+  // Solution
+  List<String> solution(int n) {
     var v = new List.filled(n, "");
 
     for (int i = 1; i <= n; i++) {

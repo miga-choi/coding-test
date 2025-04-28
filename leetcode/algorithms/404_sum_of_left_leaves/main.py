@@ -1,7 +1,6 @@
 from typing import Optional
 
 
-# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -9,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class SumOfLeftLeaves:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         if root == None:
             return 0
@@ -27,8 +26,8 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, root: Optional[TreeNode]) -> int:
+    # Solution
+    def solution(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
 

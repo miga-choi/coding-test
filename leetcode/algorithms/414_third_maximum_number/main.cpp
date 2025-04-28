@@ -26,26 +26,32 @@ public:
     return thrid == LONG_MIN ? first : thrid;
   }
 
-  // Best Solution 1: Track the largest three values in a set
-  int bestSolution1(vector<int> &nums) {
+
+  // Solution
+  // Solution 1: Track the largest three values in a set
+  int solution1(vector<int> &nums) {
     set<int> top3;
+
     for (int num : nums) {
       top3.insert(num);
       if (top3.size() > 3) {
         top3.erase(top3.begin());
       }
     }
+
     return top3.size() == 3 ? *top3.begin() : *top3.rbegin();
   }
 
-  // Best Solution 2: Alternatively
-  int bestSolution2(vector<int> &nums) {
+  // Solution 2: Alternatively
+  int solution2(vector<int> &nums) {
     set<int> top3;
+
     for (int num : nums) {
       if (top3.insert(num).second && top3.size() > 3) {
         top3.erase(top3.begin());
       }
     }
+
     return top3.size() == 3 ? *top3.begin() : *top3.rbegin();
   }
 };

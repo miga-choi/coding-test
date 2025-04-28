@@ -47,8 +47,9 @@ int thirdMax(int* nums, int numsSize) {
   return third;
 }
 
-// Best Solution
-int bestSolution(int *nums, int numsSize) {
+
+// Solution
+int solution(int* nums, int numsSize) {
   int max_1 = nums[0];
   long max_2 = LONG_MIN;
   long max_3 = LONG_MIN;

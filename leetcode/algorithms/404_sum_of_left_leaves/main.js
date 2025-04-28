@@ -1,6 +1,3 @@
-/**
- * Definition for a binary tree node.
- */
 function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val;
   this.left = left === undefined ? null : left;
@@ -32,10 +29,14 @@ var sumOfLeftLeaves = function (root) {
 };
 
 
-// Best Solution
-var bestSolution = function (root, isLeft) {
-  if (!root) return 0;
-  if (!root.left && !root.right && isLeft) return root.val;
+// Solution
+var solution = function (root, isLeft) {
+  if (!root) {
+    return 0;
+  }
+  if (!root.left && !root.right && isLeft) {
+    return root.val;
+  }
 
-  return bestSolution(root.left, true) + bestSolution(root.right, false);
+  return solution(root.left, true) + solution(root.right, false);
 };

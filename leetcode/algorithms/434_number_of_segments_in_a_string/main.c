@@ -17,8 +17,9 @@ int countSegments(char* s) {
   return count + begin;
 }
 
-// Best Solution
-int bestSolution(char* s) {
+
+// Solution
+int solution(char* s) {
   if (s == "") {
     return 0;
   }

@@ -22,11 +22,15 @@ class ThirdMaximumNumber {
     return third == -(2 << 30) - 1 ? first : third;
   }
 
-  // Best Solution 1
-  int bestSolution1(List<int> nums) {
+
+  // Solution
+  // Solution 1
+  int solution1(List<int> nums) {
     nums.sort();
+
     Set<int> data = nums.toSet();
     int count = data.length;
+
     if (data.length <= 2) {
       return data.last;
     } else {
@@ -34,11 +38,25 @@ class ThirdMaximumNumber {
     }
   }
 
-  // Best Solution 2
-  int bestSolution2(List<int> nums) {
+  // Solution 2
+  int _indexOfMinValue(List<int> nums) {
+    if (nums.isEmpty) {
+      throw ArgumentError(nums);
+    }
+    int result = 0;
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] < nums[result]) {
+        result = i;
+      }
+    }
+    return result;
+  }
+
+  int solution2(List<int> nums) {
     const nth = 3;
     List<int> topN = <int>[];
     int minIndex = 0;
+
     for (int n in nums) {
       insertIntoTopN:
       if (topN.length < nth || n > topN[minIndex]) {
@@ -56,22 +74,11 @@ class ThirdMaximumNumber {
         minIndex = _indexOfMinValue(topN);
       }
     }
+
     if (topN.length < nth) {
       return topN.reduce(max);
     }
-    return topN[minIndex];
-  }
 
-  int _indexOfMinValue(List<int> nums) {
-    if (nums.isEmpty) {
-      throw ArgumentError(nums);
-    }
-    int result = 0;
-    for (int i = 1; i < nums.length; i++) {
-      if (nums[i] < nums[result]) {
-        result = i;
-      }
-    }
-    return result;
+    return topN[minIndex];
   }
 }

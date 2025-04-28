@@ -1,7 +1,7 @@
 import math
 
 
-class Solution:
+class ArrangingCoins:
     def arrangeCoins(self, n: int) -> int:
         stairs = 1
         while True:
@@ -13,7 +13,7 @@ class Solution:
             stairs += 1
 
 
-    # Best Solution
-    def bestSolution(self, n: int) -> int:
+    # Solution
+    def solution(self, n: int) -> int:
         # int is simply to floor the floating point so we get the largest integer smaller than the expression
         return int((math.sqrt(8 * n + 1) - 1) / 2)

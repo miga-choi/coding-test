@@ -17,16 +17,19 @@ class FindAllNumbersDisappearedInAnArray {
     return result;
   }
 
-  // Best Solution
-  List<int> bestSolution(List<int> nums) {
+
+  // Solution
+  List<int> solution(List<int> nums) {
     Set<int> distinct = {...nums};
     int len = nums.length;
     List<int> res = [];
+
     for (int i = 1; i <= len; i++) {
       if (!(distinct.contains(i))) {
         res.add(i);
       }
     }
+
     return res;
   }
 }

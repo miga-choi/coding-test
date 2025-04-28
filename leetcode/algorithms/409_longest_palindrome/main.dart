@@ -17,10 +17,12 @@ class LongestPalindrome {
     return hasOdd > 1 ? s.length - hasOdd + 1 : s.length;
   }
 
-  // Best Solution
+
+  // Solution
   int bestSolution(String s) {
     Set<String> se = {};
     int palindrome = 0;
+
     for (var char in s.split('')) {
       if (se.contains(char)) {
         se.remove(char);
@@ -29,9 +31,11 @@ class LongestPalindrome {
         se.add(char);
       }
     }
+
     if (se.isNotEmpty) {
       palindrome++;
     }
+
     return palindrome;
   }
 }

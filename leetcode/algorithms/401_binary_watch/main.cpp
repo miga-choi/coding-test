@@ -8,7 +8,7 @@ public:
     vector<string> readBinaryWatch(int turnedOn) {
         vector<string> result;
 
-        // H
+        // Hour
         for (int h = 0; h < 12; h++) {
             int hBitCount = 0;
             int H = h;
@@ -20,6 +20,7 @@ public:
                 H >>= 1;
             }
 
+            // Minute
             for (int m = 0; m < 60; m++) {
                 int mBitCount = 0;
                 int M = m;
@@ -40,9 +41,11 @@ public:
         return result;
     }
 
-    // Best Solution
-    vector<string> bestSolution(int turnedOn) {
+
+    // Solution
+    vector<string> solution(int turnedOn) {
         vector<string> rs;
+
         for (int h = 0; h < 12; h++) {
             for (int m = 0; m < 60; m++) {
                 if (bitset<10>(h << 6 | m).count() == turnedOn) {
@@ -50,6 +53,7 @@ public:
                 }
             }
         }
+
         return rs;
     }
 };

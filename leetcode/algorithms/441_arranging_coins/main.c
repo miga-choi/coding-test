@@ -11,8 +11,10 @@ int arrangeCoins(int n) {
   return level;
 }
 
-// Best Solution 1: Iterative Approach
-int bestSolution1(int n) {
+
+// Solution
+// Solution 1: Iterative Approach
+int solution1(int n) {
   // which row we are on
   int i = 1;
 
@@ -29,8 +31,8 @@ int bestSolution1(int n) {
   return i - 1;
 }
 
-// Best Solution 2: Binary Search Approach
-int bestSolution2(int n) {
+// Solution 2: Binary Search Approach
+int solution2(int n) {
   // we use "long" because we may get an integer overflow
   long left = 0;
   long right = n;
@@ -52,14 +54,14 @@ int bestSolution2(int n) {
   return (int)right;
 }
 
-// Best Solution 3: Math Approach (using algebra)
-int bestSolution3(int n) {
+// Solution 3: Math Approach (using algebra)
+int solution3(int n) {
   // cast "n" to "long" to avoid integer overflow
   return (int)(sqrt(2 * (long)n + 0.25) - 0.5);
 }
 
-// Best Solution 4: Math Approach (using Quadratic Formula)
-int bestSolution4(int n) {
+// Solution 4: Math Approach (using Quadratic Formula)
+int solution4(int n) {
   // cast "n" to "long" to avoid integer overflow
   return (int)(-1 + (sqrt(1 + 8 * (long)n))) / 2;
 }

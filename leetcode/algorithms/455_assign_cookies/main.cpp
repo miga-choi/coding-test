@@ -3,7 +3,7 @@ using namespace std;
 
 class AssignCookies {
 public:
-    int findContentChildren(vector<int> &g, vector<int> &s) {
+    int findContentChildren(vector<int>& g, vector<int>& s) {
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
 
@@ -18,8 +18,9 @@ public:
         return i;
     }
 
-    // Best Solution
-    int bestSolution(vector<int> &g, vector<int> &s) {
+
+    // Solution
+    int solution(vector<int>& g, vector<int>& s) {
         int cookiesNums = s.size();
 
         if (cookiesNums == 0) {

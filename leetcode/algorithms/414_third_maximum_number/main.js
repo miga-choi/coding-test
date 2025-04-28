@@ -15,11 +15,12 @@ var thirdMax = function (nums) {
 };
 
 
-// Best Solution
-var bestSolution = function (nums) {
+// Solution
+var solution = function (nums) {
   let first = -Infinity;
   let second = -Infinity;
   let third = -Infinity;
+
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] === first || nums[i] === second || nums[i] === third) continue;
     if (nums[i] > first) {
@@ -30,5 +31,6 @@ var bestSolution = function (nums) {
       third = nums[i];
     }
   }
+
   return third === -Infinity ? first : third;
 };

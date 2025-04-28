@@ -8,6 +8,7 @@ class FindAllNumbersDisappearedInAnArray {
         int length = nums.length;
         nums = Arrays.stream(nums).distinct().sorted().toArray();
         int count = 0;
+
         for (int i = 1; i <= length; i++) {
             if (count >= nums.length - 1) {
                 result.add(i);
@@ -19,14 +20,16 @@ class FindAllNumbersDisappearedInAnArray {
                 count++;
             }
         }
+
         return result;
     }
 
 
-    // Best Solution
-    public List<Integer> bestSolution(int[] nums) {
+    // Solution
+    public List<Integer> solution(int[] nums) {
         List<Integer> list = new ArrayList<>();
         int idx = -1;
+
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] < 0) {
                 idx = nums[i] * -1 - 1;

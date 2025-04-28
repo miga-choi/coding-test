@@ -5,23 +5,8 @@ import java.util.List;
 class ConvertANumberToHexadecimal {
     public String toHex(int num) {
         long longNum = num;
-        List<String> hex = new ArrayList<String>(Arrays.asList(
-                "0",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f"));
+        List<String> hex = new ArrayList<String>(
+                Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"));
 
         if (longNum == 0) {
             return hex.get(0);
@@ -43,17 +28,20 @@ class ConvertANumberToHexadecimal {
     }
 
 
-    // Best Solution
-    public String bestSolution(int num) {
+    // Solution
+    public String solution(int num) {
         char[] map = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-        if (num == 0)
+        if (num == 0) {
             return "0";
+        }
+
         String result = "";
         while (num != 0) {
             result = map[(num & 15)] + result;
             num = (num >>> 4);
         }
+
         return result;
     }
 }

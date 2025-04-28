@@ -46,8 +46,9 @@ char* addStrings(char* num1, char* num2) {
   return &num[numPtr];
 }
 
-// Best Solution
-char* bestSolution(char* num1, char* num2) {
+
+// Solution
+char* solution(char* num1, char* num2) {
   int sizeNum1 = strlen(num1);
   int sizeNum2 = strlen(num2);
   int sizeOutput = (sizeNum1 > sizeNum2 ? sizeNum1 : sizeNum2) + 1;

@@ -14,12 +14,14 @@ var arrangeCoins = function (n) {
 };
 
 
-// Best Solution
-var bestSolution = function (n) {
+// Solution
+var solution = function (n) {
   let stairs = 0;
+
   while (stairs <= n) {
     n -= stairs;
     stairs++;
   }
+
   return stairs - 1;
 };

@@ -21,12 +21,13 @@ int findContentChildren(int* g, int gSize, int* s, int sSize) {
     return i;
 }
 
-// Best Solution
+
+// Solution
 int cmp(const void* a, const void* b) {
     return *(int*)a - *(int*)b;
 }
 
-int bestSolution(int* g, int gSize, int* s, int sSize) {
+int solution(int* g, int gSize, int* s, int sSize) {
     /* Sort two arrays */
     qsort(g, gSize, sizeof(int), cmp);
     qsort(s, sSize, sizeof(int), cmp);

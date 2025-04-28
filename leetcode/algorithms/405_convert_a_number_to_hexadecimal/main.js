@@ -22,7 +22,9 @@ var toHex = function (num) {
     "f",
   ];
 
-  if (num == 0) return "0";
+  if (num == 0) {
+    return "0";
+  }
 
   if (num < 0) {
     num += Math.pow(2, 32);
@@ -40,8 +42,8 @@ var toHex = function (num) {
 };
 
 
-// Best Solution
-var bestSolution = function (num) {
+// Solution
+var solution = function (num) {
   var arr = [
     "0",
     "1",
@@ -61,17 +63,20 @@ var bestSolution = function (num) {
     "f",
   ];
 
-  if (num == 0) return "0";
+  if (num == 0) {
+    return "0";
+  }
 
   if (num < 0) {
     num += Math.pow(2, 32);
   }
-  var res = "";
 
+  var res = "";
   while (num > 0) {
     var digit = num % 16;
     res = arr[digit] + res;
     num = Math.floor(num / 16);
   }
+
   return res;
 };

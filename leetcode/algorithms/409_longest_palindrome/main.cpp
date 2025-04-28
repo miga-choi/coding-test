@@ -17,7 +17,6 @@ public:
 
         int count = 0;
         int hasOdd = 0;
-
         for (int i = 0; i < 52; i++) {
             if (alphabetNumArray[i] % 2) {
                 hasOdd = 1;
@@ -28,10 +27,12 @@ public:
         return count * 2 + hasOdd;
     }
 
-    // Best Solution
-    int bestSolution(string s) {
+
+    // Solution
+    int solution(string s) {
         int oddCount = 0;
         unordered_map<char, int> ump;
+
         for (char ch : s) {
             ump[ch]++;
             if (ump[ch] % 2 == 1) {
@@ -40,9 +41,11 @@ public:
                 oddCount--;
             }
         }
+
         if (oddCount > 1) {
             return s.length() - oddCount + 1;
         }
+
         return s.length();
     }
 };

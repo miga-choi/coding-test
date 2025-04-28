@@ -15,11 +15,12 @@ class ThirdMaximumNumber {
     }
 
 
-    // Best Solution
-    public int bestSolution(int[] nums) {
+    // Solution
+    public int solution(int[] nums) {
         Integer max1 = null;
         Integer max2 = null;
         Integer max3 = null;
+
         for (Integer n : nums) {
             if (n.equals(max1) || n.equals(max2) || n.equals(max3))
                 continue;
@@ -34,6 +35,7 @@ class ThirdMaximumNumber {
                 max3 = n;
             }
         }
+
         return max3 == null ? max1 : max3;
     }
 }

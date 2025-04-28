@@ -19,8 +19,9 @@ public:
         return result;
     }
 
-    // Best Solution
-    string bestSolution(int num) {
+
+    // Solution
+    string solution(int num) {
         string HEX = "0123456789abcdef";
 
         if (num == 0) {

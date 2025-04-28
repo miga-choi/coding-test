@@ -4,7 +4,7 @@ using namespace std;
 
 class FindAllNumbersDisappearedInAnArray {
 public:
-  vector<int> findDisappearedNumbers(vector<int> &nums) {
+  vector<int> findDisappearedNumbers(vector<int>& nums) {
     vector<int> numArray(nums.size(), 0);
 
     for (int num : nums) {
@@ -22,8 +22,10 @@ public:
     return result;
   }
 
-  // Best Solution 1: Brute-Force
-  vector<int> bestSolution1(vector<int> &nums) {
+  
+  // Solution
+  // Solution 1: Brute-Force
+  vector<int> solution1(vector<int>& nums) {
     vector<int> ans;
 
     for (int i = 1; i <= size(nums); i++) {
@@ -36,8 +38,8 @@ public:
     return ans;
   }
 
-  // Best Solution 2: Sort & Binary-Search
-  vector<int> bestSolution2(vector<int> &nums) {
+  // Solution 2: Sort & Binary-Search
+  vector<int> solution2(vector<int>& nums) {
     sort(begin(nums), end(nums));
     vector<int> ans;
 
@@ -51,8 +53,8 @@ public:
     return ans;
   }
 
-  // Best Solution 3: HashSet
-  vector<int> bestSolution3(vector<int> &nums) {
+  // Solution 3: HashSet
+  vector<int> solution3(vector<int>& nums) {
     // insert every nums[i] in hashset
     unordered_set<int> s(begin(nums), end(nums));
 
@@ -68,8 +70,8 @@ public:
     return ans;
   }
 
-  // Best Solution 4: Boolean array
-  vector<int> bestSolution4(vector<int> &nums) {
+  // Solution 4: Boolean array
+  vector<int> solution4(vector<int>& nums) {
     vector<bool> seen(size(nums) + 1);
     vector<int> ans;
 
@@ -86,8 +88,8 @@ public:
     return ans;
   }
 
-  // Best Solution 5: Placing Elements at Correct Index - Space Optimized
-  vector<int> bestSolution5(vector<int> &nums) {
+  // Solution 5: Placing Elements at Correct Index - Space Optimized
+  vector<int> solution5(vector<int>& nums) {
     vector<int> ans;
 
     for (auto &c : nums) {
@@ -107,8 +109,8 @@ public:
     return ans;
   }
 
-  // Best Solution 6: Mark as seen by Negation - Space Optimized
-  vector<int> bestSolution6(vector<int> &nums) {
+  // Solution 6: Mark as seen by Negation - Space Optimized
+  vector<int> solution6(vector<int>& nums) {
     vector<int> ans;
 
     for (int c : nums) {

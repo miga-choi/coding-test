@@ -23,8 +23,9 @@ int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
   return result;
 }
 
-// Best Solution
-int* bestSolution(int* nums, int numsSize, int* returnSize) {
+
+// Solution
+int* solution(int* nums, int numsSize, int* returnSize) {
   int m;
   for (int c = 0; c < numsSize; c++) {
     m = abs(nums[c]) - 1;

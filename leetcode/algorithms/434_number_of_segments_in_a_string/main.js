@@ -10,7 +10,7 @@ var countSegments = function (s) {
 };
 
 
-// Best Solution
-var bestSolution = function (s) {
+// Solution
+var solution = function (s) {
   return s.split(" ").filter((x) => x !== "").length;
 };
