@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 class 개인정보수집유효기간 {
-
-  public int[] solution(String today, String[] terms, String[] privacies) {
+  public int[] mySolution(String today, String[] terms, String[] privacies) {
     List<Integer> answer = new ArrayList<Integer>();
     try {
       Map<String, Integer> termsMap = new HashMap<>();
@@ -36,8 +35,9 @@ class 개인정보수집유효기간 {
     return answer.stream().mapToInt(integer -> integer).toArray();
   }
 
-  // Best Solution
-  public int[] bestSolution(String today, String[] terms, String[] privacies) {
+
+  // Solution
+  public int[] solution(String today, String[] terms, String[] privacies) {
     List<Integer> answer = new ArrayList<>();
     Map<String, Integer> termMap = new HashMap<>();
     int date = getDate(today);
