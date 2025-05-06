@@ -19,7 +19,7 @@ var findContentChildren = function (g, s) {
 
 
 // Solution
-var bestSolution = function (g, s) {
+var solution = function (g, s) {
   g.sort((a, b) => a - b);
   s.sort((a, b) => a - b);
 

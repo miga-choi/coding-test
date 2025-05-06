@@ -18,9 +18,9 @@ class _132Pattern {
     }
 
 
-    // Best Solution
-    // I. Naive O(n^3) solution
-    public boolean bestSolution1(int[] nums) {
+    // Solution
+    // Solution 1: Naive O(n^3) solution
+    public boolean solution1(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
                 for (int k = j + 1; k < nums.length; k++) {
@@ -32,8 +32,8 @@ class _132Pattern {
         return false;
     }
 
-    // II. Improved O(n^2) solution
-    public boolean bestSolution2(int[] nums) {
+    // Solution 2: Improved O(n^2) solution
+    public boolean solution2(int[] nums) {
         for (int j = 0, min = Integer.MAX_VALUE; j < nums.length; j++) {
             min = Math.min(nums[j], min);
             if (min == nums[j])
@@ -47,8 +47,8 @@ class _132Pattern {
         return false;
     }
 
-    // III. Optimized O(n) solution
-    public boolean bestSolution3(int[] nums) {
+    // Solution 3: Optimized O(n) solution
+    public boolean solution3(int[] nums) {
         int[] arr = Arrays.copyOf(nums, nums.length);
 
         for (int i = 1; i < nums.length; i++) {
@@ -68,8 +68,8 @@ class _132Pattern {
         return false;
     }
 
-    // IV -- One-pass O(n) solution
-    public boolean bestSolution4(int[] nums) {
+    // Solution 4: One-pass O(n) solution
+    public boolean solution4(int[] nums) {
         int n = nums.length, top = n, third = Integer.MIN_VALUE;
 
         for (int i = n - 1; i >= 0; i--) {

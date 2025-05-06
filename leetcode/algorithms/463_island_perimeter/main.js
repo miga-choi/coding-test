@@ -26,8 +26,8 @@ var islandPerimeter = function (grid) {
 };
 
 
-// Best Solution
-var bestSolution = function (grid) {
+// Solution
+var solution = function (grid) {
   const rows = grid.length;
   const cols = grid[0].length;
 

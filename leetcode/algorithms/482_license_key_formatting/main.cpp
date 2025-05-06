@@ -20,12 +20,15 @@ public:
         }
 
         reverse(result.begin(), result.end());
+
         return result;
     }
 
-    // Best Solution
-    string bestSolution(string s, int k) {
+
+    // Solution
+    string solution(string s, int k) {
         string res;
+
         for (auto i = s.rbegin(); i < s.rend(); i++) {
             // ignore '-' in original string
             if (*i != '-') {
@@ -38,6 +41,7 @@ public:
         }
 
         reverse(res.begin(), res.end());
+
         return res;
     }
 };

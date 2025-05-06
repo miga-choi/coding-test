@@ -24,8 +24,9 @@ public:
         return false;
     }
 
-    // Best Solution
-    bool bestSolution(vector<int> &nums) {
+
+    // Solution
+    bool solution(vector<int> &nums) {
         int s3 = INT_MIN;
         stack<int> st;
         for (int i = nums.size() - 1; i >= 0; i--) {

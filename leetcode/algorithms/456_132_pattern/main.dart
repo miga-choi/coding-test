@@ -20,8 +20,9 @@ class OneThreeTwoPattern {
     return false;
   }
 
-  // Best Solution
-  bool bestSolution(List<int> nums) {
+
+  // Solution
+  bool solution(List<int> nums) {
     int n = nums.length;
     List<int> minLeft = List<int>.filled(n, 0);
     int minNum = nums[0];

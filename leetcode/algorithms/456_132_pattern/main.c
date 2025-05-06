@@ -5,8 +5,9 @@ bool find132pattern(int* nums, int numsSize) {
 
 }
 
-// Best Solution
-bool bestSolution(int* nums, int numsSize) {
+
+// Solution
+bool solution(int* nums, int numsSize) {
     int peak = numsSize, min = INT_MIN;
 
     for (int i = numsSize - 1; i > -1; i--) {

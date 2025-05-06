@@ -31,8 +31,9 @@ char* licenseKeyFormatting(char* s, int k) {
     return &result[length * 2 - i];
 }
 
-// Best Solution
-char* bestSolution(char* s, int k) {
+
+// Solution
+char* solution(char* s, int k) {
     int len = strlen(s);
     int size = len + len / k + 1;
     int counter = 0;

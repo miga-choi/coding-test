@@ -19,12 +19,10 @@ class FizzBuzz {
 
         return result;
     }
-}
 
 
-// Solution
-class solution {
-    public List<String> fizzBuzz(int n) {
+    // Solution
+    public List<String> solution(int n) {
         List<String> ret = new ArrayList<String>(n);
 
         for (int i = 1, fizz = 0, buzz = 0; i <= n; i++) {

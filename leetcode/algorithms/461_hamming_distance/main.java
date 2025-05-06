@@ -4,8 +4,8 @@ class HammingDistance {
     }
 
 
-    // Best Solution
-    public int bestSolution(int x, int y) {
+    // Solution
+    public int solution(int x, int y) {
         return Integer.bitCount(x ^ y);
     }
 }

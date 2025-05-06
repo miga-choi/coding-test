@@ -9,8 +9,9 @@ public:
         return cnt;
     }
 
-    // Best Solution
-    int bestSolution(int x, int y) {
+
+    // Solution
+    int solution(int x, int y) {
         int dist = 0, n = x ^ y;
         while (n) {
             ++dist;

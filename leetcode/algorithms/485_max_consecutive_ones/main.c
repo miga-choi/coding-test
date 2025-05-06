@@ -16,9 +16,11 @@ int findMaxConsecutiveOnes(int* nums, int numsSize) {
     return max;
 }
 
-// Best Solution
-int bestSolution(int* nums, int numsSize) {
+
+// Solution
+int solution(int* nums, int numsSize) {
     int max_cnt = 0, cnt = 0;
+
     for (int i = 0; i < numsSize; i++) {
         if (nums[i] == 1) {
             max_cnt = max_cnt > ++cnt ? max_cnt : cnt;
@@ -26,5 +28,6 @@ int bestSolution(int* nums, int numsSize) {
             cnt = 0;
         }
     }
+
     return max_cnt;
 }

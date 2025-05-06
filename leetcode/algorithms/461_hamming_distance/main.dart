@@ -8,8 +8,10 @@ class HammingDistance {
     return cnt;
   }
 
-  // Best Solution
-  int bestSolution1(int x, int y) {
+
+  // Solution
+  // Solution 1
+  int solution1(int x, int y) {
     int result = 0;
     int xor = x ^ y;
     while (xor > 0) {
@@ -20,7 +22,8 @@ class HammingDistance {
     return result;
   }
 
-  int bestSolution2(int x, int y) {
+  // Solution 1
+  int solution2(int x, int y) {
     return (x ^ y).toRadixString(2).replaceAll('0', '').length;
   }
 }

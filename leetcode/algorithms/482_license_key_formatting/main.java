@@ -15,8 +15,8 @@ class LicenseKeyFormatting {
     }
 
 
-    // Best Solution
-    public String bestSolution(String s, int k) {
+    // Solution
+    public String solution(String s, int k) {
         StringBuilder sb = new StringBuilder();
         for (int i = s.length() - 1; i >= 0; i--) {
             if (s.charAt(i) != '-') {

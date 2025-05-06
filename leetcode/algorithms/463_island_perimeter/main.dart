@@ -17,8 +17,9 @@ class IslandPerimeter {
     return cnt;
   }
 
-  // Best Solution
-  int bestSolution(List<List<int>> grid) {
+
+  // Solution
+  int solution(List<List<int>> grid) {
     int ans = 0;
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid[0].length; j++) {

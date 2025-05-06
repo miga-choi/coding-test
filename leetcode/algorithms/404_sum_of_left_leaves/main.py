@@ -34,9 +34,9 @@ class SumOfLeftLeaves:
         # does this node have a left child which is a leaf?
         if root.left and not root.left.left and not root.left.right:
             # gotcha
-            return root.left.val + self.bestSolution(root.right)
+            return root.left.val + self.solution(root.right)
 
         # no it does not have a left child or it's not a leaf
         else:
             # bummer
-            return self.bestSolution(root.left) + self.bestSolution(root.right)
+            return self.solution(root.left) + self.solution(root.right)

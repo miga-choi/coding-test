@@ -3,8 +3,9 @@
 
 bool repeatedSubstringPattern(char* s) {}
 
-// Best Solution
-bool bestSolution(char* s) {
+
+// Solution
+bool solution(char* s) {
     int len = strlen(s);
     int j;
 

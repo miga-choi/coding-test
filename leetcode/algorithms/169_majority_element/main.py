@@ -2,7 +2,7 @@ from collections import defaultdict
 from typing import List
 
 
-class Solution:
+class MajorityElement:
     def majorityElement(self, nums: List[int]) -> int:
         numsMap = {}
         length = len(nums) / 2

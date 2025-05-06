@@ -37,8 +37,8 @@ var solution = function (root) {
     return [`${root.val}`];
   } else {
     // For all child paths add the root to their head one by one.
-    let left = bestSolution(root.left).map((x) => root.val + "->" + x);
-    let right = bestSolution(root.right).map((x) => root.val + "->" + x);
+    let left = solution(root.left).map((x) => root.val + "->" + x);
+    let right = solution(root.right).map((x) => root.val + "->" + x);
 
     // return the array with the root value attached
     return [...left, ...right];

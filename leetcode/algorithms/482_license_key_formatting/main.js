@@ -19,8 +19,9 @@ var licenseKeyFormatting = function (s, k) {
 };
 
 
-// Best Solution
-var bestSolution = function (s, k) {
+
+// Solution
+var solution = function (s, k) {
   // Remove existing dashes and convert any lowercase letters to uppercase
   const newStr = s.replace(/-/g, "").toUpperCase();
 

@@ -2,7 +2,7 @@ from typing import List
 import sys
 
 
-class Solution:
+class OneThreeTwoPattern:
     def find132pattern(self, nums: List[int]) -> bool:
         stack = []
         third = -1 * 10**9
@@ -16,8 +16,8 @@ class Solution:
         return False
 
 
-    # Best Solution
-    def bestSolution(self, nums: List[int]) -> bool:
+    # Solution
+    def solution(self, nums: List[int]) -> bool:
         stack = []
         s3 = -sys.maxint
         for n in nums[::-1]:

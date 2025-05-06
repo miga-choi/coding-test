@@ -7,7 +7,7 @@ class TreeNode {
   TreeNode([this.val = 0, this.left, this.right]);
 }
 
-class Solution {
+class MinimumDepthOfBinaryTree {
   int minDepth(TreeNode? root) {
     if (root == null) {
       return 0;
@@ -33,11 +33,14 @@ class Solution {
     if (root == null) {
       return 0;
     }
+
     int l = solution(root.left);
     int r = solution(root.right);
+
     if (l == 0 || r == 0) {
       return l + r + 1;
     }
+
     return min(l, r) + 1;
   }
 }

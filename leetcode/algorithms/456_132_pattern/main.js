@@ -20,8 +20,8 @@ var find132pattern = function (nums) {
 };
 
 
-// Best Solution
-var bestSolution = function (nums) {
+// Solution
+var solution = function (nums) {
   let stack = [];
   let third = Number.MIN_SAFE_INTEGER;
 

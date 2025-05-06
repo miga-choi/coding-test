@@ -20,8 +20,9 @@ int islandPerimeter(int** grid, int gridSize, int* gridColSize) {
     return cnt;
 }
 
-// Best Solution
-int bestSolution(int** grid, int gridSize, int* gridColSize) {
+
+// Solution
+int solution(int** grid, int gridSize, int* gridColSize) {
     int count = 0, repeat = 0;
     for (int i = 0; i < gridSize; i++) {
         for (int j = 0; j < gridColSize[i]; j++) {

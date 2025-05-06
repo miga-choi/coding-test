@@ -18,8 +18,8 @@ var findComplement = function (num) {
 };
 
 
-// Best Solution
-var bestSolution = function (num) {
+// Solution
+var solution = function (num) {
   let d = 2;
   while (d <= num) {
     d *= 2;

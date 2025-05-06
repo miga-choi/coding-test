@@ -17,6 +17,6 @@ var isPerfectSquare = function (num) {
 
 
 // Solution
-var bestSolution = function (num) {
+var solution = function (num) {
   return num ** 0.5 == parseInt(num ** 0.5);
 };

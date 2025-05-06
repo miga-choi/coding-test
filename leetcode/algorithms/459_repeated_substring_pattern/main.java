@@ -4,8 +4,8 @@ class RepeatedSubstringPattern {
     }
 
 
-    // Best Solution
-    public boolean bestSolution(String s) {
+    // Solution
+    public boolean solution(String s) {
         int l = s.length();
         for (int i = l / 2; i >= 1; i--) {
             if (l % i == 0) {
@@ -15,8 +15,9 @@ class RepeatedSubstringPattern {
                 for (int j = 0; j < m; j++) {
                     sb.append(subS);
                 }
-                if (sb.toString().equals(s))
+                if (sb.toString().equals(s)) {
                     return true;
+                }
             }
         }
         return false;

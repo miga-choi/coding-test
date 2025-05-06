@@ -1,9 +1,10 @@
 from typing import List
 
 
-class Solution:
+class NextGreaterElementI:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result = []
+
         for i in range(len(nums1)):
             index = nums2.index(nums1[i])
             if index >= 0:
@@ -14,11 +15,12 @@ class Solution:
                     result.append(-1)
             else:
                 result.append(-1)
+
         return result
 
 
-    # Best Solution
-    def bestSolution(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    # Solution
+    def solution(self, nums1: List[int], nums2: List[int]) -> List[int]:
         if not nums2:
             return None
 
@@ -44,4 +46,5 @@ class Solution:
 
         for i in range(len(nums1)):
             result.append(mapping[nums1[i]])
+
         return result

@@ -19,7 +19,7 @@ var hammingDistance = function (x, y) {
 };
 
 
-// Best Solution
-var bestSolution = function (x, y) {
+// Solution
+var solution = function (x, y) {
   return (x ^ y).toString(2).replace(/0/g, "").length;
 };

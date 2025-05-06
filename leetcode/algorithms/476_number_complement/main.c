@@ -25,8 +25,10 @@ int findComplement(int num) {
     return result << startsWithZeroCount;
 }
 
-// Best Solution 1
-int bestSolution1(int num) {
+
+// Solution
+// Solution 1
+int solution1(int num) {
     unsigned int mask = ~0;
     while (num & mask) {
         mask <<= 1;
@@ -34,9 +36,8 @@ int bestSolution1(int num) {
     return ~mask & ~num;
 }
 
-// Best Solution 2
-int bestSolution2(int num)
-{
+// Solution 2
+int solution2(int num) {
     long powerof2s = 2, temp = num;
 
     while (temp >> 1) {
@@ -47,8 +48,8 @@ int bestSolution2(int num)
     return powerof2s - num - 1;
 }
 
-// Best Solution 3
-int bestSolution3(int num) {
+// Solution 3
+int solution3(int num) {
     long i;
     for (i = 1; i <= num; i *= 2) {
         num ^= i;

@@ -75,7 +75,7 @@ class ArrangingCoins {
   }
 
   // Solution 5: Math Approach (using Quadratic Formula)
-  int bestSolution5(int n) {
+  int solution5(int n) {
     return ((-1 + (sqrt(1 + 8 * n))) / 2).toInt();
   }
 }

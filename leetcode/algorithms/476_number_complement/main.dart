@@ -26,8 +26,10 @@ class NumberComplement {
     return result << startsWithZeroCount;
   }
 
-  // Best Solution 1
-  int bestSolution1(int num) {
+
+  // Solution
+  // Solution 1
+  int solution1(int num) {
     String onescomplement = '';
 
     var bynarynum = '';
@@ -47,8 +49,8 @@ class NumberComplement {
     return val;
   }
 
-  // Best Solution 2
-  int bestSolution2(int num) {
+  // Solution 2
+  int solution2(int num) {
     final int mask = (1 << num.bitLength) - 1;
     return num ^ mask;
   }

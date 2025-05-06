@@ -1,4 +1,4 @@
-class Solution:
+class NumberComplement:
     def findComplement(self, num: int) -> int:
         binary = "{0:b}".format(num)
         result = ""
@@ -12,9 +12,11 @@ class Solution:
         return int(result, 2)
 
 
-    # Best Solution
-    def bestSolution(self, num: int) -> int:
+    # Solution
+    def solution(self, num: int) -> int:
         i = 1
+
         while i <= num:
             i = i << 1
+
         return (i - 1) ^ num

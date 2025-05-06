@@ -5,6 +5,7 @@
  */
 var nextGreaterElement = function (nums1, nums2) {
   const result = [];
+
   for (let i = 0; i < nums1.length; i++) {
     const index = nums2.indexOf(nums1[i]);
     if (index >= 0) {
@@ -19,18 +20,22 @@ var nextGreaterElement = function (nums1, nums2) {
       result.push(-1);
     }
   }
+
   return result;
 };
 
 
-// Best Solution
-// Brute Force
-var bestSolution1 = function (nums1, nums2) {
+// Solution
+// Solution 1: Brute Force
+var solution1 = function (nums1, nums2) {
   const ans = [];
+
   for (let i = 0; i < nums1.length; i++) {
     let max = -1;
+
     for (let j = 0; j < nums2.length; j++) {
       let index = j;
+
       if (nums1[i] === nums2[j]) {
         // Found element in nums2 that matches current element in nums1
         while (index !== nums2.length) {
@@ -44,16 +49,19 @@ var bestSolution1 = function (nums1, nums2) {
         }
       }
     }
+
     ans.push(max);
   }
+
   return ans;
 };
 
-// Stack
-var bestSolution2 = function (nums1, nums2) {
+// Solution 2: Stack
+var solution2 = function (nums1, nums2) {
   // map for next greater element
   const map = new Map();
   const stack = [];
+
   for (let num of nums2) {
     while (stack.length && stack[stack.length - 1] < num) {
       // Pop elements from stack and update map with next greater element
@@ -62,9 +70,12 @@ var bestSolution2 = function (nums1, nums2) {
     // Push current element onto stack
     stack.push(num);
   }
+
   for (let i = 0; i < nums1.length; i++) {
     // Check if each element in nums1 has a next greater element in map
-    nums1[i] = map.has(nums1[i]) ? map.get(nums1[i]) : -1; // Update element in nums1 with next greater element or -1
+    // Update element in nums1 with next greater element or -1
+    nums1[i] = map.has(nums1[i]) ? map.get(nums1[i]) : -1;
   }
+
   return nums1;
 };

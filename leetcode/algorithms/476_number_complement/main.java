@@ -15,8 +15,8 @@ class NumberComplement {
     }
 
 
-    // Best Solution
-    public int bestSolution(int num) {
+    // Solution
+    public int solution(int num) {
         int i = 0;
         int j = 0;
 

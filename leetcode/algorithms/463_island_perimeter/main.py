@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class IslandPerimeter:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         result = 0
 
@@ -20,8 +20,8 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, grid: List[List[int]]) -> int:
+    # Solution
+    def solution(self, grid: List[List[int]]) -> int:
         m, n, Perimeter = len(grid), len(grid[0]), 0
 
         for i in range(m):

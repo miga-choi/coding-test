@@ -19,7 +19,7 @@ class LongestPalindrome {
 
 
   // Solution
-  int bestSolution(String s) {
+  int solution(String s) {
     Set<String> se = {};
     int palindrome = 0;
 

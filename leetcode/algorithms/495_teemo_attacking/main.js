@@ -5,6 +5,7 @@
  */
 var findPoisonedDuration = function (timeSeries, duration) {
   let result = 0;
+
   for (let i = 1; i < timeSeries.length; i++) {
     if (timeSeries[i] - timeSeries[i - 1] >= duration) {
       result += duration;
@@ -12,13 +13,15 @@ var findPoisonedDuration = function (timeSeries, duration) {
       result += timeSeries[i] - timeSeries[i - 1];
     }
   }
+
   result += duration;
+
   return result;
 };
 
 
-// Best Solution
-var bestSolution = function (timeSeries, duration) {
+// Solution
+var solution = function (timeSeries, duration) {
   let ans = 0;
 
   for (let i = 0, len = timeSeries.length; i < len; i++) {
@@ -27,10 +30,14 @@ var bestSolution = function (timeSeries, duration) {
       continue;
     }
 
-    let curItem = timeSeries[i], nextItem = timeSeries[i + 1];
+    let curItem = timeSeries[i],
+      nextItem = timeSeries[i + 1];
 
-    if (curItem + duration <= nextItem) ans += duration;
-    else ans += nextItem - curItem;
+    if (curItem + duration <= nextItem) {
+      ans += duration;
+    } else {
+      ans += nextItem - curItem;
+    }
   }
 
   return ans;
