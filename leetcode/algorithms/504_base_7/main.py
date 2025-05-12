@@ -1,4 +1,4 @@
-class Solution:
+class Base7:
     def convertToBase7(self, num: int) -> str:
         if num == 0:
             return "0"
@@ -20,15 +20,17 @@ class Solution:
         return numString
 
 
-    # Best Solution
-    def bestSolution1(self, num: int) -> str:
+    # Solution
+    # Solution 1
+    def solution1(self, num: int) -> str:
         if num < 0:
             return "-" + self.convertToBase7(-num)
         if num < 7:
             return str(num)
-        return self.bestSolution1(num // 7) + str(num % 7)
+        return self.solution1(num // 7) + str(num % 7)
 
-    def bestSolution2(self, num: int) -> str:
+    # Solution 2
+    def solution2(self, num: int) -> str:
         if not num:
             return "0"
 

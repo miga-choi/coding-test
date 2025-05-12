@@ -1,4 +1,16 @@
 #include <stdlib.h>
+#include <stdio.h>
+
+/**
+ * Your KthLargest struct will be instantiated and called as such:
+ * KthLargest* obj = kthLargestCreate(k, nums, numsSize);
+ * int param_1 = kthLargestAdd(obj, val);
+
+ * kthLargestFree(obj);
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * Your KthLargest struct will be instantiated and called as such:
@@ -9,18 +21,77 @@
 */
 
 typedef struct {
-
+    int k;
+    int length;
+    int* nums;
 } KthLargest;
 
-KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
+int compare(const void* p, const void* n) {
+    return (*(int*)n) - (*(int*)p);
+}
 
+KthLargest* kthLargestCreate(int k, int* nums, int numsSize) {
+    qsort(nums, numsSize, sizeof(int), compare);
+
+    KthLargest* kthLargest = (KthLargest*)malloc(sizeof(KthLargest));
+
+    kthLargest->k = k;
+    kthLargest->nums = (int*)malloc(sizeof(int) * k);
+
+    if (numsSize < k) {
+        kthLargest->length = numsSize;
+        for (int i = 0; i < numsSize; i++) {
+            kthLargest->nums[i] = nums[i];
+        }
+    } else {
+        kthLargest->length = k;
+        for (int i = 0; i < k; i++) {
+            kthLargest->nums[i] = nums[i];
+        }
+    }
+
+    return kthLargest;
 }
 
 int kthLargestAdd(KthLargest* obj, int val) {
+    if (obj->length == 0) {
+        obj->nums[obj->length++] = val;
+        return val;
+    }
 
+    if (obj->length < obj->k) {
+        if (val < obj->nums[obj->length - 1]) {
+            obj->nums[obj->length++] = val;
+            return val;
+        }
+
+        obj->nums[obj->length++] = val;
+        int i = obj->length - 1;
+        while (i > 0 && obj->nums[i - 1] < val) {
+            obj->nums[i] = obj->nums[i - 1];
+            i--;
+        }
+        obj->nums[i] = val;
+
+        return obj->nums[obj->length - 1];
+    } else {
+        if (val < obj->nums[obj->k - 1]) {
+            return obj->nums[obj->k - 1];
+        }
+
+        int i = obj->k - 1;
+        while (i > 0 && obj->nums[i - 1] < val) {
+            obj->nums[i] = obj->nums[i - 1];
+            i--;
+        }
+        obj->nums[i] = val;
+
+        return obj->nums[obj->k - 1];
+    }
 }
 
 void kthLargestFree(KthLargest* obj) {
+    free(obj);
 }
 
 

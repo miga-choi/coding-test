@@ -25,8 +25,9 @@ class ReverseStringII {
     }
 
 
-    // Best Solution
-    public String bestSolution1(String s, int k) {
+    // Solution
+    // Solution 1
+    public String solution1(String s, int k) {
         char[] arr = s.toCharArray();
         int n = arr.length;
         int i = 0;
@@ -46,8 +47,8 @@ class ReverseStringII {
         }
     }
 
-
-    public String bestSolution2(String s, int k) {
+    // Solution 2
+    public String solution2(String s, int k) {
         char[] ca = s.toCharArray();
         for (int left = 0; left < ca.length; left += 2 * k) {
             for (int i = left, j = Math.min(left + k - 1, ca.length - 1); i < j; i++, j--) {

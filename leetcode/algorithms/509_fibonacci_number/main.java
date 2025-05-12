@@ -10,9 +10,8 @@ class FibonacciNumber {
     }
 
 
-    // Best Solution
-    // Iterative
-    public int bestSolution1(int n) {
+    // Solution 1: Iterative
+    public int solution1(int n) {
         if (n <= 1) {
             return n;
         }
@@ -27,8 +26,8 @@ class FibonacciNumber {
         return b;
     }
 
-    // Recursive
-    public int bestSolution2(int n) {
+    // Solution 2: Recursive
+    public int solution2(int n) {
         if (n <= 1) {
             return n;
         } else {
@@ -36,10 +35,10 @@ class FibonacciNumber {
         }
     }
 
-    // Dynamic Programming - Top Down Approach
+    // Solution 3: Dynamic Programming - Top Down Approach
     int[] fib_cache = new int[31];
 
-    public int bestSolution3(int n) {
+    public int solution3(int n) {
         if (n <= 1) {
             return n;
         } else if (fib_cache[n] != 0) {
@@ -49,8 +48,8 @@ class FibonacciNumber {
         }
     }
 
-    // Dynamic Programming - Bottom Up Approach
-    public int bestSolution4(int n) {
+    // Solution 4: Dynamic Programming - Bottom Up Approach
+    public int solution4(int n) {
         if (n <= 1) {
             return n;
         }
@@ -61,6 +60,7 @@ class FibonacciNumber {
         for (int i = 2; i <= n; i++) {
             fib_cache[i] = fib_cache[i - 1] + fib_cache[i - 2];
         }
+
         return fib_cache[n];
     }
 }

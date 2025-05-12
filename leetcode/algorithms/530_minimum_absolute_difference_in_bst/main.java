@@ -41,51 +41,51 @@ class MinimumAbsoluteDifferenceInBST {
     }
 
 
-    // Best Solution
-    // In-Order traverse
-    int bestSolution1Min = Integer.MAX_VALUE;
-    Integer bestSolution1Prev = null;
+    // Solution
+    // Solution 1: In-Order traverse
+    int solution1Min = Integer.MAX_VALUE;
+    Integer solution1Prev = null;
 
-    public int bestSolution1(TreeNode root) {
+    public int solution1(TreeNode root) {
         if (root == null) {
-            return bestSolution1Min;
+            return solution1Min;
         }
 
-        bestSolution1(root.left);
+        solution1(root.left);
 
-        if (bestSolution1Prev != null) {
-            bestSolution1Min = Math.min(bestSolution1Min, root.val - bestSolution1Prev);
+        if (solution1Prev != null) {
+            solution1Min = Math.min(solution1Min, root.val - solution1Prev);
         }
-        bestSolution1Prev = root.val;
+        solution1Prev = root.val;
 
-        bestSolution1(root.right);
+        solution1(root.right);
 
-        return bestSolution1Min;
+        return solution1Min;
     }
 
-    // Pre-Order traverse
-    TreeSet<Integer> bestSolution2Set = new TreeSet<Integer>();
-    int bestSolution2Min = Integer.MAX_VALUE;
+    // Solution 2: Pre-Order traverse
+    TreeSet<Integer> solution2Set = new TreeSet<Integer>();
+    int solution2Min = Integer.MAX_VALUE;
 
-    public int bestSolution2(TreeNode root) {
+    public int solution2(TreeNode root) {
         if (root == null) {
-            return bestSolution2Min;
+            return solution2Min;
         }
 
-        if (!bestSolution2Set.isEmpty()) {
-            if (bestSolution2Set.floor(root.val) != null) {
-                bestSolution2Min = Math.min(bestSolution2Min, root.val - bestSolution2Set.floor(root.val));
+        if (!solution2Set.isEmpty()) {
+            if (solution2Set.floor(root.val) != null) {
+                solution2Min = Math.min(solution2Min, root.val - solution2Set.floor(root.val));
             }
-            if (bestSolution2Set.ceiling(root.val) != null) {
-                bestSolution2Min = Math.min(bestSolution2Min, bestSolution2Set.ceiling(root.val) - root.val);
+            if (solution2Set.ceiling(root.val) != null) {
+                solution2Min = Math.min(solution2Min, solution2Set.ceiling(root.val) - root.val);
             }
         }
 
-        bestSolution2Set.add(root.val);
+        solution2Set.add(root.val);
 
-        bestSolution2(root.left);
-        bestSolution2(root.right);
+        solution2(root.left);
+        solution2(root.right);
 
-        return bestSolution2Min;
+        return solution2Min;
     }
 }

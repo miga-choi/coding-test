@@ -7,9 +7,11 @@ var convertToBase7 = function (num) {
 };
 
 
-// Best Solution
-var bestSolution1 = function (num) {
+// Solution
+// Solution 1
+var solution1 = function (num) {
   return num.toString(7);
 };
 
-var bestSolution2 = (num) => num.toString(7);
+// Solution 2
+var solution2 = (num) => num.toString(7);

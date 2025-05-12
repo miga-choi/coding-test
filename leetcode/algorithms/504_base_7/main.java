@@ -24,14 +24,14 @@ class Base7 {
     }
 
 
-    // Best Solution
-    public String bestSolution(int num) {
+    // Solution
+    public String solution(int num) {
         if (num < 0) {
-            return "-" + bestSolution(-num);
+            return "-" + solution(-num);
         }
         if (num < 7) {
             return Integer.toString(num);
         }
-        return bestSolution(num / 7) + Integer.toString(num % 7);
+        return solution(num / 7) + Integer.toString(num % 7);
     }
 }

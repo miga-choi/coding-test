@@ -1,4 +1,4 @@
-class Solution:
+class DetectCapital:
     def detectCapitalUse(self, word: str) -> bool:
         return (
             word == word.lower()
@@ -7,13 +7,17 @@ class Solution:
         )
 
 
-    # Best Solution
-    def bestSolution1(self, word: str) -> bool:
+    # Solution
+    # Solution 1
+    def solution1(self, word: str) -> bool:
         return word.isupper() or word.islower() or word.istitle()
 
-    def bestSolution2(self, word: str) -> bool:
+    # Solution 2
+    def solution2(self, word: str) -> bool:
         c = 0
+
         for i in word:
             if i == i.upper():
                 c += 1
+
         return c == len(word) or (c == 1 and word[0] == word[0].upper()) or c == 0

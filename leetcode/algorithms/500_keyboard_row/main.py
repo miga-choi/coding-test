@@ -2,9 +2,10 @@ import re
 from typing import List
 
 
-class Solution:
+class KeyboardRow:
     def findWords(self, words: List[str]) -> List[str]:
         result = []
+
         for word in words:
             row = 0
             if len(word) == 1:
@@ -32,18 +33,25 @@ class Solution:
                             break
                 if isTrue:
                     result.append(word)
+
         return result
 
 
-    # Best Solution
-    def bestSolution1(self, words: List[str]) -> List[str]:
-        line1, line2, line3 = set("qwertyuiop"), set("asdfghjkl"), set("zxcvbnm")
-        ret = []
+    # Solution
+    # Solution 1
+    def solution1(self, words: List[str]) -> List[str]:
+        line1: set = set("qwertyuiop")
+        line2: set = set("asdfghjkl")
+        line3: set = set("zxcvbnm")
+        ret: List[str] = []
+
         for word in words:
             w = set(word.lower())
             if w <= line1 or w <= line2 or w <= line3:
                 ret.append(word)
+
         return ret
 
-    def bestSolution2(self, words: List[str]) -> List[str]:
+    # Solution 2
+    def solution2(self, words: List[str]) -> List[str]:
         return filter(re.compile("(?i)([qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*)$").match, words)

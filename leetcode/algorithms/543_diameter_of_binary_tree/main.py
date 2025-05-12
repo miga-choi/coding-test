@@ -8,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class DiameterOfBinaryTree:
     result = 0
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
@@ -28,9 +28,9 @@ class Solution:
         return max(left, right) + 1
 
 
-    # Best Solution
-    # best solution 1
-    def bestSolution1(self, root: Optional[TreeNode]) -> int:
+    # Solution
+    # Solution 1
+    def solution1(self, root: Optional[TreeNode]) -> int:
         self.ans = 0
 
         def depth(p):
@@ -43,15 +43,17 @@ class Solution:
         depth(root)
         return self.ans
 
-    # best solution 2: Implementation
-    def bestSolution2(self, root: Optional[TreeNode]) -> int:
+    # Solution 2: Implementation
+    def solution2(self, root: Optional[TreeNode]) -> int:
         # Implement depth
         def depth(node: Optional[TreeNode]) -> int:
             return 1 + max(depth(node.left), depth(node.right)) if node else 0
 
         return depth(root.left) + depth(root.right)  # calculate diameter
 
-    # best solution 3
+    # Solution 3
+    diameter: int
+
     def __init__(self):
         self.diameter = 0  # stores the maximum diameter calculated
 
@@ -70,7 +72,7 @@ class Solution:
         # Make sure the parent node(s) get the correct depth from this node
         return 1 + (left if left > right else right)
 
-    def bestSolution3(self, root: Optional[TreeNode]) -> int:
+    def solution3(self, root: Optional[TreeNode]) -> int:
         # if not root:
         #     return 0
         self.depth(root)  # root is guaranteed to be a TreeNode object

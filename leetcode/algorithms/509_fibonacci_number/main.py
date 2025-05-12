@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 
-class Solution:
+class FibonacciNumber:
     def fib(self, n: int) -> int:
         if n == 0:
             return 0
@@ -11,18 +11,18 @@ class Solution:
             return self.fib(n - 1) + self.fib(n - 2)
 
 
-    # Best Solution
-    # naive recursive
-    def bestSolution1(self, n: int) -> int:
+    # Solution
+    # Solution 1: naive recursive
+    def solution1(self, n: int) -> int:
         if n == 0:
             return 0
         if n == 1:
             return 1
         return self.bestSolution1(n - 1) + self.bestSolution1(n - 2)
 
-    # memoized recursive
+    # Solution 2: memoized recursive
     memo = {}
-    def bestSolution2(self, n: int) -> int:
+    def solution2(self, n: int) -> int:
         if n == 0:
             return 0
         if n == 1:
@@ -33,15 +33,15 @@ class Solution:
             self.memo[n - 2] = self.bestSolution2(n - 2)
         return self.memo[n - 1] + self.memo[n - 2]
 
-    # textbook LRU cache
+    # Solution 3: textbook LRU cache
     @lru_cache(maxsize=None)
-    def bestSolution3(self, n: int) -> int:
+    def solution3(self, n: int) -> int:
         if n < 2:
             return n
         return self.bestSolution3(n - 1) + self.bestSolution3(n - 2)
 
-    # iterative space-optimized
-    def bestSolution4(self, n: int) -> int:
+    # Solution 4: iterative space-optimized
+    def solution4(self, n: int) -> int:
         if n == 0:
             return 0
         memo = [0, 1]
@@ -49,8 +49,8 @@ class Solution:
             memo = [memo[-1], memo[-1] + memo[-2]]
         return memo[-1]
 
-    # tuple
-    def bestSolution5(self, n: int) -> int:
+    # Solution 5: tuple
+    def solution5(self, n: int) -> int:
         if n == 0:
             return 0
         memo = (0, 1)
@@ -58,7 +58,7 @@ class Solution:
             memo = (memo[-1], memo[-1] + memo[-2])
         return memo[-1]
 
-    # golden ratio
-    def bestSolution6(self, n: int) -> int:
+    # Solution 6: golden ratio
+    def solution6(self, n: int) -> int:
         golden_ratio = (1 + 5**0.5) / 2
         return int((golden_ratio**n + 1) / 5**0.5)

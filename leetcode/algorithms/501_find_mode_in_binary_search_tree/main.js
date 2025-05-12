@@ -43,8 +43,8 @@ var findMode = function (root) {
 };
 
 
-// Best Solution
-var bestSolution = function (root) {
+// Solution
+var solution = function (root) {
   const counts = {};
   let maxCount = 0;
   const modes = [];

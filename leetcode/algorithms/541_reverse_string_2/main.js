@@ -12,7 +12,10 @@ var reverseStr = function (s, k) {
   let result = "";
 
   for (let i = 0; i < s.length; i += 2 * k) {
-    const stringK = sArray.slice(i, i + k).reverse().join("");
+    const stringK = sArray
+      .slice(i, i + k)
+      .reverse()
+      .join("");
     const left = sArray.slice(i + k, i + 2 * k).join("");
     result += stringK + left;
   }
@@ -21,8 +24,8 @@ var reverseStr = function (s, k) {
 };
 
 
-// Best Solution
-var bestSolution = function (s, k) {
+// Solution
+var solution = function (s, k) {
   if (k > s.length) {
     return s.split("").reverse().join("");
   }

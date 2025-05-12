@@ -5,6 +5,7 @@
 var findRelativeRanks = function (score) {
   const sortedScore = score.slice().sort((p, n) => n - p);
   const result = [];
+
   for (const v of score) {
     if (sortedScore.indexOf(v) === 0) {
       result.push("Gold Medal");
@@ -16,12 +17,13 @@ var findRelativeRanks = function (score) {
       result.push((sortedScore.indexOf(v) + 1).toString());
     }
   }
+
   return result;
 };
 
 
-// Best Solution
-var bestSolution = function (score) {
+// Solution
+var solution = function (score) {
   const ranks = new MaxPriorityQueue();
 
   for (let i = 0; i < score.length; i++) {

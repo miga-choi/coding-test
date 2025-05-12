@@ -7,7 +7,7 @@ var detectCapitalUse = function (word) {
 };
 
 
-// Best Solution
-var bestSolution = function (word) {
+// Solution
+var solution = function (word) {
   return word === word.toUpperCase() || word === word[0] + word.substr(1).toLowerCase();
 };

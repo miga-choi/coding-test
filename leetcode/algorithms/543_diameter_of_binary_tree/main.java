@@ -45,6 +45,7 @@ class DiameterOfBinaryTree {
     }
 
 
+    // Solution
     // Worst Solution
     public int worstSolution(TreeNode root) {
         if (root == null) {
@@ -139,12 +140,10 @@ class DiameterOfBinaryTree {
         return maxDistance;
     }
 
-
-    // Best Solution
-    // best solution 1
+    // Solution 1
     int max = 0;
 
-    public int bestSolution1(TreeNode root) {
+    public int solution1(TreeNode root) {
         maxDepth(root);
         return max;
     }
@@ -161,8 +160,8 @@ class DiameterOfBinaryTree {
         return Math.max(left, right) + 1;
     }
 
-    // best solution 2
-    public int bestSolution2(TreeNode root) {
+    // Solution 2
+    public int solution2(TreeNode root) {
         if (root == null) {
             return 0;
         }

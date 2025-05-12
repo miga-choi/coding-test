@@ -66,7 +66,8 @@ class FindModeInBinarySearchTree {
     }
 
 
-    // Best Solution
+    // Solution
+    // Solution 1: In-order traversal
     private int currVal;
     private int currCount = 0;
     private int maxCount = 0;
@@ -91,8 +92,7 @@ class FindModeInBinarySearchTree {
         }
     }
 
-    // In-order traversal
-    public int[] bestSolution1(TreeNode root) {
+    public int[] solution1(TreeNode root) {
         inorder(root);
         modes = new int[modeCount];
         modeCount = 0;
@@ -110,8 +110,8 @@ class FindModeInBinarySearchTree {
         inorder(root.right);
     }
 
-    // Morris traversal
-    public int[] bestSolution2(TreeNode root) {
+    // Solution 2: Morris traversal
+    public int[] solution2(TreeNode root) {
         morris(root);
         modes = new int[modeCount];
         modeCount = 0;

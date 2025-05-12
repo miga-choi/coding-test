@@ -11,7 +11,8 @@ var findLUSlength = function (a, b) {
   }
 };
 
-// Best Solution
-var bestSolution = function (a, b) {
+
+// Solution
+var solution = function (a, b) {
   return a === b ? -1 : Math.max(a.length, b.length);
 };

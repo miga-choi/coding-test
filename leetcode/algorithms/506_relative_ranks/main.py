@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class RelativeRanks:
     def findRelativeRanks(self, score: List[int]) -> List[str]:
         result = []
         sortedScore = sorted(score, reverse=True)
@@ -19,10 +19,10 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution(self, score: List[int]) -> List[str]:
+    # Solution
+    def solution(self, score: List[int]) -> List[str]:
         sort = sorted(score)[::-1]
-        rank = ["Gold Medal", "Silver Medal", "Bronze Medal"] + map(
-            str, range(4, len(score) + 1)
-        )
+
+        rank = ["Gold Medal", "Silver Medal", "Bronze Medal"] + map(str, range(4, len(score) + 1))
+
         return map(dict(zip(sort, rank)).get, score)

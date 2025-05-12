@@ -30,8 +30,8 @@ var diameterOfBinaryTree = function (root) {
 };
 
 
-// Best Solution
-var bestSolution = function (root) {
+// Solution
+var solution = function (root) {
   let diameter = 0;
 
   dfs(root);
@@ -39,7 +39,9 @@ var bestSolution = function (root) {
   return diameter;
 
   function dfs(node) {
-    if (!node) return 0;
+    if (!node) {
+      return 0;
+    }
 
     const left = dfs(node.left);
     const right = dfs(node.right);

@@ -2,7 +2,7 @@
 from typing import Optional
 
 
-class Solution:
+class MinimumAbsoluteDifferenceInBST:
     class TreeNode:
         def __init__(self, val=0, left=None, right=None):
             self.val = val
@@ -29,8 +29,9 @@ class Solution:
         return min
 
 
-    # Best Solution
-    def bestSolution1(self, root: Optional[TreeNode]) -> int:
+    # Solution
+    # Solution 1
+    def solution1(self, root: Optional[TreeNode]) -> int:
         def fn(node, lo, hi):
             if not node:
                 return hi - lo
@@ -40,7 +41,8 @@ class Solution:
 
         return fn(root, float("-inf"), float("inf"))
 
-    def bestSolution2(self, root: Optional[TreeNode]) -> int:
+    # Solution 2
+    def solution2(self, root: Optional[TreeNode]) -> int:
         L = []
 
         def dfs(node):

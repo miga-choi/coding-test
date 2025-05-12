@@ -5,6 +5,7 @@
 var findWords = function (words) {
   const rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"];
   const result = [];
+
   for (let word of words) {
     let row = -1;
     for (const c of word) {
@@ -35,12 +36,13 @@ var findWords = function (words) {
       result.push(word);
     }
   }
+
   return result;
 };
 
 
-// Best Solution
-var bestSolution = function (words) {
+// Solution
+var solution = function (words) {
   return words.filter((w) => {
     // remove word from array if it fails matching all three rows
     if (

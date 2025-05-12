@@ -6,7 +6,9 @@ class KeyboardRow {
     public String[] findWords(String[] words) {
         List<String> result = new ArrayList<String>();
         for (String word : words) {
-            if (word.toLowerCase().matches("[qwertyuiop]*") || word.toLowerCase().matches("[asdfghjkl]*") || word.toLowerCase().matches("[zxcvbnm]*")) {
+            if (word.toLowerCase().matches("[qwertyuiop]*")
+                    || word.toLowerCase().matches("[asdfghjkl]*")
+                    || word.toLowerCase().matches("[zxcvbnm]*")) {
                 result.add(word);
             }
         }
@@ -14,8 +16,10 @@ class KeyboardRow {
     }
 
 
-    // Best Solution
-    public String[] bestSolution(String[] words) {
-        return Stream.of(words).filter(s -> s.toLowerCase().matches("[qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*")).toArray(String[]::new);
+    // Solution
+    public String[] solution(String[] words) {
+        return Stream.of(words)
+                .filter(s -> s.toLowerCase().matches("[qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*"))
+                .toArray(String[]::new);
     }
 }

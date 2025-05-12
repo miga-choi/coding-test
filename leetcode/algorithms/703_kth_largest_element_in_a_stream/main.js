@@ -8,13 +8,53 @@
  * @param {number} k
  * @param {number[]} nums
  */
-var KthLargest = function (k, nums) {};
+var KthLargest = function (k, nums) {
+  this.k = k;
+  nums.sort((p, n) => n - p);
+  if (nums.length > k) {
+    nums.length = k;
+  }
+  this.nums = nums;
+};
 
 /**
  * @param {number} val
  * @return {number}
  */
-KthLargest.prototype.add = function (val) {};
+KthLargest.prototype.add = function (val) {
+  const k = this.k;
+  let length = this.nums.length;
+  if (length < k) {
+    if (val < this.nums[length - 1]) {
+      this.nums[length++] = val;
+      return val;
+    }
+
+    this.nums[length++] = val;
+    let i = length - 1;
+    while (i > 0 && this.nums[i - 1] < val) {
+      this.nums[i] = this.nums[i - 1];
+      i--;
+    }
+    this.nums[i] = val;
+
+    return this.nums[length - 1];
+  } else {
+    if (val < this.nums[length - 1]) {
+      return this.nums[length - 1];
+    }
+
+    let i = length - 1;
+    while (i > 0 && this.nums[i - 1] < val) {
+      this.nums[i] = this.nums[i - 1];
+      i--;
+    }
+    this.nums[i] = val;
+
+    return this.nums[length - 1];
+  }
+};
+
 
 // Solution
 var Solution_KthLargest = function (k, nums) {

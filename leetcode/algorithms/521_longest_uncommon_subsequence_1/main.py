@@ -1,8 +1,8 @@
-class Solution:
+class LongestUncommonSubsequenceI:
     def findLUSlength(self, a: str, b: str) -> int:
         return -1 if a == b else max(len(a), len(b))
 
 
-    # Best Solution
-    def bestSolution(self, a: str, b: str) -> int:
+    # Solution
+    def solution(self, a: str, b: str) -> int:
         return -1 if a == b else max(len(a), len(b))

@@ -6,8 +6,9 @@ class DetectCapital {
     }
 
 
-    // Best Solution
-    public boolean bestSolution1(String word) {
+    // Solution
+    // Solution 1
+    public boolean solution1(String word) {
         int cnt = 0;
         for (char c : word.toCharArray()) {
             if ('Z' - c >= 0) {
@@ -17,11 +18,13 @@ class DetectCapital {
         return ((cnt == 0 || cnt == word.length()) || (cnt == 1 && 'Z' - word.charAt(0) >= 0));
     }
 
-    public boolean bestSolution2(String word) {
+    // Solution 2
+    public boolean solution2(String word) {
         return word.matches("[A-Z]+|[a-z]+|[A-Z][a-z]+");
     }
 
-    public boolean bestSolution3(String word) {
+    // Solution 3
+    public boolean solution3(String word) {
         if (word.length() == 0 || word.length() == 1) {
             return true;
         }

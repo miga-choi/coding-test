@@ -4,8 +4,8 @@ class LongestUncommonSubsequenceI {
     }
 
 
-    // Best Solution
-    public int bestSolution(String a, String b) {
+    // Solution
+    public int solution(String a, String b) {
         if (a.equals(b)) {
             return -1;
         }

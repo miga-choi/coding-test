@@ -26,7 +26,8 @@ class RelativeRanks {
     }
 
 
-    // Best Solution
+    // Solution
+    // Solution 1
     /*
      * Example:
      * 
@@ -38,7 +39,7 @@ class RelativeRanks {
      * pair[i][0] : [10, 9, 8, 4, 3]
      * pair[i][1] : [ 0, 3, 2, 4, 1]
      */
-    public String[] bestSolution1(int[] score) {
+    public String[] solution1(int[] score) {
         int[][] pair = new int[score.length][2];
 
         for (int i = 0; i < score.length; i++) {
@@ -65,8 +66,8 @@ class RelativeRanks {
         return result;
     }
 
-    // Dimension array
-    public String[] bestSolution2(int[] score) {
+    // Solution 2: Dimension array
+    public String[] solution2(int[] score) {
         Integer[] index = new Integer[score.length];
 
         for (int i = 0; i < score.length; i++) {

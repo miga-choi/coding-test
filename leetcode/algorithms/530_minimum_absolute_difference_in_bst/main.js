@@ -36,8 +36,8 @@ var getMinimumDifference = function (root) {
 };
 
 
-// Best Solution
-var bestSolution = function (root) {
+// Solution
+var solution = function (root) {
   // Converting tree to an sorted array
   const arr = toArray(root);
   let out = Infinity;
