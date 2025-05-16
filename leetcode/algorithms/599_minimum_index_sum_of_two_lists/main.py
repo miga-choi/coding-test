@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class MinimumIndexSumOfTwoLists:
     def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
         map1: dict = {}
         map2: dict = {}
@@ -19,9 +19,9 @@ class Solution:
         return [v[0] for v in filteredList]
 
 
-    # Best Solution
-    # Best Solution 1:
-    def bestSolution1(self, list1: List[str], list2: List[str]) -> List[str]:
+    # Solution
+    # Solution 1:
+    def solution1(self, list1: List[str], list2: List[str]) -> List[str]:
         Aindex = {u: i for i, u in enumerate(list1)}
         best, ans = 1e9, []
 
@@ -32,10 +32,11 @@ class Solution:
                 ans = [v]
             elif i + j == best:
                 ans.append(v)
+
         return ans
 
-    # Best Solution 2:
-    def bestSolution2(self, list1: List[str], list2: List[str]) -> List[str]:
+    # Solution 2:
+    def solution2(self, list1: List[str], list2: List[str]) -> List[str]:
         dic1 = {restaurant: i for i, restaurant in enumerate(list1)}
         dic2 = {restaurant: dic1[restaurant] + i for i, restaurant in enumerate(list2) if restaurant in dic1}
 

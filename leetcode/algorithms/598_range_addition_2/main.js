@@ -7,18 +7,21 @@
 var maxCount = function (m, n, ops) {
   let minM = m;
   let minN = n;
+
   for (let i = 0; i < ops.length; i++) {
     minM = Math.min(minM, ops[i][0]);
     minN = Math.min(minN, ops[i][1]);
   }
+
   return minM * minN;
 };
 
 
-// Best Solution
-var bestSolution = function (m, n, ops) {
+// Solution
+var solution = function (m, n, ops) {
   var min_row = m;
   var min_col = n;
+
   for (let i = 0; i < ops.length; i++) {
     if (ops[i][0] < min_row) {
       min_row = ops[i][0];
@@ -27,5 +30,6 @@ var bestSolution = function (m, n, ops) {
       min_col = ops[i][1];
     }
   }
+
   return min_row * min_col;
 };

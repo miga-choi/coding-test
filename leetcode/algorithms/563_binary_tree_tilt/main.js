@@ -10,6 +10,7 @@ function TreeNode(val, left, right) {
  */
 var findTilt = function (root) {
   let result = 0;
+
   /**
    * @param {TreeNode} node
    * @return {number}
@@ -24,29 +25,36 @@ var findTilt = function (root) {
       return 0;
     }
   }
+
   getVal(root);
+
   return result;
 };
 
 
-// Best Solution
-// Best Solution 1: DFS
-var bestSolution1 = function (root) {
+// Solution
+// Solution 1: DFS
+var solution1 = function (root) {
   const tilt = { val: 0 };
   dfs(root, tilt);
   return tilt.val;
 };
 
 function dfs(root, tilt) {
-  if (!root) return 0;
+  if (!root) {
+    return 0;
+  }
+
   let left = dfs(root.left, tilt);
   let right = dfs(root.right, tilt);
+
   tilt.val += Math.abs(left - right);
+
   return root.val + left + right;
 }
 
-// Best Solution 2
-var bestSolution2 = function (root) {
+// Solution 2
+var solution2 = function (root) {
   let tot = 0;
 
   findSum(root);
@@ -55,7 +63,9 @@ var bestSolution2 = function (root) {
 
   function findSum(node) {
     // base case
-    if (node == null) return 0;
+    if (node == null) {
+      return 0;
+    }
 
     const left = findSum(node.left);
     const right = findSum(node.right);

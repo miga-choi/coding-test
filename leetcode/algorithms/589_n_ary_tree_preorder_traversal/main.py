@@ -7,7 +7,7 @@ class Node:
         self.children = children
 
 
-class Solution:
+class NAryTreePreorderTraversal:
     def preorder(self, root: "Node") -> List[int]:
         return self.getVal(root, [])
 
@@ -19,9 +19,9 @@ class Solution:
         return list
 
 
-    # Best Solution
-    # Best Solution 1: Iterative
-    def bestSolution1(self, root: "Node", output: List[int] = []) -> List[int]:
+    # Solution
+    # Solution 1: Iterative
+    def solution1(self, root: "Node", output: List[int] = []) -> List[int]:
         if root is None:
             return []
 
@@ -45,8 +45,8 @@ class Solution:
         # return the output
         return output
 
-    # Best Solution 2: Recursive
-    def bestSolution2(self, root: "Node") -> List[int]:
+    # Solution 2: Recursive
+    def solution2(self, root: "Node") -> List[int]:
         output = []
 
         # perform dfs on the root and get the output stack

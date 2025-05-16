@@ -7,23 +7,27 @@ class Node:
         self.children = children
 
 
-class Solution:
+class NAryTreePostorderTraversal:
     def postorder(self, root: "Node") -> List[int]:
         return self.traversal(root, [])
 
     def traversal(self, node: "Node", list: List[int]) -> List[int]:
         if node == None:
             return list
+
         for child in node.children:
             self.traversal(child, list)
+
         list.append(node.val)
+
         return list
 
 
-    # Best Solution
-    # Best Solution 1: Recursion
-    def bestSolution1(self, root: "Node") -> List[int]:
+    # Solution
+    # Solution 1: Recursion
+    def solution1(self, root: "Node") -> List[int]:
         res = []
+
         if root == None:
             return res
 
@@ -33,15 +37,18 @@ class Solution:
             res.append(root.val)
 
         recursion(root, res)
+
         return res
 
-    # Best Solution 2: Iteration
-    def bestSolution2(self, root: "Node") -> List[int]:
+    # Solution 2: Iteration
+    def solution2(self, root: "Node") -> List[int]:
         res = []
+
         if root == None:
             return res
 
         stack = [root]
+
         while stack:
             curr = stack.pop()
             res.append(curr.val)

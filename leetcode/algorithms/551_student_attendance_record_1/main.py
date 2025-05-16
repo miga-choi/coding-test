@@ -1,4 +1,4 @@
-class Solution:
+class StudentAttendanceRecordI:
     def checkRecord(self, s: str) -> bool:
         if s.count('P') > 1:
             return False
@@ -10,10 +10,11 @@ class Solution:
         return True
 
 
-    # Best Solution
-    def bestSolution(self, s: str) -> bool:
+    # Solution
+    def solution(self, s: str) -> bool:
         A_count = 0
         L_count = 0
+
         for i in s:
             if i == "A":
                 A_count += 1
@@ -25,4 +26,5 @@ class Solution:
                     return False
             else:
                 L_count = 0
+
         return True

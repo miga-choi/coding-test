@@ -1,17 +1,14 @@
 class StudentAttendanceRecordI {
-
   public boolean checkRecord(String s) {
     if (s.length() - s.replaceAll("A", "").length() > 1) {
       return false;
     }
 
     for (int i = 0; i < s.length(); i++) {
-      if (
-        i > 1 &&
-        s.charAt(i) == 'L' &&
-        s.charAt(i - 1) == 'L' &&
-        s.charAt(i - 2) == 'L'
-      ) {
+      if (i > 1 &&
+          s.charAt(i) == 'L' &&
+          s.charAt(i - 1) == 'L' &&
+          s.charAt(i - 2) == 'L') {
         return false;
       }
     }
@@ -20,8 +17,8 @@ class StudentAttendanceRecordI {
   }
 
 
-  // Best Solution
-  public boolean bestSolution(String s) {
+  // Solution
+  public boolean solution(String s) {
     int count = 0;
 
     for (int i = 0; i <= s.length() - 1; i++) {
@@ -39,6 +36,7 @@ class StudentAttendanceRecordI {
     if (count >= 2) {
       return false;
     }
+
     return true;
   }
 }

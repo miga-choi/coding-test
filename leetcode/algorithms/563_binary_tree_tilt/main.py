@@ -8,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class BinaryTreeTilt:
     def findTilt(self, root: Optional[TreeNode]) -> int:
         result = {"val": 0}
         self.getVal(root, result)
@@ -24,8 +24,9 @@ class Solution:
             return 0
 
 
-    # Best Solution
-    def bestSolution1(self, root: Optional[TreeNode]) -> int:
+    # Solution
+    # Solution 1
+    def solution1(self, root: Optional[TreeNode]) -> int:
         self.ans = 0
 
         def _sum(node):
@@ -38,7 +39,8 @@ class Solution:
         _sum(root)
         return self.ans
 
-    def bestSolution2(self, root: Optional[TreeNode]) -> int:
+    # Solution 2
+    def solution2(self, root: Optional[TreeNode]) -> int:
         def tilt(root: Optional[TreeNode]) -> (int, int):
             # return (sum, tilt) of tree
             if not root:
@@ -52,7 +54,8 @@ class Solution:
 
         return tilt(root)[1]
 
-    def bestSolution3(self, root: Optional[TreeNode]) -> int:
+    # Solution 3
+    def solution3(self, root: Optional[TreeNode]) -> int:
         def dfs(node: Optional[TreeNode]) -> List[int]:
             if not node:
                 return [0, 0]

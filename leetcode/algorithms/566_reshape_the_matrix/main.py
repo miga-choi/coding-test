@@ -1,9 +1,9 @@
 import itertools
+import numpy
 from typing import List
-import numpy as np
 
 
-class Solution:
+class SolutionReshapeTheMatrix:
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         array = [y for x in mat for y in x]
         if len(array) != r * c:
@@ -20,9 +20,9 @@ class Solution:
 
         return result
 
-
-    # Best Solution
-    def bestSolution1(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+    # Solution
+    # Solution 1
+    def solution1(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         flatten = []
         new_mat = []
         for row in mat:
@@ -33,33 +33,35 @@ class Solution:
             return mat
         else:
             for row_index in range(r):
-                new_mat.append(flatten[row_index * c : row_index * c + c])
+                new_mat.append(flatten[row_index * c: row_index * c + c])
             return new_mat
 
-    def bestSolution2(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+    # Solution 2
+    def solution2(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         return (
             mat
             if len(sum(mat, [])) != r * c
             else map(list, zip(*([iter(sum(mat, []))] * c)))
         )
 
-    def bestSolution3(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+    # Solution 3
+    def solution3(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         flat = sum(mat, [])
         if len(flat) != r * c:
             return mat
         tuples = zip(*([iter(flat)] * c))
         return map(list, tuples)
 
-    # Numpy
-    def bestSolution4(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+    # Solution 4: Numpy
+    def solution4(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         try:
-            return np.reshape(mat, (r, c)).tolist()
+            return numpy.reshape(mat, (r, c)).tolist()
         except:
             return mat
 
-    # itertools
-    def bestSolution5(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+    # Solution 5: itertools
+    def solution5(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         if r * c != len(mat) * len(mat[0]):
             return mat
         it = itertools.chain(*mat)
-        return [list(itertools.islice(it, c)) for _ in xrange(r)]
+        return [list(itertools.islice(it, c)) for _ in range(r)]

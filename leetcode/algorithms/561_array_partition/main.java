@@ -13,8 +13,9 @@ class ArrayPartition {
     }
 
 
-    // Best Solution
-    public int bestSolution1(int[] nums) {
+    // Solution
+    // Solution 1
+    public int solution1(int[] nums) {
         Arrays.sort(nums);
         int result = 0;
         for (int i = 0; i < nums.length; i += 2) {
@@ -23,7 +24,8 @@ class ArrayPartition {
         return result;
     }
 
-    public int bestSolution2(int[] nums) {
+    // Solution 2
+    public int solution2(int[] nums) {
         int[] exist = new int[20001];
         for (int i = 0; i < nums.length; i++) {
             exist[nums[i] + 10000]++;

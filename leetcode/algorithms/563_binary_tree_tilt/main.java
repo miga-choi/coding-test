@@ -37,22 +37,23 @@ class BinaryTreeTilt {
     }
 
 
-    // Best Solution
-    int bestSolutionResult = 0;
+    // Solution
+    int solutionResult = 0;
 
-    public int bestSolution(TreeNode root) {
+    public int solution(TreeNode root) {
         postOrder(root);
-        return bestSolutionResult;
+        return solutionResult;
     }
 
     private int postOrder(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return 0;
+        }
 
         int left = postOrder(root.left);
         int right = postOrder(root.right);
 
-        bestSolutionResult += Math.abs(left - right);
+        solutionResult += Math.abs(left - right);
 
         return left + right + root.val;
     }

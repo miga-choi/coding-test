@@ -11,8 +11,8 @@ FROM (
 WHERE D_RNK = 1;
 
 
--- /* Best Solution */
--- /* Best Solution 1 */
+-- /* Solution */
+-- /* Solution 1 */
 SELECT customer_number
 FROM Orders
 GROUP BY customer_number
@@ -25,7 +25,7 @@ HAVING COUNT(DISTINCT order_number) IN (
             )
     );
 
--- /* Best Solution 2 */
+-- /* Solution 2 */
 SELECT customer_number
 FROM (
         SELECT customer_number,
@@ -36,7 +36,7 @@ FROM (
     )
 WHERE rownum = 1;
 
--- /* Best Solution 3 */
+-- /* Solution 3 */
 SELECT customer_number
 FROM (
         SELECT customer_number,

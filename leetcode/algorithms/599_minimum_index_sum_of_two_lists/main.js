@@ -36,13 +36,16 @@ var findRestaurant = function (list1, list2) {
 };
 
 
-// Best Solution
-// Best Solution 1
-var bestSolution1 = function (list1, list2) {
+// Solution
+// Solution 1
+var solution1 = function (list1, list2) {
   let out = [];
   let obj = new Map();
+
   list2.forEach((v, i) => obj.set(v, i));
+
   let i = 0, min = Infinity;
+
   while (i < list1.length) {
     if (obj.has(list1[i])) {
       let sum = i + obj.get(list1[i]);
@@ -59,14 +62,16 @@ var bestSolution1 = function (list1, list2) {
   return out;
 };
 
-// Best Solution 2
-var bestSolution2 = function (list1, list2) {
+// Solution 2
+var solution2 = function (list1, list2) {
   const map = new Map();
   let ret = [];
   let min = Infinity;
+
   for (let i = 0; i < list1.length; ++i) {
     map.set(list1[i], i);
   }
+
   for (let i = 0; i < list2.length; ++i) {
     if (map.has(list2[i])) {
       let index1 = map.get(list2[i]);
@@ -75,6 +80,7 @@ var bestSolution2 = function (list1, list2) {
       min = Math.min(min, index1 + index2);
     }
   }
+
   // Basically ret should be map as well instead of array
   // so we don't have to filter it (it will be faster).
   return ret.filter((item) => item.index === min).map((item) => item.val);

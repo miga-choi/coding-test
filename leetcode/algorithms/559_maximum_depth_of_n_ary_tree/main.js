@@ -19,21 +19,21 @@ var maxDepth = function (root) {
 };
 
 
-// Best Solution
-// DFS Recursion:
-var bestSolution1 = function (root) {
+// Solution
+// Solution 1: DFS Recursion
+var solution1 = function (root) {
   if (!root) {
     return 0;
   }
   let max = 0;
   for (let child of root.children) {
-    max = Math.max(max, bestSolution1(child));
+    max = Math.max(max, solution1(child));
   }
   return max + 1;
 };
 
-// DFS Recursion with helper function:
-var bestSolution2 = function (root) {
+// Solution 2: DFS Recursion with helper function
+var solution2 = function (root) {
   if (!root) {
     return 0;
   }
@@ -52,13 +52,14 @@ var bestSolution2 = function (root) {
   return max;
 };
 
-// BFS:
-var bestSolution3 = function (root) {
+// Solution 3: BFS
+var solution3 = function (root) {
   if (!root) {
     return 0;
   }
   // Note: it is not advised to use array as queue
-  let queue = [], depthCount = 0;
+  let queue = [],
+    depthCount = 0;
   queue.push(root);
 
   while (queue.length > 0) {

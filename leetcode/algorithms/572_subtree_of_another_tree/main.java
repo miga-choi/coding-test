@@ -40,30 +40,35 @@ class SubtreeOfAnotherTree {
     }
 
 
-    // Best Solution
-    // Naive Solution
-    public boolean bestSolution1(TreeNode root, TreeNode subRoot) {
-        if (root == null)
+    // Solution
+    // Solution 1: Naive
+    public boolean solution1(TreeNode root, TreeNode subRoot) {
+        if (root == null) {
             return false;
-        if (isSame(root, subRoot))
+        }
+        if (isSame(root, subRoot)) {
             return true;
+        }
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
 
     private boolean isSame(TreeNode root, TreeNode subRoot) {
-        if (root == null && subRoot == null)
+        if (root == null && subRoot == null) {
             return true;
-        if (root == null || subRoot == null)
+        }
+        if (root == null || subRoot == null) {
             return false;
+        }
 
-        if (root.val != subRoot.val)
+        if (root.val != subRoot.val) {
             return false;
+        }
 
         return isSame(root.left, subRoot.left) && isSame(root.right, subRoot.right);
     }
 
-    // Serialize in Preorder then KMP
-    public boolean bestSolution2(TreeNode root, TreeNode subRoot) {
+    // Solution 2: Serialize in Preorder then KMP
+    public boolean solution2(TreeNode root, TreeNode subRoot) {
         return kmp(serialize(root), serialize(subRoot));
     }
 
@@ -108,5 +113,4 @@ class SubtreeOfAnotherTree {
             serialize(root.right, sb);
         }
     }
-
 }

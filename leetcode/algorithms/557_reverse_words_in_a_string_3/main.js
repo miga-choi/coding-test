@@ -3,19 +3,19 @@
  * @return {string}
  */
 var reverseWords = function (s) {
-  const sArray = s.split(' ');
+  const sArray = s.split(" ");
   for (let i = 0; i < sArray.length; i++) {
-    sArray[i] = sArray[i].split('').reverse().join('');
+    sArray[i] = sArray[i].split("").reverse().join("");
   }
-  return sArray.join(' ');
+  return sArray.join(" ");
 };
 
 
-// Best Solution
-var bestSolution = function (s) {
-  const words = s.split(' ');
+// Solution
+var solution = function (s) {
+  const words = s.split(" ");
   for (let i = 0; i < words.length; i++) {
-    words[i] = words[i].split('').reverse().join('');
+    words[i] = words[i].split("").reverse().join("");
   }
-  return words.join(' ');
+  return words.join(" ");
 };

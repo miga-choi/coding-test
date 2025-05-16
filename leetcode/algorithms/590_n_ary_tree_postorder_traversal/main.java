@@ -19,7 +19,7 @@ class NAryTreePostorderTraversal {
             val = _val;
             children = _children;
         }
-    };
+    }
 
     public List<Integer> postorder(Node root) {
         return traversal(root, new ArrayList<Integer>());
@@ -36,9 +36,9 @@ class NAryTreePostorderTraversal {
     }
 
 
-    // Best Solution
-    // Best Solution 1: Iterative
-    public List<Integer> bestSolution1(Node root) {
+    // Solution
+    // Solution 1: Iterative
+    public List<Integer> solution1(Node root) {
         List<Integer> list = new ArrayList<>();
         if (root == null) {
             return list;
@@ -54,14 +54,16 @@ class NAryTreePostorderTraversal {
                 stack.add(node);
             }
         }
+
         Collections.reverse(list);
+
         return list;
     }
 
-    // Best Solution 2: Recursive
+    // Solution 2: Recursive
     List<Integer> list = new ArrayList<>();
 
-    public List<Integer> bestSolution2(Node root) {
+    public List<Integer> solution2(Node root) {
         if (root == null) {
             return list;
         }

@@ -35,12 +35,13 @@ class NAryTreePreorderTraversal {
     }
 
 
-    // Best Solution
-    // Best Solution 1: Iterative
-    public List<Integer> bestSolution1(Node root) {
+    // Solution
+    // Solution 1: Iterative
+    public List<Integer> solution1(Node root) {
         List<Integer> list = new ArrayList<>();
-        if (root == null)
+        if (root == null) {
             return list;
+        }
 
         Stack<Node> stack = new Stack<>();
         stack.add(root);
@@ -48,25 +49,27 @@ class NAryTreePreorderTraversal {
         while (!stack.empty()) {
             root = stack.pop();
             list.add(root.val);
-            for (int i = root.children.size() - 1; i >= 0; i--)
+            for (int i = root.children.size() - 1; i >= 0; i--) {
                 stack.add(root.children.get(i));
+            }
         }
 
         return list;
     }
 
-    // Best Solution 2: Iterative
-    public List<Integer> bestSolution2Result = new ArrayList<>();
+    // Solution 2: Iterative
+    public List<Integer> solution2Result = new ArrayList<>();
 
-    public List<Integer> bestSolution2(Node root) {
-        if (root == null)
-            return bestSolution2Result;
+    public List<Integer> solution2(Node root) {
+        if (root == null) {
+            return solution2Result;
+        }
 
-        bestSolution2Result.add(root.val);
-        for (Node node : root.children)
+        solution2Result.add(root.val);
+        for (Node node : root.children) {
             preorder(node);
+        }
 
-        return bestSolution2Result;
+        return solution2Result;
     }
-
 }

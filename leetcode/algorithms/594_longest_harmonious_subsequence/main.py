@@ -2,7 +2,7 @@ import collections
 from typing import List
 
 
-class Solution:
+class LongestHarmoniousSubsequence:
     def findLHS(self, nums: List[int]) -> int:
         result: int = 0
         numsMap: dict = {}
@@ -25,8 +25,9 @@ class Solution:
         return result
 
 
-    # Best Solution
-    def bestSolution1(self, nums: List[int]) -> int:
+    # Solution
+    # Solution 1
+    def solution1(self, nums: List[int]) -> int:
         count = collections.Counter(nums)
         ans = 0
         for x in count:
@@ -34,6 +35,7 @@ class Solution:
                 ans = max(ans, count[x] + count[x + 1])
         return ans
 
-    def bestSolution2(self, nums: List[int]) -> int:
+    # Solution 2
+    def solution2(self, nums: List[int]) -> int:
         C = collections.Counter(nums)
         return max((C[n] + C[n + 1]) * (C[n + 1] != 0) for n in C)

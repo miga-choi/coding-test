@@ -26,20 +26,25 @@ class SolutionReshapeTheMatrix {
     }
 
 
-    // Best Solution
-    public int[][] bestSolution1(int[][] mat, int r, int c) {
+    // Solution
+    // Solution 1
+    public int[][] solution1(int[][] mat, int r, int c) {
         int n = mat.length, m = mat[0].length;
+
         if (r * c != n * m) {
             return mat;
         }
+
         int[][] res = new int[r][c];
         for (int i = 0; i < r * c; i++) {
             res[i / c][i % c] = mat[i / m][i % m];
         }
+
         return res;
     }
 
-    public int[][] bestSolution2(int[][] mat, int r, int c) {
+    // Solution 2
+    public int[][] solution2(int[][] mat, int r, int c) {
         // Storing the values of mat matrix
         // i.e m = rows & n = cols
         int rows = mat.length;

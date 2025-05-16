@@ -4,7 +4,7 @@ FROM Customer
 WHERE ISNULL(referee_id, 0) <> 2;
 
 
--- /* Best Solution */
+-- /* Solution */
 SELECT name
 FROM Customer
 WHERE referee_id IS NULL

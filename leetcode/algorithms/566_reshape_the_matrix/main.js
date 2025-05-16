@@ -32,8 +32,8 @@ var matrixReshape = function (mat, r, c) {
 };
 
 
-// Best Solution
-var bestSolution = function (mat, r, c) {
+// Solution
+var solution = function (mat, r, c) {
   var arr = mat.flat();
   if (r * c != arr.length) {
     return mat;
@@ -43,5 +43,6 @@ var bestSolution = function (mat, r, c) {
   while (arr.length) {
     res.push(arr.splice(0, c));
   }
+
   return res;
 };

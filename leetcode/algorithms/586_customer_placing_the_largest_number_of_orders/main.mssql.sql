@@ -11,7 +11,7 @@ FROM (
 WHERE sub.D_RNK = 1;
 
 
--- /* Best Solution */
+-- /* Solution */
 SELECT TOP 1 customer_number
 FROM Orders
 GROUP BY customer_number

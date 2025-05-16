@@ -1,5 +1,4 @@
 class ReverseWordsInAStringIII {
-
   public String reverseWords(String s) {
     String[] sArray = s.split(" ");
     for (int i = 0; i < sArray.length; i++) {
@@ -9,8 +8,8 @@ class ReverseWordsInAStringIII {
   }
 
 
-  // Best Solution
-  public String bestSolution(String s) {
+  // Solution
+  public String solution(String s) {
     char[] ca = s.toCharArray();
     for (int i = 0; i < ca.length; i++) {
       if (ca[i] != ' ') { // when i is a non-space

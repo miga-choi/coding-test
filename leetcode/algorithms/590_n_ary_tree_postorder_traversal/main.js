@@ -12,18 +12,23 @@ var postorder = function (root, result = []) {
   if (!root) {
     return result;
   }
+
   for (const child of root.children) {
     postorder(child, result);
   }
+
   result.push(root.val);
+
   return result;
 };
 
 
-// Best Solution
-// Best Solution 1: Iteravtive Post-order Traverse
-var bestSolution1 = function (root) {
-  const res = [], stack = [root];
+// Solution
+// Solution 1: Iteravtive Post-order Traverse
+var solution1 = function (root) {
+  const res = [],
+    stack = [root];
+
   while (stack.length) {
     const curr = stack.pop();
     if (!curr) {
@@ -32,14 +37,13 @@ var bestSolution1 = function (root) {
     res.push(curr.val);
     stack.push(...curr.children);
   }
+
   return res.reverse();
 };
 
-// Best Solution 2: Recursive Post-order Traverse
-var bestSolution2 = function (root) {
+// Solution 2: Recursive Post-order Traverse
+var solution2 = function (root) {
   const res = [];
-  traverse(root);
-  return res;
 
   function traverse(node) {
     if (!node) {
@@ -50,4 +54,8 @@ var bestSolution2 = function (root) {
     }
     res.push(node.val);
   }
+
+  traverse(root);
+
+  return res;
 };

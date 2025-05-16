@@ -3,9 +3,7 @@ import java.util.List;
 import java.util.Queue;
 
 class MaximumDepthOfNAryTree {
-
   class Node {
-
     public int val;
     public List<Node> children;
 
@@ -34,8 +32,8 @@ class MaximumDepthOfNAryTree {
   }
 
 
-  // Best Solution
-  public int bestSolution(Node root) {
+  // Solution
+  public int solution(Node root) {
     if (root == null) {
       return 0;
     }

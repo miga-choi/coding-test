@@ -8,7 +8,7 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
+class SubtreeOfAnotherTree:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         return self.checkNode(root, subRoot)
 
@@ -34,29 +34,29 @@ class Solution:
             )
 
 
-    # Best Solution
-    def bestSolution1(
-        self, root: Optional[TreeNode], subRoot: Optional[TreeNode]
-    ) -> bool:
+    # Solution
+    # Solution 1
+    def solution1(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         if self.isMatch(root, subRoot):
             return True
+
         if not root:
             return False
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+
+        return self.solution1(root.left, subRoot) or self.solution1(root.right, subRoot)
 
     def isMatch(self, root, subRoot):
         if not (root and subRoot):
             return root is subRoot
+
         return (
             root.val == subRoot.val
             and self.isMatch(root.left, subRoot.left)
             and self.isMatch(root.right, subRoot.right)
         )
 
-    # Merkle hashing
-    def bestSolution2(
-        self, root: Optional[TreeNode], subRoot: Optional[TreeNode]
-    ) -> bool:
+    # Solution 2: Merkle hashing
+    def solution2(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         from hashlib import sha256
 
         def hash_(x: str) -> str:
@@ -67,9 +67,12 @@ class Solution:
         def merkle(node: Optional[TreeNode]) -> str:
             if not node:
                 return "#"
+                
             m_left = merkle(node.left)
             m_right = merkle(node.right)
+
             node.merkle = hash_(m_left + str(node.val) + m_right)
+
             return node.merkle
 
         merkle(root)

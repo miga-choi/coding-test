@@ -6,15 +6,15 @@ ORDER BY COUNT(customer_number) DESC
 LIMIT 1;
 
 
--- # Best Solution
--- # Best Solution 1
+-- # Solution
+-- # Solution 1
 SELECT customer_number
 FROM Orders
 GROUP BY customer_number
 ORDER BY COUNT(customer_number) DESC
 LIMIT 1;
 
--- # Best Solution 2
+-- # Solution 2
 SELECT customer_number
 FROM Orders
 GROUP BY customer_number
@@ -26,7 +26,7 @@ HAVING COUNT(order_number) = (
         LIMIT 1
     );
 
--- # Best Solution 3
+-- # Solution 3
 SELECT sub.cust AS customer_number
 FROM (
         SELECT customer_number AS cust,
@@ -37,7 +37,7 @@ FROM (
         LIMIT 1
     ) AS sub;
 
--- # Best Solution 4
+-- # Solution 4
 SELECT customer_number
 FROM (
         SELECT customer_number,
@@ -53,7 +53,7 @@ FROM (
     ) sub2
 WHERE sub2.ranking = 1;
 
--- # Best Solution 5
+-- # Solution 5
 SELECT customer_number
 FROM Orders
 GROUP BY customer_number

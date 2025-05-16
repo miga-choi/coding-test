@@ -9,7 +9,7 @@ var distributeCandies = function (candyType) {
 };
 
 
-// Best Solution
-var bestSolution = function (candyType) {
+// Solution
+var solution = function (candyType) {
   return Math.min(new Set(candyType).size, candyType.length / 2);
 };

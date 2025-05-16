@@ -30,22 +30,26 @@ var preorder = function (root) {
 };
 
 
-// Best Solution
-// Best Solution 1
-var bestSolution1 = function (root, ans = []) {
+// Solution
+// Solution 1
+var solution1 = function (root, ans = []) {
   if (!root) {
     return ans;
   }
+
   ans.push(root.val);
+
   for (let child of root.children) {
-    bestSolution1(child, ans);
+    solution1(child, ans);
   }
+
   return ans;
 };
 
-// Best Solution 2
-var bestSolution2 = function (root) {
+// Solution 2
+var solution2 = function (root) {
   const result = [];
+
   function traverse(tree) {
     if (!tree) {
       return result;
@@ -56,17 +60,21 @@ var bestSolution2 = function (root) {
     }
     return result;
   }
+
   return traverse(root);
 };
 
-// Best Solution 3
-var bestSolution3 = function (root) {
+// Solution 3
+var solution3 = function (root) {
   const stack = [];
   const result = [];
+
   if (!root) {
     return result;
   }
+
   stack.push(root);
+
   while (stack.length) {
     const node = stack.pop();
     result.push(node.val);
@@ -74,5 +82,6 @@ var bestSolution3 = function (root) {
       stack.push(node.children[i]);
     }
   }
+
   return result;
 };
