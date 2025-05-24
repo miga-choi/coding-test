@@ -29,9 +29,9 @@ var canPlaceFlowers = function (flowerbed, n) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (flowerbed, n) {
+// Solution
+// Solution 1
+var solution1 = function (flowerbed, n) {
   let current = 0;
   const size = flowerbed.length;
   for (var i = 0; i <= size; i++) {
@@ -54,8 +54,8 @@ var bestSolution1 = function (flowerbed, n) {
   return false;
 };
 
-// Best Solution 2:
-var bestSolution2 = function (flowerbed, n) {
+// Solution 2
+var solution2 = function (flowerbed, n) {
   for (let i = 0; i < flowerbed.length && n !== 0; i++) {
     if (flowerbed[i] === 0 && flowerbed[i - 1] !== 1 && flowerbed[i + 1] !== 1) {
       n--;

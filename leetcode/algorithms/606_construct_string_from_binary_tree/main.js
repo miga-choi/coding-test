@@ -31,9 +31,9 @@ var tree2str = function (root) {
 };
 
 
-// Best Solution
-// Best Solution 1:
-var bestSolution1 = function (root) {
+// Solution
+// Solution 1
+var solution1 = function (root) {
   let res = [];
   dfs(root, res);
   return res.join("");
@@ -61,8 +61,8 @@ var bestSolution1 = function (root) {
   }
 };
 
-// Best Solution 2:
-var bestSolution2 = function (root) {
+// Solution 2
+var solution2 = function (root) {
   function dfs(node) {
     if (!node) {
       return "";
@@ -79,8 +79,8 @@ var bestSolution2 = function (root) {
   return dfs(root);
 };
 
-// Best Solution 3:
-var bestSolution3 = function (root) {
+// Solution 3
+var solution3 = function (root) {
   // Check if the tree is empty
   if (!root) {
     return "";

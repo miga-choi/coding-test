@@ -1,7 +1,7 @@
 from typing import Optional
 
 
-class Solution:
+class ConstructStringFromBinaryTree:
     class TreeNode:
         def __init__(self, val=0, left=None, right=None):
             self.val = val
@@ -25,6 +25,7 @@ class Solution:
 
         return f"{root.val}{left}{right}"
 
-    # Best Solution
-    def bestSolution(self, root: Optional[TreeNode]) -> str:
+
+    # Solution
+    def solution(self, root: Optional[TreeNode]) -> str:
         return ""

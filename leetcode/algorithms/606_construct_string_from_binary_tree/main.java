@@ -1,4 +1,3 @@
-
 class ConstructStringFromBinaryTree {
     public class TreeNode {
         int val;
@@ -40,8 +39,9 @@ class ConstructStringFromBinaryTree {
         return String.valueOf(root.val) + left + right;
     }
 
-    // Best Solution
-    public String bestSolution(TreeNode root) {
+
+    // Solution
+    public String solution(TreeNode root) {
         return "";
     }
 }

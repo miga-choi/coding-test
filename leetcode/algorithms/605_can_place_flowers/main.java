@@ -29,9 +29,9 @@ class CanPlaceFlowers {
     }
 
 
-    // Best Solution
-    // Best Solution 1:
-    public boolean bestSolution1(int[] flowerbed, int n) {
+    // Solution
+    // Solution 1
+    public boolean solution1(int[] flowerbed, int n) {
         int count = 0;
         for (int i = 0; i < flowerbed.length && count < n; i++) {
             if (flowerbed[i] == 0) {
@@ -49,8 +49,8 @@ class CanPlaceFlowers {
         return count == n;
     }
 
-    // Best Solution 2:
-    public boolean bestSolution2(int[] flowerbed, int n) {
+    // Solution 2
+    public boolean solution2(int[] flowerbed, int n) {
         if (n == 0) {
             return true;
         }
@@ -67,8 +67,8 @@ class CanPlaceFlowers {
         return false;
     }
 
-    // Best Solution 3:
-    public boolean bestSolution3(int[] flowerbed, int n) {
+    // Solution 3
+    public boolean solution3(int[] flowerbed, int n) {
         int count = 1;
         int result = 0;
         for (int i = 0; i < flowerbed.length; i++) {
