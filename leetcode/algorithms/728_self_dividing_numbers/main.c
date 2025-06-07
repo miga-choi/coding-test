@@ -7,7 +7,7 @@ int* selfDividingNumbers(int left, int right, int* returnSize) {
     *returnSize = 0;
     int* result = (int*)malloc(sizeof(int) * (right - left + 1));
 
-    for (int i = left, n = 0; i <= right; i++) {
+    for (int i = left; i <= right; i++) {
         int v = i;
 
         while (v > 0) {
