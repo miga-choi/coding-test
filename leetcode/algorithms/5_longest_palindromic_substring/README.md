@@ -1,7 +1,6 @@
-# Longest Palindromic Substring
+# 5. Longest Palindromic Substring
 
-Given a string `s`, return _`the longest
-palindromic substring`_ in `s`.
+Given a string `s`, return _the longest palindromic substring_ in `s`.
 
 `Palindromic`: A string is _`palindromic`_ if it reads the same forward and backward.
 
@@ -9,7 +8,7 @@ palindromic substring`_ in `s`.
 
 ## Example 1:
 
-```javascript
+```
 Input: s = "babad"
 Output: "bab"
 Explanation: "aba" is also a valid answer.
@@ -17,9 +16,9 @@ Explanation: "aba" is also a valid answer.
 
 ## Example 2:
 
-```javascript
-Input: s = 'cbbd';
-Output: 'bb';
+```
+Input: s = "cbbd";
+Output: "bb";
 ```
 
 ## Constraints:
