@@ -4,13 +4,35 @@ using namespace std;
 
 class TwoSum {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    /**
+     * Brute-Force
+     * - Time Complexity: O(N²)
+     * - Space Complexity: O(1)
+     */
+    vector<int> twoSum1(vector<int>& nums, int target) {
         for (int i = 0; i < nums.size() - 1; i++) {
             for (int j = i + 1; j < nums.size(); j++) {
                 if (nums[i] + nums[j] == target) {
                     return {i, j};
                 }
             }
+        }
+        return {};
+    }
+
+    /**
+     * Unordered Map
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(N)
+     */
+    vector<int> twoSum2(vector<int>& nums, int target) {
+        unordered_map<int, int> map;
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (map.count(complement)) {
+                return {i, map[complement]};
+            }
+            map[nums[i]] = i;
         }
         return {};
     }
