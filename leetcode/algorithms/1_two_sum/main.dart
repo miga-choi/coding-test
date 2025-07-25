@@ -1,12 +1,37 @@
 class TwoSum {
-  List<int> twoSum(List<int> nums, int target) {
-    for (int i = 0; i < nums.length - 1; i++) {
+  /**
+   * Brute-Force
+   * - Time Complexity: O(N²)
+   * - Space Complexity: O(1)
+   */
+  List<int> twoSum1(List<int> nums, int target) {
+    for (int i = 0; i < nums.length; i++) {
       for (int j = i + 1; j < nums.length; j++) {
         if (nums[i] + nums[j] == target) {
           return [i, j];
         }
       }
     }
+
+    return [];
+  }
+
+  /**
+   * Map
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(N)
+   */
+  List<int> twoSum2(List<int> nums, int target) {
+    Map<int, int> map = Map<int, int>();
+
+    for (int i = 0; i < nums.length; i++) {
+      int complement = target - nums[i];
+      if (map.containsKey(complement)) {
+        return [i, map[complement]!];
+      }
+      map[nums[i]] = i;
+    }
+
     return [];
   }
 
@@ -23,7 +48,6 @@ class TwoSum {
     }
     return []; // No solution found
   }
-
 
   // Solution 2: Two-pass Hash Table
   List<int> solution2(List<int> nums, int target) {
