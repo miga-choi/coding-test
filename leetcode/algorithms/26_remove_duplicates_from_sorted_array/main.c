@@ -1,17 +1,18 @@
+/**
+ * Two Pointers
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 int removeDuplicates(int* nums, int numsSize) {
-    if (numsSize == 0) {
-        return 0;
-    }
+    int left = 0;
 
-    int j = 1;
-    for (int i = 1; i < numsSize; i++) {
-        if (nums[i] != nums[j - 1]) {
-            nums[j] = nums[i];
-            j++;
+    for (int right = 0; right < numsSize; right++) {
+        if (nums[left] != nums[right]) {
+            nums[++left] = nums[right];
         }
     }
 
-    return j;
+    return left + 1;
 }
 
 
