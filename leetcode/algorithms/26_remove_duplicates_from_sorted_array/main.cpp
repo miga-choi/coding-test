@@ -1,22 +1,41 @@
+#include <set>
 #include <vector>
 using namespace std;
 
 class RemoveDuplicatesFromSortedArray {
 public:
-    int removeDuplicates(vector<int>& nums) {
-        if (nums.size() == 0) {
-            return 0;
-        }
+    /**
+     * Two Pointers
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
+    int removeDuplicates1(vector<int>& nums) {
+        int left = 0;
 
-        int j = 1;
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] != nums[j - 1]) {
-                nums[j] = nums[i];
-                j++;
+        for (int right = 0; right < nums.size(); right++) {
+            if (nums[left] != nums[right]) {
+                nums[++left] = nums[right];
             }
         }
+        
+        return left + 1;
+    }
 
-        return j;
+    /**
+     * set
+     * - Time Complexity: O(?)
+     * - Space Complexity: O(?)
+     */
+    int removeDuplicates2(vector<int>& nums) {
+        set<int> set(begin(nums), end(nums));
+
+        int i = 0;
+        for (auto p = set.begin(); p != set.end(); p++) {
+            int v = *p;
+            nums[i++] = v;
+        }
+
+        return i;
     }
 
 
