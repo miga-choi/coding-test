@@ -1,18 +1,37 @@
 class RemoveDuplicatesFromSortedArray {
-  int removeDuplicates(List<int> nums) {
-    if (nums.length == 0) {
-      return 0;
-    }
+  /**
+   * Two Pointers
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  int removeDuplicates1(List<int> nums) {
+    int left = 0;
 
-    int j = 1;
-    for (int i = 1; i < nums.length; i++) {
-      if (nums[i] != nums[j - 1]) {
-        nums[j] = nums[i];
-        j++;
+    for (int right = 0; right < nums.length; right++) {
+      if (nums[left] != nums[right]) {
+        nums[++left] = nums[right];
       }
     }
 
-    return j;
+    return left + 1;
+  }
+
+  /**
+   * Set
+   * - Time Complexity: O(?)
+   * - Space Complexity: O(?)
+   */
+  int removeDuplicates2(List<int> nums) {
+    List<int> numsSet = Set<int>.from(nums).toList();
+    numsSet.sort((int p, int n) => p - n);
+
+    int i = 0;
+
+    for (; i < numsSet.length; i++) {
+      nums[i] = numsSet[i];
+    }
+
+    return i;
   }
 
 
