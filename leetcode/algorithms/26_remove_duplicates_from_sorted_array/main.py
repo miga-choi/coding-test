@@ -3,13 +3,36 @@ from typing import List
 
 
 class RemoveDuplicatesFromSortedArray:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        nums[:] = sorted(list(dict.fromkeys(nums)))
-        return len(nums)
+    ##
+    # Two Pointers
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def removeDuplicates1(self, nums: List[int]) -> int:
+        left: int = 0
+        for right in range(len(nums)):
+            if nums[left] != nums[right]:
+                left += 1
+                nums[left] = nums[right]
+            right += 1
+        return left + 1
+    
+    ##
+    # Set
+    # - Time Complexity: O(?)
+    # - Space Complexity: O(?)
+    #
+    def removeDuplicates2(self, nums: List[int]) -> int:
+        numsSet: List[int] = sorted(list(set(nums)))
+        i: int = 0
+        for i in range(len(numsSet)):
+            nums[i] = numsSet[i]
+        return i + 1
 
 
     # Solution
     # Solution 1:
+
     def solution1(self, nums: List[int]) -> int:
         j = 1
         for i in range(1, len(nums)):
