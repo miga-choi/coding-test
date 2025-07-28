@@ -19,8 +19,8 @@ class RemoveDuplicatesFromSortedArray:
     
     ##
     # Set
-    # - Time Complexity: O(?)
-    # - Space Complexity: O(?)
+    # - Time Complexity: O(Nlogᴺ)
+    # - Space Complexity: O(N)
     #
     def removeDuplicates2(self, nums: List[int]) -> int:
         numsSet: List[int] = sorted(list(set(nums)))

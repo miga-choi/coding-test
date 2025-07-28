@@ -18,8 +18,8 @@ class RemoveDuplicatesFromSortedArray {
 
   /**
    * Set
-   * - Time Complexity: O(?)
-   * - Space Complexity: O(?)
+   * - Time Complexity: O(Nlogᴺ)
+   * - Space Complexity: O(N)
    */
   int removeDuplicates2(List<int> nums) {
     List<int> numsSet = Set<int>.from(nums).toList();

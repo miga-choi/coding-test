@@ -20,8 +20,8 @@ var removeDuplicates1 = function (nums) {
 
 /**
  * Set & Array
- * - Time Complexity: O(?)
- * - Space Complexity: O(?)
+ * - Time Complexity: O(Nlogᴺ)
+ * - Space Complexity: O(N)
  *
  * @param {number[]} nums
  * @return {number}

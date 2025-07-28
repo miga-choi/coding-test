@@ -1,16 +1,22 @@
+/**
+ * Three Pointers: from end to begin
+ * - Time Complexity: O(M+N)
+ * - Time Complexity: O(1)
+ */
 void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n) {
-    for (int i = 0; i < n; i++) {
-        nums1[m + i] = nums2[i];
-    }
+    int p1 = m - 1;
+    int p2 = n - 1;
+    int p = nums1Size - 1;
 
-    for (int i = 0; i < m + n; i++) {
-        for (int j = i + 1; j < m + n; j++) {
-            if (nums1[i] > nums1[j]) {
-                int temp = nums1[i];
-                nums1[i] = nums1[j];
-                nums1[j] = temp;
-            }
+    while (p2 >= 0) {
+        if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+            nums1[p] = nums1[p1];
+            p1--;
+        } else {
+            nums1[p] = nums2[p2];
+            p2--;
         }
+        p--;
     }
 }
 

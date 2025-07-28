@@ -21,8 +21,8 @@ class RemoveDuplicatesFromSortedArray {
 
   /**
    * TreeSet
-   * - Time Complexity: O(?)
-   * - Space Complexity: O(?)
+   * - Time Complexity: O(Nlogᴺ)
+   * - Space Complexity: O(N)
    */
   public int removeDuplicates2(int[] nums) {
     SortedSet<Integer> set = new TreeSet<>();

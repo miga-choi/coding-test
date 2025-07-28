@@ -23,8 +23,8 @@ public:
 
     /**
      * set
-     * - Time Complexity: O(?)
-     * - Space Complexity: O(?)
+     * - Time Complexity: O(Nlogᴺ)
+     * - Space Complexity: O(N)
      */
     int removeDuplicates2(vector<int>& nums) {
         set<int> set(begin(nums), end(nums));
