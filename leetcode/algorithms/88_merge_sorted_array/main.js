@@ -1,4 +1,8 @@
 /**
+ * Three Pointers: from end to begin
+ * - Time Complexity: O(M+N)
+ * - Time Complexity: O(1)
+ *
  * @param {number[]} nums1
  * @param {number} m
  * @param {number[]} nums2
@@ -6,11 +10,20 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-  nums1
-    .filter((v_, i_) => i_ < m)
-    .concat(nums2)
-    .sort((p_, n_) => p_ - n_)
-    .map((v_, i_) => (nums1[i_] = v_));
+  let p1 = m - 1;
+  let p2 = n - 1;
+  let p = m + n - 1;
+
+  while (p2 >= 0) {
+    if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+      nums1[p] = nums1[p1];
+      p1--;
+    } else {
+      nums1[p] = nums2[p2];
+      p2--;
+    }
+    p--;
+  }
 };
 
 
@@ -41,7 +54,8 @@ var solution2 = function (nums1, m, nums2, n) {
 // Solution 3
 var solution3 = function (nums1, m, nums2, n) {
   // Initialize i and j to store indices of the last element of 1st and 2nd array respectively...
-  let i = m - 1, j = n - 1;
+  let i = m - 1,
+    j = n - 1;
 
   // Initialize a variable k to store the last index of the 1st array...
   let k = m + n - 1;
