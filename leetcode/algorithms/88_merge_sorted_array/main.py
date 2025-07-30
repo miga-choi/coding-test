@@ -2,13 +2,27 @@ from typing import List
 
 
 class MergeSortedArray:
+    ##
+    # Three Pointers: from end to begin
+    # - Time Complexity: O(M+N)
+    # - Space Complexity: O(1)
+    #
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        for i in range(-1, -1 - n, -1):
-            nums1[i] = nums2[i]
-        nums1[0:] = sorted(nums1)
+        p1: int = m - 1
+        p2: int = n - 1
+        p: int = m + n - 1
+
+        while p2 >= 0:
+            if p1 >= 0 and nums1[p1] > nums2[p2]:
+                nums1[p] = nums1[p1]
+                p1 -= 1
+            else:
+                nums1[p] = nums2[p2]
+                p2 -= 1
+            p -= 1
 
 
     # Solution
