@@ -1,16 +1,23 @@
 class MergeSortedArray {
+  /**
+   * Three Pointers: from end to begin
+   * - Time Complexity: O(M+N)
+   * - Time Complexity: O(1)
+   */
   void merge(List<int> nums1, int m, List<int> nums2, int n) {
-    nums1.removeRange(m, m + n);
-    int index = 0;
-    while (nums2.isNotEmpty) {
-      if (index >= nums1.length) {
-        nums1.addAll(nums2);
-        break;
+    int p1 = m - 1;
+    int p2 = n - 1;
+    int p = m + n - 1;
+
+    while (p2 >= 0) {
+      if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+        nums1[p] = nums1[p1];
+        p1--;
+      } else {
+        nums1[p] = nums2[p2];
+        p2--;
       }
-      if (nums1[index] >= nums2.first) {
-        nums1.insert(index, nums2.removeAt(0));
-      }
-      index++;
+      p--;
     }
   }
 
