@@ -27,6 +27,7 @@ public:
         return "";
     }
 
+
     // Solution
     string solution(vector<vector<string>>& paths) {
         unordered_set<string> cities;
