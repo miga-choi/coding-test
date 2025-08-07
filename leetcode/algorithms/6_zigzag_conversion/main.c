@@ -39,6 +39,10 @@ char* convert(char* s, int numRows) {
 
 
 // Solution
+/**
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
 char* convert(char* s, int numRows) {
     int len = strlen(s);
 
