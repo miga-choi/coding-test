@@ -1,37 +1,49 @@
 class BestTimeToBuyAndSellStock {
+  /**
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   public int maxProfit(int[] prices) {
-    int buy = 0;
-    int profit = 0;
+    int minPrice = 100000;
+    int maxProfit = 0;
 
-    for (int sell = 1; sell < prices.length; sell++) {
-      if (prices[sell] > prices[buy]) {
-        if (prices[sell] - prices[buy] > profit) {
-          profit = prices[sell] - prices[buy];
-        }
-      } else {
-        buy = sell;
+    for (int price : prices) {
+      if (price < minPrice) {
+        minPrice = price;
+      }
+
+      int profit = price - minPrice;
+      if (profit > maxProfit) {
+        maxProfit = profit;
       }
     }
 
-    return profit;
+    return maxProfit;
   }
 
 
   // Solution
+  /**
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   public int solution(int[] prices) {
-    int lsf = Integer.MAX_VALUE;
-    int op = 0;
-    int pist = 0;
+    if (prices == null || prices.length < 2) {
+      return 0;
+    }
 
-    for (int i = 0; i < prices.length; i++) {
-      if (prices[i] < lsf) {
-        lsf = prices[i];
-      }
-      pist = prices[i] - lsf;
-      if (op < pist) {
-        op = pist;
+    int minPrice = Integer.MAX_VALUE;
+    int maxProfit = 0;
+
+    for (int currentPrice : prices) {
+      if (currentPrice < minPrice) {
+        minPrice = currentPrice;
+      } else {
+        int potentialProfit = currentPrice - minPrice;
+        maxProfit = Math.max(maxProfit, potentialProfit);
       }
     }
-    return op;
+
+    return maxProfit;
   }
 }
