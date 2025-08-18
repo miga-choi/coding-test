@@ -1,39 +1,53 @@
-#include <limits.h>
+#include <algorithm>
+#include <limits>
 #include <vector>
 using namespace std;
 
 class BestTimeToBuyAndSellStock {
 public:
+    /**
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int maxProfit(vector<int>& prices) {
-        int minPrice = 10000;
-        int price = 0;
-        for (int i = 0; i < prices.size(); i++) {
-            if (prices[i] < minPrice) {
-                minPrice = prices[i];
+        int minPrice = 100000;
+        int profit = 0;
+
+        for (int& price : prices) {
+            if (price < minPrice) {
+                minPrice = price;
             }
-            if (prices[i] - minPrice > price) {
-                price = prices[i] - minPrice;
+
+            int diff = price - minPrice;
+            if (diff > profit) {
+                profit = diff;
             }
         }
-        return price;
+
+        return profit;
     }
 
 
     // Solution
-    int solution(vector<int>& prices) {
-        int lsf = INT_MAX;
-        int op = 0;
-        int pist = 0;
-
-        for (int i = 0; i < prices.size(); i++) {
-            if (prices[i] < lsf) {
-                lsf = prices[i];
-            }
-            pist = prices[i] - lsf;
-            if (op < pist) {
-                op = pist;
-            }
+    /**
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
+    int maxProfit(vector<int>& prices) {
+        if (prices.size() < 2) {
+            return 0;
         }
-        return op;
+
+        int minPrice = numeric_limits<int>::max();
+        int maxProfit = 0;
+
+        for (int currentPrice : prices) {
+            minPrice = min(minPrice, currentPrice);
+
+            int potentialProfit = currentPrice - minPrice;
+            maxProfit = max(maxProfit, potentialProfit);
+        }
+
+        return maxProfit;
     }
 };
