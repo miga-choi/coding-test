@@ -1,36 +1,54 @@
 /**
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
  * @param {number[]} prices
  * @return {number}
  */
 var maxProfit = function (prices) {
-  let buy = 0;
-  let profit = 0;
-  for (let sell = 1; sell < prices.length; sell++) {
-    if (prices[sell] > prices[buy]) {
-      if (prices[sell] - prices[buy] > profit) {
-        profit = prices[sell] - prices[buy];
-      }
-    } else {
-      buy = sell;
+  let minPrice = 100000;
+  let maxProfit = 0;
+
+  for (const price of prices) {
+    if (price < minPrice) {
+      minPrice = price;
+    }
+
+    const profit = price - minPrice;
+    if (profit > maxProfit) {
+      maxProfit = diff;
     }
   }
-  return profit;
+
+  return maxProfit;
 };
 
 
 // Solution
+/**
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
+ * @param {number[]} prices
+ * @return {number}
+ */
 const solution = (prices) => {
-  let left = 0; // Buy
-  let right = 1; // sell
-  let max_profit = 0;
-  while (right < prices.length) {
-    if (prices[left] < prices[right]) {
-      let profit = prices[right] - prices[left]; // our current profit
-      max_profit = Math.max(max_profit, profit);
-    } else {
-      left = right;
-    }
-    right++;
+  if (prices.length < 2) {
+    return 0;
   }
-  return max_profit;
+
+  let minPrice = Infinity;
+  let maxProfit = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    const currentPrice = prices[i];
+
+    if (currentPrice < minPrice) {
+      minPrice = currentPrice;
+    } else if (currentPrice - minPrice > maxProfit) {
+      maxProfit = currentPrice - minPrice;
+    }
+  }
+
+  return maxProfit;
 };
