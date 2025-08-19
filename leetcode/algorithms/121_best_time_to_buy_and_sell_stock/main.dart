@@ -1,29 +1,51 @@
 import 'dart:math';
 
 class BestTimeToBuyAndSellStock {
+  /**
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   int maxProfit(List<int> prices) {
-    int minPrice = 10000;
-    int price = 0;
-    for (int i = 0; i < prices.length; i++) {
-      if (prices[i] < minPrice) {
-        minPrice = prices[i];
+    int minPrice = 100000;
+    int maxProfit = 0;
+
+    for (final int price in prices) {
+      if (price < minPrice) {
+        minPrice = price;
       }
-      if (prices[i] - minPrice > price) {
-        price = prices[i] - minPrice;
+
+      int profit = price - minPrice;
+      if (profit > maxProfit) {
+        maxProfit = profit;
       }
     }
-    return price;
+
+    return maxProfit;
   }
 
 
   // Solution
+  /**
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   int solution(List<int> prices) {
-    int profit = 0;
-    int minPrice = prices.first;
-    for (int i = 1; i < prices.length; i++) {
-      minPrice = min(minPrice, prices[i]);
-      profit = max(profit, prices[i] - minPrice);
+    if (prices.length < 2) {
+      return 0;
     }
-    return profit;
+
+    int minPrice = prices[0];
+    int maxProfit = 0;
+
+    for (int i = 1; i < prices.length; i++) {
+      int currentPrice = prices[i];
+
+      int currentProfit = currentPrice - minPrice;
+      maxProfit = max(maxProfit, currentProfit);
+
+      minPrice = min(minPrice, currentPrice);
+    }
+
+    return maxProfit;
   }
 }
