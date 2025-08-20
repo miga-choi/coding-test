@@ -1,50 +1,52 @@
-#include <unordered_map>
+#include <functional> // std::bit_xor
+#include <numeric>    // std::accumulate
 #include <vector>
 using namespace std;
 
 class SingleNumber {
 public:
+    /**
+     * Bit Manipulation
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int singleNumber(vector<int>& nums) {
         int result = 0;
+
         for (int i = 0; i < nums.size(); i++) {
             result = result ^ nums[i];
         }
+
         return result;
     }
 
 
     // Solution
-    // Solution 1: USING MAPS (NOT USING CONSTANT SPACE)
+    /**
+     * Solution 1
+     * 
+     * Bit Manipulation
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int solution1(vector<int>& nums) {
-        unordered_map<int, int> a;
-        for (auto x : nums) {
-            a[x]++;
+        int result = 0;
+
+        for (int num : nums) {
+            result ^= num;
         }
-        for (auto z : a) {
-            if (z.second == 1) {
-                return z.first;
-            }
-        }
-        return -1;
+
+        return result;
     }
 
-    // Solution 2: USING SORTING (USING CONSTANT SPACE)
+    /**
+     * Solution 2
+     * 
+     * accumulate
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int solution2(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        for (int i = 1; i < nums.size(); i += 2) {
-            if (nums[i] != nums[i - 1]) {
-                return nums[i - 1];
-            }
-        }
-        return nums[nums.size() - 1];
-    }
-
-    // Solution 3: USING BITWISE XOR OPERATOR (USING CONSTANT SPACE)
-    int solution3(vector<int>& nums) {
-        int ans = 0;
-        for (auto x : nums) {
-            ans ^= x;
-        }
-        return ans;
+        return accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
     }
 };
