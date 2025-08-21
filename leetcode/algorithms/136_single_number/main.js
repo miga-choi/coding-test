@@ -1,29 +1,17 @@
 /**
+ * Bit Manipulation
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
  * @param {number[]} nums
  * @return {number}
  */
 var singleNumber = function (nums) {
-  let index = 0;
-  while (index < nums.length) {
-    const findIndex = nums
-      .filter((v_, i_) => i_ !== index)
-      .findIndex((v_) => v_ === nums[index]);
-    if (findIndex === -1) {
-      return nums[index];
-    }
-    index++;
-  }
-};
+  let result = 0;
 
-
-// Solution
-var solution = function (nums) {
-  // Initialize the unique number...
-  let uniqNum = 0;
-  // TRaverse all elements through the loop...
-  for (let idx = 0; idx < nums.length; idx++) {
-    // Concept of XOR...
-    uniqNum = uniqNum ^ nums[idx];
+  for (const num of nums) {
+    result ^= num;
   }
-  return uniqNum; // Return the unique number...
+
+  return result;
 };
