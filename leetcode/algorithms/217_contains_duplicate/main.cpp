@@ -1,80 +1,106 @@
+#include <algorithm>
 #include <map>
 #include <set>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
 class ContainsDuplicate {
 public:
+    /**
+     * Set
+     * - Time Complexity: O(N * logⁿ)
+     * - Space Complexity: O(N)
+     */
     bool containsDuplicate(vector<int> &nums) {
+        set<int> s;
+
         for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (nums[i] == nums[j]) {
-                    return true;
-                }
+            if (s.count(nums[i]) > 0) {
+                return true;
+            } else {
+                s.insert(nums[i]);
             }
         }
+
         return false;
     }
 
 
     // Solution
-    // Solution 1: Brute Force
+    /**
+     * Solution 1
+     * 
+     * Sort
+     * - Time Complexity: O(N * logⁿ)
+     * - Space Complexity: O(1)
+     */
     bool solution1(vector<int> &nums) {
-        bool flag = false;
-        for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (nums[i] == nums[j]) {
-                    return true;
-                }
-            }
-        }
-        return flag;
-    }
-
-    // Solution 2: Sort
-    bool solution2(vector<int> &nums) {
         sort(nums.begin(), nums.end());
-        bool flag = false;
+
         for (int i = 0; i < nums.size() - 1; i++) {
             if (nums[i] == nums[i + 1]) {
                 return true;
             }
         }
-        return flag;
+
+        return false;
     }
 
-    // Solution 3: Set
-    bool solution3(vector<int> &nums) {
+    /**
+     * Solution 2
+     * 
+     * Set
+     * - Time Complexity: O(N * logⁿ)
+     * - Space Complexity: O(N)
+     */
+    bool solution2(vector<int> &nums) {
         return nums.size() > set<int>(nums.begin(), nums.end()).size();
     }
 
-    // Solution 4: Map
-    bool solution4(vector<int> &nums) {
+    /**
+     * Solution 3
+     * 
+     * Map
+     * - Time Complexity: O(N * logⁿ)
+     * - Space Complexity: O(N)
+     */
+    bool solution3(vector<int> &nums) {
         map<int, int> mp;
+
         for (auto i : nums) {
             mp[i]++;
         }
-        bool flag = false;
+
         for (auto i : mp) {
             if (i.second >= 2) {
                 return true;
             }
         }
-        return flag;
+
+        return false;
     }
 
-    // Solution 5: HashMap
-    bool solution5(vector<int> &nums) {
+    /**
+     * Solution 4
+     * 
+     * Unordered Map
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(N)
+     */
+    bool solution4(vector<int> &nums) {
         unordered_map<int, int> mp;
+
         for (auto i : nums) {
             mp[i]++;
         }
-        bool flag = false;
+
         for (auto i : mp) {
             if (i.second >= 2) {
                 return true;
             }
         }
-        return flag;
+
+        return false;
     }
 };
