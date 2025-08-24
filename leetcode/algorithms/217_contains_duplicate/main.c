@@ -2,19 +2,17 @@
 #include <stdlib.h>
 
 bool containsDuplicate(int* nums, int numsSize) {
-    for (int i = 0; i < numsSize; i++) {
-        for (int j = i + 1; j < numsSize; j++) {
-            if (nums[i] == nums[j]) {
-                return true;
-            }
-        }
-    }
-    return false;
 }
 
 
 // Solution
-// Solution 1: in-house HashSet
+/**
+ * Solution 1
+ * 
+ * in-house HashSet
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
 struct Node {
     int val;
     struct Node* next;
@@ -81,13 +79,30 @@ bool solution1(int* nums, int numsSize) {
     return false;
 }
 
-// Solution 2: Sort
-int cmp(const void *a, const void *b) {
-    return (*(int*)a - *(int*)b);
+/**
+ * Solution 2
+ * 
+ * Sort
+ * - Time Complexity: O(N * logⁿ)
+ * - Space Complexity: O(1)
+ */
+int compare(const void* a, const void* b) {
+    int int_a = *(const int*)a;
+    int int_b = *(const int*)b;
+
+    if (int_a == int_b) {
+        return 0;
+    }
+
+    return (int_a < int_b) ? -1 : 1;
 }
 
 bool solution2(int* nums, int numsSize) {
-    qsort(nums, numsSize, sizeof(int), cmp);
+    if (numsSize < 2) {
+        return false;
+    }
+
+    qsort(nums, numsSize, sizeof(int), compare);
 
     for (int i = 1; i < numsSize; i++) {
         if (nums[i] == nums[i - 1]) {
@@ -98,7 +113,13 @@ bool solution2(int* nums, int numsSize) {
     return false;
 }
 
-// Solution 3: Hash table
+/**
+ * Solution 3
+ * 
+ * Hash table
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
 typedef struct hashlist {
     int val;
     struct hashlist *next;
@@ -119,17 +140,20 @@ int solution3(int* nums, int numsSize) {
         int idx;
         list *p;
         list *node = malloc(sizeof(list));
+
         node->val = *nums;
         idx = abs(*nums) % mask;
         p = tmp[idx];
         node->next = p;
         tmp[idx] = node;
+
         while (p) {
             if (p->val == node->val) {
                 return true;
             }
             p = p->next;
         }
+
         nums++;
     }
 
