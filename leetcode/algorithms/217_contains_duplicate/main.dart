@@ -1,24 +1,36 @@
 class ContainsDuplicate {
+  /**
+   * Set
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(N)
+   */
   bool containsDuplicate(List<int> nums) {
-    Map<int, bool> numsMap = Map<int, bool>();
-    for (int i = 0; i < nums.length; i++) {
-      if (numsMap[nums[i]] == true) {
+    if (nums.length < 2) {
+      return false;
+    }
+
+    Set<int> numsSet = Set();
+
+    for (int num in nums) {
+      if (numsSet.contains(num)) {
         return true;
       } else {
-        numsMap[nums[i]] = true;
+        numsSet.add(num);
       }
     }
+
     return false;
   }
 
 
   // Solution
+  /**
+   * Set
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(N)
+   */
   bool solution(List<int> nums) {
-    Set<int> s = {};
-    for (int n in nums) {
-      if (s.contains(n)) return true;
-      s.add(n);
-    }
-    return false;
+    Set<int> numsSet = Set.from(nums);
+    return numsSet.length != nums.length;
   }
 }
