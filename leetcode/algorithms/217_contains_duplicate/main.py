@@ -1,21 +1,33 @@
-from typing import List
+from typing import List, Set
 
 
 class ContainsDuplicate:
+    ##
+    # Set
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    #
     def containsDuplicate(self, nums: List[int]) -> bool:
-        numsMap: dict = {}
-        for i in range(len(nums)):
-            if numsMap.get(nums[i]) != None:
-                return True
-            numsMap.update({nums[i]: True})
-        return False
+        if len(nums) < 2:
+            return False
 
-    
-    # Solution
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        hset = set()
-        for idx in nums:
-            if idx in hset:
+        numsSet: Set = set()
+
+        for num in nums:
+            if num in numsSet:
                 return True
             else:
-                hset.add(idx)
+                numsSet.add(num)
+
+        return False
+
+
+    # Solution
+    ##
+    # Set
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    #
+    def solution(self, nums: List[int]) -> bool:
+        hset: Set = set(nums)
+        return len(nums) != len(hset)
