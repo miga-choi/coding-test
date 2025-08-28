@@ -15,7 +15,7 @@ var strStr = function (haystack, needle) {
     return -1;
   }
 
-  for (let haystackIdx = 0; haystackIdx < haystack.length; haystackIdx++) {
+  for (let haystackIdx = 0; haystackIdx <= haystack.length - needleLen; haystackIdx++) {
     let isMatch = true;
 
     for (let needleIdx = 0; needleIdx < needle.length; needleIdx++) {

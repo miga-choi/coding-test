@@ -15,12 +15,11 @@ class FindTheIndexOfTheFirstOccurrenceInAString {
     char[] haystackCharArray = haystack.toCharArray();
     char[] needleCharArray = needle.toCharArray();
 
-    for (int haystackIdx = 0; haystackIdx < haystackLen; haystackIdx++) {
+    for (int haystackIdx = 0; haystackIdx <= haystackLen - needleLen; haystackIdx++) {
       boolean isMatch = true;
 
       for (int needleIdx = 0; needleIdx < needleLen; needleIdx++) {
-        if (haystackIdx + needleIdx >= haystackLen
-            || haystackCharArray[haystackIdx + needleIdx] != needleCharArray[needleIdx]) {
+        if (haystackCharArray[haystackIdx + needleIdx] != needleCharArray[needleIdx]) {
           isMatch = false;
           break;
         }
