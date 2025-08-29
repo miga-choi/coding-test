@@ -6,7 +6,7 @@ Given a string `s`, return `true` _if it is a **palindrome**, or_ `false` _other
 
 ## Example 1:
 
-```java
+```
 Input: s = "A man, a plan, a canal: Panama"
 Output: true
 Explanation: "amanaplanacanalpanama" is a palindrome.
@@ -14,7 +14,7 @@ Explanation: "amanaplanacanalpanama" is a palindrome.
 
 ## Example 2:
 
-```java
+```
 Input: s = "race a car"
 Output: false
 Explanation: "raceacar" is not a palindrome.
@@ -22,7 +22,7 @@ Explanation: "raceacar" is not a palindrome.
 
 ## Example 3:
 
-```java
+```
 Input: s = " "
 Output: true
 Explanation: s is an empty string "" after removing non-alphanumeric characters.
