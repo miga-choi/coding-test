@@ -1,40 +1,77 @@
 /**
+ * Two-Pointer
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
  * @param {string} s
  * @return {boolean}
  */
 var isPalindrome = function (s) {
   s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
   i = 0;
+
   while (i < s.length - 1 - i) {
     if (s[i] !== s[s.length - 1 - i]) {
       return false;
     }
     i++;
   }
+
   return true;
 };
 
 
 // Solution
-// Solution 1
+/**
+ * Solution 1
+ *
+ * Compare strings
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ *
+ * @param {string} s
+ * @return {boolean}
+ */
 var solution1 = function (s) {
-  s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
-  for (let i = 0; i < s.length; i++) {
-    if (i === s.length - 1 - i) {
-      break;
-    }
-    if (s[i] !== s[s.length - 1 - i]) {
-      return false;
-    }
-  }
-  return true;
+  const cleaned = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  const reversed = cleaned.split("").reverse().join("");
+
+  return cleaned === reversed;
 };
 
-// Solution 2
-const solution2 = (s) => {
-  s = s.toLowerCase().replace(/[^a-z0-9]/gi, "");
-  for (let i = 0, j = s.length - 1; i <= j; i++, j--) {
-    if (s.charAt(i) !== s.charAt(j)) return false;
+/**
+ * Solution 2
+ *
+ * Two-Pointer
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
+ * @param {string} s
+ * @return {boolean}
+ */
+var solution2 = function (s) {
+  let left = 0;
+  let right = s.length - 1;
+
+  const alphanumeric = /^[a-z0-9]+$/i;
+
+  while (left < right) {
+    while (left < right && !alphanumeric.test(s[left])) {
+      left++;
+    }
+
+    while (left < right && !alphanumeric.test(s[right])) {
+      right--;
+    }
+
+    if (s[left].toLowerCase() !== s[right].toLowerCase()) {
+      return false;
+    }
+
+    left++;
+    right--;
   }
+
   return true;
 };
