@@ -4,28 +4,29 @@ using namespace std;
 
 class ValidPalindrome {
 public:
+    /**
+     * Two-Pointer
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     bool isPalindrome(string s) {
         int prefix = 0;
         int suffix = s.size() - 1;
 
         while (prefix < suffix) {
-            char prefixChar = s[prefix];
-            char suffixChar = s[suffix];
+            char prefix_char = s[prefix];
+            char suffix_char = s[suffix];
 
-            if (!((prefixChar >= '0' && prefixChar <= '9') ||
-                  (prefixChar >= 'A' && prefixChar <= 'Z') ||
-                  (prefixChar >= 'a' && prefixChar <= 'z'))) {
+            if (!isalnum(prefix_char)) {
                 prefix++;
                 continue;
             }
-            if (!((suffixChar >= '0' && suffixChar <= '9') ||
-                  (suffixChar >= 'A' && suffixChar <= 'Z') ||
-                  (suffixChar >= 'a' && suffixChar <= 'z'))) {
+            if (!isalnum(suffix_char)) {
                 suffix--;
                 continue;
             }
 
-            if (tolower(prefixChar) != tolower(suffixChar)) {
+            if (tolower(prefix_char) != tolower(suffix_char)) {
                 return false;
             }
 
@@ -38,25 +39,55 @@ public:
 
 
     // Solution
-    bool solution(string s) {
-        int start = 0;
-        int end = s.size() - 1;
-        while (start <= end) {
-            if (!isalnum(s[start])) {
-                start++;
-                continue;
+    /**
+     * Solution 1
+     * 
+     * Two-Pointer
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
+    bool solution1(string s) {
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            while (left < right && !isalnum(s[left])) {
+                left++;
             }
-            if (!isalnum(s[end])) {
-                end--;
-                continue;
+
+            while (left < right && !isalnum(s[right])) {
+                right--;
             }
-            if (tolower(s[start]) != tolower(s[end])) {
+
+            if (tolower(s[left]) != tolower(s[right])) {
                 return false;
-            } else {
-                start++;
-                end--;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Compare two strings
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(N)
+     */
+    bool solution2(string s) {
+        string filtered_s;
+
+        for (char c : s) {
+            if (isalnum(c)) {
+                filtered_s += tolower(c);
             }
         }
-        return true;
+
+        return equal(filtered_s.begin(),
+                     filtered_s.begin() + filtered_s.size() / 2,
+                     filtered_s.rbegin());
     }
 };
