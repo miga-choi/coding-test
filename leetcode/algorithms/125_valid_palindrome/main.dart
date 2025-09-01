@@ -1,23 +1,36 @@
 class ValidPalindrome {
+  /*
+   * Two-Pointer
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   bool isPalindrome(String s) {
-    int prefix = 0;
-    int suffix = s.length - 1;
-    final RegExp alphanumeric = RegExp(r'^[a-zA-Z0-9]$', caseSensitive: false);
+    int left = 0;
+    int right = s.length - 1;
 
-    while (prefix < suffix) {
-      if (!alphanumeric.hasMatch(s[prefix])) {
-        prefix++;
+    s = s.toLowerCase();
+
+    while (left < right) {
+      final int leftCodeUnit = s[left].codeUnitAt(0);
+      final int rightCodeUnit = s[right].codeUnitAt(0);
+      if (!(leftCodeUnit >= 48 && leftCodeUnit <= 57) &&
+          !(leftCodeUnit >= 97 && leftCodeUnit <= 122)) {
+        left++;
         continue;
       }
-      if (!alphanumeric.hasMatch(s[suffix])) {
-        suffix--;
+
+      if (!(rightCodeUnit >= 48 && rightCodeUnit <= 57) &&
+          !(rightCodeUnit >= 97 && rightCodeUnit <= 122)) {
+        right--;
         continue;
       }
-      if (!(s[prefix].toLowerCase() == s[suffix].toLowerCase())) {
+
+      if (s[left] != s[right]) {
         return false;
       }
-      prefix++;
-      suffix--;
+
+      left++;
+      right--;
     }
 
     return true;
@@ -25,32 +38,56 @@ class ValidPalindrome {
 
 
   // Solution
-  bool solution(String s) {
-    s = s.toLowerCase();
+  /*
+   * Solution 1
+   * 
+   * Compare strings
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(N)
+   */
+  bool solution1(String s) {
+    String sanitized = s.replaceAll(RegExp(r'[^A-Za-z0-9]'), '').toLowerCase();
 
-    String bag = '';
+    String reversed = sanitized.split('').reversed.join('');
 
-    for (int i = 0; i < s.length; i++) {
-      int a = s.codeUnitAt(i);
-      if ((a >= 48 && a < 58) || (a >= 97 && a <= 122)) {
-        bag += s[i];
+    return sanitized == reversed;
+  }
+
+  /*
+   * Solution 2
+   * 
+   * Two-Pointer
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  bool _isAlphanumeric(String char) {
+    final int code = char.codeUnitAt(0);
+    return (code >= 97 && code <= 122) ||
+        (code >= 65 && code <= 90) ||
+        (code >= 48 && code <= 57);
+  }
+
+  bool solution2(String s) {
+    int left = 0;
+    int right = s.length - 1;
+
+    while (left < right) {
+      while (left < right && !_isAlphanumeric(s[left])) {
+        left++;
       }
+
+      while (left < right && !_isAlphanumeric(s[right])) {
+        right--;
+      }
+
+      if (s[left].toLowerCase() != s[right].toLowerCase()) {
+        return false;
+      }
+
+      left++;
+      right--;
     }
 
-    int r = bag.length - 1;
-    bool pal = true;
-    if (bag.length <= 1) {
-      return true;
-    } else {
-      for (int j = 0; j < (bag.length / 2).floor(); j++) {
-        if (bag[j] != bag[r]) {
-          pal = false;
-          break;
-        }
-        r--;
-      }
-    }
-
-    return pal;
+    return true;
   }
 }
