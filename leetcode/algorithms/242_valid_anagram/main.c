@@ -1,25 +1,29 @@
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
+/**
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 bool isAnagram(char* s, char* t) {
-    int sNum = 0;
-    int tNum = 0;
+    int len = strlen(s);
 
-    int sLength = strlen(s);
-    int tLength = strlen(t);
+    if (len != strlen(t)) {
+        return false;
+    }
 
     int charNumArray[26] = {0};
 
-    if (sLength == tLength) {
-        for (int i = 0; i < sLength; i++) {
-            charNumArray[s[i] - 'a']++;
-            charNumArray[t[i] - 'a']--;
-        }
+    for (int i = 0; i < len; i++) {
+        charNumArray[s[i] - 'a']++;
+        charNumArray[t[i] - 'a']--;
+    }
 
-        for (int i = 0; i < 26; i++) {
-            if (charNumArray[i] != 0) {
-                return false;
-            }
+    for (int i = 0; i < 26; i++) {
+        if (charNumArray[i] != 0) {
+            return false;
         }
     }
 
@@ -28,38 +32,65 @@ bool isAnagram(char* s, char* t) {
 
 
 // Solution
-// Solution 1
+/**
+ * Solution 1
+ * 
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 bool solution1(char* s, char* t) {
-    int f[26] = {0};
-    register int i;
-    for (i = 0; s[i] != '\0' && t[i] != '\0'; i++) {
-        f[s[i] - 'a']++;
-        f[t[i] - 'a']--;
-    }
-    if (s[i] != '\0' || t[i] != '\0') {
-        return 0;
-    }
-    for (register i = 0; i < 26; i++) {
-        if (f[i] != 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
+    int len_s = strlen(s);
+    int len_t = strlen(t);
 
-// Solution 2
-bool solution2(char* s, char* t) {
-    int chars[26] = {0, 0}, index;
-    for (index = 0; s[index]; ++index) {
-        chars[s[index] - 'a']++;
+    if (len_s != len_t) {
+        return false;
     }
-    for (index = 0; t[index]; ++index) {
-        chars[t[index] - 'a']--;
+
+    int char_counts[26] = {0};
+
+    for (int i = 0; i < len_s; i++) {
+        char_counts[s[i] - 'a']++;
     }
-    for (index = 0; index < 26; ++index) {
-        if (chars[index]) {
+
+    for (int i = 0; i < len_t; i++) {
+        char_counts[t[i] - 'a']--;
+    }
+
+    for (int i = 0; i < 26; i++) {
+        if (char_counts[i] != 0) {
             return false;
         }
     }
+
     return true;
+}
+
+/**
+ * Solution 2
+ * 
+ * Sort
+ * - Time Complexity: O(N * logᴺ)
+ * - Space Complexity: O(1) or O(logᴺ)
+ */
+int compare_chars(const void* a, const void* b) {
+    return (*(char*)a - *(char*)b);
+}
+
+bool solution2(char* s, char* t) {
+    int len_s = strlen(s);
+    int len_t = strlen(t);
+
+    if (len_s != len_t) {
+        return false;
+    }
+
+    qsort(s, len_s, sizeof(char), compare_chars);
+    qsort(t, len_t, sizeof(char), compare_chars);
+
+    if (strcmp(s, t) == 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
