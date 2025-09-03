@@ -1,28 +1,28 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 class ValidAnagram {
+    /**
+     * Frequency Counter
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     public boolean isAnagram(String s, String t) {
-        Map<Character, Integer> sMap = new HashMap<Character, Integer>();
+        int len = s.length();
 
-        for (char c_ : s.toCharArray()) {
-            if (sMap.get(c_) == null) {
-                sMap.put(c_, 1);
-            } else {
-                sMap.put(c_, sMap.get(c_) + 1);
-            }
+        if (len != t.length()) {
+            return false;
         }
 
-        for (char c_ : t.toCharArray()) {
-            if (sMap.get(c_) != null && sMap.get(c_) > 0) {
-                sMap.put(c_, sMap.get(c_) - 1);
-            } else {
-                return false;
-            }
+        int[] alphabetNumArray = new int[26];
+        Arrays.fill(alphabetNumArray, 0);
+
+        for (int i = 0; i < len; i++) {
+            alphabetNumArray[s.charAt(i) - 'a']++;
+            alphabetNumArray[t.charAt(i) - 'a']--;
         }
 
-        for (Integer v_ : sMap.values()) {
-            if (v_ > 0) {
+        for (int i = 0; i < 26; i++) {
+            if (alphabetNumArray[i] != 0) {
                 return false;
             }
         }
@@ -30,21 +30,54 @@ class ValidAnagram {
         return true;
     }
 
-    
+
     // Solution
-    public boolean solution(String s, String t) {
-        int[] alphabet = new int[26];
+    /**
+     * Solution 1
+     * 
+     * Sorting
+     * - Time Complexity: O(N * logᴺ)
+     * - Space Complexity: O(N)
+     */
+    public boolean solution1(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
+
+        Arrays.sort(sChars);
+        Arrays.sort(tChars);
+
+        return Arrays.equals(sChars, tChars);
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Frequency Counting
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
+    public boolean solution2(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] charCounts = new int[26];
+
         for (int i = 0; i < s.length(); i++) {
-            alphabet[s.charAt(i) - 'a']++;
+            charCounts[s.charAt(i) - 'a']++;
         }
+
         for (int i = 0; i < t.length(); i++) {
-            alphabet[t.charAt(i) - 'a']--;
-        }
-        for (int i : alphabet) {
-            if (i != 0) {
+            charCounts[t.charAt(i) - 'a']--;
+            if (charCounts[t.charAt(i) - 'a'] < 0) {
                 return false;
             }
         }
+
         return true;
     }
 }
