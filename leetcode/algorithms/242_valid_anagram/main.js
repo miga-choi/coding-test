@@ -1,29 +1,28 @@
 /**
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
  * @param {string} s
  * @param {string} t
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-  let sMap = {};
+  const len = s.length;
 
-  for (const c_ of s) {
-    if (sMap[c_]) {
-      sMap[c_] = sMap[c_] + 1;
-    } else {
-      sMap[c_] = 1;
-    }
+  if (len != t.length) {
+    return false;
   }
 
-  for (const c_ of t) {
-    if (sMap[c_] > 0) {
-      sMap[c_] = sMap[c_] - 1;
-    } else {
-      return false;
-    }
+  const alphabetNumArray = new Array(26).fill(0);
+
+  for (let i = 0; i < len; i++) {
+    alphabetNumArray[s[i].charCodeAt(0) - 97]++;
+    alphabetNumArray[t[i].charCodeAt(0) - 97]--;
   }
 
-  for (const c_ in sMap) {
-    if (sMap[c_] > 0) {
+  for (let i = 0; i < 26; i++) {
+    if (alphabetNumArray[i] != 0) {
       return false;
     }
   }
@@ -33,19 +32,57 @@ var isAnagram = function (s, t) {
 
 
 // Solution
-var solution = function (s, t) {
+/**
+ * Solution 1
+ *
+ * Sort
+ * - Time Complexity: O(N * logᴺ)
+ * - Space Complexity: O(N)
+ *
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var solution1 = function (s, t) {
   if (s.length !== t.length) {
     return false;
   }
 
-  var freq = new Array(26).fill(0);
-  for (var i = 0; i < s.length; i++) {
-    freq[s.charCodeAt(i) - "a".charCodeAt(0)]++;
-    freq[t.charCodeAt(i) - "a".charCodeAt(0)]--;
+  const sortedS = s.split("").sort().join("");
+  const sortedT = t.split("").sort().join("");
+
+  return sortedS === sortedT;
+};
+
+/**
+ * Solution 2
+ *
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var solution2 = function (s, t) {
+  if (s.length !== t.length) {
+    return false;
   }
 
-  for (var i = 0; i < freq.length; i++) {
-    if (freq[i] !== 0) {
+  const charCount = new Array(26).fill(0);
+  const charCodeA = "a".charCodeAt(0);
+
+  for (let i = 0; i < s.length; i++) {
+    const index = s.charCodeAt(i) - charCodeA;
+    charCount[index]++;
+  }
+
+  for (let i = 0; i < t.length; i++) {
+    const index = t.charCodeAt(i) - charCodeA;
+    charCount[index]--;
+
+    if (charCount[index] < 0) {
       return false;
     }
   }

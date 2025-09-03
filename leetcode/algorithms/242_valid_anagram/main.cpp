@@ -25,7 +25,7 @@ public:
         }
 
         for (int i = 0; i < 26; i++) {
-            if (alphabetNumArray[i] > 0) {
+            if (alphabetNumArray[i] != 0) {
                 return false;
             }
         }
