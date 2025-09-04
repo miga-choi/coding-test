@@ -1,45 +1,83 @@
 class ValidAnagram {
+  /**
+   * Frequency Counter
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   bool isAnagram(String s, String t) {
-    if (s.length != t.length) {
+    int len = s.length;
+
+    if (len != t.length) {
       return false;
     }
 
-    for (String c in s.split('')) {
-      t = t.replaceFirst(c, '');
+    List<int> alphabetNumArray = List<int>.filled(26, 0);
+
+    for (int i = 0; i < len; i++) {
+      alphabetNumArray[s.codeUnitAt(i) - 97]++;
+      alphabetNumArray[t.codeUnitAt(i) - 97]--;
     }
 
-    return t.isEmpty;
+    for (int i = 0; i < 26; i++) {
+      if (alphabetNumArray[i] != 0) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Sort
+   * - Time Complexity: O(N * logᴺ)
+   * - Space Complexity: O(N)
+   */
   bool solution1(String s, String t) {
-    List<String> s1 = s.split('');
-    List<String> s2 = t.split('');
-    s1.sort();
-    s2.sort();
-    bool result = true;
-    if (s1.length != s2.length) {
-      result = false;
-    } else {
-      for (int i = 0; i < s1.length; i++) {
-        if (s1[i] != s2[i]) {
-          result = false;
-          break;
-        }
-      }
+    if (s.length != t.length) {
+      return false;
     }
-    return result;
+
+    List<String> sChars = s.split('');
+    List<String> tChars = t.split('');
+
+    sChars.sort();
+    tChars.sort();
+
+    return sChars.join('') == tChars.join('');
   }
 
-  // Solution 2
+  /**
+   * Solution 2
+   * 
+   * Hash Map
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   bool solution2(String s, String t) {
     if (s.length != t.length) {
       return false;
     }
-    var sortedS = (s.split('')..sort()).join('');
-    var sortedT = (t.split('')..sort()).join('');
-    return sortedT == sortedS;
+
+    Map<String, int> charCount = {};
+
+    for (int i = 0; i < s.length; i++) {
+      charCount[s[i]] = (charCount[s[i]] ?? 0) + 1;
+    }
+
+    for (int i = 0; i < t.length; i++) {
+      String char = t[i];
+
+      if (!charCount.containsKey(char) || charCount[char] == 0) {
+        return false;
+      }
+
+      charCount[char] = charCount[char]! - 1;
+    }
+
+    return true;
   }
 }
