@@ -1,28 +1,75 @@
+from collections import Counter
+from typing import List
+
+
 class ValidAnagram:
+    ##
+    # Frequency Counter
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
     def isAnagram(self, s: str, t: str) -> bool:
-        sMap: dict = {}
+        length: int = len(s)
 
-        for c_ in s:
-            if sMap.get(c_) == None:
-                sMap[c_] = 1
-            else:
-                sMap[c_] = sMap[c_] + 1
+        if length != len(t):
+            return False
 
-        for c_ in t:
-            if sMap.get(c_) != None and sMap.get(c_) > 0:
-                sMap[c_] = sMap[c_] - 1
-            else:
-                return False
+        alphabetNumArray: List[int] = [0] * 26
 
-        for v_ in sMap.values():
-            if v_ > 0:
+        for i in range(length):
+            alphabetNumArray[ord(s[i]) - 97] += 1
+            alphabetNumArray[ord(t[i]) - 97] -= 1
+
+        for i in range(26):
+            if alphabetNumArray[i] != 0:
                 return False
 
         return True
 
 
     # Solution
-    def solution(self, s: str, t: str) -> bool:
-        sorted_s = sorted(s)
-        sorted_t = sorted(t)
-        return sorted_s == sorted_t
+    ##
+    # Solution 1
+    #
+    # Sorting
+    # - Time Complexity: O(N * logᴺ)
+    # - Space Complexity: O(N)
+    #
+    def solution1(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        return sorted(s) == sorted(t)
+
+    ##
+    # Solution 2
+    #
+    # Hash Table / Dictionary
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def solution2(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        char_counts = {}
+
+        for char in s:
+            char_counts[char] = char_counts.get(char, 0) + 1
+
+        for char in t:
+            if char not in char_counts or char_counts[char] == 0:
+                return False
+            char_counts[char] -= 1
+
+        return True
+
+    ##
+    # Solution 3
+    #
+    # collections.Counter
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def solution3(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
