@@ -1,5 +1,10 @@
 #include <string.h>
 
+/**
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 int firstUniqChar(char* s) {
     int alphabetNumArray[26] = {0};
 
@@ -18,19 +23,23 @@ int firstUniqChar(char* s) {
 
 
 // Solution
+/**
+ * Solution 1
+ * 
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 int solution(char* s) {
-    int i = 0, map[26], sSize = strlen(s);
+    int counts[26] = {0};
+    int len = strlen(s);
 
-    for (i; i < 26; i++) {
-        map[i] = 0;
+    for (int i = 0; i < len; i++) {
+        counts[s[i] - 'a']++;
     }
 
-    for (i = 0; i < sSize; i++) {
-        map[s[i] - 'a']++;
-    }
-
-    for (i = 0; i < sSize; i++) {
-        if (map[s[i] - 'a'] == 1) {
+    for (int i = 0; i < len; i++) {
+        if (counts[s[i] - 'a'] == 1) {
             return i;
         }
     }
