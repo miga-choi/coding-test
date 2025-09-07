@@ -1,23 +1,82 @@
+from typing import List
 import collections
 
 
 class FirstUniqueCharacterInAString:
+    ##
+    # Frequency Counter
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
     def firstUniqChar(self, s: str) -> int:
+        alphabetNumArray: List[int] = [0] * 26
+
         for c in s:
-            if s.index(c) == s.rindex(c):
-                return s.index(c)
+            alphabetNumArray[ord(c) - 97] += 1
+
+        for i in range(len(s)):
+            if alphabetNumArray[ord(s[i]) - 97] == 1:
+                return i
+
         return -1
 
 
-    # solution
-    def solution(self, s: str) -> int:
-        hset = collections.Counter(s)
+    # Solution
+    ##
+    # Solution 1
+    #
+    # Frequency Counter
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def solution1(self, s: str) -> int:
+        counts = {}
 
-        # Traverse the string from the beginning...
-        for idx in range(len(s)):
-            # If the count is equal to 1, it is the first distinct character in the list.
-            if hset[s[idx]] == 1:
-                return idx
+        for char in s:
+            counts[char] = counts.get(char, 0) + 1
 
-        # If no character appeared exactly once...
+        for i in range(len(s)):
+            if counts[s[i]] == 1:
+                return i
+
         return -1
+
+    ##
+    # Solution 2
+    #
+    # Frequency Counter & collections.Counter
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def solution2(self, s: str) -> int:
+        counts = collections.Counter(s)
+
+        for index, char in enumerate(s):
+            if counts[char] == 1:
+                return index
+
+        return -1
+
+    ##
+    # Solution 3
+    #
+    # Hash table
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def solution3(self, s: str) -> int:
+        char_map = {}
+        duplicate_flag = len(s)
+
+        for index, char in enumerate(s):
+            if char not in char_map:
+                char_map[char] = index
+            else:
+                char_map[char] = duplicate_flag
+
+        min_index = duplicate_flag
+        for index_val in char_map.values():
+            if index_val != duplicate_flag:
+                min_index = min(min_index, index_val)
+
+        return min_index if min_index != duplicate_flag else -1
