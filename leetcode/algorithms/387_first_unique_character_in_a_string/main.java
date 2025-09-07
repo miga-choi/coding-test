@@ -1,47 +1,73 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 class FirstUniqueCharacterInAString {
+    /**
+     * Frequency Counter
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     public int firstUniqChar(String s) {
+        int[] alphabetNumArray = new int[26];
+        Arrays.fill(alphabetNumArray, 0);
+
+        for (char c : s.toCharArray()) {
+            alphabetNumArray[(int) c - 97]++;
+        }
+
         for (int i = 0; i < s.length(); i++) {
-            if (s.indexOf(String.valueOf(s.charAt(i))) == s.lastIndexOf(String.valueOf(s.charAt(i)))) {
+            if (alphabetNumArray[(int) s.charAt(i) - 97] == 1) {
                 return i;
             }
         }
+
         return -1;
     }
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * Frequency Counter
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     public int solution1(String s) {
-        // Stores lowest index / first index
-        int ans = Integer.MAX_VALUE;
+        int[] counts = new int[26];
 
-        // Iterate from a to z which is 26 which makes it constant
-        for (char c = 'a'; c <= 'z'; c++) {
-            // indexOf will return first index of alphabet and lastIndexOf will return last
-            // index
-            // if both are equal then it has occured only once.
-            // through this we will get all index's which are occured once
-            // but our answer is lowest index
-            int index = s.indexOf(c);
-            if (index != -1 && index == s.lastIndexOf(c)) {
-                ans = Math.min(ans, index);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            counts[c - 'a']++;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (counts[c - 'a'] == 1) {
+                return i;
             }
         }
 
-        // If ans remain's Integer.MAX_VALUE then their is no unique character
-        return ans == Integer.MAX_VALUE ? -1 : ans;
+        return -1;
     }
 
-    // Solution 22
+    /**
+     * Solution 2
+     * 
+     * Hash table
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     public int solution2(String s) {
-        int freq[] = new int[26];
+        Map<Character, Integer> counts = new HashMap<>();
 
-        for (int i = 0; i < s.length(); i++) {
-            freq[s.charAt(i) - 'a']++;
+        for (char c : s.toCharArray()) {
+            counts.put(c, counts.getOrDefault(c, 0) + 1);
         }
 
         for (int i = 0; i < s.length(); i++) {
-            if (freq[s.charAt(i) - 'a'] == 1) {
+            if (counts.get(s.charAt(i)) == 1) {
                 return i;
             }
         }
