@@ -1,40 +1,102 @@
 /**
+ * Frequency Counter
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
  * @param {string} s
  * @return {number}
  */
 var firstUniqChar = function (s) {
-  const sMap = new Map();
+  const alphabetNumArray = new Array(26).fill(0);
+
+  for (const c of s) {
+    alphabetNumArray[c.charCodeAt(0) - 97]++;
+  }
 
   for (let i = 0; i < s.length; i++) {
-    if (sMap.get(s[i]) != null) {
-      sMap.set(s[i], -1);
-    } else {
-      sMap.set(s[i], i);
+    if (alphabetNumArray[s.charCodeAt(i) - 97] === 1) {
+      return i;
     }
   }
 
-  let result = -1;
-
-  for (const value of sMap.values()) {
-    if (result === -1 || (value >= 0 && value < result)) {
-      result = value;
-    }
-  }
-
-  return result;
+  return -1;
 };
 
 
 // Solution
-var solution = function (s) {
-  for (let idx = 0; idx < s.length; idx++) {
-    // If same...
-    if (s.indexOf(s[idx]) === s.lastIndexOf(s[idx])) {
-      // return the index of that unique character
-      return idx;
+/**
+ * Solution 1
+ *
+ * Hash Table
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
+ * @param {string} s
+ * @return {number}
+ */
+var solution1 = function (s) {
+  const frequencyMap = new Map();
+
+  for (const char of s) {
+    frequencyMap.set(char, (frequencyMap.get(char) || 0) + 1);
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+    if (frequencyMap.get(char) === 1) {
+      return i;
     }
   }
 
-  // If no character appeared exactly once...
+  return -1;
+};
+
+/**
+ * Solution 2
+ *
+ * Built-in functions
+ * - Time Complexity: O(N²)
+ * - Space Complexity: O(1)
+ *
+ * @param {string} s
+ * @return {number}
+ */
+var solution2 = function (s) {
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+    if (s.indexOf(char) === s.lastIndexOf(char)) {
+      return i;
+    }
+  }
+
+  return -1;
+};
+
+/**
+ * Solution 3
+ *
+ * Frequency Counting
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
+ * @param {string} s
+ * @return {number}
+ */
+var solution3 = function (s) {
+  const charCounts = new Array(26).fill(0);
+  const charCodeOfA = "a".charCodeAt(0);
+
+  for (let i = 0; i < s.length; i++) {
+    const charIndex = s.charCodeAt(i) - charCodeOfA;
+    charCounts[charIndex]++;
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    const charIndex = s.charCodeAt(i) - charCodeOfA;
+    if (charCounts[charIndex] === 1) {
+      return i;
+    }
+  }
+
   return -1;
 };
