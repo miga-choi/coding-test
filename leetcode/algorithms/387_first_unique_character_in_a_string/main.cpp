@@ -1,9 +1,15 @@
 #include <string>
 #include <unordered_map>
+#include <vector>
 using namespace std;
 
 class FirstUniqueCharacterInAString {
 public:
+    /**
+     * Frequency Counter
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int firstUniqChar(string s) {
         int alphabetNumArray[26] = {0};
 
@@ -20,18 +26,23 @@ public:
         return -1;
     }
 
-
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * Frequency Counter
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int solution1(string s) {
-        unordered_map<char, int> m;
+        vector<int> counts(26, 0);
 
-        for (char &c : s) {
-            m[c]++;
+        for (char c : s) {
+            counts[c - 'a']++;
         }
 
-        for (int i = 0; i < s.size(); i++) {
-            if (m[s[i]] == 1) {
+        for (int i = 0; i < s.length(); ++i) {
+            if (counts[s[i] - 'a'] == 1) {
                 return i;
             }
         }
@@ -39,22 +50,26 @@ public:
         return -1;
     }
 
-    // Solution 2
+    /**
+     * Solution 2
+     * 
+     * Hash table
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     int solution2(string s) {
-        unordered_map<char, pair<int, int>> m;
-        int idx = s.size();
+        unordered_map<char, int> counts;
 
-        for (int i = 0; i < s.size(); i++) {
-            m[s[i]].first++;
-            m[s[i]].second = i;
+        for (char c : s) {
+            counts[c]++;
         }
 
-        for (const auto &[c, p] : m) {
-            if (p.first == 1) {
-                idx = min(idx, p.second);
+        for (int i = 0; i < s.length(); ++i) {
+            if (counts[s[i]] == 1) {
+                return i;
             }
         }
 
-        return idx == s.size() ? -1 : idx;
+        return -1;
     }
 };
