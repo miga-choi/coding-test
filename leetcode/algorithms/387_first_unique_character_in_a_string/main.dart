@@ -1,37 +1,19 @@
 class FirstUniqueCharacterInAString {
-  // List
-  int firstUniqChar1(String s) {
-    List<int> alphabetNumArray = List<int>.filled(26, 0);
-    List<String> sArray = s.split("");
+  /**
+   * Frequency Counter
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  int firstUniqChar(String s) {
+    final List<int> alphabetNumArray = List<int>.filled(26, 0);
+    final int sLength = s.length;
 
-    for (String c in sArray) {
-      alphabetNumArray[c.codeUnitAt(0) - 'a'.codeUnitAt(0)] += 1;
+    for (int i = 0; i < sLength; i++) {
+      alphabetNumArray[s.codeUnitAt(i) - 97]++;
     }
 
-    for (int i = 0; i < sArray.length; i++) {
-      if (alphabetNumArray[sArray[i].codeUnitAt(0) - 'a'.codeUnitAt(0)] == 1) {
-        return i;
-      }
-    }
-
-    return -1;
-  }
-
-  // Map
-  int firstUniqChar2(String s) {
-    Map<String, int> alphabetNumMap = Map<String, int>.new();
-    List<String> sArray = s.split("");
-
-    for (String c in sArray) {
-      if (alphabetNumMap[c] == null) {
-        alphabetNumMap[c] = 0;
-      } else {
-        alphabetNumMap[c] = alphabetNumMap[c]! + 1;
-      }
-    }
-
-    for (int i = 0; i < sArray.length; i++) {
-      if (alphabetNumMap[sArray[i]] == 1) {
+    for (int i = 0; i < sLength; i++) {
+      if (alphabetNumArray[s.codeUnitAt(i) - 97] == 1) {
         return i;
       }
     }
@@ -41,12 +23,77 @@ class FirstUniqueCharacterInAString {
 
 
   // Solution
-  int solution(String s) {
-    final inputArr = s.split('');
+  /**
+   * Solution 1
+   * 
+   * Frequency Counter
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  int solution1(String s) {
+    List<int> counts = List.filled(26, 0);
+    final int aCode = 'a'.codeUnitAt(0);
 
-    for (final value in inputArr) {
-      if (inputArr.indexOf(value) == inputArr.lastIndexOf(value)) {
-        return inputArr.indexOf(value);
+    for (int i = 0; i < s.length; i++) {
+      int index = s.codeUnitAt(i) - aCode;
+      counts[index]++;
+    }
+
+    for (int i = 0; i < s.length; i++) {
+      int index = s.codeUnitAt(i) - aCode;
+      if (counts[index] == 1) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  /**
+   * Solution 2
+   * 
+   * Hash table
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  int solution2(String s) {
+    Map<String, int> counts = {};
+
+    for (int i = 0; i < s.length; i++) {
+      String char = s[i];
+      counts[char] = (counts[char] ?? 0) + 1;
+    }
+
+    for (int i = 0; i < s.length; i++) {
+      String char = s[i];
+      if (counts[char] == 1) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  /**
+   * Solution 3
+   * 
+   * Brute-Force
+   * - Time Complexity: O(N²)
+   * - Space Complexity: O(1)
+   */
+  int solution3(String s) {
+    for (int i = 0; i < s.length; i++) {
+      bool isUnique = true;
+
+      for (int j = 0; j < s.length; j++) {
+        if (i != j && s[i] == s[j]) {
+          isUnique = false;
+          break;
+        }
+      }
+
+      if (isUnique) {
+        return i;
       }
     }
 
