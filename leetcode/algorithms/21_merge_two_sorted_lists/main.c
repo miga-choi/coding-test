@@ -14,10 +14,6 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
     struct ListNode dummy;
     struct ListNode* curr_head = &dummy;
 
-    if (!list1 && !list2) {
-        return (void*)0;
-    }
-
     while (list1 && list2) {
         if (list1->val > list2->val) {
             curr_head->next = list2;
@@ -29,13 +25,7 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
         curr_head = curr_head->next;
     }
 
-    if (list1) {
-        curr_head->next = list1;
-    }
-
-    if (list2) {
-        curr_head->next = list2;
-    }
+    curr_head->next = list1 ? list1 : list2;
 
     return dummy.next;
 }
