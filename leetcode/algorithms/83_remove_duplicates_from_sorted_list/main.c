@@ -1,18 +1,23 @@
-#include <stdio.h>
+#include <stddef.h>
 
 struct ListNode {
     int val;
     struct ListNode* next;
 };
 
+/**
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 struct ListNode* deleteDuplicates(struct ListNode* head) {
-    struct ListNode* current = head;
+    struct ListNode* curr_head = head;
 
-    while (current) {
-        if (current->next && current->next->val == current->val) {
-            current->next = current->next->next;
+    while (curr_head) {
+        if (curr_head->next && curr_head->val == curr_head->next->val) {
+            curr_head->next = curr_head->next->next;
         } else {
-            current = current->next;
+            curr_head = curr_head->next;
         }
     }
 
@@ -21,60 +26,25 @@ struct ListNode* deleteDuplicates(struct ListNode* head) {
 
 
 // Solution
-// Solution 1
-struct ListNode* solution1(struct ListNode* head) {
-    struct ListNode* temp = head;
-    while (temp && temp->next) {
-        if (temp->next->val == temp->val) {
-            temp->next = temp->next->next;
-            continue;
-        }
-        temp = temp->next;
-    }
-    return head;
-}
-
-// Solution 2
-struct ListNode* solution2(struct ListNode* head) {
-    struct ListNode* cur = head;
-    while (cur) {
-        while (cur->next && cur->val == cur->next->val) {
-            cur->next = cur->next->next;
-        }
-        cur = cur->next;
-    }
-    return head;
-}
-
-// Solution 3
-struct ListNode* solution3(struct ListNode* head) {
-    // Special case...
+/**
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
+struct ListNode* solution(struct ListNode* head) {
     if (head == NULL || head->next == NULL) {
         return head;
     }
 
-    // Initialize two pointers tmp(slow) and curr(fast)...
-    struct ListNode* tmp = head;
-    struct ListNode* curr = head->next;
+    struct ListNode* current = head;
 
-    // Traverse all element through a while loop if curr node is not null...
-    while (curr != NULL) {
-        // If the value of curr is equal to the value of tmp...
-        // It means the value is present in the linked list...
-        if (tmp->val == curr->val) {
-            // Hence we do not need to include curr again in the linked list...
-            // So we increment the value of curr...
-            curr = curr->next;
+    while (current != NULL && current->next != NULL) {
+        if (current->val == current->next->val) {
+            current->next = current->next->next;
         } else {
-            // Otherwise, we increment both the pointers.
-            tmp->next = curr;
-            tmp = curr;
-            curr = tmp->next;
+            current = current->next;
         }
     }
 
-    tmp->next = NULL;
-
-    // Return the sorted linked list without any duplicate element...
     return head;
 }
