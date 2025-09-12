@@ -1,5 +1,3 @@
-#include <cstddef>
-
 class RemoveDuplicatesFromSortedList {
     struct ListNode {
         int val;
@@ -10,14 +8,19 @@ class RemoveDuplicatesFromSortedList {
     };
 
 public:
+    /**
+     * Iteration
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* current = head;
+        ListNode* curr_head = head;
 
-        while (current) {
-            if (current->next && current->next->val == current->val) {
-                current->next = current->next->next;
+        while (curr_head) {
+            if (curr_head->next && curr_head->val == curr_head->next->val) {
+                curr_head->next = curr_head->next->next;
             } else {
-                current = current->next;
+                curr_head = curr_head->next;
             }
         }
 
@@ -26,61 +29,26 @@ public:
 
 
     // Solution
-    // Solution 1
-    ListNode* solution1(ListNode* head) {
-        ListNode* cur = head;
-        while (cur) {
-            while (cur->next && cur->val == cur->next->val) {
-                cur->next = cur->next->next;
-            }
-            cur = cur->next;
-        }
-        return head;
-    }
-
-    // Solution 2
-    ListNode* solution2(ListNode* head) {
-        ListNode* temp = head;
-        while (temp && temp->next) {
-            if (temp->next->val == temp->val) {
-                temp->next = temp->next->next;
-                continue;
-            }
-            temp = temp->next;
-        }
-        return head;
-    }
-
-    // Solution 3
-    ListNode* solution3(ListNode* head) {
-        // Special case...
-        if (head == NULL || head->next == NULL) {
+    /**
+     * Iteration
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
+    ListNode* solution(ListNode* head) {
+        if (!head || !head->next) {
             return head;
         }
 
-        // Initialize two pointers tmp(slow) and curr(fast)...
-        ListNode* tmp = head;
-        ListNode* curr = head->next;
+        ListNode* current = head;
 
-        // Traverse all element through a while loop if curr node is not null...
-        while (curr != NULL) {
-            // If the value of curr is equal to the value of tmp...
-            // It means the value is present in the linked list...
-            if (tmp->val == curr->val) {
-                // Hence we do not need to include curr again in the linked list...
-                // So we increment the value of curr...
-                curr = curr->next;
+        while (current && current->next) {
+            if (current->val == current->next->val) {
+                current->next = current->next->next;
             } else {
-                // Otherwise, we increment both the pointers.
-                tmp->next = curr;
-                tmp = curr;
-                curr = tmp->next;
+                current = current->next;
             }
         }
 
-        tmp->next = NULL;
-
-        // Return the sorted linked list without any duplicate element...
         return head;
     }
 };
