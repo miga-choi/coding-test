@@ -16,41 +16,44 @@ class RemoveDuplicatesFromSortedList {
     }
   }
 
+  /**
+   * Iteration
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   public ListNode deleteDuplicates(ListNode head) {
-    ListNode result = head;
-    while (result != null) {
-      if (result.next != null && result.val == result.next.val) {
-        result.next = result.next.next;
+    ListNode currHead = head;
+
+    while (currHead != null) {
+      if (currHead.next != null && currHead.val == currHead.next.val) {
+        currHead.next = currHead.next.next;
       } else {
-        result = result.next;
+        currHead = currHead.next;
       }
     }
+
     return head;
   }
 
 
   // Solution
-  // Solution 1: Recursive
-  public ListNode solution1(ListNode head) {
-    if (head == null || head.next == null) {
-      return head;
+  /**
+   * Iteration
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  public ListNode solution(ListNode head) {
+    if (head == null) {
+      return null;
     }
-    head.next = solution1(head.next);
-    return head.val == head.next.val ? head.next : head;
-  }
 
-  // Solution 2
-  public ListNode solution2(ListNode head) {
-    ListNode list = head;
+    ListNode current = head;
 
-    while (list != null) {
-      if (list.next == null) {
-        break;
-      }
-      if (list.val == list.next.val) {
-        list.next = list.next.next;
+    while (current != null && current.next != null) {
+      if (current.val == current.next.val) {
+        current.next = current.next.next;
       } else {
-        list = list.next;
+        current = current.next;
       }
     }
 
