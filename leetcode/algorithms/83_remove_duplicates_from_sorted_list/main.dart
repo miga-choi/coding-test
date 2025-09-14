@@ -5,14 +5,19 @@ class ListNode {
 }
 
 class RemoveDuplicatesFromSortedList {
+  /**
+   * Iteration
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   ListNode? deleteDuplicates(ListNode? head) {
-    ListNode? current = head;
+    ListNode? currHead = head;
 
-    while (current != null) {
-      if (current.next != null && current.next!.val == current.val) {
-        current.next = current.next?.next;
+    while (currHead != null) {
+      if (currHead.next != null && currHead.next!.val == currHead.val) {
+        currHead.next = currHead.next!.next;
       } else {
-        current = current.next;
+        currHead = currHead.next;
       }
     }
 
@@ -21,17 +26,23 @@ class RemoveDuplicatesFromSortedList {
 
 
   // Solution
+  /**
+   * Iteration
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   ListNode? solution(ListNode? head) {
-    ListNode? value = head;
+    if (head == null || head.next == null) {
+      return head;
+    }
 
-    while (value != null && value.next != null) {
-      if (value.val == value.next?.val) {
-        // If the current value is the same as the next one,
-        // skip the next node
-        value.next = value.next?.next;
+    ListNode? current = head;
+
+    while (current != null && current.next != null) {
+      if (current.val == current.next!.val) {
+        current.next = current.next!.next;
       } else {
-        // Otherwise, just move to the next node
-        value = value.next;
+        current = current.next;
       }
     }
 
