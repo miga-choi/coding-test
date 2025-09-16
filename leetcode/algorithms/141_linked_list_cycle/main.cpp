@@ -9,14 +9,19 @@ struct ListNode {
 
 class LinkedListCycle {
 public:
+    /**
+     * Floyd's Tortoise and Hare Algorithm
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     bool hasCycle(ListNode* head) {
-        ListNode* node1 = head;
-        ListNode* node2 = head;
+        ListNode* ahead = head;
+        ListNode* behind = head;
 
-        while (node2 != nullptr && node2->next != nullptr) {
-            node1 = node1->next;
-            node2 = node2->next->next;
-            if (node1 == node2) {
+        while (ahead && ahead->next) {
+            ahead = ahead->next->next;
+            behind = behind->next;
+            if (ahead == behind) {
                 return true;
             }
         }
@@ -26,25 +31,28 @@ public:
 
 
     // Solution
+    /**
+     * Floyd's Tortoise and Hare Algorithm
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
     bool solution(ListNode* head) {
-        // making two pointers fast and slow and assignning them to head
-        ListNode* fast = head;
+        if (head == nullptr || head->next == nullptr) {
+            return false;
+        }
+
         ListNode* slow = head;
+        ListNode* fast = head;
 
-        // till fast and fast-> next not reaches NULL
-        // we will increment fast by 2 step and slow by 1 step
-        while (fast != NULL && fast->next != NULL) {
-            fast = fast->next->next;
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
+            fast = fast->next->next;
 
-            // At the point if fast and slow are at same address
-            // this means linked list has a cycle in it.
-            if (fast == slow) {
+            if (slow == fast) {
                 return true;
             }
         }
 
-        // if traversal reaches to NULL this means no cycle.
         return false;
     }
 };
