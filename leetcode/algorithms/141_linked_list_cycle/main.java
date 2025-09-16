@@ -1,7 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class LinkedListCycle {
+  /**
+   * Floyd's Tortoise and Hare Algorithm
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   public class ListNode {
     int val;
     ListNode next;
@@ -13,28 +15,44 @@ class LinkedListCycle {
   }
 
   public boolean hasCycle(ListNode head) {
-    List<ListNode> stack = new ArrayList<ListNode>();
-    while (head != null) {
-      if (stack.indexOf(head) > -1) {
+    ListNode ahead = head;
+    ListNode behind = head;
+
+    while (ahead != null && ahead.next != null) {
+      ahead = ahead.next.next;
+      behind = behind.next;
+      if (ahead == behind) {
         return true;
       }
-      stack.add(head);
-      head = head.next;
     }
+
     return false;
   }
 
 
   // Solution
+  /**
+   * Floyd's Tortoise and Hare Algorithm
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   public boolean solution(ListNode head) {
-    ListNode slow = head, fast = head;
+    if (head == null || head.next == null) {
+      return false;
+    }
+
+    ListNode slow = head;
+    ListNode fast = head;
+
     while (fast != null && fast.next != null) {
-      fast = fast.next.next;
       slow = slow.next;
-      if (fast == slow) {
+      fast = fast.next.next;
+
+      if (slow == fast) {
         return true;
       }
     }
+
     return false;
   }
 }
