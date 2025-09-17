@@ -3,27 +3,42 @@ struct ListNode {
     struct ListNode* next;
 };
 
+/**
+ * - Time Complexity: O(M * N)
+ * - Space Complexity: O(1)
+ */
 struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB) {
-    while (headA != 0) {
-        struct ListNode* temp = headB;
-        while (temp != 0) {
-            if (temp == headA) {
-                return temp;
+    while (headA) {
+        struct ListNode* dummyB = headB;
+
+        while (dummyB) {
+            if (headA == dummyB) {
+                return headA;
             }
-            temp = temp->next;
+            dummyB = dummyB->next;
         }
+
         headA = headA->next;
     }
-    return 0;
+
+    return headA;
 }
 
 
 // Solution
+/**
+ * Two-Pointer
+ * - Time Complexity: O(M + N)
+ * - Space Complexity: O(1)
+ */
 struct ListNode* solution(struct ListNode* headA, struct ListNode* headB) {
-    struct ListNode* a = headA, *b = headB;
-    while (a != b) {
-        a = !a ? headB : a->next;
-        b = !b ? headA : b->next;
+    struct ListNode* ptrA = headA;
+    struct ListNode* ptrB = headB;
+
+    while (ptrA != ptrB) {
+        ptrA = ptrA ? ptrA->next: headB;
+        ptrB = ptrB ? ptrB->next: headA;
     }
-    return a;
+
+    return ptrA;
 }
