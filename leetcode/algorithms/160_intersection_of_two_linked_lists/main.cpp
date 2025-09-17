@@ -9,52 +9,43 @@ struct ListNode {
 
 class IntersectionOfTwoLinkedLists {
 public:
+    /**
+     * - Time Complexity: O(M * N)
+     * - Space Complexity: O(1)
+     */
     ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
-        while (headA != nullptr) {
-            ListNode* temp = headB;
-            while (temp != nullptr) {
-                if (temp == headA) {
-                    return temp;
+        while (headA) {
+            ListNode* dummyB = headB;
+
+            while (dummyB) {
+                if (headA == dummyB) {
+                    return headA;
                 }
-                temp = temp->next;
+                dummyB = dummyB->next;
             }
+
             headA = headA->next;
         }
-        return nullptr;
+        
+        return headA;
     }
 
 
     // Solution
+    /**
+     * Two-Pointer
+     * - Time Complexity: O(M + N)
+     * - Space Complexity: O(1)
+     */
     ListNode* solution(ListNode* headA, ListNode* headB) {
-        struct ListNode* p1 = headA;
-        struct ListNode* p2 = headB;
+        ListNode* ptrA = headA;
+        ListNode* ptrB = headB;
 
-        if (p1 == nullptr || p2 == nullptr) {
-            return nullptr;
+        while (ptrA != ptrB) {
+            ptrA = ptrA ? ptrA->next : headB;
+            ptrB = ptrB ? ptrB->next : headA;
         }
 
-        while (p1 != nullptr && p2 != nullptr && p1 != p2) {
-            p1 = p1->next;
-            p2 = p2->next;
-
-            // Any time they collide or reach end together without colliding
-            // then return any one of the pointers.
-            if (p1 == p2) {
-                return p1;
-            }
-
-            // If one of them reaches the end earlier then reuse it
-            // by moving it to the beginning of other list.
-            // Once both of them go through reassigning,
-            // they will be equidistant from the collision point.
-            if (p1 == nullptr) {
-                p1 = headB;
-            }
-            if (p2 == nullptr) {
-                p2 = headA;
-            }
-        }
-
-        return p1;
+        return ptrA;
     }
 };
