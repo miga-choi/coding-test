@@ -9,36 +9,43 @@ class IntersectionOfTwoLinkedLists {
     }
   }
 
+  /**
+   * - Time Complexity: O(M * N)
+   * - Space Complexity: O(1)
+   */
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    ListNode a = headA;
-    ListNode b = headB;
-    while (a != b) {
-      a = a == null ? headB : a.next;
-      b = b == null ? headA : b.next;
+    while (headA != null) {
+      ListNode dummyB = headB;
+
+      while (dummyB != null) {
+        if (headA == dummyB) {
+          return headA;
+        }
+
+        dummyB = dummyB.next;
+      }
+
+      headA = headA.next;
     }
-    return a;
+
+    return headA;
   }
 
-
   // Solution
+  /**
+   * Two-Pointer
+   * - Time Complexity: O(M + N)
+   * - Space Complexity: O(1)
+   */
   public ListNode solution(ListNode headA, ListNode headB) {
-    // boundary check
-    if (headA == null || headB == null) {
-      return null;
+    ListNode ptrA = headA;
+    ListNode ptrB = headB;
+
+    while (ptrA != ptrB) {
+      ptrA = (ptrA == null) ? headB : ptrA.next;
+      ptrB = (ptrB == null) ? headA : ptrB.next;
     }
 
-    ListNode a = headA;
-    ListNode b = headB;
-
-    // if a & b have different len, then we will stop the loop after second
-    // iteration
-    while (a != b) {
-      // for the end of first iteration, we just reset the pointer to the head of
-      // another linkedlist
-      a = a == null ? headB : a.next;
-      b = b == null ? headA : b.next;
-    }
-
-    return a;
+    return ptrA;
   }
 }
