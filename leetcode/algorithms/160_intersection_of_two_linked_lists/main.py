@@ -8,41 +8,33 @@ class ListNode:
 
 
 class IntersectionOfTwoLinkedLists:
+    ##
+    # Two-Pointer
+    # - Time Complexity: O(M + N)
+    # - Space Complexity: O(1)
+    #
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        a = headA
-        b = headB
-        while a is not b:
-            if a is None:
-                a = headB
-            else:
-                a = a.next
-            if b is None:
-                b = headA
-            else:
-                b = b.next
-        return a
+        dummyA: Optional[ListNode] = headA
+        dummyB: Optional[ListNode] = headB
+
+        while dummyA != dummyB:
+            dummyA = headB if dummyA == None else dummyA.next
+            dummyB = headA if dummyB == None else dummyB.next
+
+        return dummyA
 
 
     # Solution
+    ##
+    # Two-Pointer
+    # - Time Complexity: O(M + N)
+    # - Space Complexity: O(1)
+    #
     def solution(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        stackA = ["A"]
-        stackB = ["B"]
+        pA, pB = headA, headB
 
-        while headA or headB:
-            if headA:
-                stackA.append(headA)
-                headA = headA.next
+        while pA != pB:
+            pA = pA.next if pA else headB
+            pB = pB.next if pB else headA
 
-            if headB:
-                stackB.append(headB)
-                headB = headB.next
-
-        prev = None
-        while stackA and stackB:
-            nodeA = stackA.pop(-1)
-            nodeB = stackB.pop(-1)
-
-            if nodeA != nodeB:
-                return prev
-
-            prev = nodeA
+        return pA
