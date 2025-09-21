@@ -4,70 +4,78 @@ function ListNode(val, next) {
 }
 
 /**
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ *
  * @param {ListNode} head
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  let prev = null;
-  let current = head;
-
-  while (current) {
-    const next = current.next;
-    current.next = prev;
-    prev = current;
-    current = next;
+  if (head === null || head.next === null) {
+    return head;
   }
 
-  return prev;
+  const stack = new Array();
+
+  while (head) {
+    stack.push(head);
+    head = head.next;
+  }
+
+  const newHead = stack.pop();
+  let currHead = newHead;
+
+  while (stack.length > 0) {
+    currHead.next = stack.pop();
+    currHead = currHead.next;
+  }
+
+  currHead.next = null;
+
+  return newHead;
 };
 
 
 // Solution
-// Solution 1: Recursive
+/*
+ * Solution 1
+ *
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ */
 var solution1 = function (head) {
-  // Special case...
-  if (head == null || head.next == null) {
+  let prev = null;
+  let current = head;
+  let nextTemp = null;
+
+  while (current !== null) {
+    nextTemp = current.next;
+    current.next = prev;
+    prev = current;
+    current = nextTemp;
+  }
+
+  return prev;
+};
+
+/*
+ * Solution 2
+ *
+ * Recursion
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
+var solution2 = function (head) {
+  if (head === null || head.next === null) {
     return head;
   }
 
-  // Create a new node to call the function recursively and we get the reverse linked list...
-  var res = solution1(head.next);
+  const reversedListHead = solution2(head.next);
 
-  // Set head node as head.next.next...
   head.next.next = head;
-
-  //set head's next to be null...
   head.next = null;
 
-  // Return the reverse linked list...
-  return res;
-};
-
-// Solution 2: Iterative
-var solution2 = function (head) {
-  let prev = null;
-  let curr = head;
-  let next = null;
-
-  while (curr !== null) {
-    // save next
-    next = curr.next;
-
-    // reverse
-    curr.next = prev;
-
-    // advance prev and curr
-    prev = curr;
-    curr = next;
-  }
-  return prev;
-};
-
-// Solution 3: ES6 code
-var solution3 = function (head) {
-  let [prev, current] = [null, head];
-  while (current) {
-    [current.next, prev, current] = [prev, current, current.next];
-  }
-  return prev;
+  return reversedListHead;
 };
