@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -14,32 +14,67 @@ class ListNode:
 
 
 class ReverseLinkedList:
+    ##
+    # Iteration
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    #
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head == None or head.next == None:
+            return head
+
+        stack: List = []
+
+        while head != None:
+            stack.append(head)
+            head = head.next
+
+        new_head: Optional[ListNode] = stack.pop()
+        curr_head: Optional[ListNode] = new_head
+
+        while len(stack) > 0:
+            curr_head.next = stack.pop()
+            curr_head = curr_head.next
+
+        curr_head.next = None
+
+        return new_head
+
+
+    # Solution
+    ##
+    # Solution 1
+    #
+    # Iteration
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
+    def solution1(self, head: Optional[ListNode]) -> Optional[ListNode]:
         prev = None
         current = head
 
         while current:
-            next = current.next
+            next_node = current.next
             current.next = prev
             prev = current
-            current = next
+            current = next_node
 
         return prev
 
+    ##
+    # Solution 2
+    #
+    # Recursion
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    #
+    def solution2(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
 
-    # Solution
-    def solution(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # Initialize prev pointer as NULL...
-        prev = None
-        # Initialize the curr pointer as the head...
-        curr = head
-        # Run a loop till curr points to NULL...
-        while curr:
-            # Initialize next pointer as the next pointer of curr...
-            next = curr.next
-            # Now assign the prev pointer to curr’s next pointer.
-            curr.next = prev
-            # Assign curr to prev, next to curr...
-            prev = curr
-            curr = next
-        return prev  # Return the prev pointer to get the reverse linked list...
+        new_head = self.solution2(head.next)
+
+        head.next.next = head
+        head.next = None
+
+        return new_head
