@@ -1,4 +1,4 @@
-#include <cstddef>
+#include <vector>
 using namespace std;
 
 struct ListNode {
@@ -11,30 +11,78 @@ struct ListNode {
 
 class ReverseLinkedList {
 public:
+    /**
+     * Iteration
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(N)
+     */
     ListNode* reverseList(ListNode* head) {
-        ListNode* temp = nullptr;
-        ListNode* result = nullptr;
-
-        while (head) {
-            temp = head->next;
-            head->next = result;
-            result = head;
-            head = temp;
+        if (head == nullptr || head->next == nullptr) {
+            return head;
         }
 
-        return result;
+        vector<ListNode*> stack;
+        int top = -1;
+
+        while (head != nullptr) {
+            top++;
+            stack.push_back(head);
+            head = head->next;
+        }
+
+        ListNode* new_head = stack[top--];
+        ListNode* curr_head = new_head;
+
+        while (top >= 0) {
+            curr_head->next = stack[top--];
+            curr_head = curr_head->next;
+        }
+
+        curr_head->next = nullptr;
+
+        return new_head;
     }
 
 
     // Solution
-    ListNode* solution(ListNode* head) {
-        ListNode* nextNode, *prevNode = NULL;
-        while (head) {
-            nextNode = head->next;
-            head->next = prevNode;
-            prevNode = head;
-            head = nextNode;
+    /**
+     * Solution 1
+     * 
+     * Iteration
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(1)
+     */
+    ListNode* solution1(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* current = head;
+
+        while (current != nullptr) {
+            ListNode* next_temp = current->next;
+            current->next = prev;
+            prev = current;
+            current = next_temp;
         }
-        return prevNode;
+
+        return prev;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Recursion
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(N)
+     */
+    ListNode* solution2(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
+            return head;
+        }
+
+        ListNode* newHead = reverseList(head->next);
+
+        head->next->next = head;
+        head->next = nullptr;
+
+        return newHead;
     }
 };
