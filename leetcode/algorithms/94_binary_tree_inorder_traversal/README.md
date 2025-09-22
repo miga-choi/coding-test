@@ -19,7 +19,7 @@ Output: [4,2,6,5,7,1,3,9,8]
 Explanation:
 ```
 
-![Explanation 2](explanation2.png)
+![Example 2](example2.png)
 
 ## Example 3:
 
@@ -39,3 +39,5 @@ Output: [1]
 
 - The number of nodes in the tree is in the range `[0, 100]`.
 - `-100 <= Node.val <= 100`
+
+**Follow up**: Recursive solution is trivial, could you do it iteratively?
