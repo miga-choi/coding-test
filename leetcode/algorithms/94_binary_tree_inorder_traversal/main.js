@@ -5,12 +5,16 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ *
  * @param {TreeNode} root
  * @return {number[]}
  */
 var inorderTraversal = function (root) {
-  const totalRoots = [];
-  const result = [];
+  const totalRoots = new Array();
+  const result = new Array();
 
   while (root || totalRoots.length > 0) {
     if (root) {
@@ -28,83 +32,99 @@ var inorderTraversal = function (root) {
 
 
 // Solution
-// Solution 1: Iteration
+/**
+ * Solution 1
+ *
+ * Recursion
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ *
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
 function solution1(root) {
-  const stack = [];
-  const res = [];
-
-  while (root || stack.length) {
-    if (root) {
-      stack.push(root);
-      root = root.left;
-    } else {
-      root = stack.pop();
-      res.push(root.val);
-      root = root.right;
-    }
-  }
-
-  return res;
-}
-
-// Solution 2: DFS
-function helper(root, result) {
-  if (root !== null) {
-    helper(root.left, result);
-    result.push(root.val);
-    helper(root.right, result);
-  }
-}
-
-function solution2(root) {
   const result = [];
-  helper(root, result);
+
+  function traverse(node) {
+    if (node === null) {
+      return;
+    }
+
+    traverse(node.left);
+    result.push(node.val);
+    traverse(node.right);
+  }
+
+  traverse(root);
+
   return result;
 }
 
-// Solution 3: Recursion
-function solution3(root) {
-  const res = [];
+/**
+ * Solution 2
+ *
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ *
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+function solution2(root) {
+  const result = [];
+  const stack = [];
+  let current = root;
 
-  function inorder(node) {
-    if (!node) {
-      return;
+  while (current !== null || stack.length > 0) {
+    while (current !== null) {
+      stack.push(current);
+      current = current.left;
     }
-    inorder(node.left);
-    res.push(node.val);
-    inorder(node.right);
+
+    current = stack.pop();
+    result.push(current.val);
+
+    current = current.right;
   }
 
-  inorder(root);
-  return res;
+  return result;
 }
 
-// Solution 4: Stack
-function solution4(root) {
-  // Initialize an empty array to store the result (in-order traversal)
-  const res = [];
+/**
+ * Solution 3
+ *
+ * Morris Traversal
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(1)
+ *
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+function solution3(root) {
+  const result = [];
+  let current = root;
 
-  // Initialize an empty stack for iterative traversal
-  const stack = [];
+  while (current !== null) {
+    if (current.left === null) {
+      result.push(current.val);
+      current = current.right;
+    } else {
+      let predecessor = current.left;
 
-  // Loop until either the current node is not null or the stack is not empty
-  while (root || stack.length > 0) {
-    // Traverse to the leftmost node and push each encountered node onto the stack
-    while (root) {
-      stack.push(root);
-      root = root.left;
+      while (predecessor.right !== null && predecessor.right !== current) {
+        predecessor = predecessor.right;
+      }
+
+      if (predecessor.right === null) {
+        predecessor.right = current;
+        current = current.left;
+      } else {
+        predecessor.right = null;
+        result.push(current.val);
+        current = current.right;
+      }
     }
-
-    // Pop the last node from the stack (most recently left-visited node)
-    root = stack.pop();
-
-    // Append the value of the popped node to the result array
-    res.push(root.val);
-
-    // Move to the right subtree to continue the in-order traversal
-    root = root.right;
   }
 
-  // Return the final result array
-  return res;
+  return result;
 }
