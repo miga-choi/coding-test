@@ -1,5 +1,9 @@
+#include <stdbool.h>
 #include <stdlib.h>
 
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 struct TreeNode {
     int val;
     struct TreeNode* left;
@@ -7,64 +11,114 @@ struct TreeNode {
 };
 
 /**
- * Note: The returned array must be malloced, assume caller calls free().
+ * Recursion
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
  */
-int* inorderTraversal(struct TreeNode* root, int* returnSize) {
-    int* result = malloc(sizeof(int*) * 100);
-    *returnSize = 0;
-    getVal(root, result, returnSize);
-    return result;
+void getVal(struct TreeNode* node, int* array, int* returnSize) {
+    if (node) {
+        returnArray(node->left, array, returnSize);
+        array[(*returnSize)++] = node->val;
+        returnArray(node->right, array, returnSize);
+    }
 }
 
-void getVal(struct TreeNode* node, int* array, int* returnSize) {
-    if (!node) {
-        return;
-    }
-    getVal(node->left, array, returnSize);
-    array[(*returnSize)++] = node->val;
-    getVal(node->right, array, returnSize);
+int* inorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* array = (int*)malloc(sizeof(int) * 1000);
+    *returnSize = 0;
+
+    getval(root, array, returnSize);
+
+    return array;
 }
 
 
 // Solution
-// Solution 1: Iterative using stack
-int* solution1(struct TreeNode* root, int* returnSize) {
-    int* ans = (int*)malloc(100 * sizeof(int));
-    *returnSize = 0;
-    struct TreeNode** stack = (struct TreeNode**)malloc(100 * sizeof(struct TreeNode*));
-    int top = 0;
-    while (top || root) {
-        if (root) {
-            stack[top++] = root;
-            root = root->left;
-        } else {
-            root = stack[--top];
-            ans[(*returnSize)++] = root->val;
-            root = root->right;
-        }
+/**
+ * Solution 1
+ * 
+ * Recursion
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
+ void inorder_recursive(struct TreeNode* node, int** result, int* size, int* capacity) {
+    if (node == NULL) {
+        return;
     }
-    free(stack);
-    ans = realloc(ans, (*returnSize) * sizeof(int));
-    return ans;
+
+    inorder_recursive(node->left, result, size, capacity);
+
+    if (*size >= *capacity) {
+        *capacity *= 2;
+        *result = (int*)realloc(*result, sizeof(int) * (*capacity));
+    }
+
+    (*result)[(*size)++] = node->val;
+
+    inorder_recursive(node->right, result, size, capacity);
 }
 
-// Solution 2: Recursive
-void traverse(struct TreeNode* root, int* arr, int* returnSize) {
-    if (root->left) {
-        traverse(root->left, arr, returnSize);
+int* solution1(struct TreeNode* root, int* returnSize) {
+    if (root == NULL) {
+        *returnSize = 0;
+        return NULL;
     }
-    arr[(*returnSize)++] = root->val;
-    if (root->right) {
-        traverse(root->right, arr, returnSize);
-    }
+
+    int capacity = 10;
+    int size = 0;
+    int* result = (int*)malloc(sizeof(int) * capacity);
+
+    inorder_recursive(root, &result, &size, &capacity);
+
+    *returnSize = size;
+    return result;
 }
+
+/**
+ * Solution 2
+ * 
+ * Iteration
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
+ #define MAX_STACK_SIZE 1000
+struct TreeNode* stack[MAX_STACK_SIZE];
+int top = -1;
+
+void push(struct TreeNode* node) { stack[++top] = node; }
+
+struct TreeNode* pop() { return stack[top--]; }
+
+bool is_empty() { return top == -1; }
 
 int* solution2(struct TreeNode* root, int* returnSize) {
-    int* arr = (int*)malloc(100 * sizeof(int));
     *returnSize = 0;
-    if (root) {
-        traverse(root, arr, returnSize);
+    if (root == NULL) {
+        return NULL;
     }
-    arr = realloc(arr, (*returnSize) * sizeof(int));
-    return arr;
+
+    int capacity = 10;
+    int* result = (int*)malloc(sizeof(int) * capacity);
+
+    struct TreeNode* current = root;
+    top = -1;
+
+    while (current != NULL || !is_empty()) {
+        while (current != NULL) {
+            push(current);
+            current = current->left;
+        }
+
+        current = pop();
+
+        if (*returnSize >= capacity) {
+            capacity *= 2;
+            result = (int*)realloc(result, sizeof(int) * capacity);
+        }
+        result[(*returnSize)++] = current->val;
+
+        current = current->right;
+    }
+
+    return result;
 }
