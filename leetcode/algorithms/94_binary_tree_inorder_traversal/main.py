@@ -9,54 +9,101 @@ class TreeNode:
 
 
 class BinaryTreeInorderTraversal:
+    ##
+    # Iteration
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        totalRoots = []
-        result = []
-        while root or len(totalRoots) > 0:
+        stack: List[TreeNode] = []
+        result: List[TreeNode] = []
+
+        while root or len(stack) > 0:
             if root:
-                totalRoots.append(root)
+                stack.append(root)
                 root = root.left
             else:
-                root = totalRoots.pop()
+                root = stack.pop()
                 result.append(root.val)
                 root = root.right
+
         return result
 
 
     # Solution
-    # Solution 1: DFS Preorder
+    ##
+    # Solution 1
+    #
+    # Recursion
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def solution1(self, root: Optional[TreeNode]) -> List[int]:
-        return [root.val] + self.solution1(root.left) + self.solution1(root.right) if root else []
+        result = []
 
-    # Solution 2: DFS Inorder
+        def inorder(node: Optional[TreeNode]):
+            if not node:
+                return
+
+            inorder(node.left)
+            result.append(node.val)
+            inorder(node.right)
+
+        inorder(root)
+
+        return result
+
+    ##
+    # Solution 2
+    #
+    # Iteration
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def solution2(self, root: Optional[TreeNode]) -> List[int]:
-        return self.solution2(root.left) + [root.val] + self.solution2(root.right) if root else []
+        result = []
+        stack = []
+        current = root
 
-    # Solution 3: DFS Postorder
+        while current or stack:
+            while current:
+                stack.append(current)
+                current = current.left
+
+            current = stack.pop()
+            result.append(current.val)
+
+            current = current.right
+
+        return result
+
+    ##
+    # Solution 3
+    #
+    # Morris Traversal
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    #
     def solution3(self, root: Optional[TreeNode]) -> List[int]:
-        return self.solution3(root.left) + self.solution3(root.right) + [root.val] if root else []
+        result = []
+        current = root
 
-    # Solution 4: Recursively
-    def helper(self, root, res):
-        if root:
-            self.helper(root.left, res)
-            res.append(root.val)
-            self.helper(root.right, res)
+        while current:
+            if not current.left:
+                result.append(current.val)
+                current = current.right
+            else:
+                predecessor = current.left
 
-    def solution4(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-        self.helper(root, res)
-        return res
+                while predecessor.right and predecessor.right != current:
+                    predecessor = predecessor.right
 
-    # Solution 5: Iteratively
-    def solution5(self, root: Optional[TreeNode]) -> List[int]:
-        res, stack = [], []
-        while True:
-            while root:
-                stack.append(root)
-                root = root.left
-            if not stack:
-                return res
-            node = stack.pop()
-            res.append(node.val)
-            root = node.right
+                if not predecessor.right:
+                    predecessor.right = current
+                    current = current.left
+                else:
+                    predecessor.right = None
+                    result.append(current.val)
+                    current = current.right
+
+        return result
