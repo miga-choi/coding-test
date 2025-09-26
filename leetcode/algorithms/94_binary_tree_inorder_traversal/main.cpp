@@ -16,7 +16,7 @@ public:
     /**
      * Recursion
      * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * - Space Complexity: O(H)
      */
     void getVal(TreeNode* node, vector<int>& array) {
         if (node != nullptr) {
@@ -41,7 +41,7 @@ public:
      * 
      * Recursion
      * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * - Space Complexity: O(H)
      */
     void inorder_recursive(TreeNode* node, vector<int>& result) {
         if (node == nullptr) {
@@ -68,7 +68,7 @@ public:
      * 
      * Iteration
      * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * - Space Complexity: O(H)
      */
     vector<int> solution2(TreeNode* root) {
         vector<int> result;

@@ -13,7 +13,7 @@ struct TreeNode {
 /**
  * Recursion
  * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * - Space Complexity: O(H)
  */
 void getVal(struct TreeNode* node, int* array, int* returnSize) {
     if (node) {
@@ -39,7 +39,7 @@ int* inorderTraversal(struct TreeNode* root, int* returnSize) {
  * 
  * Recursion
  * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * - Space Complexity: O(H)
  */
  void inorder_recursive(struct TreeNode* node, int** result, int* size, int* capacity) {
     if (node == NULL) {
@@ -79,7 +79,7 @@ int* solution1(struct TreeNode* root, int* returnSize) {
  * 
  * Iteration
  * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * - Space Complexity: O(H)
  */
  #define MAX_STACK_SIZE 1000
 struct TreeNode* stack[MAX_STACK_SIZE];

@@ -7,7 +7,7 @@ function TreeNode(val, left, right) {
 /**
  * Iteration
  * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * - Space Complexity: O(H)
  *
  * @param {TreeNode} root
  * @return {number[]}
@@ -37,7 +37,7 @@ var inorderTraversal = function (root) {
  *
  * Recursion
  * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * - Space Complexity: O(H)
  *
  * @param {TreeNode} root
  * @return {number[]}
@@ -65,7 +65,7 @@ function solution1(root) {
  *
  * Iteration
  * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * - Space Complexity: O(H)
  *
  * @param {TreeNode} root
  * @return {number[]}

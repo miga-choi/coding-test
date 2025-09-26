@@ -25,7 +25,7 @@ class BinaryTreeInorderTraversal {
   /**
    * Iteration
    * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * - Space Complexity: O(H)
    */
   public List<Integer> inorderTraversal(TreeNode root) {
     List<TreeNode> totalRoot = new ArrayList<>();
@@ -52,7 +52,7 @@ class BinaryTreeInorderTraversal {
    * 
    * Recursion
    * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * - Space Complexity: O(H)
    */
   private void inorderRecursive(TreeNode node, List<Integer> result) {
     if (node == null) {
@@ -75,7 +75,7 @@ class BinaryTreeInorderTraversal {
    * 
    * Iteration
    * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * - Space Complexity: O(H)
    */
   public List<Integer> solution2(TreeNode root) {
     List<Integer> result = new ArrayList<>();
@@ -97,9 +97,9 @@ class BinaryTreeInorderTraversal {
   }
 
   /**
-   * Solution 2
+   * Solution 3
    * 
-   * Iteration
+   * Morris Traversal
    * - Time Complexity: O(N)
    * - Space Complexity: O(1)
    */
