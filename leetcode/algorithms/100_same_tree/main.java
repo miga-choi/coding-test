@@ -22,128 +22,109 @@ class SameTree {
     }
   }
 
+  /**
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public boolean isSameTree(TreeNode p, TreeNode q) {
     if (p == null && q == null) {
       return true;
     }
-    if (p == null && q != null) {
+
+    if (p == null || q == null || p.val != q.val) {
       return false;
     }
-    if (p != null && q == null) {
-      return false;
-    }
-    if (p.val != q.val) {
-      return false;
-    }
+
     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
   }
 
 
   // Solution
-  // Solution 1: Recursive (DFS) Preorder traversal
+  /**
+   * Solution 1
+   * 
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public boolean solution1(TreeNode p, TreeNode q) {
-    // Base case: If both trees are empty, they are identical.
     if (p == null && q == null) {
       return true;
     }
 
-    // If one of the trees is empty and the other is not, they are not identical.
-    if (p == null || q == null) {
+    if (p == null || q == null || p.val != q.val) {
       return false;
     }
 
-    // Compare the values of the current nodes.
-    if (p.val != q.val) {
-      return false;
-    }
-
-    // Recursively check the left and right subtrees.
     return solution1(p.left, q.left) && solution1(p.right, q.right);
   }
 
-  // Solution 2: Level-order traversal using Queues
+  /**
+   * Solution 2
+   * 
+   * Iteration: DFS (Stack)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public boolean solution2(TreeNode p, TreeNode q) {
-    // Create queues for both trees.
-    Queue<TreeNode> queue1 = new LinkedList<>();
-    Queue<TreeNode> queue2 = new LinkedList<>();
+    Stack<TreeNode> stack = new Stack<>();
 
-    // Start by adding the root nodes of both trees to their respective queues.
-    queue1.offer(p);
-    queue2.offer(q);
+    stack.push(p);
+    stack.push(q);
 
-    while (!queue1.isEmpty() && !queue2.isEmpty()) {
-      TreeNode node1 = queue1.poll();
-      TreeNode node2 = queue2.poll();
+    while (!stack.isEmpty()) {
+      TreeNode nodeQ = stack.pop();
+      TreeNode nodeP = stack.pop();
 
-      // If the values of the current nodes are not equal, the trees are not
-      // identical.
-      if (node1 == null && node2 == null) {
+      if (nodeP == null && nodeQ == null) {
         continue;
       }
-      if (node1 == null || node2 == null || node1.val != node2.val) {
+
+      if (nodeP == null || nodeQ == null || nodeP.val != nodeQ.val) {
         return false;
       }
 
-      // Add the left and right children of both nodes to their respective queues.
-      queue1.offer(node1.left);
-      queue1.offer(node1.right);
-      queue2.offer(node2.left);
-      queue2.offer(node2.right);
+      stack.push(nodeP.left);
+      stack.push(nodeQ.left);
+      stack.push(nodeP.right);
+      stack.push(nodeQ.right);
     }
 
-    // If both queues are empty, the trees are identical.
-    return queue1.isEmpty() && queue2.isEmpty();
+    return true;
   }
 
-  // Solution 3: Level-order traversal using Stack
+  /**
+   * Solution 3
+   * 
+   * Iteration: BFS (Queue)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(W)
+   */
   public boolean solution3(TreeNode p, TreeNode q) {
-    Stack<TreeNode> stack1 = new Stack<>();
-    Stack<TreeNode> stack2 = new Stack<>();
+    Queue<TreeNode> queue = new LinkedList<>();
 
-    // Push the root nodes of both trees onto their respective stacks.
-    stack1.push(p);
-    stack2.push(q);
+    queue.offer(p);
+    queue.offer(q);
 
-    while (!stack1.isEmpty() && !stack2.isEmpty()) {
-      TreeNode node1 = stack1.pop();
-      TreeNode node2 = stack2.pop();
+    while (!queue.isEmpty()) {
+      TreeNode nodeP = queue.poll();
+      TreeNode nodeQ = queue.poll();
 
-      // Compare the values of the current nodes.
-      if (node1 == null && node2 == null) {
-        // Both nodes are null, so they match.
+      if (nodeP == null && nodeQ == null) {
         continue;
-      } else if (node1 == null || node2 == null || node1.val != node2.val) {
-        // Nodes are not identical, return false.
+      }
+
+      if (nodeP == null || nodeQ == null || nodeP.val != nodeQ.val) {
         return false;
       }
 
-      // Push the left children onto the stacks.
-      stack1.push(node1.left);
-      stack2.push(node2.left);
-
-      // Push the right children onto the stacks.
-      stack1.push(node1.right);
-      stack2.push(node2.right);
+      queue.offer(nodeP.left);
+      queue.offer(nodeQ.left);
+      queue.offer(nodeP.right);
+      queue.offer(nodeQ.right);
     }
 
-    // If both stacks are empty, and no mismatches have been found, the trees are
-    // identical.
-    return stack1.isEmpty() && stack2.isEmpty();
-  }
-
-  // Solution 4: Tree Hashing
-  public boolean solution4(TreeNode p, TreeNode q) {
-    String hash1 = solution4_computeTreeHash(p);
-    String hash2 = solution4_computeTreeHash(q);
-    return hash1.equals(hash2);
-  }
-
-  private String solution4_computeTreeHash(TreeNode node) {
-    if (node == null) {
-      return "null";
-    }
-    String leftHash = solution4_computeTreeHash(node.left);
-    String rightHash = solution4_computeTreeHash(node.right);
-    return "(" + node.val + leftHash + rightHash + ")";
+    return true;
   }
 }
