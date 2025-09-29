@@ -1,6 +1,7 @@
-#include <algorithm>
-#include <queue>
-#include <stack>
+#include <algorithm> // std::max
+#include <queue>     // std::queue
+#include <stack>     // std::stack
+#include <utility>   // std::pair
 using namespace std;
 
 class MaximumDepthOfBinaryTree {
@@ -14,8 +15,13 @@ class MaximumDepthOfBinaryTree {
     };
 
 public:
+    /**
+     * Recursion: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
     int maxDepth(TreeNode* root) {
-        if (!root) {
+        if (root == nullptr) {
             return 0;
         }
 
@@ -27,62 +33,92 @@ public:
 
 
     // Solution
-    // Solution 1: Recursive (DFS)
+    /**
+     * Solution 1
+     * 
+     * Recursion: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
     int solution1(TreeNode* root) {
-        if (!root) {
+        if (root == nullptr) {
             return 0;
         }
-        int maxLeft = maxDepth(root->left);
-        int maxRight = maxDepth(root->right);
-        return max(maxLeft, maxRight) + 1;
+
+        int leftDepth = solution1(root->left);
+        int rightDepth = solution1(root->right);
+
+        return 1 + max(leftDepth, rightDepth);
     }
 
-    // Solution 2: Iterative (DFS)
+    /**
+     * Solution 2
+     * 
+     * Iteration: BFS (Queue)
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(W)
+     */
     int solution2(TreeNode* root) {
-        if (root == NULL) {
+        if (root == nullptr) {
             return 0;
         }
-        stack<pair<TreeNode*, int>> s;
-        s.push({root, 1});
-        int len = 1;
-        while (!s.empty()) {
-            pair<TreeNode*, int> front = s.top();
-            s.pop();
-            len = max(len, front.second);
-            if (front.first->left) {
-                s.push({front.first->left, front.second + 1});
-            }
-            if (front.first->right) {
-                s.push({front.first->right, front.second + 1});
-            }
-        }
-        return len;
-    }
 
-    // Solution 3: Iterative (BFS)
-    int solution3(TreeNode* root) {
-        if (root == NULL) {
-            return 0;
-        }
-        queue<TreeNode *> q;
+        queue<TreeNode*> q;
         q.push(root);
         int depth = 0;
 
         while (!q.empty()) {
-            ++depth;
-            int s = q.size();
-            for (int i = 0; i < s; i++) {
-                TreeNode *front = q.front();
+            depth++;
+            int levelSize = q.size();
+
+            for (int i = 0; i < levelSize; ++i) {
+                TreeNode* node = q.front();
                 q.pop();
 
-                if (front->left) {
-                    q.push(front->left);
+                if (node->left) {
+                    q.push(node->left);
                 }
-                if (front->right) {
-                    q.push(front->right);
+                if (node->right) {
+                    q.push(node->right);
                 }
             }
         }
+
         return depth;
+    }
+
+    /**
+     * Solution 3
+     * 
+     * Iteration: DFS (Stack)
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
+    int solution3(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+
+        stack<pair<TreeNode*, int>> s;
+        s.push({root, 1});
+
+        int max_depth = 0;
+
+        while (!s.empty()) {
+            pair<TreeNode*, int> current = s.top();
+            s.pop();
+
+            TreeNode* node = current.first;
+            int depth = current.second;
+
+            if (node) {
+                max_depth = max(max_depth, depth);
+
+                s.push({node->right, depth + 1});
+                s.push({node->left, depth + 1});
+            }
+        }
+
+        return max_depth;
     }
 };
