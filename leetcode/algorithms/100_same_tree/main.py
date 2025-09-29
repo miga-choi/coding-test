@@ -10,98 +10,80 @@ class TreeNode:
 
 
 class SameTree:
+    ##
+    # Recursion: DFS
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if p is None and q is None:
             return True
+
         if p is None or q is None or p.val != q.val:
             return False
+
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
 
     # Solution
-    # Solution 1: Recursive (DFS) Preorder traversal
+    ##
+    # Solution 1
+    #
+    # Recursion: DFS
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def solution1(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # Base case: If both trees are empty, they are identical.
         if not p and not q:
             return True
 
-        # If one of the trees is empty and the other is not, they are not identical.
-        if not p or not q:
+        if not p or not q or p.val != q.val:
             return False
 
-        # Compare the values of the current nodes.
-        if p.val != q.val:
-            return False
+        return self.solution1(p.left, q.left) and self.solution1(p.right, q.right)
 
-        # Recursively check the left and right subtrees.
-        return self.solution1(p.left, q.left) and self.solution1(
-            p.right, q.right
-        )
-
-    # Solution 2: Level-order traversal using Queues
+    ##
+    # Solution 2
+    #
+    # Iteration: DFS (Stack)
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def solution2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # Create queues for both trees.
-        queue1 = deque()
-        queue2 = deque()
+        stack = [(p, q)]
 
-        # Start by adding the root nodes of both trees to their respective queues.
-        queue1.append(p)
-        queue2.append(q)
+        while stack:
+            node_p, node_q = stack.pop()
 
-        while queue1 and queue2:
-            node1 = queue1.popleft()
-            node2 = queue2.popleft()
-
-            # If the values of the current nodes are not equal, the trees are not identical.
-            if not node1 and not node2:
+            if not node_p and not node_q:
                 continue
-            if not node1 or not node2 or node1.val != node2.val:
+
+            if not node_p or not node_q or node_p.val != node_q.val:
                 return False
 
-            # Add the left and right children of both nodes to their respective queues.
-            queue1.append(node1.left)
-            queue1.append(node1.right)
-            queue2.append(node2.left)
-            queue2.append(node2.right)
+            stack.append((node_p.right, node_q.right))
+            stack.append((node_p.left, node_q.left))
 
-        # If both queues are empty, the trees are identical.
-        return not queue1 and not queue2
+        return True
 
-    # Solution 3: Level-order traversal using Stack
+    ##
+    # Solution 3
+    #
+    # Iteration: BFS (Queue)
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(W)
+    #
     def solution3(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        stack1, stack2 = [p], [q]
+        queue = deque([(p, q)])
 
-        while stack1 and stack2:
-            node1 = stack1.pop()
-            node2 = stack2.pop()
+        while queue:
+            node_p, node_q = queue.popleft()
 
-            if not node1 and not node2:
-                # Both nodes are None, so they match.
-                continue
-            elif not node1 or not node2 or node1.val != node2.val:
-                # Nodes are not identical, return False.
+            if not self.check(node_p, node_q):
                 return False
 
-            # Push the left children onto the stacks.
-            stack1.append(node1.left)
-            stack2.append(node2.left)
+            if node_p and node_q:
+                queue.append((node_p.left, node_q.left))
+                queue.append((node_p.right, node_q.right))
 
-            # Push the right children onto the stacks.
-            stack1.append(node1.right)
-            stack2.append(node2.right)
-
-        # If both stacks are empty, and no mismatches have been found, the trees are identical.
-        return not stack1 and not stack2
-
-    # Solution 4: Tree Hashing
-    def solution4(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        hash1 = self.solution4_computeTreeHash(p)
-        hash2 = self.solution4_computeTreeHash(q)
-        return hash1 == hash2
-
-    def solution4_computeTreeHash(self, node: TreeNode) -> str:
-        if node is None:
-            return "null"
-        left_hash = self.solution4_computeTreeHash(node.left)
-        right_hash = self.solution4_computeTreeHash(node.right)
-        return f"({node.val}{left_hash}{right_hash})"
+        return True
