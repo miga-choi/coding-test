@@ -5,67 +5,115 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * Recursion: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ *
  * @param {TreeNode} root
  * @return {number}
  */
 var maxDepth = function (root) {
-  if (!root) {
+  if (root === null) {
     return 0;
   }
-  return returnDepth(0, root);
-};
 
-/**
- * @param {number} depth_
- * @param {TreeNode} node_
- * @return {number}
- */
-var returnDepth = function (depth_, node_) {
-  let depth = depth_ + 1;
-  if (node_.left) {
-    const leftDepth = returnDepth(depth_ + 1, node_.left);
-    if (leftDepth > depth) {
-      depth = leftDepth;
-    }
-  }
-  if (node_.right) {
-    const rightDepth = returnDepth(depth_ + 1, node_.right);
-    if (rightDepth > depth) {
-      depth = rightDepth;
-    }
-  }
-  return depth;
+  const left = maxDepth(root.left);
+  const right = maxDepth(root.right);
+
+  return (left > right ? left : right) + 1;
 };
 
 
 // Solution
-// Solution 1: Recursive
+/**
+ * Solution 1
+ *
+ * Recursion: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ *
+ * @param {TreeNode} root
+ * @return {number}
+ */
 var solution1 = function (root) {
-  if (root === undefined || root === null) {
+  if (root === null) {
     return 0;
   }
-  return Math.max(solution1(root.left), solution1(root.right)) + 1;
+
+  const leftDepth = solution1(root.left);
+  const rightDepth = solution1(root.right);
+
+  return 1 + Math.max(leftDepth, rightDepth);
 };
 
-// Solution 2: Non-recursive
+/**
+ * Solution 2
+ *
+ * Iteration: BFS (Queue)
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(W)
+ *
+ * @param {TreeNode} root
+ * @return {number}
+ */
 var solution2 = function (root) {
-  if (!root) {
+  if (root === null) {
     return 0;
   }
+
   const queue = [root];
   let depth = 0;
-  while (queue.length !== 0) {
-    depth++;
-    const len = queue.length;
-    for (let i = 0; i < len; i++) {
-      if (queue[i].left) {
-        queue.push(queue[i].left);
+
+  while (queue.length > 0) {
+    const levelSize = queue.length;
+
+    for (let i = 0; i < levelSize; i++) {
+      const node = queue.shift();
+
+      if (node.left !== null) {
+        queue.push(node.left);
       }
-      if (queue[i].right) {
-        queue.push(queue[i].right);
+      if (node.right !== null) {
+        queue.push(node.right);
       }
     }
-    queue.splice(0, len);
+
+    depth++;
   }
+
   return depth;
+};
+
+/**
+ * Solution 3
+ *
+ * Iteration: DFS (Stack)
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ *
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var solution3 = function (root) {
+  if (root === null) {
+    return 0;
+  }
+
+  const stack = [[root, 1]];
+  let maxDepth = 0;
+
+  while (stack.length > 0) {
+    const [node, depth] = stack.pop();
+
+    maxDepth = Math.max(maxDepth, depth);
+
+    if (node.left) {
+      stack.push([node.left, depth + 1]);
+    }
+    if (node.right) {
+      stack.push([node.right, depth + 1]);
+    }
+  }
+
+  return maxDepth;
 };
