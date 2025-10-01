@@ -22,93 +22,112 @@ class MaximumDepthOfBinaryTree {
     }
   }
 
+  private record NodeDepthRecord(TreeNode node, int depth) {
+  }
+
+  /**
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public int maxDepth(TreeNode root) {
     if (root == null) {
       return 0;
     }
-    return returnDepth(0, root);
-  }
 
-  public int returnDepth(int depth_, TreeNode node_) {
-    int depth = depth_ + 1;
-    if (node_.left != null) {
-      int leftDepth = returnDepth(depth_ + 1, node_.left);
-      if (leftDepth > depth) {
-        depth = leftDepth;
-      }
-    }
-    if (node_.right != null) {
-      int rightDepth = returnDepth(depth_ + 1, node_.right);
-      if (rightDepth > depth) {
-        depth = rightDepth;
-      }
-    }
-    return depth;
+    int left = maxDepth(root.left);
+    int right = maxDepth(root.right);
+
+    return Math.max(left, right) + 1;
   }
 
 
   // Solution
-  // Solution 1: Recursive
+  /**
+   * Solution 1
+   * 
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public int solution1(TreeNode root) {
-    // Base Condition
     if (root == null) {
       return 0;
     }
-    // Hypothesis
-    int left = solution1(root.left);
-    int right = solution1(root.right);
-    // Induction
-    return Math.max(left, right) + 1;
+
+    int leftDepth = maxDepth(root.left);
+    int rightDepth = maxDepth(root.right);
+
+    return Math.max(leftDepth, rightDepth) + 1;
   }
 
-  // Solution 2: Iterative - DFS
+  /**
+   * Solution 2
+   * 
+   * Iteration: BFS (Queue)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(W)
+   */
   public int solution2(TreeNode root) {
     if (root == null) {
       return 0;
     }
 
-    Stack<TreeNode> stack = new Stack<>();
-    Stack<Integer> value = new Stack<>();
-    stack.push(root);
-    value.push(1);
-    int max = 0;
-    while (!stack.isEmpty()) {
-      TreeNode node = stack.pop();
-      int temp = value.pop();
-      max = Math.max(temp, max);
-      if (node.left != null) {
-        stack.push(node.left);
-        value.push(temp + 1);
-      }
-      if (node.right != null) {
-        stack.push(node.right);
-        value.push(temp + 1);
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    int depth = 0;
+
+    while (!queue.isEmpty()) {
+      int levelSize = queue.size();
+      depth++;
+
+      for (int i = 0; i < levelSize; i++) {
+        TreeNode currentNode = queue.poll();
+
+        if (currentNode.left != null) {
+          queue.offer(currentNode.left);
+        }
+        if (currentNode.right != null) {
+          queue.offer(currentNode.right);
+        }
       }
     }
-    return max;
+
+    return depth;
   }
 
-  // Solution 3: Iterative - BFS
+  /**
+   * Solution 3
+   * 
+   * Iteration: DFS (Stack)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public int solution3(TreeNode root) {
     if (root == null) {
       return 0;
     }
-    Queue<TreeNode> queue = new LinkedList<TreeNode>();
-    queue.offer(root);
-    int count = 0;
-    while (!queue.isEmpty()) {
-      int size = queue.size();
-      while (size-- > 0) {
-        TreeNode node = queue.poll();
-        if (node.left != null) {
-          queue.offer(node.left);
-        }
-        if (node.right != null) {
-          queue.offer(node.right);
-        }
+
+    Stack<NodeDepthRecord> stack = new Stack<>();
+    stack.push(new NodeDepthRecord(root, 1));
+
+    int maxDepth = 0;
+
+    while (!stack.isEmpty()) {
+      NodeDepthRecord currentPair = stack.pop();
+      TreeNode currentNode = currentPair.node;
+      int currentDepth = currentPair.depth;
+
+      maxDepth = Math.max(maxDepth, currentDepth);
+
+      if (currentNode.right != null) {
+        stack.push(new NodeDepthRecord(currentNode.right, currentDepth + 1));
       }
-      count++;
+      if (currentNode.left != null) {
+        stack.push(new NodeDepthRecord(currentNode.left, currentDepth + 1));
+      }
     }
-    return count;
+
+    return maxDepth;
   }
 }
