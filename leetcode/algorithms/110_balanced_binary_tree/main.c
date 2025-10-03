@@ -7,46 +7,70 @@ struct TreeNode {
     struct TreeNode* right;
 };
 
-int getDepth(struct TreeNode* root) {
-    if (root) {
-        int left = getDepth(root->left);
-        int right = getDepth(root->right);
-        return (left > right ? left : right) + 1;
+/**
+ * Recursion
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
+int getMaxDepth(struct TreeNode* node) {
+    if (!node) {
+        return 0;
     }
-    return 0;
+
+    int left_depth = getMaxDepth(node->left);
+    if (left_depth < 0) {
+        return -1;
+    }
+
+    int right_depth = getMaxDepth(node->right);
+    if (right_depth < 0) {
+        return -1;
+    }
+
+    if (abs(left_depth - right_depth) > 1) {
+        return -1;
+    }
+
+    return (left_depth > right_depth ? left_depth : right_depth) + 1;
 }
 
 bool isBalanced(struct TreeNode* root) {
-    if (root) {
-        int depth = getDepth(root->left) - getDepth(root->right);
-        if (depth < 0) {
-            depth *= -1;
-        }
-        if (depth > 1) {
-            return false;
-        }
-        if (!isBalanced(root->left) || !isBalanced(root->right)) {
-            return false;
-        }
-    }
-    return true;
+  return getMaxDepth(root) != -1;
 }
 
 
 // Solution
-int solution_maxdepth(struct TreeNode* root, int depth) {
-    if (depth < 0 || root == NULL) {
-        return depth; // return depth if it reaches the end or it's already not balanced
+/**
+ * Recursion
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int check_balance_and_get_height(struct TreeNode* node) {
+    if (node == NULL) {
+        return 0;
     }
-    int left = solution_maxdepth(root->left, depth + 1);
-    int right = solution_maxdepth(root->right, depth + 1);
-    depth = (left > right) ? left : right; // choose max depth
-    if (abs(left - right) > 1) {
-        depth *= (-1); // not balanced, convert to negative value
+
+    int leftHeight = check_balance_and_get_height(node->left);
+    if (leftHeight == -1) {
+        return -1;
     }
-    return depth;
+
+    int rightHeight = check_balance_and_get_height(node->right);
+    if (rightHeight == -1) {
+        return -1;
+    }
+
+    if (abs(leftHeight - rightHeight) > 1) {
+        return -1;
+    }
+
+    return 1 + max(leftHeight, rightHeight);
 }
 
 bool solution(struct TreeNode* root) {
-    return solution_maxdepth(root, 0) >= 0; // negative: not balanced, positive: balanced
+    return check_balance_and_get_height(root) != -1;
 }
