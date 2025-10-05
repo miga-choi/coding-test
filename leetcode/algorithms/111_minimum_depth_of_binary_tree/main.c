@@ -6,55 +6,48 @@ struct TreeNode {
     struct TreeNode* right;
 };
 
+/**
+ * Recursion: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
 int minDepth(struct TreeNode* root) {
     if (!root) {
         return 0;
     }
 
-    int left = minDepth(root->left);
-    int right = minDepth(root->right);
+    int left_depth = minDepth(root->left);
+    int right_depth = minDepth(root->right);
 
-    if (!left || !right) {
-        return (left > right ? left : right) + 1;
+    if (!left_depth || !right_depth) {
+        return (left_depth > right_depth ? left_depth : right_depth) + 1;
     }
 
-    return (left > right ? right : left) + 1;
+    return (left_depth < right_depth ? left_depth : right_depth) + 1;
 }
 
 
 // Solution
-// Solution 1
-int solution1(struct TreeNode* root) {
-    if (root == NULL) {
-        return 0;
-    } else {
-        int leftDepth = solution1(root->left);
-        int rightDepth = solution1(root->right);
-        if (leftDepth > rightDepth) {
-            return rightDepth + 1;
-        } else {
-            return leftDepth + 1;
-        }
-    }
+/**
+ * Recursion: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
+int min(int a, int b) {
+    return (a < b) ? a : b;
 }
 
-// Solution 2: Recursive
-int solution2(struct TreeNode* root) {
-    if (!root) {
+int minDepth(struct TreeNode* root) {
+    if (root == NULL) {
         return 0;
     }
 
-    if (!root->left && !root->right) {
-        return 1;
-    }
+    int leftDepth = minDepth(root->left);
+    int rightDepth = minDepth(root->right);
 
-    if (!root->left) {
-        return solution2(root->right) + 1;
+    if (leftDepth == 0 || rightDepth == 0) {
+        return 1 + leftDepth + rightDepth;
+    } else {
+        return 1 + min(leftDepth, rightDepth);
     }
-
-    if (!root->right) {
-        return solution2(root->left) + 1;
-    }
-
-    return solution2(root->left) > solution2(root->right) ? solution2(root->right) + 1 : solution2(root->left) + 1;
 }
