@@ -13,84 +13,95 @@ class MinimumDepthOfBinaryTree {
     };
 
 public:
+    /**
+     * Recursion: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
     int minDepth(TreeNode* root) {
-        if (!root) {
+        if (root == nullptr) {
             return 0;
         }
 
-        int left = minDepth(root->left);
-        int right = minDepth(root->right);
+        int left_depth = minDepth(root->left);
+        int right_depth = minDepth(root->right);
 
-        if (!left || !right) {
-            return (left > right ? left : right) + 1;
+        if (left_depth == 0 || right_depth == 0) {
+            return max(left_depth, right_depth) + 1;
         }
 
-        return (left > right ? right : left) + 1;
+        return min(left_depth, right_depth) + 1;
     }
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * Iteration: BFS (Queue)
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(W)
+     */
     int solution1(TreeNode* root) {
-        if (!root) {
+        if (root == nullptr) {
             return 0;
         }
-        int L = solution1(root->left), R = solution1(root->right);
-        return 1 + (min(L, R) ? min(L, R) : max(L, R));
-    }
 
-    // Solution 2
-    int solution2(TreeNode* root) {
-        if (!root) {
-            return 0;
-        }
-        int L = solution2(root->left), R = solution2(root->right);
-        return 1 + (L && R ? min(L, R) : max(L, R));
-    }
+        queue<TreeNode*> q;
+        q.push(root);
+        int depth = 1;
 
-    // Solution 3
-    int solution3(TreeNode* root) {
-        if (!root) {
-            return 0;
-        }
-        int L = solution3(root->left), R = solution3(root->right);
-        return 1 + (!L - !R ? max(L, R) : min(L, R));
-    }
+        while (!q.empty()) {
+            int levelSize = q.size();
 
-    // Solution 4
-    int solution4(TreeNode* root) {
-        if (!root) {
-            return 0;
-        }
-        int L = solution4(root->left), R = solution4(root->right);
-        return L < R && L || !R ? 1 + L : 1 + R;
-    }
+            for (int i = 0; i < levelSize; ++i) {
+                TreeNode* node = q.front();
+                q.pop();
 
-    // Solution 5: BFS
-    int solution5(TreeNode* root) {
-        if (root == NULL) {
-            return 0;
-        }
-        queue<TreeNode*> Q;
-        Q.push(root);
-        int i = 0;
-        while (!Q.empty()) {
-            i++;
-            int k = Q.size();
-            for (int j = 0; j < k; j++) {
-                TreeNode* rt = Q.front();
-                if (rt->left) {
-                    Q.push(rt->left);
+                if (node->left == nullptr && node->right == nullptr) {
+                    return depth;
                 }
-                if (rt->right) {
-                    Q.push(rt->right);
+
+                if (node->left) {
+                    q.push(node->left);
                 }
-                Q.pop();
-                if (rt->left == NULL && rt->right == NULL) {
-                    return i;
+                if (node->right) {
+                    q.push(node->right);
                 }
             }
+
+            depth++;
         }
-        return -1; // For the compiler thing. The code never runs here.
+
+        return 0;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Recursion: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
+    int solution2(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+
+        if (root->left == nullptr && root->right == nullptr) {
+            return 1;
+        }
+
+        int leftDepth = solution2(root->left);
+        int rightDepth = solution2(root->right);
+
+        if (root->left == nullptr) {
+            return 1 + rightDepth;
+        }
+        if (root->right == nullptr) {
+            return 1 + leftDepth;
+        }
+
+        return 1 + min(leftDepth, rightDepth);
     }
 };
