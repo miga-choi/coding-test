@@ -14,7 +14,7 @@ class BalancedBinaryTree {
 
 public:
     /**
-     * Recursion
+     * Recursion: DFS
      * - Time Complexity: O(N)
      * - Space Complexity: O(H)
      */
@@ -47,7 +47,7 @@ public:
 
     // Solution
     /**
-     * Recursion
+     * Recursion: DFS
      * - Time Complexity: O(N)
      * - Space Complexity: O(H)
      */
@@ -73,7 +73,7 @@ public:
         return 1 + max(leftHeight, rightHeight);
     }
 
-    bool isBalanced(TreeNode* root) {
+    bool solution(TreeNode* root) {
         return getHeightAndCheckBalance(root) != -1;
     }
 };

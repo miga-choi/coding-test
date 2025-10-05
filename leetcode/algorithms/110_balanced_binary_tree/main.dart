@@ -8,46 +8,98 @@ class TreeNode {
 }
 
 class BalancedBinaryTree {
+  /**
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
+  int _getMaxDepth(TreeNode? node) {
+    if (node == null) {
+      return 0;
+    }
+
+    int leftDepth = _getMaxDepth(node.left);
+    if (leftDepth < 0) {
+      return -1;
+    }
+
+    int rightDepth = _getMaxDepth(node.right);
+    if (rightDepth < 0) {
+      return -1;
+    }
+
+    if ((leftDepth - rightDepth).abs() > 1) {
+      return -1;
+    }
+
+    return max(leftDepth, rightDepth) + 1;
+  }
+
   bool isBalanced(TreeNode? root) {
+    return _getMaxDepth(root) != -1;
+  }
+
+
+  // Solution
+  /**
+   * Solution 1
+   *
+   * Recursion: DFS (Top-down)
+   * - Time Complexity: O(N * Logᴺ)
+   * - Space Complexity: O(H)
+   */
+  int _getHeight(TreeNode? node) {
+    if (node == null) {
+      return 0;
+    }
+
+    return 1 + max(_getHeight(node.left), _getHeight(node.right));
+  }
+
+  bool solution1(TreeNode? root) {
     if (root == null) {
       return true;
     }
 
-    int returnDepth(TreeNode? node) {
-      if (node == null) {
-        return 0;
-      }
-      return max(returnDepth(node.left), returnDepth(node.right)) + 1;
-    }
-
-    if ((returnDepth(root.left) - returnDepth(root.right)).abs() > 1) {
+    int leftHeight = _getHeight(root.left);
+    int rightHeight = _getHeight(root.right);
+    if ((leftHeight - rightHeight).abs() > 1) {
       return false;
     }
 
     return isBalanced(root.left) && isBalanced(root.right);
   }
 
-
-  // Solution
-  bool solution(TreeNode? root) {
-    return cnt(root) != -1;
-  }
-
-  int cnt(TreeNode? nod) {
-    if (nod == null) {
+  /**
+   * Solution 2
+   *
+   * Recursion: DFS (Bottom-up)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
+  int _checkHeight(TreeNode? node) {
+    if (node == null) {
       return 0;
     }
-    int l = cnt(nod.left);
-    if (l == -1) {
+
+    int leftHeight = _checkHeight(node.left);
+    if (leftHeight == -1) {
       return -1;
     }
-    int r = cnt(nod.right);
-    if (r == -1) {
+
+    int rightHeight = _checkHeight(node.right);
+    if (rightHeight == -1) {
       return -1;
     }
-    if ((r - l > 1) || (l - r > 1)) {
+
+    if ((leftHeight - rightHeight).abs() > 1) {
       return -1;
     }
-    return (l >= r ? l + 1 : r + 1);
+
+    return 1 + max(leftHeight, rightHeight);
+  }
+
+  bool solution2(TreeNode? root) {
+    return _checkHeight(root) != -1;
   }
 }

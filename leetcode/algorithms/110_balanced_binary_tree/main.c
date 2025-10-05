@@ -8,7 +8,7 @@ struct TreeNode {
 };
 
 /**
- * Recursion
+ * Recursion: DFS
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  */
@@ -41,7 +41,7 @@ bool isBalanced(struct TreeNode* root) {
 
 // Solution
 /**
- * Recursion
+ * Recursion: DFS
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  */
