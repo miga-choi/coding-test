@@ -1,4 +1,4 @@
-import collections
+from collections import deque
 from typing import Optional
 
 
@@ -10,74 +10,64 @@ class TreeNode:
 
 
 class MinimumDepthOfBinaryTree:
+    ##
+    # Recursion: DFS
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:
             return 0
 
-        if root.left is None and root.right is None:
-            return 1
+        left_depth: int = self.minDepth(root.left)
+        right_depth: int = self.minDepth(root.right)
 
-        if root.left is None:
-            return self.minDepth(root.right) + 1
+        if left_depth == 0 or right_depth == 0:
+            return max(left_depth, right_depth) + 1
 
-        if root.right is None:
-            return self.minDepth(root.left) + 1
-
-        return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
+        return min(left_depth, right_depth) + 1
 
 
     # Solution
-    # Solution 1: DFS
+    ##
+    # Solution 1
+    #
+    # Recursion: DFS
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(H)
+    #
     def solution1(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        if None in [root.left, root.right]:
-            return (
-                max(self.solution1(root.left), self.solution1(root.right)) + 1
-            )
-        else:
-            return (
-                min(self.solution1(root.left), self.solution1(root.right)) + 1
-            )
 
-    # Solution 2: BFS
+        left_depth = self.minDepth(root.left)
+        right_depth = self.minDepth(root.right)
+
+        if not root.left or not root.right:
+            return 1 + left_depth + right_depth
+
+        return 1 + min(left_depth, right_depth)
+
+    ##
+    # Solution 2
+    #
+    # Iteration: BFS (Queue)
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(W)
+    #
     def solution2(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        queue = collections.deque([(root, 1)])
+
+        queue = deque([(root, 1)])
+
         while queue:
-            node, level = queue.popleft()
-            if node:
-                if not node.left and not node.right:
-                    return level
-                else:
-                    queue.append((node.left, level + 1))
-                    queue.append((node.right, level + 1))
+            node, depth = queue.popleft()
 
-    # Solution 3
-    def solution3(self, root: Optional[TreeNode]) -> int:
-        # Base case...
-        # If the subtree is empty i.e. root is NULL, return depth as 0...
-        if root is None:
-            return 0
+            if not node.left and not node.right:
+                return depth
 
-        # Initialize the depth of two subtrees...
-        leftDepth = self.solution3(root.left)
-        rightDepth = self.solution3(root.right)
-
-        # If the both subtrees are empty...
-        if root.left is None and root.right is None:
-            return 1
-
-        # If the left subtree is empty, return the depth of right subtree after adding 1 to it...
-        if root.left is None:
-            return 1 + rightDepth
-
-        # If the right subtree is empty, return the depth of left subtree after adding 1 to it...
-        if root.right is None:
-            return 1 + leftDepth
-
-        # When the two child function return its depth...
-        # Pick the minimum out of these two subtrees and return this value after adding 1 to it...
-        # Adding 1 is the current node which is the parent of the two subtrees...
-        return min(leftDepth, rightDepth) + 1
+            if node.left:
+                queue.append((node.left, depth + 1))
+            if node.right:
+                queue.append((node.right, depth + 1))
