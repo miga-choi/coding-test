@@ -21,101 +21,87 @@ class MinimumDepthOfBinaryTree {
     }
   }
 
+  /**
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public int minDepth(TreeNode root) {
     if (root == null) {
       return 0;
     }
 
-    if (root.left == null && root.right == null) {
-      return 1;
+    int leftDepth = minDepth(root.left);
+    int rightDepth = minDepth(root.right);
+
+    if (leftDepth == 0 || rightDepth == 0) {
+      return Math.max(leftDepth, rightDepth) + 1;
     }
 
-    if (root.left == null) {
-      return minDepth(root.right) + 1;
-    }
-
-    if (root.right == null) {
-      return minDepth(root.left) + 1;
-    }
-
-    return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+    return Math.min(leftDepth, rightDepth) + 1;
   }
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Iteration: BFS (Queue)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(W)
+   */
   public int solution1(TreeNode root) {
     if (root == null) {
       return 0;
     }
-    int left = solution1(root.left);
-    int right = solution1(root.right);
-    return (left == 0 || right == 0)
-        ? left + right + 1
-        : Math.min(left, right) + 1;
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    int depth = 1;
+
+    while (!queue.isEmpty()) {
+      int levelSize = queue.size();
+
+      for (int i = 0; i < levelSize; i++) {
+        TreeNode currentNode = queue.poll();
+
+        if (currentNode.left == null && currentNode.right == null) {
+          return depth;
+        }
+
+        if (currentNode.left != null) {
+          queue.offer(currentNode.left);
+        }
+        if (currentNode.right != null) {
+          queue.offer(currentNode.right);
+        }
+      }
+
+      depth++;
+    }
+
+    return depth;
   }
 
-  // Solution 2
+  /**
+   * Solution 2
+   * 
+   * Recursion: DFS
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   public int solution2(TreeNode root) {
-    // Base case...
-    // If the subtree is empty i.e. root is NULL, return depth as 0...
     if (root == null) {
       return 0;
     }
 
-    // Initialize the depth of two subtrees...
     int leftDepth = solution2(root.left);
     int rightDepth = solution2(root.right);
 
-    // If the both subtrees are empty...
-    if (root.left == null && root.right == null) {
-      return 1;
+    if (leftDepth == 0 || rightDepth == 0) {
+      return leftDepth + rightDepth + 1;
+    } else {
+      return Math.min(leftDepth, rightDepth) + 1;
     }
-
-    // If the left subtree is empty, return the depth of right subtree
-    // after adding 1 to it...
-    if (root.left == null) {
-      return rightDepth + 1;
-    }
-
-    // If the right subtree is empty, return the depth of left subtree
-    // after adding 1 to it...
-    if (root.right == null) {
-      return leftDepth + 1;
-    }
-
-    // When the two child function return its depth...
-    // Pick the minimum out of these two subtrees
-    // and return this value after adding 1 to it...
-    // Adding 1 is the current node which is the parent of the two subtrees...
-    return Math.min(leftDepth, rightDepth) + 1;
-  }
-
-  // Solution 3: BFS
-  public int solution3(TreeNode root) {
-    if (root == null) {
-      return 0;
-    }
-    int depth = 1;
-    Queue<TreeNode> q = new LinkedList<TreeNode>();
-    q.offer(root);
-    while (!q.isEmpty()) {
-      int size = q.size();
-      // for each level
-      for (int i = 0; i < size; i++) {
-        TreeNode node = q.poll();
-        if (node.left == null && node.right == null) {
-          return depth;
-        }
-        if (node.left != null) {
-          q.offer(node.left);
-        }
-        if (node.right != null) {
-          q.offer(node.right);
-        }
-      }
-      depth++;
-    }
-    return depth;
   }
 }
