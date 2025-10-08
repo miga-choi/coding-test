@@ -1,3 +1,7 @@
+#include <algorithm>
+#include <queue>
+using namespace std;
+
 struct TreeNode {
     int val;
     TreeNode* left;
@@ -9,34 +13,70 @@ struct TreeNode {
 
 class InvertBinaryTree {
 public:
+    /**
+     * Recursiont: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
     TreeNode* invertTree(TreeNode* root) {
-        if (root) {
-            TreeNode* tempNode = root->left;
-            root->left = invertTree(root->right);
-            root->right = invertTree(tempNode);
-        }
-        return root;
-    }
-
-    // Solution
-    TreeNode* solution(TreeNode* root) {
-        // Base Case
         if (root == nullptr) {
             return nullptr;
         }
 
-        // Call the left substree
-        solution(root->left);
-
-        // Call the right substree
-        solution(root->right);
-
-        // Swap the nodes
         TreeNode* temp = root->left;
-        root->left = root->right;
-        root->right = temp;
+        root->left = invertTree(root->right);
+        root->right = invertTree(temp);
 
-        // Return the root
+        return root;
+    }
+
+
+    // Solution
+    /**
+     * Recursiont: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
+    TreeNode* solution1(TreeNode* root) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+
+        swap(root->left, root->right);
+
+        solution1(root->left);
+        solution1(root->right);
+        
+        return root;
+    }
+
+    /**
+     * Iteration: BFS (Queue)
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(W)
+     */
+    TreeNode* solution1(TreeNode* root) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            TreeNode* current = q.front();
+            q.pop();
+
+            swap(current->left, current->right);
+
+            if (current->left) {
+                q.push(current->left);
+            }
+            if (current->right) {
+                q.push(current->right);
+            }
+        }
+        
         return root;
     }
 };
