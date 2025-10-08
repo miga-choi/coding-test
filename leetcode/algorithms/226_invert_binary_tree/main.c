@@ -6,34 +6,41 @@ struct TreeNode {
     struct TreeNode* right;
 };
 
+/**
+ * Recursiont: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
 struct TreeNode* invertTree(struct TreeNode* root) {
-    if (root) {
-        struct TreeNode* tempNode = root->left;
-        root->left = invertTree(root->right);
-        root->right = invertTree(tempNode);
+    if (!root) {
+        return (void*)0;
     }
+
+    struct TreeNode* temp = root->left;
+    root->left = invertTree(root->right);
+    root->right = invertTree(temp);
+
     return root;
 }
 
 
 // Solution
+/**
+ * Recursiont: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
 struct TreeNode* solution(struct TreeNode* root) {
-    // Base case...
     if (root == NULL) {
-        return root;
+        return NULL;
     }
 
-    // Call the function recursively for the left subtree...
     solution(root->left);
-
-    // Call the function recursively for the right subtree...
     solution(root->right);
 
-    // swapping process...
-    struct TreeNode* curr = root->left;
+    struct TreeNode* temp = root->left;
     root->left = root->right;
-    root->right = curr;
-
-    // Return the root...
+    root->right = temp;
+    
     return root;
 }
