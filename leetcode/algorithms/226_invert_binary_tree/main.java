@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Queue;
 
 class InvertBinaryTree {
     public class TreeNode {
@@ -20,71 +21,76 @@ class InvertBinaryTree {
         }
     }
 
+    /**
+     * Recursiont: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
     public TreeNode invertTree(TreeNode root) {
-        if (root != null) {
-            TreeNode tempNode = invertTree(root.left);
-            root.left = invertTree(root.right);
-            root.right = tempNode;
+        if (root == null) {
+            return null;
         }
+
+        TreeNode temp = root.left;
+        root.left = invertTree(root.right);
+        root.right = invertTree(temp);
+
         return root;
     }
 
 
     // Solution
-    // Solution 1: Recursive Approach
+    /**
+     * Solution 1
+     * 
+     * Recursiont: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
     public TreeNode solution1(TreeNode root) {
-        // Base case: if the tree is empty...
         if (root == null) {
-            return root;
+            return null;
         }
 
-        // Call the function recursively for the left subtree...
-        solution1(root.left);
+        TreeNode leftSubtree = invertTree(root.left);
+        TreeNode rightSubtree = invertTree(root.right);
 
-        // Call the function recursively for the right subtree...
-        solution1(root.right);
+        root.left = rightSubtree;
+        root.right = leftSubtree;
 
-        // Swapping process...
-        TreeNode curr = root.left;
-        root.left = root.right;
-        root.right = curr;
-
-        // Return the root...
         return root;
     }
 
-    // Solution 2: Iterative Approach
+    /**
+     * Solution 2
+     * 
+     * Iteration: BFS (Queue)
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(W)
+     */
     public TreeNode solution2(TreeNode root) {
-        LinkedList<TreeNode> q = new LinkedList<TreeNode>();
-
-        // Base case: if the tree is empty...
-        if (root != null) {
-            // Push the root node...
-            q.add(root);
+        if (root == null) {
+            return null;
         }
 
-        // Loop till queue is empty...
-        while (!q.isEmpty()) {
-            // Dequeue front node...
-            TreeNode temp = q.poll();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
 
-            // Enqueue left child of the popped node...
-            if (temp.left != null) {
-                q.add(temp.left);
+        while (!queue.isEmpty()) {
+            TreeNode currentNode = queue.poll();
+
+            TreeNode temp = currentNode.left;
+            currentNode.left = currentNode.right;
+            currentNode.right = temp;
+
+            if (currentNode.left != null) {
+                queue.offer(currentNode.left);
             }
-
-            // Enqueue right child of the popped node
-            if (temp.right != null) {
-                q.add(temp.right);
+            if (currentNode.right != null) {
+                queue.offer(currentNode.right);
             }
-
-            // Swapping process...
-            TreeNode curr = temp.left;
-            temp.left = temp.right;
-            temp.right = curr;
         }
 
-        // Return the root...
         return root;
     }
 }
