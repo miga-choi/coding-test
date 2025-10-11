@@ -12,41 +12,58 @@ struct TreeNode {
 
 class DiameterOfBinaryTree {
 public:
-    int returnDepth(TreeNode* node, int& n) {
-        if (!node) {
+    /**
+     * Recursion: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
+    int getMaxDiameter(int& max_diameter,TreeNode* node) {
+        if (node == nullptr) {
             return 0;
         }
 
-        int left = returnDepth(node->left, n);
-        int right = returnDepth(node->right, n);
+        int left_diameter = getMaxDiameter(max_diameter, node->left);
+        int right_diameter = getMaxDiameter(max_diameter, node->right);
 
-        if (left + right > n) {
-            n = left + right;
+        if (left_diameter + right_diameter > max_diameter) {
+            max_diameter = left_diameter + right_diameter;
         }
 
-        return max(left, right) + 1;
+        return max(left_diameter, right_diameter) + 1;
     }
 
     int diameterOfBinaryTree(TreeNode* root) {
-        int n = 0;
-        returnDepth(root, n);
-        return n;
+        int max_diameter = 0;
+
+        getMaxDiameter(max_diameter, root);
+
+        return max_diameter;
     }
+
 
     // Solution
-    int rec(TreeNode* root, int& d) {
-        if (root == NULL) {
+    /**
+     * Recursion: DFS
+     * - Time Complexity: O(N)
+     * - Space Complexity: O(H)
+     */
+    int max_diameter = 0;
+
+    int depth(TreeNode* node) {
+        if (node == nullptr) {
             return 0;
         }
-        int ld = rec(root->left, d);
-        int rd = rec(root->right, d);
-        d = max(d, ld + rd);
-        return max(ld, rd) + 1;
+
+        int leftDepth = depth(node->left);
+        int rightDepth = depth(node->right);
+
+        max_diameter = max(max_diameter, leftDepth + rightDepth);
+
+        return 1 + max(leftDepth, rightDepth);
     }
 
-    int solution(TreeNode* root) {
-        int d = 0;
-        rec(root, d);
-        return d;
+    int diameterOfBinaryTree(TreeNode* root) {
+        depth(root);
+        return max_diameter;
     }
 };
