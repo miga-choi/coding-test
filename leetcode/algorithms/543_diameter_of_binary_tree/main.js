@@ -5,51 +5,64 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * Recursion: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ *
  * @param {TreeNode} root
  * @return {number}
  */
 var diameterOfBinaryTree = function (root) {
-  let result = 0;
+  let maxDiameter = 0;
 
-  getMaxNode(root);
-
-  function getMaxNode(root) {
-    if (!root) {
+  /**
+   * @param {TreeNode} node
+   * @returns {number}
+   */
+  function getMaxDiameter(node) {
+    if (node === null) {
       return 0;
     }
 
-    const left = getMaxNode(root.left);
-    const right = getMaxNode(root.right);
+    const leftDiameter = getMaxDiameter(node.left);
+    const rightDiameter = getMaxDiameter(node.right);
 
-    result = Math.max(result, left + right);
+    if (leftDiameter + rightDiameter > maxDiameter) {
+      maxDiameter = leftDiameter + rightDiameter;
+    }
 
-    return Math.max(left, right) + 1;
+    return Math.max(leftDiameter, rightDiameter) + 1;
   }
 
-  return result;
+  getMaxDiameter(root);
+
+  return maxDiameter;
 };
 
 
 // Solution
+/**
+ * Recursion: DFS
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(H)
+ */
 var solution = function (root) {
-  let diameter = 0;
-
-  dfs(root);
-
-  return diameter;
+  let maxDiameter = 0;
 
   function dfs(node) {
-    if (!node) {
+    if (node === null) {
       return 0;
     }
 
-    const left = dfs(node.left);
-    const right = dfs(node.right);
+    const leftHeight = dfs(node.left);
+    const rightHeight = dfs(node.right);
 
-    // update diameter at every node
-    diameter = Math.max(diameter, left + right);
+    maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
 
-    // update the largest number of edge so far
-    return 1 + Math.max(left, right);
+    return 1 + Math.max(leftHeight, rightHeight);
   }
+
+  dfs(root);
+
+  return maxDiameter;
 };
