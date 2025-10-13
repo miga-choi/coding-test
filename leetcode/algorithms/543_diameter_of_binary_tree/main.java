@@ -19,7 +19,7 @@ class DiameterOfBinaryTree {
     }
 
     /**
-     * Recursion: DFS
+     * Recursion: DFS (Bottom-up)
      * - Time Complexity: O(N)
      * - Space Complexity: O(H)
      */
@@ -49,7 +49,7 @@ class DiameterOfBinaryTree {
 
     // Solution
     /**
-     * Recursion: DFS
+     * Recursion: DFS (Bottom-up)
      * - Time Complexity: O(N)
      * - Space Complexity: O(H)
      */

@@ -5,7 +5,7 @@ function TreeNode(val, left, right) {
 }
 
 /**
- * Recursion: DFS
+ * Recursion: DFS (Bottom-up)
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  *
@@ -42,7 +42,7 @@ var diameterOfBinaryTree = function (root) {
 
 // Solution
 /**
- * Recursion: DFS
+ * Recursion: DFS (Bottom-up)
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  */

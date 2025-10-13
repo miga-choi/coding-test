@@ -8,59 +8,58 @@ class TreeNode {
 }
 
 class DiameterOfBinaryTree {
+  /**
+   * Recursion: DFS (Bottom-up)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
   int diameterOfBinaryTree(TreeNode? root) {
-    int n = 0;
+    int maxDiameter = 0;
 
-    int returnDepth(TreeNode? node) {
+    int getMaxDiameter(TreeNode? node) {
       if (node == null) {
         return 0;
       }
 
-      int left = returnDepth(node.left);
-      int right = returnDepth(node.right);
+      final int leftDiameter = getMaxDiameter(node.left);
+      final int rightDiameter = getMaxDiameter(node.right);
 
-      if (left + right > n) {
-        n = left + right;
+      if (leftDiameter + rightDiameter > maxDiameter) {
+        maxDiameter = leftDiameter + rightDiameter;
       }
 
-      return max(left, right) + 1;
+      return max(leftDiameter, rightDiameter) + 1;
     }
 
-    returnDepth(root);
+    getMaxDiameter(root);
 
-    return n;
+    return maxDiameter;
   }
 
-  // Solution
-  // Member variable to store the diameter
-  int diameter = 0;
 
-  int helper(TreeNode? node) {
-    // Base case: if node is null, return 0
+  // Solution
+  /**
+   * Recursion: DFS (Bottom-up)
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(H)
+   */
+  int _maxDiameter = 0;
+
+  int _depth(TreeNode? node) {
     if (node == null) {
       return 0;
     }
 
-    // Get depth of left subtree
-    int leftDepth = helper(node.left);
+    int leftDepth = _depth(node.left);
+    int rightDepth = _depth(node.right);
 
-    // Get depth of right subtree
-    int rightDepth = helper(node.right);
+    _maxDiameter = max(_maxDiameter, leftDepth + rightDepth);
 
-    // Calculate diameter at this node (number of edges)
-    int currentDiameter = leftDepth + rightDepth;
-
-    // Update the maximum diameter found so far
-    diameter = max(diameter, currentDiameter);
-
-    // Return the depth of this subtree
-    return max(leftDepth, rightDepth) + 1;
+    return 1 + max(leftDepth, rightDepth);
   }
 
   int solution(TreeNode? root) {
-    helper(root);
-
-    // Return the calculated diameter
-    return diameter;
+    _depth(root);
+    return _maxDiameter;
   }
 }

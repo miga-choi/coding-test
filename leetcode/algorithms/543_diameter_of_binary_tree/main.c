@@ -7,7 +7,7 @@ struct TreeNode {
 };
 
 /**
- * Recursion: DFS
+ * Recursion: DFS (Bottom-up)
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  */
@@ -39,7 +39,7 @@ int diameterOfBinaryTree(struct TreeNode* root) {
 
 // Solution
 /**
- * Recursion: DFS
+ * Recursion: DFS (Bottom-up)
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  */
