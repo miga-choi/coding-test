@@ -1,29 +1,30 @@
 #include <stdbool.h>
+#include <stdlib.h>
 #include <string.h>
 
+/**
+ * LIFO (Last-In, First-Out): Stack
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
 bool isValid(char* s) {
     char stack[strlen(s)];
-    int count = 0;
+    int top = -1;
 
     for (int i = 0; i < strlen(s); i++) {
         if (s[i] == '(') {
-            stack[count] = ')';
-            count++;
+            stack[++top] = ')';
         } else if (s[i] == '[') {
-            stack[count] = ']';
-            count++;
+            stack[++top] = ']';
         } else if (s[i] == '{') {
-            stack[count] = '}';
-            count++;
+            stack[++top] = '}';
         } else if (s[i] == '\0') {
             break;
         } else {
-            count--;
-            if (count < 0 || stack[count] != s[i])
-            {
+            if (top == -1 || stack[top] != s[i]) {
                 return false;
             }
-            stack[count] = '\0';
+            stack[top--] = '\0';
         }
     }
 
@@ -32,51 +33,49 @@ bool isValid(char* s) {
 
 
 // Solution
-// Solution 1
-bool solution1(char* s) {
-    char* q = s;
+/**
+ * LIFO (Last-In, First-Out): Stack
+ * - Time Complexity: O(N)
+ * - Space Complexity: O(N)
+ */
+bool solution(char* s) {
+    int len = strlen(s);
 
-    for (char* p = s; *p; p++) {
-        switch (*p) {
-            case '(':
-                *q++ = ')';
-                continue;
-            case '{':
-                *q++ = '}';
-                continue;
-            case '[':
-                *q++ = ']';
-                continue;
-            default:
-                if (q == s || *p != *--q) {
-                    return false;
-                }
-        }
+    if (len % 2 != 0) {
+        return false;
     }
 
-    return q == s;
-}
+    if (len == 0) {
+        return true;
+    }
 
-// Solution 2: Stack
-bool solution2(char* s) {
-    int len = strlen(s);
-    char stack[len];
+    char* stack = (char*)malloc(sizeof(char) * len);
     int top = -1;
+
     for (int i = 0; i < len; i++) {
-        if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
-            stack[++top] = s[i];
+        char c = s[i];
+
+        if (c == '(' || c == '{' || c == '[') {
+            stack[++top] = c;
         } else {
             if (top == -1) {
+                free(stack);
                 return false;
             }
-            if ((s[i] == ')' && stack[top] == '(') ||
-                (s[i] == '}' && stack[top] == '{') ||
-                (s[i] == ']' && stack[top] == '[')) {
-                top--;
-            } else {
+
+            char top_char = stack[top--];
+
+            if ((c == ')' && top_char != '(') ||
+                (c == '}' && top_char != '{') ||
+                (c == ']' && top_char != '[')) {
+                free(stack);
                 return false;
             }
         }
     }
-    return top == -1;
+
+    bool is_valid = (top == -1);
+    free(stack);
+
+    return is_valid;
 }
