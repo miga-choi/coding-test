@@ -1,4 +1,9 @@
 class validParentheses(object):
+    """
+    LIFO (Last-In, First-Out): Stack
+    - Time Complexity: O(N)
+    - Space Complexity: O(N)
+    """
     def isValid(self, s: str) -> bool:
         stack = []
 
@@ -13,20 +18,27 @@ class validParentheses(object):
                 if len(stack) == 0 or stack.pop() != c:
                     return False
 
-        return len(stack) <= 0
+        return len(stack) == 0
 
 
     # Solution
+    """
+    LIFO (Last-In, First-Out): Stack
+    - Time Complexity: O(N)
+    - Space Complexity: O(N)
+    """
     def solution(self, s: str) -> bool:
-        # 1. if it's the left bracket then we append it to the stack
-        # 2. else if it's the right bracket and the stack is empty(meaning no matching left bracket), or the left bracket doesn't match
-        # 3. finally check if the stack still contains unmatched left bracket
-        d = {"(": ")", "{": "}", "[": "]"}
         stack = []
-        for i in s:
-            print(stack)
-            if i in d:  # 1
-                stack.append(i)
-            elif len(stack) == 0 or d[stack.pop()] != i:  # 2
+
+        mapping = {")": "(", "}": "{", "]": "["}
+
+        for char in s:
+            if char in mapping.values():
+                stack.append(char)
+            elif char in mapping.keys():
+                if not stack or mapping[char] != stack.pop():
+                    return False
+            else:
                 return False
-        return len(stack) == 0  # 3
+
+        return not stack
