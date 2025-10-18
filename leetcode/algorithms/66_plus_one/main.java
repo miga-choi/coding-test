@@ -1,30 +1,37 @@
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 class PlusOne {
+  /**
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
   public int[] plusOne(int[] digits) {
-    List<Integer> result = Arrays
-        .stream(digits)
-        .boxed()
-        .collect(Collectors.toList());
-    for (int i = result.size() - 1; i >= 0; i--) {
-      result.set(i, result.get(i) + 1);
-      if (result.get(i) > 9) {
-        result.set(i, 0);
-      } else {
-        return result.stream().mapToInt(v_ -> v_).toArray();
+    for (int i = digits.length - 1; i >= 0; i--) {
+      digits[i]++;
+
+      if (digits[i] < 10) {
+        return digits;
       }
+
+      digits[i] -= 10;
     }
-    result.add(0, 1);
-    return result.stream().mapToInt(v_ -> v_).toArray();
+
+    int[] result = new int[digits.length + 1];
+    Arrays.fill(result, 0);
+    result[0] = 1;
+
+    return result;
   }
 
 
   // Solution
-  // Solution 1
-  public int[] solution1(int[] digits) {
+  /**
+   * - Time Complexity: O(N)
+   * - Space Complexity: O(1)
+   */
+  public int[] solution(int[] digits) {
     int n = digits.length;
+
     for (int i = n - 1; i >= 0; i--) {
       if (digits[i] < 9) {
         digits[i]++;
@@ -34,25 +41,9 @@ class PlusOne {
       digits[i] = 0;
     }
 
-    int[] newNumber = new int[n + 1];
-    newNumber[0] = 1;
+    int[] newDigits = new int[n + 1];
+    newDigits[0] = 1;
 
-    return newNumber;
-  }
-
-  // Solution 2
-  public int[] solution2(int[] digits) {
-    int carry = 1;
-    for (int i = digits.length - 1; i >= 0; i--) {
-      digits[i] += carry;
-      if (digits[i] <= 9) {
-        // early return
-        return digits;
-      }
-      digits[i] = 0;
-    }
-    int[] ret = new int[digits.length + 1];
-    ret[0] = 1;
-    return ret;
+    return newDigits;
   }
 }
