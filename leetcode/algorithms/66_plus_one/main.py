@@ -2,59 +2,48 @@ from typing import List
 
 
 class PlusOne:
+    """
+    - Time Complexity: O(N)
+    - Space Complexity: O(1)
+    """
     def plusOne(self, digits: List[int]) -> List[int]:
         for i in range(len(digits) - 1, -1, -1):
-            digits[i] = digits[i] + 1
-            if digits[i] > 9:
-                digits[i] = 0
-            else:
+            digits[i] += 1
+
+            if digits[i] < 10:
                 return digits
-        digits.insert(0, 1)
-        return digits
+
+            digits[i] -= 10
+
+        return [1] + ([0] * len(digits))
 
 
     # Solution
-    # Solution 1:
+    """
+    Solution 1
+    - Time Complexity: O(N)
+    - Space Complexity: O(1)
+    """
     def solution1(self, digits: List[int]) -> List[int]:
-        num = 0
-        for i in range(len(digits)):
-            num += digits[i] * pow(10, (len(digits) - 1 - i))
-        return [int(i) for i in str(num + 1)]
+        n = len(digits)
 
-    # Solution 2:
-    def solution2(self, digits: List[int]) -> List[int]:
-        if digits[-1] < 9:
-            digits[-1] += 1
-            return digits
-        elif len(digits) == 1 and digits[0] == 9:
-            return [1, 0]
-        else:
-            digits[-1] = 0
-            digits[0:-1] = self.plusOne(digits[0:-1])
-            return digits
-
-    # Solution 3: Array
-    def solution3(self, digits: List[int]) -> List[int]:
-        for i in range(len(digits) - 1, -1, -1):
-            if digits[i] == 9:
-                digits[i] = 0
-            else:
-                digits[i] = digits[i] + 1
+        for i in range(n - 1, -1, -1):
+            if digits[i] < 9:
+                digits[i] += 1
                 return digits
+
+            digits[i] = 0
+
         return [1] + digits
 
-    # Solution 4: Convert list -> Number :: -> Addition +1 :: -> Number -> List
-    def solution4(self, digits: List[int]) -> List[int]:
-        # List -> Number
-        n = 0
-        for ele in digits:
-            n = (n * 10) + ele
+    """
+    Solution 1
+    - Time Complexity: O(N)
+    - Space Complexity: O(N)
+    """
+    def solution2(self, digits: List[int]) -> List[int]:
+        s = "".join(map(str, digits))
 
-        n = n + 1
+        num_plus_one_str = str(int(s) + 1)
 
-        # Number -> List
-        digits = []
-        while n > 0:
-            digits.insert(0, n % 10)
-            n //= 10
-        return digits
+        return [int(digit) for digit in num_plus_one_str]
