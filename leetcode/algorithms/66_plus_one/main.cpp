@@ -33,7 +33,7 @@ public:
     // Solution
     /**
      * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * - Space Complexity: O(1)
      */
     vector<int> solution1(vector<int>& digits) {
         int n = digits.size();
