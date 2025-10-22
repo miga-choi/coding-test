@@ -74,7 +74,7 @@ int solution2(int n) {
 /**
  * Solution 3
  *
- * DP (Dynamic Programming)
+ * DP (Dynamic Programming): Space Optimization
  * - Time Complexity: O(N)
  * - Space Complexity: O(1)
  */
@@ -83,12 +83,11 @@ int solution3(int n) {
         return n;
     }
 
-    int one_step_before = 2;
     int two_steps_before = 1;
-    int current_ways = 0;
+    int one_step_before = 2;
 
     for (int i = 3; i <= n; i++) {
-        current_ways = one_step_before + two_steps_before;
+        int current_ways = one_step_before + two_steps_before;
 
         two_steps_before = one_step_before;
         one_step_before = current_ways;

@@ -1,5 +1,3 @@
-import java.util.Map;
-
 class ClimbingStairs {
   /**
    * DP (Dynamic Programming)

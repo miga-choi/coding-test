@@ -6,8 +6,6 @@ class ClimbingStairs {
 public:
     /**
      * DP (Dynamic Programming)
-     * 
-     * Recursion (Time Limit Exceeded)
      * - Time Complexity: O(N)
      * - Space Complexity: O(N)
      */
@@ -72,7 +70,7 @@ public:
     /**
      * Solution 3
      *
-     * DP (Dynamic Programming)
+     * DP (Dynamic Programming): Space Optimization
      * - Time Complexity: O(N)
      * - Space Complexity: O(1)
      */
@@ -81,8 +79,8 @@ public:
             return n;
         }
 
-        int one_step_before = 2;
         int two_steps_before = 1;
+        int one_step_before = 2;
 
         for (int i = 3; i <= n; i++) {
             int current_ways = one_step_before + two_steps_before;
