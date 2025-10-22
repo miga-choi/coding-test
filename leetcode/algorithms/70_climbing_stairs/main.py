@@ -1,79 +1,100 @@
+from typing import List
+
+
 class ClimbingStairs:
+    """
+    # DP (Dynamic Programming)
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    """
     def climbStairs(self, n: int) -> int:
-        if n < 2:
-            return 1
+        if n < 3:
+            return n
 
-        # Fibonacci numbers
-        dp = []
-        dp.append(1)
-        dp.append(2)
+        dp: List[int] = [0] * (n + 1)
+        dp[0] = 0
+        dp[1] = 1
+        dp[2] = 2
 
-        for i in range(0, n):
-            dp.append(dp[i - 1] + dp[i - 2])
+        for i in range(3, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
 
-        return dp[n - 1]
+        return dp[n]
 
 
     # Solution
-    # Solution 1:
+    """
+    # Solution 1
+    #
+    # Recursion (Time Limit Exceeded)
+    # - Time Complexity: O(2ᴺ)
+    # - Space Complexity: O(1)
+    """
     def solution1(self, n: int) -> int:
-        if n == 0 or n == 1:
-            return 1
+        if n <= 2:
+            return n
         return self.solution1(n - 1) + self.solution1(n - 2)
 
-    # Solution 2:
-    # pure recursive (Can't pass the test case :does not work for big number, result time-exced limit)
-    #   - The base case will be when only 1 or 2 steps left
-    #   - Result time-exced limit
+    """
+    # Solution 2
+    #
+    # DP (Dynamic Programming): Top-down with Memoization
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    """
     def solution2(self, n: int) -> int:
-        def climb(n):
-            if n == 1:  # only one step option is availble
-                return 1
-            if (
-                n == 2
-            ):  # two options are possible : to take two 1-stpes or to only take one 2-steps
-                return 2
-            return climb(n - 1) + climb(n - 2)
-
-        return climb(n)
-
-    # Solution 3:
-    # use dictionary (look-up table) to memorize repeating recursion
-    #   - The memory start with the base case and recored every recurssion
-    def solution3(self, n: int) -> int:
         memo = {}
-        memo[1] = 1
-        memo[2] = 2
 
-        def climb(n):
-            if (
-                n in memo
-            ):  # if the recurssion already done before first take a look-up in the look-up table
-                return memo[n]
-            else:  # Store the recurssion function in the look-up table and reuturn the stored look-up table function
-                memo[n] = climb(n - 1) + climb(n - 2)
-                return memo[n]
+        def solve(k: int) -> int:
+            if k in memo:
+                return memo[k]
 
-        return climb(n)
+            if k <= 2:
+                return k
 
-    # Solution 4:
-    # Dynamic programming
-    #   - store the distinct ways in a dynamic table
+            memo[k] = solve(k - 1) + solve(k - 2)
+
+            return memo[k]
+
+        return solve(n)
+
+    """
+    # Solution 3
+    #
+    # DP (Dynamic Programming): Bottom-up with Tabulation
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(N)
+    """
+    def solution3(self, n: int) -> int:
+        if n <= 2:
+            return n
+
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        dp[2] = 2
+
+        for i in range(3, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+
+        return dp[n]
+
+    """
+    # Solution 4
+    #
+    # DP (Dynamic Programming): Space Optimization
+    # - Time Complexity: O(N)
+    # - Space Complexity: O(1)
+    """
     def solution4(self, n: int) -> int:
-        def climb(n):
-            # edge cases
-            if n == 0:
-                return 0
-            if n == 1:
-                return 1
-            if n == 2:
-                return 2
-            dp = [0] * (n + 1)  # considering zero steps we need n+1 places
-            dp[1] = 1
-            dp[2] = 2
-            for i in range(3, n + 1):
-                dp[i] = dp[i - 1] + dp[i - 2]
-            print(dp)
-            return dp[n]
+        if n <= 2:
+            return n
+            
+        two_steps_back, one_step_back = 1, 2
+        
+        for _ in range(3, n + 1):
+            current_step = one_step_back + two_steps_back
 
-        return climb(n)
+            two_steps_back = one_step_back
+            one_step_back = current_step
+            
+        return one_step_back
