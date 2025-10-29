@@ -1,10 +1,10 @@
 # 5. Longest Palindromic Substring
 
-Given a string `s`, return _the longest palindromic substring_ in `s`.
+Given a string `s`, return _the longest **palindromic substring**_ in `s`.
 
-`Palindromic`: A string is _`palindromic`_ if it reads the same forward and backward.
+**Palindromic**: A string is **palindromic** if it reads the same forward and backward.
 
-`Substring`: A _`substring`_ is a contiguous non-empty sequence of characters within a string.
+**Substring**: A **substring** is a contiguous **non-empty** sequence of characters within a string.
 
 ## Example 1:
 
