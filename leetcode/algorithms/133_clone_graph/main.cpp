@@ -25,26 +25,26 @@ class CloneGraph {
 public:
     /**
      * Recursion: DFS + Hash table
-     * - Time Complexity: O(N + E)
-     * - Space Complexity: O(N)
+     * - Time Complexity: O(V + E)
+     * - Space Complexity: O(V)
      */
-    unordered_map<int, Node*> node_map;
+    unordered_map<Node*, Node*> node_map;
 
     Node* cloneGraph(Node* node) {
         if (node == nullptr) {
-            return node;
+            return nullptr;
         }
 
-        if (node_map.count(node->val) > 0) {
-            return node_map[node->val];
+        if (node_map.count(node) > 0) {
+            return node_map[node];
         }
 
         Node* result = new Node(node->val);
 
-        node_map[node->val] = result;
+        node_map[node] = result;
 
-        for (Node* _node : node->neighbors) {
-            result->neighbors.push_back(cloneGraph(_node));
+        for (Node* neighbor : node->neighbors) {
+            result->neighbors.push_back(cloneGraph(neighbor));
         }
 
         return result;
@@ -56,8 +56,8 @@ public:
      * Solution 1
      * 
      * Recursion: DFS + Hash table
-     * - Time Complexity: O(N + E)
-     * - Space Complexity: O(N)
+     * - Time Complexity: O(V + E)
+     * - Space Complexity: O(V)
      */
     unordered_map<Node*, Node*> visited_map;
 
@@ -85,8 +85,8 @@ public:
      * Solution 2
      * 
      * Iteration: BFS + Hash table + Queue
-     * - Time Complexity: O(N + E)
-     * - Space Complexity: O(N)
+     * - Time Complexity: O(V + E)
+     * - Space Complexity: O(V)
      */
     Node* solution2(Node* node) {
         if (!node) {

@@ -5,8 +5,8 @@ function _Node(val, neighbors) {
 
 /**
  * Recursion: DFS + Hash table
- * - Time Complexity: O(N + E)
- * - Space Complexity: O(N)
+ * - Time Complexity: O(V + E)
+ * - Space Complexity: O(V)
  */
 const nodeMap = new Map();
 
@@ -39,8 +39,8 @@ var cloneGraph = function (node) {
  * Solution 1
  *
  * Recursion: DFS + Hash table
- * - Time Complexity: O(N + E)
- * - Space Complexity: O(N)
+ * - Time Complexity: O(V + E)
+ * - Space Complexity: O(V)
  */
 /**
  * @param {_Node} node
@@ -75,8 +75,8 @@ var solution1 = function (node) {
  * Solution 2
  *
  * Iteration: BFS + Hash table + Queue
- * - Time Complexity: O(N + E)
- * - Space Complexity: O(N)
+ * - Time Complexity: O(V + E)
+ * - Space Complexity: O(V)
  */
 /**
  * @param {_Node} node
