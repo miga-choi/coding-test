@@ -9,7 +9,7 @@ struct TreeNode {
 };
 
 /**
- * Recursion
+ * Recursion: DFS
  * - Time Complexity: O(N)
  * - Space Complexity: O(H)
  */
