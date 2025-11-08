@@ -109,7 +109,7 @@ public:
         }
     }
 
-    vector<string> letterCombinations(string digits) {
+    vector<string> solution(string digits) {
         if (digits.empty()) {
             return {};
         }
