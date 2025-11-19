@@ -11,6 +11,8 @@
  * Brute-force
  * 
  * Complexities:
+ *   N - size of strs
+ *   K - max size of strings in strs
  *   - Time Complexity: O(N² * K) - Time Limit Exceeded
  *   - Space Complexity: O(N * K)
  */
