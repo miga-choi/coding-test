@@ -6,8 +6,11 @@ class TwoSum {
 public:
     /**
      * Brute-Force
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - `nums`'s Size
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     vector<int> twoSum1(vector<int>& nums, int target) {
         for (int i = 0; i < nums.size() - 1; i++) {
@@ -23,8 +26,11 @@ public:
 
     /**
      * unordered_map
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * 
+     * Complexities:
+     *   N - `nums`'s Size
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     vector<int> twoSum2(vector<int>& nums, int target) {
         unordered_map<int, int> map;
@@ -42,53 +48,27 @@ public:
 
 
     // Solution
-    // Solution 1: Brute Force
-    vector<int> solution1(vector<int>& nums, int target) {
-        int n = nums.size();
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (nums[i] + nums[j] == target) {
-                    return {i, j};
-                }
-            }
-        }
-        return {}; // No solution found
-    }
-
-    // Solution 2: Two-pass Hash Table
-    vector<int> solution2(vector<int>& nums, int target) {
+    /**
+     * One-pass Hash Table
+     * 
+     * Complexities:
+     *   N - `nums`'s Size
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    vector<int> solution(vector<int>& nums, int target) {
         unordered_map<int, int> numMap;
-        int n = nums.size();
 
-        // Build the hash table
-        for (int i = 0; i < n; i++) {
-            numMap[nums[i]] = i;
-        }
-
-        // Find the complement
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < nums.size(); i++) {
             int complement = target - nums[i];
-            if (numMap.count(complement) && numMap[complement] != i) {
-                return {i, numMap[complement]};
-            }
-        }
 
-        return {}; // No solution found
-    }
-
-    // Solution 3: One-pass Hash Table
-    vector<int> solution3(vector<int>& nums, int target) {
-        unordered_map<int, int> numMap;
-        int n = nums.size();
-
-        for (int i = 0; i < n; i++) {
-            int complement = target - nums[i];
-            if (numMap.count(complement)) {
+            if (numMap.find(complement) != numMap.end()) {
                 return {numMap[complement], i};
             }
+
             numMap[nums[i]] = i;
         }
 
-        return {}; // No solution found
+        return {};
     }
 };
