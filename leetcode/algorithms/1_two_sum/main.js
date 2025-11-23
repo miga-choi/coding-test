@@ -60,6 +60,11 @@ var twoSum2 = function (nums, target) {
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(N)
  */
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
 var solution = function (nums, target) {
   const map = new Map();
 

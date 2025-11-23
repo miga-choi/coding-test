@@ -11,6 +11,7 @@
  * Brute-Force
  * 
  * Complexities:
+ *   N - `nums`'s Size
  *   - Time Complexity: O(N²)
  *   - Space Complexity: O(1)
  */
@@ -39,6 +40,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
  * Brute-Force
  * 
  * Complexities:
+ *   N - `nums`'s Size
  *   - Time Complexity: O(N²)
  *   - Space Complexity: O(1)
  */
@@ -66,6 +68,7 @@ int* solution1(int* nums, int numsSize, int target, int* returnSize) {
  * Hash Map
  * 
  * Complexities:
+ *   N - `nums`'s Size
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(N)
  */
