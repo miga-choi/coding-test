@@ -5,6 +5,13 @@ struct ListNode {
     struct ListNode* next;
 };
 
+/**
+ * Complexities:
+ *   M - l1 length
+ *   N - l2 length
+ *   - Time Complexity: O(Max(M, N))
+ *   - Space Complexity: O(Max(M, N))
+ */
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     int carry = 0;
 
@@ -40,41 +47,39 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   M - l1 length
+ *   N - l2 length
+ *   - Time Complexity: O(Max(M, N))
+ *   - Space Complexity: O(Max(M, N))
+ */
 struct ListNode* solution(struct ListNode* l1, struct ListNode* l2) {
-    int sum = 0;
+    struct ListNode dummy;
+    dummy.next = NULL;
+
+    struct ListNode* current = &dummy;
     int carry = 0;
 
-    struct ListNode* l3 = (struct ListNode*)malloc(sizeof(struct ListNode));
-    struct ListNode* head = l3;
+    while (l1 != NULL || l2 != NULL || carry != 0) {
+        int x = (l1 != NULL) ? l1->val : 0;
+        int y = (l2 != NULL) ? l2->val : 0;
 
-    while (l1 || l2) {
-        sum = 0;
+        int sum = carry + x + y;
+        carry = sum / 10;
 
-        if (l1) {
-            sum += l1->val;
+        current->next = (struct ListNode*)malloc(sizeof(struct ListNode));
+        current = current->next;
+        current->val = sum % 10;
+        current->next = NULL;
+
+        if (l1 != NULL) {
             l1 = l1->next;
         }
-
-        if (l2) {
-            sum += l2->val;
+        if (l2 != NULL) {
             l2 = l2->next;
         }
-
-        sum += carry;
-        carry = sum / 10;
-        sum %= 10;
-        
-        l3->next = (struct ListNode*)malloc(sizeof(struct ListNode));
-        l3->next->val = sum;
-        l3->next->next = NULL;
-        l3 = l3->next;
     }
 
-    if (carry != 0) {
-        l3->next = (struct ListNode*)malloc(sizeof(struct ListNode));
-        l3->next->val = carry;
-        l3->next->next = NULL;
-    }
-
-    return head->next;
+    return dummy.next;
 }
