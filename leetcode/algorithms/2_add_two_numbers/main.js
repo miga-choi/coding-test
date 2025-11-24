@@ -4,6 +4,13 @@ function ListNode(val, next) {
 }
 
 /**
+ * Complexities:
+ *   M - l1 length
+ *   N - l2 length
+ *   - Time Complexity: O(Max(M, N))
+ *   - Space Complexity: O(Max(M, N))
+ */
+/**
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
@@ -42,17 +49,43 @@ var addTwoNumbers = function (l1, l2) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   M - l1 length
+ *   N - l2 length
+ *   - Time Complexity: O(Max(M, N))
+ *   - Space Complexity: O(Max(M, N))
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
 var solution = function (l1, l2) {
-  const iter = (n1, n2, rest = 0) => {
-    if (!n1 && !n2 && !rest) {
-      return null;
+  let dummyHead = new ListNode(0);
+  let current = dummyHead;
+  let carry = 0;
+
+  while (l1 !== null || l2 !== null || carry > 0) {
+    const val1 = l1 !== null ? l1.val : 0;
+    const val2 = l2 !== null ? l2.val : 0;
+
+    const sum = val1 + val2 + carry;
+
+    carry = Math.floor(sum / 10);
+
+    const digit = sum % 10;
+
+    current.next = new ListNode(digit);
+    current = current.next;
+
+    if (l1 !== null) {
+      l1 = l1.next;
     }
-
-    const newVal = (n1?.val || 0) + (n2?.val || 0) + rest;
-    const nextNode = iter(n1?.next, n2?.next, Math.floor(newVal / 10));
-
-    return new ListNode(newVal % 10, nextNode);
+    if (l2 !== null) {
+      l2 = l2.next;
+    }
   }
 
-  return iter(l1, l2);
+  return dummyHead.next;
 };
