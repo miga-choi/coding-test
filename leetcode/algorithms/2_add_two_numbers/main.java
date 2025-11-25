@@ -16,6 +16,13 @@ class AddTwoNumbers {
         }
     }
 
+    /**
+     * Complexities:
+     *   M - l1 length
+     *   N - l2 length
+     *   - Time Complexity: O(Max(M, N))
+     *   - Space Complexity: O(Max(M, N))
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
 
@@ -50,30 +57,38 @@ class AddTwoNumbers {
 
 
     // Solution
+    /**
+     * Complexities:
+     *   M - l1 length
+     *   N - l2 length
+     *   - Time Complexity: O(Max(M, N))
+     *   - Space Complexity: O(Max(M, N))
+     */
     public ListNode solution(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(0);
-        ListNode tail = dummyHead;
+        ListNode curr = dummyHead;
+
         int carry = 0;
 
-        while (l1 != null || l2 != null || carry != 0) {
-            int digit1 = (l1 != null) ? l1.val : 0;
-            int digit2 = (l2 != null) ? l2.val : 0;
+        while (l1 != null || l2 != null || carry > 0) {
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
 
-            int sum = digit1 + digit2 + carry;
-            int digit = sum % 10;
+            int sum = carry + x + y;
+
             carry = sum / 10;
 
-            ListNode newNode = new ListNode(digit);
-            tail.next = newNode;
-            tail = tail.next;
+            curr.next = new ListNode(sum % 10);
 
-            l1 = (l1 != null) ? l1.next : null;
-            l2 = (l2 != null) ? l2.next : null;
+            curr = curr.next;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
         }
 
-        ListNode result = dummyHead.next;
-        dummyHead.next = null;
-
-        return result;
+        return dummyHead.next;
     }
 }
