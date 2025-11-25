@@ -8,6 +8,13 @@ class ListNode:
 
 
 class AddTwoNumbers:
+    """
+    # Complexities:
+    #   M - l1 length
+    #   N - l2 length
+    #   - Time Complexity: O(Max(M, N))
+    #   - Space Complexity: O(Max(M, N))
+    """
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         carry: int = 0
 
@@ -37,27 +44,33 @@ class AddTwoNumbers:
 
 
     # Solution
+    """
+    # Complexities:
+    #   M - l1 length
+    #   N - l2 length
+    #   - Time Complexity: O(Max(M, N))
+    #   - Space Complexity: O(Max(M, N))
+    """
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        dummyHead = ListNode(0)
-        tail = dummyHead
+        dummy = ListNode(0)
+        current = dummy
         carry = 0
 
-        while l1 is not None or l2 is not None or carry != 0:
-            digit1 = l1.val if l1 is not None else 0
-            digit2 = l2.val if l2 is not None else 0
+        while l1 or l2 or carry:
+            val1 = l1.val if l1 else 0
+            val2 = l2.val if l2 else 0
 
-            sum = digit1 + digit2 + carry
-            digit = sum % 10
-            carry = sum // 10
+            total = val1 + val2 + carry
 
-            newNode = ListNode(digit)
-            tail.next = newNode
-            tail = tail.next
+            carry = total // 10
+            digit = total % 10
 
-            l1 = l1.next if l1 is not None else None
-            l2 = l2.next if l2 is not None else None
+            current.next = ListNode(digit)
+            current = current.next
 
-        result = dummyHead.next
-        dummyHead.next = None
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
 
-        return result
+        return dummy.next
