@@ -1,5 +1,15 @@
 #include <string.h>
 
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+/**
+ * Sliding Window (Using Array)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 int lengthOfLongestSubstring(char* s) {
     int charMap[128];
     memset(charMap, -1, sizeof(charMap));
@@ -28,62 +38,35 @@ int lengthOfLongestSubstring(char* s) {
 
 
 // Solution
-// Solution 1:
-int solution1(char* s) {
-    int n = strlen(s);
-    int maxLength = 0;
-    int charIndex[128];
-    memset(charIndex, -1, sizeof(charIndex));
+/**
+ * Sliding Window (Using Array)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+int solution(char* s) {
+    int last_index[128];
+    memset(last_index, -1, sizeof(last_index));
+
     int left = 0;
+    int max_len = 0;
+    int right = 0;
 
-    for (int right = 0; right < n; right++) {
-        if (charIndex[s[right]] >= left) {
-            left = charIndex[s[right]] + 1;
+    while (s[right] != '\0') {
+        char current_char = s[right];
+
+        if (last_index[current_char] >= left) {
+            left = last_index[current_char] + 1;
         }
 
-        charIndex[s[right]] = right;
+        last_index[current_char] = right;
 
-        if (right - left + 1 > maxLength) {
-            maxLength = right - left + 1;
-        }
+        max_len = MAX(max_len, right - left + 1);
+
+        right++;
     }
 
-    return maxLength;
-}
-
-// Solution 2:
-int solution2(char* s) {
-    // SLIDING WINDOW  - TIME COMPLEXITY O(2n)
-    //                   SPACE COMPLEXITY O(m) - size of array
-    int sLength = strlen(s);
-
-    int store[256] = {0}; // array to store the occurences of all the characters
-    int l = 0;            // left pointer
-    int r = 0;            // right pointer
-    int ans = 0;          // initializing the required length as 0
-
-    // iterate over the string till the right pointer reaches the end of the string
-    while (r < sLength) {
-        // increment the count of the character present in the right pointer
-        store[s[r]]++;
-
-        // if the occurence become more than 1 means the char is repeate
-        while (store[s[r]] > 1) {
-            // reduce the occurence of temp as it might be present ahead also in the string
-            store[s[l]]--;
-
-            // contraction of the present window till the occurence of the 't' char becomes 1
-            l++;
-        }
-
-        if (r - l + 1 > ans) {
-            // As the index starts from 0 , ans will be (right pointer-left pointer + 1)
-            ans = r - l + 1;
-        }
-
-        // now will increment the right pointer
-        r++;
-    }
-
-    return ans;
+    return max_len;
 }
