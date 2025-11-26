@@ -5,8 +5,8 @@ function ListNode(val, next) {
 
 /**
  * Complexities:
- *   M - l1 length
- *   N - l2 length
+ *   M - Length of `l1`
+ *   N - Length of `l2`
  *   - Time Complexity: O(Max(M, N))
  *   - Space Complexity: O(Max(M, N))
  */
@@ -51,8 +51,8 @@ var addTwoNumbers = function (l1, l2) {
 // Solution
 /**
  * Complexities:
- *   M - l1 length
- *   N - l2 length
+ *   M - Length of `l1`
+ *   N - Length of `l2`
  *   - Time Complexity: O(Max(M, N))
  *   - Space Complexity: O(Max(M, N))
  */

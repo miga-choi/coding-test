@@ -3,7 +3,7 @@ class TwoSum {
    * Brute-Force
    *
    * Complexities:
-   *   N - `nums`'s Size
+   *   N - Size of `nums`
    *   - Time Complexity: O(N²)
    *   - Space Complexity: O(1)
    */
@@ -23,7 +23,7 @@ class TwoSum {
    * Hash Map
    *
    * Complexities:
-   *   N - `nums`'s Size
+   *   N - Size of `nums`
    *   - Time Complexity: O(N)
    *   - Space Complexity: O(N)
    */
@@ -47,7 +47,7 @@ class TwoSum {
    * Hash Map
    *
    * Complexities:
-   *   N - `nums`'s Size
+   *   N - Size of `nums`
    *   - Time Complexity: O(N)
    *   - Space Complexity: O(N)
    */

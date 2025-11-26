@@ -18,8 +18,8 @@ class AddTwoNumbers {
 
     /**
      * Complexities:
-     *   M - l1 length
-     *   N - l2 length
+     *   M - Length of `l1`
+     *   N - Length of `l2`
      *   - Time Complexity: O(Max(M, N))
      *   - Space Complexity: O(Max(M, N))
      */
@@ -59,8 +59,8 @@ class AddTwoNumbers {
     // Solution
     /**
      * Complexities:
-     *   M - l1 length
-     *   N - l2 length
+     *   M - Length of `l1`
+     *   N - Length of `l2`
      *   - Time Complexity: O(Max(M, N))
      *   - Space Complexity: O(Max(M, N))
      */
