@@ -4,8 +4,11 @@
 
 /**
  * Expand Around Center
- * - Time Complexity: O(N²)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   --- Time Complexity: O(N²)
+ *   --- Space Complexity: O(1)
  */
 int getPalindromeLength(const char* s, const int s_len, int left, int right) {
     while (left >= 0 && right < s_len && s[left] == s[right]) {
@@ -53,8 +56,11 @@ char* longestPalindrome(char* s) {
  * Solution 1
  *
  * Expand Around Center
- * - Time Complexity: O(N²)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 // 중심으로부터 양옆으로 확장하며 회문의 길이를 계산하는 헬퍼 함수
 int expandAroundCenter(char* s, int left, int right, int len) {
@@ -108,8 +114,11 @@ char* solution1(char* s) {
  * Solution 2
  *
  * Dynamic Programming
- * - Time Complexity: O(N²)
- * - Space Complexity: O(N²)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(N²)
  */
 char* solution2(char* s) {
     int n = strlen(s);
