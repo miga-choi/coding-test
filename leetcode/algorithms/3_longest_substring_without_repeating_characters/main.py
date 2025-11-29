@@ -2,6 +2,14 @@ from typing import List
 
 
 class LongestSubstringWithoutRepeatingCharacters:
+    """
+    # Sliding Window (Using List)
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def lengthOfLongestSubstring(self, s: str) -> int:
         charMap: List[int] = [-1] * 128
         left: int = 0
@@ -21,53 +29,29 @@ class LongestSubstringWithoutRepeatingCharacters:
 
 
     # Solution
-    # Solution 1: Set
-    def solution1(self, s: str) -> int:
-        n = len(s)
-        maxLength = 0
-        charSet = set()
-        left = 0
+    """
+    # Sliding Window (Using Dict)
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   M - Length of Available Characters in `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(Min(M, N))
+    """
+    def solution(self, s: str) -> int:
+        char_index_map = {}
 
-        for right in range(n):
-            if s[right] not in charSet:
-                charSet.add(s[right])
-                maxLength = max(maxLength, right - left + 1)
-            else:
-                while s[right] in charSet:
-                    charSet.remove(s[left])
-                    left += 1
-                charSet.add(s[right])
+        max_length = 0
+        start = 0
 
-        return maxLength
+        for end in range(len(s)):
+            current_char = s[end]
 
-    # Solution 2: Map
-    def solution2(self, s: str) -> int:
-        n = len(s)
-        maxLength = 0
-        charMap = {}
-        left = 0
+            if current_char in char_index_map and char_index_map[current_char] >= start:
+                start = char_index_map[current_char] + 1
 
-        for right in range(n):
-            if s[right] not in charMap or charMap[s[right]] < left:
-                charMap[s[right]] = right
-                maxLength = max(maxLength, right - left + 1)
-            else:
-                left = charMap[s[right]] + 1
-                charMap[s[right]] = right
+            char_index_map[current_char] = end
 
-        return maxLength
+            max_length = max(max_length, end - start + 1)
 
-    # Solution 3: Integer Array
-    def solution3(self, s: str) -> int:
-        n = len(s)
-        maxLength = 0
-        charIndex = [-1] * 128
-        left = 0
-
-        for right in range(n):
-            if charIndex[ord(s[right])] >= left:
-                left = charIndex[ord(s[right])] + 1
-            charIndex[ord(s[right])] = right
-            maxLength = max(maxLength, right - left + 1)
-
-        return maxLength
+        return max_length
