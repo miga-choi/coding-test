@@ -1,7 +1,10 @@
 /**
  * Expand Around Center
- * - Time Complexity: O(N²)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 /**
  * @param {string} s
@@ -50,8 +53,11 @@ var longestPalindrome = function (s) {
  * Solution 1
  *
  * Expand Around Center
- * - Time Complexity: O(N²)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 /**
  * @param {string} s
@@ -94,8 +100,11 @@ var solution1 = function (s) {
  * Solution 2
  *
  * Dynamic Programming
- * - Time Complexity: O(N²)
- * - Space Complexity: O(N²)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(N²)
  */
 /**
  * @param {string} s
