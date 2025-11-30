@@ -7,8 +7,11 @@ class LongestPalindromicSubstring {
 public:
     /**
      * Expand Around Center
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     int getPalindromeLength(const string& s, int left, int right) {
         while (left >= 0 && right < s.size() && s[left] == s[right]) {
@@ -43,8 +46,11 @@ public:
      * Solution 1
      * 
      * Expand Around Center
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     // 중심으로부터 양옆으로 확장하며 회문의 길이를 계산하는 헬퍼 함수
     int expandAroundCenter(const string& s, int left, int right) {
@@ -89,8 +95,11 @@ public:
      * Solution 2
      *
      * Dynamic Programming
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(N²)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(N²)
      */
     string solution2(string s) {
         int n = s.length();
