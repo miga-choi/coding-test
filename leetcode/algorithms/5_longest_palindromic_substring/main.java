@@ -1,8 +1,11 @@
 class LongestPalindromicSubstring {
     /**
      * Expand Around Center
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     private int getPalindromeLength(String s, int left, int right) {
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
@@ -41,8 +44,11 @@ class LongestPalindromicSubstring {
      * Solution 1
      * 
      * Expand Around Center
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     // 주어진 중심(left, right)에서부터 밖으로 확장하며 Palindrome의 길이를 찾는 함수
     private int expandAroundCenter(String s, int left, int right) {
@@ -87,8 +93,11 @@ class LongestPalindromicSubstring {
      * Solution 2
      * 
      * Dynamic Programming
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(N²)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(N²)
      */
     public String solution2(String s) {
         if (s == null || s.length() < 1) {
