@@ -4,8 +4,11 @@ from math import floor
 class LongestPalindromicSubstring:
     """
     # Expand Around Center
-    # - Time Complexity: O(N²)
-    # - Space Complexity: O(1)
+    # 
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
     """
     def getPalindromeLength(self, s: str, s_len: int, left: int, right: int):
         while left >= 0 and right < s_len and s[left] == s[right]:
@@ -40,8 +43,11 @@ class LongestPalindromicSubstring:
     # Solution 1
     #
     # Expand Around Center
-    # - Time Complexity: O(N²)
-    # - Space Complexity: O(1)
+    # 
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
     """
     def longestPalindrome(self, s: str) -> str:
         if len(s) < 2 or s == s[::-1]:
@@ -79,8 +85,11 @@ class LongestPalindromicSubstring:
     # Solution 2
     # 
     # Dynamic Programming
-    # - Time Complexity: O(N²)
-    # - Space Complexity: O(N²)
+    # 
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(N²)
     """
     def solution2(self, s: str) -> str:
         n = len(s)
