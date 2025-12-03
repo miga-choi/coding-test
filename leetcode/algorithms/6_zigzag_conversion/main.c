@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 char* convert(char* s, int numRows) {
     int sLen = strlen(s);
@@ -40,8 +41,10 @@ char* convert(char* s, int numRows) {
 
 // Solution
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 char* convert(char* s, int numRows) {
     int len = strlen(s);
