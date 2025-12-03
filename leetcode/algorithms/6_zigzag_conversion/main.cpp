@@ -5,8 +5,10 @@ using namespace std;
 class ZigzagConversion {
 public:
     /**
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     string convert(string s, int numRows) {
         if (numRows == 1) {
@@ -37,8 +39,10 @@ public:
     /**
      * Solution 1
      * 
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     string solution1(string s, int numRows) {
         if (numRows == 1 || numRows >= s.length()) {
@@ -70,8 +74,10 @@ public:
     /**
      * Solution 2
      * 
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     string solution2(string s, int numRows) {
         if (numRows == 1 || numRows >= s.length()) {
