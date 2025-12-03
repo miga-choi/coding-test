@@ -3,8 +3,11 @@ import 'dart:math';
 class LongestPalindromicSubstring {
   /**
    * Expand Around Center
-   * - Time Complexity: O(N²)
-   * - Space Complexity: O(1)
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N²)
+   *   - Space Complexity: O(1)
    */
   int _getPalindromeLength(final String s, int left, int right) {
     while (left >= 0 && right < s.length && s[left] == s[right]) {
@@ -43,8 +46,11 @@ class LongestPalindromicSubstring {
    * Solution 1
    * 
    * Expand Around Center
-   * - Time Complexity: O(N²)
-   * - Space Complexity: O(1)
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N²)
+   *   - Space Complexity: O(1)
    */
   String _expand(String s, int left, int right) {
     while (left >= 0 && right < s.length && s[left] == s[right]) {
@@ -85,8 +91,11 @@ class LongestPalindromicSubstring {
    * Solution 2
    * 
    * Dynamic Programming
-   * - Time Complexity: O(N²)
-   * - Space Complexity: O(N²)
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N²)
+   *   - Space Complexity: O(N²)
    */
   String solution2(String s) {
     int n = s.length;
