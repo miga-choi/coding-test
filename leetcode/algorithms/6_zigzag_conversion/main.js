@@ -1,6 +1,8 @@
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  *
  * @param {string} s
  * @param {number} numRows
@@ -35,9 +37,11 @@ var convert = function (s, numRows) {
 // Solution
 /**
  * Solution 1
- *
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  *
  * @param {string} s
  * @param {number} numRows
@@ -69,8 +73,10 @@ var solution1 = function (s, numRows) {
 /**
  * Solution 2
  *
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  *
  * @param {string} s
  * @param {number} numRows
