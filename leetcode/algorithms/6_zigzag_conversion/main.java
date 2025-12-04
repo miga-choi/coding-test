@@ -1,7 +1,9 @@
 class ZigzagConversion {
     /**
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     public String convert(String s, int numRows) {
         int sLen = s.length();
@@ -35,8 +37,10 @@ class ZigzagConversion {
     /**
      * Solution 1
      * 
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     public String solution1(String s, int numRows) {
         if (numRows == 1 || s.length() <= numRows) {
@@ -72,8 +76,10 @@ class ZigzagConversion {
     /**
      * Solution 2
      * 
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     public String solution2(String s, int numRows) {
         if (numRows == 1 || s.length() <= numRows) {
