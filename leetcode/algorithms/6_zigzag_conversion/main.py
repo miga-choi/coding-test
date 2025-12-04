@@ -1,8 +1,10 @@
 class ZigzagConversion:
-   ###
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
-    ##
+    """
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def convert(self, s: str, numRows: int) -> str:
         sLen: int = len(s)
 
@@ -24,13 +26,15 @@ class ZigzagConversion:
         return result
 
 
-   # Solution
-   ###
+    # Solution
+    """
     # Solution 1
     #
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
-    ##
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution1(self, s: str, numRows: int) -> str:
         if numRows == 1 or numRows >= len(s):
             return s
@@ -49,12 +53,14 @@ class ZigzagConversion:
 
         return "".join(rows)
 
-   ###
+    """
     # Solution 2
     #
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
-    ##
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution2(self, s: str, numRows: int) -> str:
         if numRows == 1 or numRows >= len(s):
             return s
