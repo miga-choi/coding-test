@@ -1,5 +1,10 @@
 #include <stdbool.h>
 
+/**
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
 bool isPalindrome(int x) {
     if (x < 0) {
         return false;
@@ -19,14 +24,24 @@ bool isPalindrome(int x) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
 bool solution(int x) {
-    if (x < 0 || x != 0 && x % 10 == 0) {
+    if (x < 0) {
         return false;
     }
-    int check = 0;
-    while (x > check) {
-        check = check * 10 + x % 10;
-        x /= 10;
+
+    long long reversed = 0;
+    int temp = x;
+
+    while (temp > 0) {
+        int digit = temp % 10;
+        reversed = reversed * 10 + digit;
+        temp /= 10;
     }
-    return (x == check || x == check / 10);
+
+    return (x == reversed);
 }

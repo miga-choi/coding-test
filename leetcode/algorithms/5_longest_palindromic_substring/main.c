@@ -7,8 +7,8 @@
  * 
  * Complexities:
  *   N - Length of `s`
- *   --- Time Complexity: O(N²)
- *   --- Space Complexity: O(1)
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 int getPalindromeLength(const char* s, const int s_len, int left, int right) {
     while (left >= 0 && right < s_len && s[left] == s[right]) {
