@@ -1,4 +1,9 @@
 /**
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number} x
  * @return {boolean}
  */
@@ -33,31 +38,50 @@ var isPalindrome = function (x) {
 
 
 // Solution
-// Solution 1
+/**
+ * Solution 1
+ * 
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
 var solution1 = function (x) {
-  var reverse = 0;
-  var copy = x;
-
-  // The loop break when the copy of original number becomes zero
-  // Also negative number cannot be a palindrome
-  while (copy > 0) {
-    const digit = copy % 10;
-    reverse = reverse * 10 + digit;
-    copy = ~~(copy / 10);
-  }
-
-  return reverse == x;
-};
-
-// Solution 2
-var solution2 = function (x) {
   if (x < 0) {
     return false;
   }
 
-  let rev = 0;
-  for (let i = x; i >= 1; i = Math.floor(i / 10)) {
-    rev = rev * 10 + (i % 10);
+  const str = x.toString();
+  const reversedStr = str.split("").reverse().join("");
+
+  return str === reversedStr;
+};
+
+/**
+ * Solution 2
+ * 
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var solution2 = function (x) {
+  if (x < 0 || (x % 10 === 0 && x !== 0)) {
+    return false;
   }
-  return rev === x;
+
+  let reversedHalf = 0;
+
+  while (x > reversedHalf) {
+    reversedHalf = reversedHalf * 10 + (x % 10);
+    x = Math.floor(x / 10);
+  }
+
+  return x === reversedHalf || x === Math.floor(reversedHalf / 10);
 };
