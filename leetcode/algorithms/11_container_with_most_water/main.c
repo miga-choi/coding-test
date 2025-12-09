@@ -2,7 +2,7 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 /**
- * Two Pointer
+ * Two Pointers
  * 
  * Complexities:
  *   - Time Complexity: O(N)
@@ -35,7 +35,7 @@ int maxArea(int* height, int heightSize) {
 
 // Solution
 /**
- * Two Pointer
+ * Two Pointers
  * 
  * Complexities:
  *   - Time Complexity: O(N)
