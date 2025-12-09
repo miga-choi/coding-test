@@ -1,8 +1,11 @@
 /**
  * Two Pointers
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
  *
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} height
  * @return {number}
  */
@@ -27,4 +30,40 @@ var maxArea = function (height) {
   }
 
   return maxStored;
+};
+
+
+// Solution
+/**
+ * Two Pointers
+ *
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var solution = function (height) {
+  let maxArea = 0;
+  let left = 0;
+  let right = height.length - 1;
+
+  while (left < right) {
+    const currentHeight = Math.min(height[left], height[right]);
+
+    const width = right - left;
+
+    const currentArea = width * currentHeight;
+    maxArea = Math.max(maxArea, currentArea);
+
+    if (height[left] < height[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return maxArea;
 };
