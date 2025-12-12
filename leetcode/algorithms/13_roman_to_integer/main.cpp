@@ -4,20 +4,6 @@ using namespace std;
 
 class RomanToInteger {
 public:
-    int romanToInt(string s) {
-        int result = 0;
-
-        for (int i = 0; s[i] != '\0'; i++) {
-            if (getNumber(s[i]) < getNumber(s[i + 1])) {
-                result -= getNumber(s[i]);
-            } else {
-                result += getNumber(s[i]);
-            }
-        }
-
-        return result;
-    }
-
     int getNumber(char c) {
         switch (c) {
             case 'I':
@@ -39,83 +25,89 @@ public:
         }
     }
 
+    /**
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    int romanToInt(string s) {
+        int result = 0;
 
-    // Solution
-    // Solution 1: Hash table
-    int solution1(string s) {
-        unordered_map<char, int> m{
-            {'I', 1},
-            {'V', 5},
-            {'X', 10},
-            {'L', 50},
-            {'C', 100},
-            {'D', 500},
-            {'M', 1000},
-        };
-        // unordered_map<char, int> m;
-        // m['I'] = 1;
-        // m['V'] = 5;
-        // m['X'] = 10;
-        // m['L'] = 50;
-        // m['C'] = 100;
-        // m['D'] = 500;
-        // m['M'] = 1000;
-
-        int ans = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            if (m[s[i]] < m[s[i + 1]]) {
-                ans -= m[s[i]];
+        for (int i = 0; s[i] != '\0'; i++) {
+            if (getNumber(s[i]) < getNumber(s[i + 1])) {
+                result -= getNumber(s[i]);
             } else {
-                ans += m[s[i]];
+                result += getNumber(s[i]);
             }
         }
 
-        return ans;
+        return result;
     }
 
-    // Solution 2: Switch
-    int solution2(string s) {
-        int ret = 0;  // to store the return value
-        int temp = 0; // to store the previous value
 
-        for (size_t i = 0; i < s.size(); i++) {
-            char curr = s[i];
-            int pos = 0; // to store the current value
+    // Solution
+    /**
+     * Solution 1
+     * 
+     * Array
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    int solution1(string s) {
+        int map[128] = {0};
+        
+        map['I'] = 1;
+        map['V'] = 5;
+        map['X'] = 10;
+        map['L'] = 50;
+        map['C'] = 100;
+        map['D'] = 500;
+        map['M'] = 1000;
 
-            switch (curr) {
-                case 'I':
-                    pos = 1;
-                    break;
-                case 'V':
-                    pos = 5;
-                    break;
-                case 'X':
-                    pos = 10;
-                    break;
-                case 'L':
-                    pos = 50;
-                    break;
-                case 'C':
-                    pos = 100;
-                    break;
-                case 'D':
-                    pos = 500;
-                    break;
-                case 'M':
-                    pos = 1000;
-                    break;
-                default:
-                    return 0;
+        int total = 0;
+        int n = s.length();
+
+        for (int i = 0; i < n; ++i) {
+            if (map[s[i]] < map[s[i+1]]) {
+                total -= map[s[i]];
+            } else {
+                total += map[s[i]];
             }
-
-            ret += pos;
-            if (temp < pos) {
-                ret -= temp * 2; // ex: IV, ret = 1 + 5 - 1*2 = 4
-            }
-            temp = pos;
         }
 
-        return ret;
+        return total;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Map
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    int solution2(string s) {
+        unordered_map<char, int> m = {
+            {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+            {'C', 100}, {'D', 500}, {'M', 1000}
+        };
+        
+        int total = 0;
+        int n = s.length();
+        
+        for (int i = 0; i < n; i++) {
+            if (i < n - 1 && m[s[i]] < m[s[i+1]]) {
+                total -= m[s[i]];
+            } else {
+                total += m[s[i]];
+            }
+        }
+        return total;
     }
 };
