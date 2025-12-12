@@ -1,4 +1,12 @@
 /**
+ * Map
+ *
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @return {number}
  */
@@ -30,29 +38,20 @@ var romanToInt = function (s) {
 
 
 // Solution
-// Solution 1
-var solution1 = function (s) {
-  symbols = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000,
-  };
-  value = 0;
-  for (let i = 0; i < s.length; i += 1) {
-    symbols[s[i]] < symbols[s[i + 1]]
-      ? (value -= symbols[s[i]])
-      : (value += symbols[s[i]]);
-  }
-  return value;
-};
-
-// Solution 2
-var solution2 = function (s) {
-  const sym = {
+/**
+ * Map
+ *
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var solution = function (s) {
+  const romanMap = {
     I: 1,
     V: 5,
     X: 10,
@@ -62,19 +61,18 @@ var solution2 = function (s) {
     M: 1000,
   };
 
-  let result = 0;
+  let total = 0;
 
   for (let i = 0; i < s.length; i++) {
-    const cur = sym[s[i]];
-    const next = sym[s[i + 1]];
+    const currentVal = romanMap[s[i]];
+    const nextVal = romanMap[s[i + 1]];
 
-    if (cur < next) {
-      result += next - cur;
-      i++;
+    if (nextVal > currentVal) {
+      total -= currentVal;
     } else {
-      result += cur;
+      total += currentVal;
     }
   }
 
-  return result;
+  return total;
 };
