@@ -1,4 +1,12 @@
 class RomanToInteger:
+    """
+    # Map
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def romanToInt(self, s: str) -> int:
         roman = {
             "I": 1,
@@ -28,43 +36,62 @@ class RomanToInteger:
 
 
     # Solution
+    """
     # Solution 1
+    #
+    # Left-to-Right Pass
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, s: str) -> int:
-        translations = {
-            "I": 1,
-            "V": 5,
-            "X": 10,
-            "L": 50,
-            "C": 100,
-            "D": 500,
-            "M": 1000,
+        roman_map = {
+            'I': 1, 'V': 5, 'X': 10, 'L': 50,
+            'C': 100, 'D': 500, 'M': 1000
         }
-        number = 0
-        s = s.replace("IV", "IIII").replace("IX", "VIIII")
-        s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
-        s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
-        for char in s:
-            number += translations[char]
-        return number
-
-    # Solution 2
-    def solution2(self, s: str) -> int:
-        m = {
-            "I": 1,
-            "V": 5,
-            "X": 10,
-            "L": 50,
-            "C": 100,
-            "D": 500,
-            "M": 1000,
-        }
-
-        ans = 0
-
-        for i in range(len(s)):
-            if i < len(s) - 1 and m[s[i]] < m[s[i + 1]]:
-                ans -= m[s[i]]
+        
+        total = 0
+        n = len(s)
+        
+        for i in range(n):
+            current_val = roman_map[s[i]]
+            
+            if i < n - 1 and current_val < roman_map[s[i+1]]:
+                total -= current_val
             else:
-                ans += m[s[i]]
+                total += current_val
+                
+        return total
 
-        return ans
+    """
+    # Solution 2
+    #
+    # Right-to-Left Pass
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, s: str) -> int:
+        roman_map = {
+            'I': 1, 'V': 5, 'X': 10, 'L': 50,
+            'C': 100, 'D': 500, 'M': 1000
+        }
+        
+        total = 0
+        prev_val = 0
+        
+        for char in reversed(s):
+            curr_val = roman_map[char]
+            
+            if curr_val < prev_val:
+                total -= curr_val
+            else:
+                total += curr_val
+                
+            prev_val = curr_val
+            
+        return total
