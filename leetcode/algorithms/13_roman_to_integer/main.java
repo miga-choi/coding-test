@@ -2,8 +2,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 class RomanToInteger {
+    /**
+     * HashMap
+     *
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public int romanToInt(String s) {
-        Map<String, Integer> romanMap = new HashMap<String, Integer>();
+        Map<String, Integer> romanMap = new HashMap<>();
         romanMap.put("I", 1);
         romanMap.put("V", 5);
         romanMap.put("X", 10);
@@ -29,64 +37,70 @@ class RomanToInteger {
 
 
     // Solution
-    // Solution 1
-    public int solution1(String s) {
-        Map<Character, Integer> m = new HashMap<>();
-
-        m.put('I', 1);
-        m.put('V', 5);
-        m.put('X', 10);
-        m.put('L', 50);
-        m.put('C', 100);
-        m.put('D', 500);
-        m.put('M', 1000);
-
-        int ans = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            if (i < s.length() - 1 && m.get(s.charAt(i)) < m.get(s.charAt(i + 1))) {
-                ans -= m.get(s.charAt(i));
-            } else {
-                ans += m.get(s.charAt(i));
-            }
-        }
-
-        return ans;
+    private int getValue(char c) {
+        return switch (c) {
+            case 'I' -> 1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default -> 0;
+        };
     }
 
-    // Solution 2
-    public int solution2(String s) {
-        int ans = 0, num = 0;
-        for (int i = s.length() - 1; i >= 0; i--) {
-            switch (s.charAt(i)) {
-                case 'I':
-                    num = 1;
-                    break;
-                case 'V':
-                    num = 5;
-                    break;
-                case 'X':
-                    num = 10;
-                    break;
-                case 'L':
-                    num = 50;
-                    break;
-                case 'C':
-                    num = 100;
-                    break;
-                case 'D':
-                    num = 500;
-                    break;
-                case 'M':
-                    num = 1000;
-                    break;
-            }
-            if (4 * num < ans) {
-                ans -= num;
+    /**
+     * Solution 1
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    public int solution1(String s) {
+        int total = 0;
+        int length = s.length();
+        
+        for (int i = 0; i < length; i++) {
+            int currentValue = getValue(s.charAt(i));
+            
+            if (i < length - 1 && currentValue < getValue(s.charAt(i + 1))) {
+                total -= currentValue;
             } else {
-                ans += num;
+                total += currentValue;
             }
         }
-        return ans;
+        
+        return total;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Right-to-Left
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    public int solution2(String s) {
+        int total = 0;
+        int prevValue = 0;
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int currentValue = getValue(s.charAt(i));
+
+            if (currentValue < prevValue) {
+                total -= currentValue;
+            } else {
+                total += currentValue;
+            }
+            
+            prevValue = currentValue;
+        }
+
+        return total;
     }
 }
