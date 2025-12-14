@@ -1,4 +1,12 @@
 class RomanToInteger {
+  /**
+   * HashMap
+   *
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int romanToInt(String s) {
     Map<String, int> romanMap = Map<String, int>();
     romanMap["I"] = 1;
@@ -27,14 +35,18 @@ class RomanToInteger {
 
 
   // Solution
-  int solution(String s) {
-    final romans = <String, int>{
-      'IV': 4,
-      'IX': 9,
-      'XL': 40,
-      'XC': 90,
-      'CD': 400,
-      'CM': 900,
+  /**
+   * Solution 1
+   * 
+   * HashMap & Look-ahead
+   *
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
+  int solution1(String s) {
+    final Map<String, int> romanMap = {
       'I': 1,
       'V': 5,
       'X': 10,
@@ -44,17 +56,69 @@ class RomanToInteger {
       'M': 1000,
     };
 
-    int result = 0;
+    int total = 0;
+    int n = s.length;
 
-    for (final roman in romans.entries) {
-      // Get count of roman number in string
-      final count = roman.key.allMatches(s).length;
-      // Multiply count to value
-      result += roman.value * count;
-      // Remove the Roman number from the string so as dont repeat I in IV and IX, etc.
-      s = s.replaceAll(roman.key, '');
+    for (int i = 0; i < n; i++) {
+      int currentValue = romanMap[s[i]]!;
+
+      int nextValue = (i + 1 < n) ? romanMap[s[i + 1]]! : 0;
+
+      if (currentValue < nextValue) {
+        total -= currentValue;
+      } else {
+        total += currentValue;
+      }
     }
 
-    return result;
+    return total;
+  }
+
+  /**
+   * Solution 2
+   *
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
+  int solution2(String s) {
+    int total = 0;
+    int prevValue = 0;
+
+    for (int i = s.length - 1; i >= 0; i--) {
+      int currentValue = _getValue(s[i]);
+
+      if (currentValue < prevValue) {
+        total -= currentValue;
+      } else {
+        total += currentValue;
+      }
+
+      prevValue = currentValue;
+    }
+
+    return total;
+  }
+
+  int _getValue(String char) {
+    switch (char) {
+      case 'I':
+        return 1;
+      case 'V':
+        return 5;
+      case 'X':
+        return 10;
+      case 'L':
+        return 50;
+      case 'C':
+        return 100;
+      case 'D':
+        return 500;
+      case 'M':
+        return 1000;
+      default:
+        return 0;
+    }
   }
 }
