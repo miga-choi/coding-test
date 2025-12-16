@@ -67,7 +67,7 @@ var solution1 = function (strs) {
  *   N - Length of `strs`
  *   L - Length of Longest `str` in `strs`
  *   - Time Complexity: O(N * L * logᴺ)
- *   - Space Complexity: O(1)
+ *   - Space Complexity: O(logᴺ)
  */
 /**
  * @param {string[]} strs

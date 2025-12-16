@@ -40,7 +40,7 @@ public:
      *   N - Size of `strs`
      *   L - Length of Shortest `str` in `strs
      *   - Time Complexity: O(N * Logᴺ + M)
-     *   - Space Complexity: O(1)
+     *   - Space Complexity: O(logᴺ)
      */
     string solution1(vector<string>& strs) {
         sort(strs.begin(), strs.end());

@@ -1,6 +1,14 @@
 import java.util.Arrays;
 
 class LongestCommonPrefix {
+    /**
+     * Complexities:
+     *   S = N * L
+     *   N - `strsSize`
+     *   L - Length of Shortest `str` in `strs
+     *   - Time Complexity: O(S)
+     *   - Space Complexity: O(1)
+     */
     public String longestCommonPrefix(String[] strs) {
         String result = "";
 
@@ -23,27 +31,51 @@ class LongestCommonPrefix {
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * Horizontal Scanning
+     * 
+     * Complexities:
+     *   S - Quantity of characters in `strs`
+     *   - Time Complexity: O(S)
+     *   - Space Complexity: O(1)
+     */
     public String solution1(String[] strs) {
-        StringBuilder ans = new StringBuilder();
-        Arrays.sort(strs);
-        String first = strs[0];
-        String last = strs[strs.length - 1];
-        for (int i = 0; i < Math.min(first.length(), last.length()); i++) {
-            if (first.charAt(i) != last.charAt(i)) {
-                return ans.toString();
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            while (strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+
+                if (prefix.isEmpty()) {
+                    return "";
+                }
             }
-            ans.append(first.charAt(i));
         }
-        return ans.toString();
+
+        return prefix;
     }
 
-    // Solution 2
+    /**
+     * Solution 2
+     * 
+     * Sorting
+     *
+     * Complexities:
+     *   N - Length of `strs`
+     *   L - Length of Longest `str` in `strs`
+     *   - Time Complexity: O(N * L * logᴺ)
+     *   - Space Complexity: O(logᴺ)
+     */
     public String solution2(String[] strs) {
         Arrays.sort(strs);
+        
         String s1 = strs[0];
         String s2 = strs[strs.length - 1];
+        
         int idx = 0;
+
         while (idx < s1.length() && idx < s2.length()) {
             if (s1.charAt(idx) == s2.charAt(idx)) {
                 idx++;
@@ -51,17 +83,7 @@ class LongestCommonPrefix {
                 break;
             }
         }
+        
         return s1.substring(0, idx);
-    }
-
-    // Solution 3
-    public String sestSolution3(String[] strs) {
-        String prefix = strs[0];
-        for (int index = 1; index < strs.length; index++) {
-            while (strs[index].indexOf(prefix) != 0) {
-                prefix = prefix.substring(0, prefix.length() - 1);
-            }
-        }
-        return prefix;
     }
 }
