@@ -1,20 +1,20 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * Return an array of arrays of size *returnSize.
  * The sizes of the arrays are returned as *returnColumnSizes array.
  * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
  */
-
-int compare(const void* prev, const void* next) {
-    return (*(int*)prev - *(int*)next);
+int compare(const void* a, const void* b) {
+    return (*(int*)a - *(int*)b);
 }
 
 /**
- * Sort + Two-pointer
- * - Time Complexity: O(N²)
- * - Space Complexity: O(logᴺ)
+ * Sort + Two pointers
+ * 
+ * Complexities:
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {
     qsort(nums, numsSize, sizeof(int), compare);
@@ -75,18 +75,24 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 
 // Solution
 /**
- * Sort + Two-pointer
- * - Time Complexity: O(N²)
- * - Space Complexity: O(logᴺ)
+ * Sort + Two pointers
+ * 
+ * Complexities:
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 int** solution(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {
     qsort(nums, numsSize, sizeof(int), compare);
 
-    int capacity = 8;
+    int capacity = 256;
+    int count = 0;
     int** result = (int**)malloc(sizeof(int*) * capacity);
-    *returnSize = 0;
 
     for (int i = 0; i < numsSize - 2; i++) {
+        if (nums[i] > 0) {
+            break;
+        }
+
         if (i > 0 && nums[i] == nums[i - 1]) {
             continue;
         }
@@ -102,16 +108,16 @@ int** solution(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
             } else if (sum > 0) {
                 right--;
             } else {
-                if (*returnSize >= capacity) {
+                if (count >= capacity) {
                     capacity *= 2;
                     result = (int**)realloc(result, sizeof(int*) * capacity);
                 }
 
-                result[*returnSize] = (int*)malloc(sizeof(int) * 3);
-                result[*returnSize][0] = nums[i];
-                result[*returnSize][1] = nums[left];
-                result[*returnSize][2] = nums[right];
-                (*returnSize)++;
+                result[count] = (int*)malloc(sizeof(int) * 3);
+                result[count][0] = nums[i];
+                result[count][1] = nums[left];
+                result[count][2] = nums[right];
+                count++;
 
                 while (left < right && nums[left] == nums[left + 1]) {
                     left++;
@@ -126,8 +132,10 @@ int** solution(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
         }
     }
 
-    *returnColumnSizes = (int*)malloc(sizeof(int) * (*returnSize));
-    for (int i = 0; i < *returnSize; i++) {
+    *returnSize = count;
+
+    *returnColumnSizes = (int*)malloc(sizeof(int) * count);
+    for (int i = 0; i < count; i++) {
         (*returnColumnSizes)[i] = 3;
     }
 
