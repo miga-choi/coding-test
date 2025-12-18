@@ -4,9 +4,11 @@ using namespace std;
 class ThreeSum {
 public:
     /**
-     * Sort + Two-pointer
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(logᴺ)
+     * Sorting + Two pointers
+     * 
+     * Complexities:
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     vector<vector<int>> threeSum(vector<int>& nums) {
         sort(nums.begin(), nums.end());
@@ -52,13 +54,14 @@ public:
 
     // Solution
     /**
-     * Sort + Two-pointer
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(logᴺ)
+     * Sorting + Two pointers
+     * 
+     * Complexities:
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     vector<vector<int>> solution(vector<int>& nums) {
         vector<vector<int>> result;
-
         int n = nums.size();
 
         if (n < 3) {
@@ -71,6 +74,7 @@ public:
             if (nums[i] > 0) {
                 break;
             }
+
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }

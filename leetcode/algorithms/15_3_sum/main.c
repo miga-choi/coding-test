@@ -10,7 +10,7 @@ int compare(const void* a, const void* b) {
 }
 
 /**
- * Sort + Two pointers
+ * Sorting + Two pointers
  * 
  * Complexities:
  *   - Time Complexity: O(N²)
@@ -75,7 +75,7 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 
 // Solution
 /**
- * Sort + Two pointers
+ * Sorting + Two pointers
  * 
  * Complexities:
  *   - Time Complexity: O(N²)
