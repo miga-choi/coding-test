@@ -3,9 +3,11 @@ from typing import List
 
 class ThreeSum:
     """
-    # Sort + Two-pointer
+    # Sorting + Two pointers
+    #
+    # Complexities:
     # - Time Complexity: O(N²)
-    # - Space Complexity: O(N)
+    # - Space Complexity: O(1)
     """
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums = sorted(nums)
@@ -43,17 +45,23 @@ class ThreeSum:
 
     # Solution
     """
-    # Sort + Two-pointer
+    # Sorting + Two pointers
+    #
+    # Complexities:
     # - Time Complexity: O(N²)
-    # - Space Complexity: O(N)
+    # - Space Complexity: O(1)
     """
     def solution(self, nums: List[int]) -> List[List[int]]:
         results = []
+
         nums.sort()
 
         for i in range(len(nums) - 2):
             if i > 0 and nums[i] == nums[i-1]:
                 continue
+
+            if nums[i] > 0:
+                break
 
             left, right = i + 1, len(nums) - 1
 
