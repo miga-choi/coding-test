@@ -5,12 +5,15 @@ import java.util.List;
 
 class ThreeSum {
     /**
-     * Sort + Two-pointer
+     * Sorting + Two pointers
+     *
+     * Complexities:
      * - Time Complexity: O(N²)
-     * - Space Complexity: O(logᴺ)
+     * - Space Complexity: O(1)
      */
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
+
         List<List<Integer>> result = new ArrayList<>();
         int numsLength = nums.length;
 
@@ -51,9 +54,11 @@ class ThreeSum {
 
     // Solution
     /**
-     * Sort + Two-pointer
+     * Sorting + Two pointers
+     *
+     * Complexities:
      * - Time Complexity: O(N²)
-     * - Space Complexity: O(logᴺ)
+     * - Space Complexity: O(1)
      */
     public List<List<Integer>> solution(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
