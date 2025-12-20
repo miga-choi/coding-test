@@ -8,8 +8,10 @@
 
 /**
  * Recursion: Backtracking (DFS)
- * - Time Complexity: O(4ᴺ)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   - Time Complexity: O(4ᴺ)
+ *   - Space Complexity: O(N)
  */
 int getLettersLength(char digit) {
     switch (digit) {
@@ -96,53 +98,56 @@ char** letterCombinations(char* digits, int* returnSize) {
 // Solution
 /**
  * Recursion: Backtracking (DFS)
- * - Time Complexity: O(4ᴺ)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   - Time Complexity: O(4ᴺ)
+ *   - Space Complexity: O(N)
  */
-const char* mapping[] = {
-    "", "", "abc", "def",
-    "ghi", "jkl", "mno",
-    "pqrs", "tuv", "wxyz"
+const char* KEYPAD[10] = {
+  "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
 };
 
-void backtrack(const char* digits, int index, char* current_combination,
-               char*** result, int* returnSize, int* capacity) {
-    if (index == strlen(digits)) {
-        if (*returnSize >= *capacity) {
-            *capacity *= 2;
-            *result = (char**)realloc(*result, sizeof(char*) * (*capacity));
-        }
-
-        (*result)[*returnSize] = strdup(current_combination);
-        (*returnSize)++;
+void backtrack(const char* digits, int index, char* path, char** result, int* count) {
+    if (digits[index] == '\0') {
+        path[index] = '\0';
+        result[*count] = (char*)malloc(sizeof(char) * (strlen(path) + 1));
+        strcpy(result[*count], path);
+        (*count)++;
         return;
     }
 
     int digit = digits[index] - '0';
-    const char* letters = mapping[digit];
+    const char* letters = KEYPAD[digit];
 
     for (int i = 0; i < strlen(letters); i++) {
-        current_combination[index] = letters[i];
-        backtrack(digits, index + 1, current_combination, result, returnSize, capacity);
+        path[index] = letters[i];
+        backtrack(digits, index + 1, path, result, count);
     }
 }
 
-char** solution(char* digits, int* returnSize) {
-    *returnSize = 0;
-    int len = strlen(digits);
-
-    if (len == 0) {
+char** letterCombinations(char* digits, int* returnSize) {
+    if (digits == NULL || *digits == '\0') {
+        *returnSize = 0;
         return NULL;
     }
 
-    int capacity = 8;
-    char** result = (char**)malloc(sizeof(char*) * capacity);
+    int len = strlen(digits);
+    int total_combinations = 1;
 
-    char* current_combination = (char*)malloc(sizeof(char) * (len + 1));
-    current_combination[len] = '\0';
+    for (int i = 0; i < len; i++) {
+        int digit = digits[i] - '0';
+        total_combinations *= strlen(KEYPAD[digit]);
+    }
 
-    backtrack(digits, 0, current_combination, &result, returnSize, &capacity);
+    char** result = (char**)malloc(sizeof(char*) * total_combinations);
 
-    free(current_combination);
+    char* path = (char*)malloc(sizeof(char) * (len + 1));
+
+    int count = 0;
+    backtrack(digits, 0, path, result, &count);
+
+    free(path);
+    *returnSize = count;
+
     return result;
 }
