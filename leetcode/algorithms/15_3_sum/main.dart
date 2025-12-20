@@ -1,8 +1,10 @@
 class ThreeSum {
   /**
-   * Sort + Two-pointer
+   * Sorting + Two pointers
+   *
+   * Complexities:
    * - Time Complexity: O(N²)
-   * - Space Complexity: O(logᴺ)
+   * - Space Complexity: O(1)
    */
   List<List<int>> threeSum(List<int> nums) {
     nums.sort((p, n) => p - n);
@@ -48,16 +50,14 @@ class ThreeSum {
 
   // Solution
   /**
-   * Sort + Two-pointer
+   * Sorting + Two pointers
+   *
+   * Complexities:
    * - Time Complexity: O(N²)
-   * - Space Complexity: O(logᴺ)
+   * - Space Complexity: O(1)
    */
   List<List<int>> solution(List<int> nums) {
     List<List<int>> result = [];
-
-    if (nums.length < 3) {
-      return result;
-    }
 
     nums.sort();
 
