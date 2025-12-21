@@ -1,8 +1,3 @@
-/**
- * Recursion: Backtracking (DFS)
- * - Time Complexity: O(4ᴺ)
- * - Space Complexity: O(N)
- */
 const lettersMap = {
   2: "abc",
   3: "def",
@@ -33,6 +28,13 @@ const backtracking = function (digits, result, index) {
 };
 
 /**
+ * Recursion: Backtracking (DFS)
+ *
+ * Complexities:
+ *   - Time Complexity: O(4ᴺ)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {string} digits
  * @return {string[]}
  */
@@ -51,19 +53,17 @@ var letterCombinations = function (digits) {
 // Solution
 /**
  * Recursion: Backtracking (DFS)
- * - Time Complexity: O(4ᴺ)
- * - Space Complexity: O(N)
+ *
+ * Complexities:
+ *   - Time Complexity: O(4ᴺ)
+ *   - Space Complexity: O(N)
  */
 /**
  * @param {string} digits
  * @return {string[]}
  */
-var solution = function (digits) {
-  if (digits.length === 0) {
-    return [];
-  }
-
-  const map = {
+var letterCombinations = function (digits) {
+  const phoneMap = {
     2: "abc",
     3: "def",
     4: "ghi",
@@ -77,21 +77,20 @@ var solution = function (digits) {
   const result = [];
 
   /**
-   * @param {number}
-   * @param {string}
+   * @param {number} index
+   * @param {string} currentStr
    */
-  function backtrack(index, currentString) {
+  function backtrack(index, currentStr) {
     if (index === digits.length) {
-      result.push(currentString);
+      result.push(currentStr);
       return;
     }
 
-    const currentDigit = digits[index];
-    const letters = map[currentDigit];
+    const digit = digits[index];
+    const letters = phoneMap[digit];
 
-    for (let i = 0; i < letters.length; i++) {
-      const letter = letters[i];
-      backtrack(index + 1, currentString + letter);
+    for (const char of letters) {
+      backtrack(index + 1, currentStr + char);
     }
   }
 
