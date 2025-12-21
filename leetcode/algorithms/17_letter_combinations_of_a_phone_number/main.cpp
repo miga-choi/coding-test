@@ -7,8 +7,10 @@ class LetterCombinationsOfAPhoneNumber {
 public:
     /**
      * Recursion: Backtracking (DFS)
-     * - Time Complexity: O(4ᴺ)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   - Time Complexity: O(4ᴺ)
+     *   - Space Complexity: O(N)
      */
     int getLettersLength(char digit) {
         switch (digit) {
@@ -56,8 +58,7 @@ public:
         }
     }
 
-    void backtracking(const string& digits, vector<string>& result, string& row,
-                      const int i) {
+    void backtracking(const string& digits, vector<string>& result, string& row, const int i) {
         if (i == digits.length()) {
             result.push_back(row);
             return;
@@ -86,43 +87,41 @@ public:
     // Solution
     /**
      * Recursion: Backtracking (DFS)
-     * - Time Complexity: O(4ᴺ)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   - Time Complexity: O(4ᴺ)
+     *   - Space Complexity: O(N)
      */
-    vector<string> result;
-    string digits_str;
-    unordered_map<char, string> mapping;
+    const vector<string> KEYPAD = {
+        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+    };
 
-    void backtrack(int index, string& current_combination) {
-        if (index == digits_str.length()) {
-            result.push_back(current_combination);
+    void backtrack(const string& digits, int index, string& current, vector<string>& result) {
+        if (index == digits.length()) {
+            result.push_back(current);
             return;
         }
 
-        char current_digit = digits_str[index];
-        const string& letters = mapping.at(current_digit);
+        int digit = digits[index] - '0';
+        const string& letters = KEYPAD[digit];
 
-        for (char letter : letters) {
-            current_combination.push_back(letter);
-            backtrack(index + 1, current_combination);
-            current_combination.pop_back();
+        for (char c : letters) {
+            current.push_back(c);
+            backtrack(digits, index + 1, current, result);
+            current.pop_back();
         }
     }
 
     vector<string> solution(string digits) {
+        vector<string> result;
+        
         if (digits.empty()) {
-            return {};
+            return result;
         }
 
-        mapping = {{'2', "abc"}, {'3', "def"},  {'4', "ghi"}, {'5', "jkl"},
-                   {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}};
-
-        this->digits_str = digits;
-        result.clear();
-        string initial_combination = "";
-
-        backtrack(0, initial_combination);
-
+        string current;
+        backtrack(digits, 0, current, result);
+        
         return result;
     }
 };
