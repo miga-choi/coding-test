@@ -5,8 +5,10 @@ import java.util.Map;
 class LetterCombinationsOfAPhoneNumber {
     /**
      * Recursion: Backtracking (DFS)
-     * - Time Complexity: O(4ᴺ)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   - Time Complexity: O(4ᴺ)
+     *   - Space Complexity: O(N)
      */
     Map<Character, String> lettersMap = Map.of(
             '2', "abc",
@@ -45,38 +47,42 @@ class LetterCombinationsOfAPhoneNumber {
     // Solution
     /**
      * Recursion: Backtracking (DFS)
-     * - Time Complexity: O(4ᴺ)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   - Time Complexity: O(4ᴺ)
+     *   - Space Complexity: O(N)
      */
-    private final String[] KEYPAD = {
-        "", "", "abc", "def",
-        "ghi", "jkl", "mno",
-        "pqrs", "tuv", "wxyz"
+    private static final String[] KEYPAD = {
+        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
     };
 
-    private void backtrack(List<String> result, String digits, StringBuilder currentCombination, int index) {
+    private void backtrack(List<String> result, String digits, StringBuilder current, int index) {
         if (index == digits.length()) {
-            result.add(currentCombination.toString());
+            result.add(current.toString());
             return;
         }
 
-        char digit = digits.charAt(index);
-        String letters = KEYPAD[digit - '0'];
+        int digit = digits.charAt(index) - '0';
+        String letters = KEYPAD[digit];
 
         for (char letter : letters.toCharArray()) {
-            currentCombination.append(letter);
-            backtrack(result, digits, currentCombination, index + 1);
-            currentCombination.deleteCharAt(currentCombination.length() - 1);
+            current.append(letter);
+            
+            backtrack(result, digits, current, index + 1);
+            
+            current.deleteCharAt(current.length() - 1);
         }
     }
 
     public List<String> solution(String digits) {
         List<String> result = new ArrayList<>();
+        
         if (digits == null || digits.length() == 0) {
             return result;
         }
 
         backtrack(result, digits, new StringBuilder(), 0);
+        
         return result;
     }
 }
