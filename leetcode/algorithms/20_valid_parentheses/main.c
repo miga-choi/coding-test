@@ -4,8 +4,11 @@
 
 /**
  * LIFO (Last-In, First-Out): Stack
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 bool isValid(char* s) {
     char stack[strlen(s)];
@@ -35,8 +38,11 @@ bool isValid(char* s) {
 // Solution
 /**
  * LIFO (Last-In, First-Out): Stack
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 bool solution(char* s) {
     int len = strlen(s);
@@ -45,37 +51,39 @@ bool solution(char* s) {
         return false;
     }
 
-    if (len == 0) {
-        return true;
-    }
-
     char* stack = (char*)malloc(sizeof(char) * len);
     int top = -1;
 
     for (int i = 0; i < len; i++) {
-        char c = s[i];
+        char current = s[i];
 
-        if (c == '(' || c == '{' || c == '[') {
-            stack[++top] = c;
+        if (current == '(' || current == '{' || current == '[') {
+            stack[++top] = current;
         } else {
             if (top == -1) {
                 free(stack);
                 return false;
             }
 
-            char top_char = stack[top--];
+            char open = stack[top--];
 
-            if ((c == ')' && top_char != '(') ||
-                (c == '}' && top_char != '{') ||
-                (c == ']' && top_char != '[')) {
+            if (current == ')' && open != '(') {
+                free(stack);
+                return false;
+            }
+            if (current == '}' && open != '{') {
+                free(stack);
+                return false;
+            }
+            if (current == ']' && open != '[') {
                 free(stack);
                 return false;
             }
         }
     }
 
-    bool is_valid = (top == -1);
-    free(stack);
+    bool result = (top == -1);
 
-    return is_valid;
+    free(stack);
+    return result;
 }
