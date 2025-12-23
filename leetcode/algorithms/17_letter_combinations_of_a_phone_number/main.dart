@@ -1,8 +1,10 @@
 class LetterCombinationsOfAPhoneNumber {
   /**
    * Recursion: Backtracking (DFS)
-   * - Time Complexity: O(4ᴺ)
-   * - Space Complexity: O(N)
+   *
+   * Complexities:
+   *   - Time Complexity: O(4ᴺ)
+   *   - Space Complexity: O(N)
    */
   List<String> letterCombinations(String digits) {
     Map<String, String> lettersMap = {
@@ -42,8 +44,10 @@ class LetterCombinationsOfAPhoneNumber {
   // Solution
   /**
    * Recursion: Backtracking (DFS)
-   * - Time Complexity: O(4ᴺ)
-   * - Space Complexity: O(N)
+   *
+   * Complexities:
+   *   - Time Complexity: O(4ᴺ)
+   *   - Space Complexity: O(N)
    */
   final Map<String, String> phoneMap = {
     '2': 'abc',
@@ -56,28 +60,25 @@ class LetterCombinationsOfAPhoneNumber {
     '9': 'wxyz',
   };
 
-  void _backtrack(int index, String currentCombination, String digits, List<String> result) {
-    if (index == digits.length) {
-      result.add(currentCombination);
-      return;
-    }
-
-    String letters = phoneMap[digits[index]]!;
-
-    for (int i = 0; i < letters.length; i++) {
-      _backtrack(index + 1, currentCombination + letters[i], digits, result);
-    }
-  }
-
   List<String> solution(String digits) {
-    if (digits.isEmpty) {
-      return [];
-    }
-
     List<String> result = [];
 
-    _backtrack(0, "", digits, result);
+    void backtrack(int index, String currentStr) {
+      if (index == digits.length) {
+        result.add(currentStr);
+        return;
+      }
 
+      String digit = digits[index];
+      String letters = phoneMap[digit]!;
+
+      for (int i = 0; i < letters.length; i++) {
+        backtrack(index + 1, currentStr + letters[i]);
+      }
+    }
+
+    backtrack(0, "");
+    
     return result;
   }
 }
