@@ -7,8 +7,11 @@ class ValidParentheses {
 public:
     /**
      * LIFO (Last-In, First-Out): Stack
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     bool isValid(string s) {
         stack<char> char_stack;
@@ -40,29 +43,27 @@ public:
     // Solution
     /**
      * LIFO (Last-In, First-Out): Stack
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * 
+     * Complexities:
+     *   N - Length of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     bool solution(string s) {
-        if (s.length() % 2 != 0) {
-            return false;
-        }
-
         stack<char> st;
-        unordered_map<char, char> matching_pairs = {
-            {')', '('},
-            {'}', '{'},
-            {']', '['}
-        };
 
         for (char c : s) {
-            if (matching_pairs.count(c)) {
-                if (st.empty() || st.top() != matching_pairs[c]) {
+            if (c == '(') {
+                st.push(')');
+            } else if (c == '{') {
+                st.push('}');
+            } else if (c == '[') {
+                st.push(']');
+            } else {
+                if (st.empty() || st.top() != c) {
                     return false;
                 }
                 st.pop();
-            } else {
-                st.push(c);
             }
         }
 
