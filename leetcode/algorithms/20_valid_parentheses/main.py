@@ -1,8 +1,11 @@
 class validParentheses(object):
     """
-    LIFO (Last-In, First-Out): Stack
-    - Time Complexity: O(N)
-    - Space Complexity: O(N)
+    # LIFO (Last-In, First-Out): Stack
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
     """
     def isValid(self, s: str) -> bool:
         stack = []
@@ -23,22 +26,24 @@ class validParentheses(object):
 
     # Solution
     """
-    LIFO (Last-In, First-Out): Stack
-    - Time Complexity: O(N)
-    - Space Complexity: O(N)
+    # LIFO (Last-In, First-Out): Stack
+    #
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
     """
     def solution(self, s: str) -> bool:
+        bracket_map = {')': '(', '}': '{', ']': '['}
         stack = []
 
-        mapping = {")": "(", "}": "{", "]": "["}
-
         for char in s:
-            if char in mapping.values():
-                stack.append(char)
-            elif char in mapping.keys():
-                if not stack or mapping[char] != stack.pop():
+            if char in bracket_map:
+                top_element = stack.pop() if stack else '#'
+
+                if bracket_map[char] != top_element:
                     return False
             else:
-                return False
+                stack.append(char)
 
         return not stack
