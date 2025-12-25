@@ -1,7 +1,10 @@
 /**
  * LIFO (Last-In, First-Out): Stack
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ *
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  *
  * @param {string} s
  * @return {boolean}
@@ -34,14 +37,21 @@ var isValid = function (s) {
 
 // Solution
 /**
- * LIFO (Last-In, First-Out): Stack
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Stack + Hash Map
+ *
+ * Complexities:
+ *   N - Length of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  *
  * @param {string} s
  * @return {boolean}
  */
 var solution = function (s) {
+  if (s.length % 2 !== 0) {
+    return false;
+  }
+
   const stack = [];
   const map = {
     ")": "(",
@@ -52,17 +62,14 @@ var solution = function (s) {
   for (let i = 0; i < s.length; i++) {
     const char = s[i];
 
-    if (char === "(" || char === "{" || char === "[") {
-      stack.push(char);
-    } else if (char === ")" || char === "}" || char === "]") {
-      if (stack.length === 0) {
-        return false;
-      }
+    if (map[char]) {
+      const topElement = stack.pop();
 
-      const lastOpen = stack.pop();
-      if (lastOpen !== map[char]) {
+      if (topElement !== map[char]) {
         return false;
       }
+    } else {
+      stack.push(char);
     }
   }
 
