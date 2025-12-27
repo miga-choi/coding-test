@@ -1,8 +1,11 @@
 class ValidParentheses {
   /**
    * LIFO (Last-In, First-Out): Stack
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   bool isValid(String s) {
     List<String> stack = <String>[];
@@ -32,32 +35,40 @@ class ValidParentheses {
   // Solution
   /**
    * LIFO (Last-In, First-Out): Stack
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   bool solution(String s) {
     if (s.length % 2 != 0) {
       return false;
     }
 
-    List<String> stack = [];
+    final Map<String, String> bracketMap = {
+      ')': '(',
+      '}': '{',
+      ']': '['
+    };
 
-    final Map<String, String> bracketPairs = {'(': ')', '{': '}', '[': ']'};
+    final List<String> stack = [];
 
     for (int i = 0; i < s.length; i++) {
       String char = s[i];
 
-      if (bracketPairs.containsKey(char)) {
-        stack.add(char);
-      } else {
+      if (bracketMap.containsKey(char)) {
         if (stack.isEmpty) {
           return false;
         }
 
-        String lastOpen = stack.removeLast();
-        if (bracketPairs[lastOpen] != char) {
+        String topElement = stack.removeLast();
+
+        if (topElement != bracketMap[char]) {
           return false;
         }
+      } else {
+        stack.add(char);
       }
     }
 
