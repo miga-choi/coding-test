@@ -4,10 +4,15 @@ function ListNode(val, next) {
 }
 
 /**
- * Iteration
- * - Time Complexity: O(N + M)
- * - Space Complexity: O(1)
+ * Iterative + Dummy Node
  *
+ * Complexities:
+ *   N - Length of `list1`
+ *   M - Length of `list2`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} list1
  * @param {ListNode} list2
  * @return {ListNode}
@@ -37,16 +42,21 @@ var mergeTwoLists = function (list1, list2) {
 /**
  * Solution 1
  *
- * Iteration
- * - Time Complexity: O(N + M)
- * - Space Complexity: O(1)
+ * Iterative + Dummy Node
  *
+ * Complexities:
+ *   N - Length of `list1`
+ *   M - Length of `list2`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} list1
  * @param {ListNode} list2
  * @return {ListNode}
  */
 var solution1 = function (list1, list2) {
-  const dummy = new ListNode(-1);
+  const dummy = new ListNode(0);
   let current = dummy;
 
   while (list1 !== null && list2 !== null) {
@@ -68,19 +78,24 @@ var solution1 = function (list1, list2) {
 /**
  * Solution 2
  *
- * Recursion
- * - Time Complexity: O(N + M)
- * - Space Complexity: O(N + M)
+ * Recursive
  *
+ * Complexities:
+ *   N - Length of `list1`
+ *   M - Length of `list2`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(N + M)
+ */
+/**
  * @param {ListNode} list1
  * @param {ListNode} list2
  * @return {ListNode}
  */
 var solution2 = function (list1, list2) {
-  if (list1 === null) {
+  if (!list1) {
     return list2;
   }
-  if (list2 === null) {
+  if (!list2) {
     return list1;
   }
 
