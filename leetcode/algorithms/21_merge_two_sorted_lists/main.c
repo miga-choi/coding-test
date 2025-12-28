@@ -6,7 +6,7 @@ struct ListNode {
 };
 
 /**
- * Iteration
+ * Iterative + Dummy Node
  * 
  * Complexities:
  *   N - Length of `list1`
@@ -37,7 +37,9 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
 
 // Solution
 /**
- * Iterative Method with Dummy Node
+ * Solution 1
+ * 
+ * Iterative + Dummy Node
  * 
  * Complexities:
  *   N - Length of `list1`
@@ -45,7 +47,7 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
  *   - Time Complexity: O(N + M)
  *   - Space Complexity: O(1)
  */
-struct ListNode* solution(struct ListNode* list1, struct ListNode* list2) {
+struct ListNode* solution1(struct ListNode* list1, struct ListNode* list2) {
     struct ListNode dummy;
     dummy.next = NULL;
 
@@ -70,4 +72,32 @@ struct ListNode* solution(struct ListNode* list1, struct ListNode* list2) {
     }
 
     return dummy.next;
+}
+
+/**
+ * Solution 2
+ * 
+ * Recursive
+ * 
+ * Complexities:
+ *   N - Length of `list1`
+ *   M - Length of `list2`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(N + M)
+ */
+struct ListNode* solution2(struct ListNode* list1, struct ListNode* list2) {
+    if (!list1) {
+        return list2;
+    }
+    if (!list2) {
+        return list1;
+    }
+
+    if (list1->val <= list2->val) {
+        list1->next = solution2(list1->next, list2);
+        return list1;
+    } else {
+        list2->next = solution2(list1, list2->next);
+        return list2;
+    }
 }

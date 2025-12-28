@@ -44,37 +44,45 @@ public:
     // Solution
     /**
      * Solution 1
-     * 
-     * Iteration
-     * - Time Complexity: O(N + M)
-     * - Space Complexity: O(1)
+     *
+     * Iterative + Dummy Node
+     *
+     * Complexities:
+     *   N - Length of `list1`
+     *   M - Length of `list2`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
      */
     ListNode* solution1(ListNode* list1, ListNode* list2) {
-        ListNode dummy;
-        ListNode* curr = &dummy;
+        ListNode dummy(0);
+        ListNode* tail = &dummy;
 
-        while (list1 && list2) {
+        while (list1 != nullptr && list2 != nullptr) {
             if (list1->val <= list2->val) {
-                curr->next = list1;
+                tail->next = list1;
                 list1 = list1->next;
             } else {
-                curr->next = list2;
+                tail->next = list2;
                 list2 = list2->next;
             }
-            curr = curr->next;
+            tail = tail->next;
         }
 
-        curr->next = list1 ? list1 : list2;
+        tail->next = (list1 != nullptr) ? list1 : list2;
 
         return dummy.next;
     }
 
     /**
      * Solution 2
-     * 
-     * Recursion
-     * - Time Complexity: O(N + M)
-     * - Space Complexity: O(N + M)
+     *
+     * Recursive
+     *
+     * Complexities:
+     *   N - Length of `list1`
+     *   M - Length of `list2`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(N + M)
      */
     ListNode* solution2(ListNode* list1, ListNode* list2) {
         if (!list1) {
