@@ -1,7 +1,10 @@
 /**
  * Two Pointers
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Length of `nums`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 int removeDuplicates(int* nums, int numsSize) {
     int left = 0;
@@ -17,36 +20,23 @@ int removeDuplicates(int* nums, int numsSize) {
 
 
 // Solution
-// Solution 1
-int solution1(int* nums, int numsSize) {
-    if (numsSize == 0) {
-        return 0;
-    }
+/**
+ * Two Pointers
+ * 
+ * Complexities:
+ *   N - Length of `nums`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+int solution(int* nums, int numsSize) {
+    int i = 0;
 
-    // Initialize the count of unique elements to 1
-    int k = 1; 
-
-    for (int i = 1; i < numsSize; i++) {
-        if (nums[i] != nums[k - 1]) {
-            // Overwrite the next unique element
-            nums[k] = nums[i];
-            k++;
+    for (int j = 1; j < numsSize; j++) {
+        if (nums[j] != nums[i]) {
+            i++;
+            nums[i] = nums[j];
         }
     }
 
-    return k;
-}
-
-// Solution 2
-int solution2(int* nums, int numsSize) {
-    int new_size = numsSize;
-    for (int idx = 0, i = 0, j = 1; i < numsSize; idx++, j++) {
-        while (j < numsSize && nums[i] == nums[j]) {
-            j++;
-            new_size--;
-        }
-        nums[idx] = nums[j - 1];
-        i = j;
-    }
-    return new_size;
+    return i + 1;
 }
