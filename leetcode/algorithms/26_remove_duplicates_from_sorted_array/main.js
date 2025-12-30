@@ -1,8 +1,12 @@
 /**
  * Two Pointers
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
  *
+ * Complexities:
+ *   N - Length of `nums`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} nums
  * @return {number}
  */
@@ -20,9 +24,13 @@ var removeDuplicates1 = function (nums) {
 
 /**
  * Set & Array
- * - Time Complexity: O(Nlogᴺ)
- * - Space Complexity: O(N)
- *
+ * 
+ * Complexities:
+ *   N - Length of `nums`
+ *   - Time Complexity: O(N * logᴺ)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {number[]} nums
  * @return {number}
  */
@@ -35,6 +43,18 @@ var removeDuplicates2 = function (nums) {
 
 
 // Solution
+/**
+ * Two Pointers
+ *
+ * Complexities:
+ *   N - Length of `nums`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 var solution = function (nums) {
   let i = 0;
 
