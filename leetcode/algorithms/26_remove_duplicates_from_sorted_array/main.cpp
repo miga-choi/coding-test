@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <set>
 #include <vector>
 using namespace std;
@@ -6,8 +7,11 @@ class RemoveDuplicatesFromSortedArray {
 public:
     /**
      * Two Pointers
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - Length of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int removeDuplicates1(vector<int>& nums) {
         int left = 0;
@@ -22,9 +26,12 @@ public:
     }
 
     /**
-     * set
-     * - Time Complexity: O(Nlogᴺ)
-     * - Space Complexity: O(N)
+     * Set
+     * 
+     * Complexities:
+     *   N - Length of `nums`
+     *   - Time Complexity: O(N * logᴺ)
+     *   - Space Complexity: O(N)
      */
     int removeDuplicates2(vector<int>& nums) {
         set<int> set(begin(nums), end(nums));
@@ -40,50 +47,42 @@ public:
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * Two Pointers
+     * 
+     * Complexities:
+     *   N - Length of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     int solution1(vector<int>& nums) {
-        int j = 1;
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] != nums[i - 1]) {
-                nums[j] = nums[i];
-                j++;
+        int index = 0;
+
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] != nums[index]) {
+                index++;
+                nums[index] = nums[i];
             }
         }
-        return j;
+
+        return index + 1;
     }
 
-    // Solution 2
+    /**
+     * Solution 2
+     * 
+     * std::unique
+     * 
+     * Complexities:
+     *   N - Length of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     int solution2(vector<int>& nums) {
-        int count = 0;
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] == nums[i - 1]) {
-                count++;
-            } else {
-                nums[i - count] = nums[i];
-            }
-        }
-        return nums.size() - count;
-    }
+         auto last = unique(nums.begin(), nums.end());
 
-    // Solution 3
-    int solution3(vector<int>& nums) {
-        int i = 0;
-        for (int n : nums) {
-            if (!i || n > nums[i - 1]) {
-                nums[i++] = n;
-            }
-        }
-        return i;
-    }
-
-    // Solution 4
-    int solution4(vector<int>& nums) {
-        int i = !nums.empty();
-        for (int n : nums) {
-            if (n > nums[i - 1]) {
-                nums[i++] = n;
-            }
-        }
-        return i;
+        return distance(nums.begin(), last);
     }
 };
