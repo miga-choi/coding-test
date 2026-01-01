@@ -4,8 +4,11 @@ import java.util.TreeSet;
 class RemoveDuplicatesFromSortedArray {
   /**
    * Two Pointers
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Length of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public int removeDuplicates1(int[] nums) {
     int left = 0;
@@ -21,8 +24,11 @@ class RemoveDuplicatesFromSortedArray {
 
   /**
    * TreeSet
-   * - Time Complexity: O(Nlogᴺ)
-   * - Space Complexity: O(N)
+   * 
+   * Complexities:
+   *   N - Length of `nums`
+   *   - Time Complexity: O(N * logᴺ)
+   *   - Space Complexity: O(N)
    */
   public int removeDuplicates2(int[] nums) {
     SortedSet<Integer> set = new TreeSet<>();
@@ -42,30 +48,24 @@ class RemoveDuplicatesFromSortedArray {
 
 
   // Solution
-  // Solution 1
-  public int solution1(int[] nums) {
-    int j = 1;
+  /**
+   * Two Pointers
+   *
+   * Complexities:
+   *   N - Length of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
+  public int solution(int[] nums) {
+    int k = 1;
 
     for (int i = 1; i < nums.length; i++) {
       if (nums[i] != nums[i - 1]) {
-        nums[j] = nums[i];
-        j++;
+        nums[k] = nums[i];
+        k++;
       }
     }
 
-    return j;
-  }
-
-  // Solution 2
-  public int solution2(int[] nums) {
-    int i = nums.length > 0 ? 1 : 0;
-
-    for (int n : nums) {
-      if (n > nums[i - 1]) {
-        nums[i++] = n;
-      }
-    }
-
-    return i;
+    return k;
   }
 }
