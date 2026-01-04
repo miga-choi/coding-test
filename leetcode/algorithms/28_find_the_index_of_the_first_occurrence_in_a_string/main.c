@@ -1,11 +1,13 @@
-#include <stdbool.h>
-#include <stddef.h>
 #include <string.h>
 
 /**
- * Brute-Force
- * - Time Complexity: O(N * M)
- * - Space Complexity: O(1)
+ * Brute Force, Sliding Window
+ * 
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(1)
  */
 int strStr(char* haystack, char* needle) {
     int start_idx = -1;
@@ -46,51 +48,32 @@ int strStr(char* haystack, char* needle) {
 /**
  * Solution 1
  * 
- * strstr() in <string.h>
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Brute Force, Sliding Window
+ * 
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(1)
  */
 int solution1(char* haystack, char* needle) {
-    if (*needle == '\0') {
-        return 0;
-    }
+    int h_len = strlen(haystack);
+    int n_len = strlen(needle);
 
-    char* foundPos = strstr(haystack, needle);
-
-    if (foundPos == NULL) {
+    if (h_len < n_len) {
         return -1;
     }
 
-    return (int)(foundPos - haystack);
-}
-
-/**
- * Solution 2
- * 
- * Brute-Force
- * - Time Complexity: O(N * M)
- * - Space Complexity: O(1)
- */
-int solution2(char* haystack, char* needle) {
-    int haystack_len = strlen(haystack);
-    int needle_len = strlen(needle);
-
-    if (haystack_len < needle_len) {
-        return -1;
-    }
-
-    for (int haystack_idx = 0; haystack_idx <= haystack_len - needle_len; haystack_idx++) {
-        bool match = true;
-
-        for (int needle_idx = 0; needle_idx < needle_len; needle_idx++) {
-            if (haystack[haystack_idx + needle_idx] != needle[needle_idx]) {
-                match = false;
+    for (int i = 0; i <= h_len - n_len; i++) {
+        int j;
+        for (j = 0; j < n_len; j++) {
+            if (haystack[i + j] != needle[j]) {
                 break;
             }
         }
 
-        if (match) {
-            return haystack_idx;
+        if (j == n_len) {
+            return i;
         }
     }
 
@@ -98,63 +81,21 @@ int solution2(char* haystack, char* needle) {
 }
 
 /**
- * Solution 3
+ * Solution 2
  * 
- * Knuth-Morris-Pratt (KMP) + Longest Prefix Suffix (LPS)
- * - Time Complexity: O(N + M)
- * - Space Complexity: O(M)
+ * <string.h> -> strstr
+ * 
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(1)
  */
- void compute_lps_array(char* pattern, int pattern_len, int* lps) {
-    int length = 0;
-    lps[0] = 0;
-    int idx = 1;
+int solution2(char* haystack, char* needle) {
+    char* pos = strstr(haystack, needle);
 
-    while (idx < pattern_len) {
-        if (pattern[idx] == pattern[length]) {
-            length++;
-            lps[idx] = length;
-            idx++;
-        } else {
-            if (length != 0) {
-                length = lps[length - 1];
-            } else {
-                lps[idx] = 0;
-                idx++;
-            }
-        }
-    }
-}
-
-int solution3(char* haystack, char* needle) {
-    int haystack_len = strlen(haystack);
-    int needle_len = strlen(needle);
-
-    if (haystack_len < needle_len) {
-        return -1;
-    }
-
-    int* lps = (int*)malloc(sizeof(int) * needle_len);
-
-    compute_lps_array(needle, needle_len, lps);
-
-    int haystack_idx = 0;
-    int needle_idx = 0;
-
-    while (haystack_idx < haystack_len) {
-        if (needle[needle_idx] == haystack[haystack_idx]) {
-            haystack_idx++;
-            needle_idx++;
-        }
-
-        if (needle_idx == needle_len) {
-            return haystack_idx - needle_idx;
-        } else if (haystack_idx < haystack_len && needle[needle_idx] != haystack[haystack_idx]) {
-            if (needle_idx != 0) {
-                needle_idx = lps[needle_idx - 1];
-            } else {
-                haystack_idx++;
-            }
-        }
+    if (pos != NULL) {
+        return pos - haystack;
     }
 
     return -1;
