@@ -1,8 +1,13 @@
 /**
- * Brute-Force
- * - Time Complexity: O(N * M)
- * - Space Complexity: O(1)
+ * Brute Force, Sliding Window
  *
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} haystack
  * @param {string} needle
  * @return {number}
@@ -38,74 +43,118 @@ var strStr = function (haystack, needle) {
 /**
  * Solution 1
  *
- * String.prototype.indexOf()
- * - Time Complexity: O(N * M)
- * - Space Complexity: O(1)
+ * Brute Force, Sliding Window
  *
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {*} haystack
  * @param {*} needle
  * @returns
  */
 var solution1 = function (haystack, needle) {
-  return haystack.indexOf(needle);
+  const N = haystack.length;
+  const M = needle.length;
+
+  for (let i = 0; i <= N - M; i++) {
+    let j = 0;
+
+    while (j < M) {
+      if (haystack[i + j] !== needle[j]) {
+        break;
+      }
+      j++;
+    }
+
+    if (j === M) {
+      return i;
+    }
+  }
+
+  return -1;
 };
 
 /**
  * Solution 2
  *
- * Knuth-Morris-Pratt (KMP)
- * - Time Complexity: O(N + M)
- * - Space Complexity: O(M)
+ * KMP (Knuth-Morris-Pratt)
  *
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(M)
+ */
+/**
  * @param {*} haystack
  * @param {*} needle
  * @returns
  */
 var solution2 = function (haystack, needle) {
-  if (needle.length === 0) {
-    return 0;
-  }
+  const N = haystack.length;
+  const M = needle.length;
 
-  const needleLen = needle.length;
-  const haystackLen = haystack.length;
-
-  const lps = new Array(needleLen).fill(0);
-  let length = 0;
+  const lps = new Array(M).fill(0);
+  let prevLPS = 0;
   let i = 1;
-  while (i < needleLen) {
-    if (needle[i] === needle[length]) {
-      length++;
-      lps[i] = length;
+
+  while (i < M) {
+    if (needle[i] === needle[prevLPS]) {
+      prevLPS++;
+      lps[i] = prevLPS;
       i++;
     } else {
-      if (length !== 0) {
-        length = lps[length - 1];
-      } else {
+      if (prevLPS === 0) {
         lps[i] = 0;
         i++;
+      } else {
+        prevLPS = lps[prevLPS - 1];
       }
     }
   }
 
-  let hay_idx = 0;
-  let nee_idx = 0;
+  let hIdx = 0;
+  let nIdx = 0;
 
-  while (hay_idx < haystackLen) {
-    if (haystack[hay_idx] === needle[nee_idx]) {
-      hay_idx++;
-      nee_idx++;
-    }
-
-    if (nee_idx === needleLen) {
-      return hay_idx - nee_idx;
-    } else if (hay_idx < haystackLen && haystack[hay_idx] !== needle[nee_idx]) {
-      if (nee_idx !== 0) {
-        nee_idx = lps[nee_idx - 1];
+  while (hIdx < N) {
+    if (haystack[hIdx] === needle[nIdx]) {
+      hIdx++;
+      nIdx++;
+      if (nIdx === M) {
+        return hIdx - M;
+      }
+    } else {
+      if (nIdx === 0) {
+        hIdx++;
       } else {
-        hay_idx++;
+        nIdx = lps[nIdx - 1];
       }
     }
   }
 
   return -1;
+};
+
+/**
+ * Solution 3
+ *
+ * built-in: indexOf()
+ *
+ * Complexities:
+ *   N - Length of `haystack`
+ *   M - Length of `needle`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(M)
+ */
+/**
+ * @param {*} haystack
+ * @param {*} needle
+ * @returns
+ */
+var solution3 = function (haystack, needle) {
+  return haystack.indexOf(needle);
 };
