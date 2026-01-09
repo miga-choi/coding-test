@@ -1,9 +1,17 @@
-import math
 import bisect
+import math
 from typing import List
 
 
 class SearchInsertPosition:
+    """
+    # Binary Search
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
     def searchInsert(self, nums: List[int], target: int) -> int:
         lo, hi = 0, len(nums)
         while lo < hi:
@@ -16,28 +24,41 @@ class SearchInsertPosition:
 
 
     # Solution
-    # Solution 1: Linear Search
+    """
+    # Solution 1
+    #
+    # Binary Search
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, nums: List[int], target: int) -> int:
-        if not nums:
-            return 0
+        left = 0
+        right = len(nums) - 1
 
-        for i, num in enumerate(nums):
-            if num >= target:
-                return i
+        while left <= right:
+            mid = (left + right) // 2
 
-        return len(nums)
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
 
-    # Solution 2: Using bisect module
+        return left
+
+    """
+    # Solution 2
+    #
+    # bisect
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
     def solution2(self, nums: List[int], target: int) -> int:
         return bisect.bisect_left(nums, target)
-
-    # Solution 3: Binary Search By Hand
-    def solution3(self, nums: List[int], target: int) -> int:
-        low, high = 0, len(nums)
-        while low < high:
-            mid = (low + high) // 2
-            if target > nums[mid]:
-                low = mid + 1
-            else:
-                high = mid
-        return low
