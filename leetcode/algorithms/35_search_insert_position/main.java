@@ -1,4 +1,12 @@
 class SearchInsertPosition {
+  /**
+   * Binary Search
+   *
+   * Complexities:
+   *   N - Size of `nums`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
   public int searchInsert(int[] nums, int target) {
     int lo = 0;
     int hi = nums.length;
@@ -15,64 +23,30 @@ class SearchInsertPosition {
 
 
   // Solution
-  // Solution 1
-  public int solution1(int[] nums, int target) {
-    if (nums == null || nums.length == 0) {
-      return 0;
-    }
+  /**
+   * Binary Search
+   *
+   * Complexities:
+   *   N - Size of `nums`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
+  public int solution(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length - 1;
 
-    int n = nums.length;
-    int l = 0;
-    int r = n - 1;
-    while (l < r) {
-      int m = l + (r - l) / 2;
+    while (left <= right) {
+      int mid = left + (right - left) / 2;
 
-      if (nums[m] == target) {
-        return m;
-      } else if (nums[m] > target) {
-        r = m; // right could be the result
-      } else {
-        l = m + 1; // m + 1 could be the result
-      }
-    }
-
-    // 1 element left at the end
-    // post-processing
-    return nums[l] < target ? l + 1 : l;
-  }
-
-  // Solution 2
-  public int solution2(int[] nums, int target) {
-    int start = 0;
-    int end = nums.length - 1;
-
-    while (start <= end) {
-      int mid = start + (end - start) / 2;
       if (nums[mid] == target) {
         return mid;
-      } else if (nums[mid] > target) {
-        end = mid - 1;
+      } else if (nums[mid] < target) {
+        left = mid + 1;
       } else {
-        start = mid + 1;
+        right = mid - 1;
       }
     }
 
-    return start;
-  }
-
-  // Solution 3
-  public int solution3(int[] nums, int target) {
-    int low = 0, high = nums.length - 1;
-    while (low <= high) {
-      int mid = (low + high) / 2;
-      if (nums[mid] == target) {
-        return mid;
-      } else if (nums[mid] > target) {
-        high = mid - 1;
-      } else {
-        low = mid + 1;
-      }
-    }
-    return low;
+    return left;
   }
 }
