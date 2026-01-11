@@ -5,9 +5,12 @@ using namespace std;
 class RotateImage {
 public:
     /**
-     * Reverse & Transpose
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * Transpose & Reverse
+     * 
+     * Complexities:
+     *   N - Size of `matrix`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     void rotate(vector<vector<int>>& matrix) {
         int size = matrix.size();
@@ -29,20 +32,23 @@ public:
     // Solution
     /**
      * Transpose & Reverse
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - Size of `matrix`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     void solution(vector<vector<int>>& matrix) {
         int n = matrix.size();
 
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j < n; ++j) {
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
                 swap(matrix[i][j], matrix[j][i]);
             }
         }
 
-        for (vector<int>& row : matrix) {
-            reverse(row.begin(), row.end());
+        for (int i = 0; i < n; i++) {
+            reverse(matrix[i].begin(), matrix[i].end());
         }
     }
 };
