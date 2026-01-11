@@ -1,7 +1,10 @@
 /**
  * Reverse & Transpose
- * - Time Complexity: O(N²)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - matrixSize
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 void swapAddress(int** a, int** b) {
     int* temp = *a;
@@ -33,8 +36,11 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 // Solution
 /**
  * Reverse & Transpose
- * - Time Complexity: O(N²)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - matrixSize
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
  */
 void swap(int* a, int* b) {
     int temp = *a;
@@ -42,7 +48,7 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
-void solution(int** matrix, int matrixSize, int* matrixColSize) {
+void rotate(int** matrix, int matrixSize, int* matrixColSize) {
     int n = matrixSize;
 
     for (int i = 0; i < n / 2; i++) {
