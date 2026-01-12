@@ -3,9 +3,12 @@ from typing import List
 
 class RotateImage:
     """
-    # Reverse & Transpose
-    # - Time Complexity: O(N²)
-    # - Space Complexity: O(1)
+    # Transpose & Reverse
+    #
+    # Complexities:
+    #   N - Length of `matrix`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
     """
     def rotate(self, matrix: List[List[int]]) -> None:
         """
@@ -34,31 +37,35 @@ class RotateImage:
     """
     # Solution 1
     #
-    # Transpose and Reflect
-    # - Time Complexity: O(N²)
-    # - Space Complexity: O(1)
+    # Transpose & Reverse
+    #
+    # Complexities:
+    #   N - Length of `matrix`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
     """
     def solution1(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
         n = len(matrix)
-
-        # Transpose the matrix
+        
         for i in range(n):
             for j in range(i, n):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-
-        # Reflect the matrix horizontally
+        
         for i in range(n):
             matrix[i].reverse()
 
     """
     # Solution 2
     #
-    # Rotate Layer by Layer
-    # - Time Complexity: O(N²)
-    # - Space Complexity: O(1)
+    # Layer-by-Layer Rotation
+    #
+    # Complexities:
+    #   N - Length of `matrix`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
     """
     def solution2(self, matrix: List[List[int]]) -> None:
         """
@@ -66,28 +73,20 @@ class RotateImage:
         """
         n = len(matrix)
         left, right = 0, n - 1
-
+        
         while left < right:
-            # top, bottom = left, right
-            top, bottom = left, right
-
-            # 레이어의 각 원소 그룹을 회전 (i는 오프셋)
             for i in range(right - left):
-                # top-left -> temp
-                topLeft = matrix[top][left + i]
-
-                # bottom-left -> top-left
+                top, bottom = left, right
+                
+                temp = matrix[top][left + i]
+                
                 matrix[top][left + i] = matrix[bottom - i][left]
-
-                # bottom-right -> bottom-left
+                
                 matrix[bottom - i][left] = matrix[bottom][right - i]
-
-                # top-right -> bottom-right
+                
                 matrix[bottom][right - i] = matrix[top + i][right]
-
-                # temp -> top-right
-                matrix[top + i][right] = topLeft
-
-            # next inner layer
+                
+                matrix[top + i][right] = temp
+            
             left += 1
             right -= 1
