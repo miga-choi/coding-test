@@ -1,8 +1,11 @@
 class RotateImage {
     /**
-     * Reverse & Transpose
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     * Transpose & Reverse
+     *
+     * Complexities:
+     *   N - Length of `matrix`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     public void rotate(int[][] matrix) {
         int length = matrix.length;
@@ -28,8 +31,11 @@ class RotateImage {
     // Solution
     /**
      * Transpose & Reverse
-     * - Time Complexity: O(N²)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Length of `matrix`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
      */
     public void solution(int[][] matrix) {
         int n = matrix.length;
@@ -43,16 +49,10 @@ class RotateImage {
         }
 
         for (int i = 0; i < n; i++) {
-            int left = 0;
-            int right = n - 1;
-
-            while (left < right) {
-                int temp = matrix[i][left];
-                matrix[i][left] = matrix[i][right];
-                matrix[i][right] = temp;
-
-                left++;
-                right--;
+            for (int j = 0; j < n / 2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - 1 - j];
+                matrix[i][n - 1 - j] = temp;
             }
         }
     }
