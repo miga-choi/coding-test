@@ -2,49 +2,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 class LengthOfLastWord {
+  /**
+   * Reverse Traversal
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   public int lengthOfLastWord(String s) {
-    String[] sArray = s.split(" ");
-    List<String> resultArray = new ArrayList<String>();
-    for (int i = 0; i < sArray.length; i++) {
-      if (sArray[i].isEmpty()) {
+    String[] strArray = s.split(" ");
+    List<String> resultArray = new ArrayList<>();
+
+    for (String str : strArray) {
+      if (str.isEmpty()) {
         continue;
       }
-      resultArray.add(sArray[i]);
+      resultArray.add(str);
     }
+
     return resultArray.get(resultArray.size() - 1).length();
   }
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Reverse Traversal
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   public int solution1(String s) {
     int length = 0;
+    int i = s.length() - 1;
 
-    // We are looking for the last word so let's go backward
-    for (int i = s.length() - 1; i >= 0; i--) {
-      if (s.charAt(i) != ' ') {
-        // a letter is found so count
-        length++;
-      } else {
-        // it's a white space instead
-        if (length > 0) {
-          // Did we already started to count a word ? Yes so we found the last word
-          return length;
-        }
-      }
+    while (i >= 0 && s.charAt(i) == ' ') {
+      i--;
     }
+
+    while (i >= 0 && s.charAt(i) != ' ') {
+      length++;
+      i--;
+    }
+
     return length;
   }
 
-  // Solution 2
+  /**
+   * Solution 2
+   * 
+   * Built-in function
+   * 
+   * Complexities:
+   *   N - Length of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
   public int solution2(String s) {
-    return s.trim().length() - s.trim().lastIndexOf(" ") - 1;
-  }
-
-  // Solution 3
-  public int solution3(String s) {
     s = s.trim();
-    int lastIndex = s.lastIndexOf(' ') + 1;
-    return s.length() - lastIndex;
+
+    int lastSpaceIndex = s.lastIndexOf(' ');
+
+    return s.length() - lastSpaceIndex - 1;
   }
 }
