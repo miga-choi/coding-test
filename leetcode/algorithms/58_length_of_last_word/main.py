@@ -1,26 +1,51 @@
 class LengthOfLastWord:
+    """
+    # Built-in function
+    # 
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def lengthOfLastWord(self, s: str) -> int:
         return len(list(filter(lambda s_: s_.strip() != "", s.split(" "))).pop(-1))
 
 
     # Solution
-    # Solution 1:
+    """
+    # Solution 1
+    # 
+    # Reverse Traversal
+    # 
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, s: str) -> int:
-        end = len(s) - 1
-        while end > 0 and s[end] == " ":
-            end -= 1
-        beg = end
-        while beg >= 0 and s[beg] != " ":
-            beg -= 1
-        return end - beg
+        length = 0
+        i = len(s) - 1
+        
+        while i >= 0 and s[i] == ' ':
+            i -= 1
+            
+        while i >= 0 and s[i] != ' ':
+            length += 1
+            i -= 1
+            
+        return length
 
-    # Solution 2:
+    """
+    # Solution 2
+    # 
+    # Built-in function
+    # 
+    # Complexities:
+    #   N - Length of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution2(self, s: str) -> int:
-        return len(s.rstrip(" ").split(" ")[-1])
-
-    # Solution 3:
-    def solution3(self, s: str) -> int:
-        wordlist = s.split()
-        if wordlist:
-            return len(wordlist[-1])
-        return 0
+        words = s.split()
+        
+        return len(words[-1])
