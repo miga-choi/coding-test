@@ -5,8 +5,10 @@
  */
 
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Complexities:
+ *   N - digitsSize 
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 int* plusOne(int* digits, int digitsSize, int* returnSize) {
     int* result = (int*)malloc(sizeof(int) * (digitsSize + 1));
@@ -37,17 +39,21 @@ int* plusOne(int* digits, int digitsSize, int* returnSize) {
 
 // Solution
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Complexities:
+ *   N - digitsSize 
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 int* solution(int* digits, int digitsSize, int* returnSize) {
     for (int i = digitsSize - 1; i >= 0; i--) {
-        digits[i]++;
+        if (digits[i] < 9) {
+            digits[i]++;
 
-        if (digits[i] < 10) {
+            *returnSize = digitsSize;
+
             int* result = (int*)malloc(sizeof(int) * digitsSize);
             memcpy(result, digits, sizeof(int) * digitsSize);
-            *returnSize = digitsSize;
+
             return result;
         }
 
