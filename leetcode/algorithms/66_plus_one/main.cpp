@@ -4,8 +4,10 @@ using namespace std;
 class PlusOne {
 public:
     /**
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * Complexities:
+     *   N - Size of `digits`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     vector<int> plusOne(vector<int>& digits) {
         vector<int> result;
@@ -32,16 +34,17 @@ public:
 
     // Solution
     /**
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Complexities:
+     *   N - Size of `digits`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
-    vector<int> solution1(vector<int>& digits) {
+    vector<int> solution(vector<int>& digits) {
         int n = digits.size();
 
         for (int i = n - 1; i >= 0; --i) {
-            digits[i]++;
-            
-            if (digits[i] < 10) {
+            if (digits[i] < 9) {
+                digits[i]++;
                 return digits;
             }
             
