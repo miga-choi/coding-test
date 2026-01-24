@@ -2,8 +2,10 @@ import java.util.Arrays;
 
 class PlusOne {
   /**
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Complexities:
+   *   N - Length of `digits`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   public int[] plusOne(int[] digits) {
     for (int i = digits.length - 1; i >= 0; i--) {
@@ -26,8 +28,10 @@ class PlusOne {
 
   // Solution
   /**
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Complexities:
+   *   N - Length of `digits`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   public int[] solution(int[] digits) {
     int n = digits.length;
@@ -41,9 +45,9 @@ class PlusOne {
       digits[i] = 0;
     }
 
-    int[] newDigits = new int[n + 1];
-    newDigits[0] = 1;
+    int[] newNumber = new int[n + 1];
+    newNumber[0] = 1;
 
-    return newDigits;
+    return newNumber;
   }
 }
