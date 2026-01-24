@@ -1,7 +1,10 @@
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
- *
+ * Complexities:
+ *   N - Length of `digits`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {number[]} digits
  * @return {number[]}
  */
@@ -22,16 +25,17 @@ var plusOne = function (digits) {
 
 // Solution
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
- *
+ * Complexities:
+ *   N - Length of `digits`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} digits
  * @return {number[]}
  */
 var solution = function (digits) {
-  const n = digits.length;
-
-  for (let i = n - 1; i >= 0; i--) {
+  for (let i = digits.length - 1; i >= 0; i--) {
     digits[i]++;
 
     if (digits[i] < 10) {
