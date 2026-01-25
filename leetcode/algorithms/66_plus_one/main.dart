@@ -1,7 +1,9 @@
 class PlusOne {
   /**
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Complexities:
+   *   N - Length of `digits`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   List<int> plusOne(List<int> digits) {
     for (int i = digits.length - 1; i >= 0; i--) {
@@ -20,16 +22,17 @@ class PlusOne {
 
   // Solution
   /**
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Complexities:
+   *   N - Length of `digits`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   List<int> solution(List<int> digits) {
     int n = digits.length;
 
     for (int i = n - 1; i >= 0; i--) {
-      digits[i]++;
-
-      if (digits[i] < 10) {
+      if (digits[i] < 9) {
+        digits[i]++;
         return digits;
       }
 
