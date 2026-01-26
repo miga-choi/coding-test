@@ -1,9 +1,19 @@
+#include <algorithm>
 #include <stdlib.h>
 #include <string>
 using namespace std;
 
 class AddBinary {
 public:
+    /**
+     * Reverse Iteration
+     *
+     * Complexities:
+     *   N - Size of `a`
+     *   M - Size of `b`
+     *   - Time Complexity: O(max(N, M))
+     *   - Space Complexity: O(max(N, M))
+     */
     string addBinary(string a, string b) {
         int size_a = a.size();
         int size_b = b.size();
@@ -40,64 +50,39 @@ public:
 
 
     // Solution
-    // Solution 1
-    string solution1(string a, string b) {
-        string res;
+    /**
+     * Reverse
+     * 
+     * Complexities:
+     *   N - Size of `a`
+     *   M - Size of `b`
+     *   - Time Complexity: O(max(N, M))
+     *   - Space Complexity: O(max(N, M))
+     */
+    string solution(string a, string b) {
+        string result = "";
         int i = a.length() - 1;
         int j = b.length() - 1;
         int carry = 0;
-        while (i >= 0 || j >= 0) {
+
+        while (i >= 0 || j >= 0 || carry) {
             int sum = carry;
+            
             if (i >= 0) {
                 sum += a[i--] - '0';
             }
+            
             if (j >= 0) {
                 sum += b[j--] - '0';
             }
-            carry = sum > 1 ? 1 : 0;
-            res += to_string(sum % 2);
-        }
-        if (carry) {
-            res += to_string(carry);
-        }
-        reverse(res.begin(), res.end());
-        return res;
-    }
 
-    // Solution 2
-    string solution2(string a, string b) {
-        string ans;
-        int carry = 0;
-        int i = a.length() - 1;
-        int j = b.length() - 1;
+            result += to_string(sum % 2); 
 
-        while (i >= 0 || j >= 0 || carry) {
-            if (i >= 0) {
-                carry += a[i--] - '0';
-            }
-            if (j >= 0) {
-                carry += b[j--] - '0';
-            }
-            ans += carry % 2 + '0';
-            carry /= 2;
+            carry = sum / 2;
         }
 
-        reverse(begin(ans), end(ans));
-        return ans;
-    }
+        reverse(result.begin(), result.end());
 
-    // Solution 3
-    string solution3(string a, string b) {
-        string s = "";
-
-        int c = 0, i = a.size() - 1, j = b.size() - 1;
-        while (i >= 0 || j >= 0 || c == 1) {
-            c += i >= 0 ? a[i--] - '0' : 0;
-            c += j >= 0 ? b[j--] - '0' : 0;
-            s = char(c % 2 + '0') + s;
-            c /= 2;
-        }
-
-        return s;
+        return result;
     }
 };
