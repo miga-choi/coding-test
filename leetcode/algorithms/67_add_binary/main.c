@@ -1,6 +1,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * Reverse Iteration
+ * 
+ * Complexities:
+ *   N - Length of `a` 
+ *   M - Length of `b` 
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(max(N, M))
+ */
 char* addbinary(char* a, char* b) {
     int size_a = strlen(a);
     int size_b = strlen(b);
@@ -37,80 +46,42 @@ char* addbinary(char* a, char* b) {
 
 
 // Solution
-// Solution 1
-char* solution1(char* a, char* b) {
-    int i, j, k, c = 0;
-    char* res;
-
-    i = strlen(a);
-    j = strlen(b);
-    k = i > j ? i : j;
-    k += 2;
-
-    res = (char*)malloc(k * sizeof(char));
-
-    i--;
-    j--;
-    res[--k] = '\0';
-
-    while (--k >= 0) {
-        c += i >= 0 ? a[i--] - '0' : 0;
-        c += j >= 0 ? b[j--] - '0' : 0;
-
-        res[k] = c % 2 + '0';
-        c /= 2;
-    }
-
-    if (res[0] == '0') {
-        memmove(res, res + 1, strlen(res) * sizeof(char));
-    }
-
-    return res;
-}
-
-// Solution 2
-char* solution2(char* a, char* b) {
-    int sizeA = strlen(a);
-    int sizeB = strlen(b);
-    int sizeOutput = (sizeA > sizeB ? sizeA : sizeB) + 1;
-    char* output = (char*)malloc(sizeOutput + 1);
-    int sum = 0;
-
-    output[sizeOutput] = '\0';
-
-    while (sizeA > 0 || sizeB > 0 || sum > 0) {
-        if (sizeA > 0) {
-            sum += a[--sizeA] - '0';
-        }
-        if (sizeB > 0) {
-            sum += b[--sizeB] - '0';
-        }
-        output[--sizeOutput] = sum % 2 + '0';
-        sum /= 2;
-    }
-    return output + sizeOutput;
-}
-
-// Solution 3
-char* solution3(char* a, char* b) {
-    int la = strlen(a);
-    int lb = strlen(b);
-    int lr = la > lb ? la : lb;
+/**
+ * Reverse Iteration
+ * 
+ * Complexities:
+ *   N - Length of `a` 
+ *   M - Length of `b` 
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(max(N, M))
+ */
+char* solution(char* a, char* b) {
+    int i = strlen(a) - 1;
+    int j = strlen(b) - 1;
     int carry = 0;
-    char* res = (char*)calloc(lr + 2, sizeof(char));
-    res[lr + 1] = '\0';
-    la--;
-    lb--;
-    while (la >= 0 || lb >= 0) {
-        int ba = la >= 0 ? a[la--] - '0' : 0;
-        int bb = lb >= 0 ? b[lb--] - '0' : 0;
-        int br = ba ^ bb ^ carry;
-        carry = (ba & bb) | (carry & (ba ^ bb));
-        res[lr--] = br + '0';
+
+    int max_len = (i > j ? i : j) + 2; 
+    
+    char* result = (char*)malloc(sizeof(char) * (max_len + 1));
+    
+    result[max_len] = '\0';
+    int k = max_len - 1;
+
+    while (i >= 0 || j >= 0 || carry) {
+        int sum = carry;
+
+        if (i >= 0) sum += a[i--] - '0';
+        
+        if (j >= 0) sum += b[j--] - '0';
+
+        result[k--] = (sum % 2) + '0';
+        
+        carry = sum / 2;
     }
-    if (!carry) {
-        return res + 1;
+
+    if (k == 0) {
+        return result + 1;
     }
-    res[0] = '1';
-    return res;
+
+    return result;
 }
