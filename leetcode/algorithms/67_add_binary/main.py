@@ -1,44 +1,60 @@
 class AddBinary:
+    """
+    # BigInt
+    #
+    # Complexities:
+    #   N - Length of `a`
+    #   M - Length of `b`
+    #   - Time Complexity: O(max(N, M))
+    #   - Space Complexity: O(max(N, M))
+    """
     def addBinary(self, a: str, b: str) -> str:
         return format(int(a, 2) + int(b, 2), "b")
 
 
     # Solution
-    # Solution 1:
+    """
+    # Solution 1
+    #
+    # Two Pointers & Carry
+    #
+    # Complexities:
+    #   N - Length of `a`
+    #   M - Length of `b`
+    #   - Time Complexity: O(max(N, M))
+    #   - Space Complexity: O(max(N, M))
+    """
     def solution1(self, a: str, b: str) -> str:
-        res = ""
-        i, j, carry = len(a) - 1, len(b) - 1, 0
-        while i >= 0 or j >= 0:
-            sum = carry
-            if i >= 0:
-                # ord is use to get value of ASCII character
-                sum += ord(a[i]) - ord( "0")
-            if j >= 0:
-                sum += ord(b[j]) - ord("0")
-            i, j = i - 1, j - 1
-            carry = 1 if sum > 1 else 0
-            res += str(sum % 2)
-
-        if carry != 0:
-            res += str(carry)
-
-        return res[::-1]
-
-    # Solution 2:
-    def solution2(self, a: str, b: str) -> str:
-        s = []
+        res = []
         carry = 0
-        i = len(a) - 1
-        j = len(b) - 1
+        i, j = len(a) - 1, len(b) - 1
 
         while i >= 0 or j >= 0 or carry:
-            if i >= 0:
-                carry += int(a[i])
-                i -= 1
-            if j >= 0:
-                carry += int(b[j])
-                j -= 1
-            s.append(str(carry % 2))
-            carry //= 2
+            total = carry
 
-        return "".join(reversed(s))
+            if i >= 0:
+                total += int(a[i])
+                i -= 1
+
+            if j >= 0:
+                total += int(b[j])
+                j -= 1
+
+            res.append(str(total % 2))
+            carry = total // 2
+
+        return "".join(res[::-1])
+
+    """
+    # Solution 2
+    #
+    # Built-in function
+    #
+    # Complexities:
+    #   N - Length of `a`
+    #   M - Length of `b`
+    #   - Time Complexity: O(max(N + M))
+    #   - Space Complexity: O(max(N, M))
+    """
+    def solution2(self, a: str, b: str) -> str:
+        return bin(int(a, 2) + int(b, 2))[2:]
