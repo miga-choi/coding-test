@@ -1,46 +1,69 @@
 class AddBinary {
+  /**
+   * BigInt
+   *
+   * Complexities:
+   *   N - Length of `a`
+   *   M - Length of `b`
+   *   - Time Complexity: O(max(N, M))
+   *   - Space Complexity: O(max(N, M))
+   */
   String addBinary(String a, String b) {
-    return (BigInt.parse(a, radix: 2) + BigInt.parse(b, radix: 2))
-        .toRadixString(2);
+    return (BigInt.parse(a, radix: 2) + BigInt.parse(b, radix: 2)).toRadixString(2);
   }
 
 
   // Solution
-  String solution(String a, String b) {
-    // result string
-    String sum = "";
+  /**
+   * Reverse Iteration
+   *
+   * Complexities:
+   *   N - Length of `a`
+   *   M - Length of `b`
+   *   - Time Complexity: O(max(N, M))
+   *   - Space Complexity: O(max(N, M))
+   */
+  String solution1(String a, String b) {
+    StringBuffer sb = StringBuffer();
 
-    // c = carry
-    // i = last index of string a
-    // j = last index of string b
-    int i = a.length - 1, j = b.length - 1, c = 0;
+    int i = a.length - 1;
+    int j = b.length - 1;
+    int carry = 0;
 
-    // i == 0 || j == 0 means run loop till we cover
-    // both strings completely and c > 0 states
-    // even if we covered both strings but carry still remains
-    while (i >= 0 || j >= 0 || c > 0) {
-      // carry=carry+ int value of a[i]
+    while (i >= 0 || j >= 0 || carry > 0) {
+      int sum = carry;
+
       if (i >= 0) {
-        c += int.parse(a[i--]);
+        if (a[i] == '1') sum++;
+        i--;
       }
 
-      // carry = carry + int value of b[j]
       if (j >= 0) {
-        c += int.parse(b[j--]);
+        if (b[j] == '1') sum++;
+        j--;
       }
 
-      // c % 2 means insert 0
-      // if carry == 0 or carry == 2 (1+1)
-      // because ('1'+'1'=0 in binary)
-      // else insert 1 ('0'+'1'=1)
-      sum = (c % 2).toString() + sum;
+      sb.write(sum % 2);
 
-      // if c == 2 or 3 there is a carry
-      // i.e 1 otherwise no carry
-      // (3 in case if prev c=1 and a[i]=1 and b[i]=1)
-      c = c ~/ 2;
+      carry = sum ~/ 2;
     }
 
-    return sum;
+    return sb.toString().split('').reversed.join('');
+  }
+
+  /**
+   * BigInt
+   *
+   * Complexities:
+   *   N - Length of `a`
+   *   M - Length of `b`
+   *   - Time Complexity: O(max(N, M))
+   *   - Space Complexity: O(max(N, M))
+   */
+  String solution2(String a, String b) {
+    BigInt numA = BigInt.parse(a, radix: 2);
+    BigInt numB = BigInt.parse(b, radix: 2);
+
+    return (numA + numB).toRadixString(2);
   }
 }
