@@ -1,3 +1,11 @@
+/**
+ * Binary Search
+ * 
+ * Complexities:
+ *   N - Value of `x` 
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
 int mySqrt(int x) {
     if (x == 0) {
         return 0;
@@ -23,43 +31,59 @@ int mySqrt(int x) {
 
 
 // Solution
-// Solution 1
+/**
+ * Solution 1
+ * 
+ * Binary Search
+ * 
+ * Complexities:
+ *   N - Value of `x` 
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
 int solution1(int x) {
-    long r = x;
+    if (x == 0 || x == 1) {
+        return x;
+    }
+
+    int left = 1;
+    int right = x;
+    int result = 0;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (mid <= x / mid) {
+            result = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return result;
+}
+
+/**
+ * Solution 2
+ * 
+ * Newton-Raphson Method
+ * 
+ * Complexities:
+ *   N - Value of `x` 
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+int solution2(int x) {
+    if (x == 0) {
+        return 0;
+    }
+
+    long long r = x;
+    
     while (r * r > x) {
         r = (r + x / r) / 2;
     }
-    return r;
-}
 
-// Solution 2
-int solution2(int x) {
-    // long long due to some of test cases overflows integer limit.
-    long long s = 0, e = x, ans, mid;
-
-    while (s <= e) {
-        mid = (s + e) / 2;
-        if (mid * mid == x) {
-            // if the 'mid' value ever gives the result, we simply return it.
-            return mid; 
-        } else if (mid * mid < x) {
-            // if 'mid' value encounterted gives lower result, we simply discard all the values lower than mid.
-            s = mid + 1;
-            // an extra pointer 'ans' is maintained to keep track of only lowest 'mid' value.
-            ans = mid;
-        } else {
-            // if 'mid' value encountered gives greater result, we simply discard all the values greater than mid.
-            e = mid - 1;
-        }
-    }
-    return ans;
-}
-
-// Solution 3
-int solution3(int x) {
-    long long i = 0;
-    while (i * i <= x) {
-        i++;
-    }
-    return i - 1;
+    return (int)r;
 }
