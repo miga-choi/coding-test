@@ -1,4 +1,10 @@
 /**
+ * Complexities:
+ *   N - Value of `x`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number} x
  * @return {number}
  */
@@ -12,55 +18,65 @@ var mySqrt = function (x) {
 
 
 // Solution
-// Solution 1
+/**
+ * Solution 1
+ *
+ * Binary Search
+ *
+ * Complexities:
+ *   N - Value of `x`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} x
+ * @return {number}
+ */
 var solution1 = function (x) {
-  var left = 1;
-  var right = Math.floor(x / 2) + 1;
-  var mid;
+  if (x < 2) {
+    return x;
+  }
+
+  let left = 1;
+  let right = x;
 
   while (left <= right) {
-    mid = Math.floor((left + right) / 2);
+    const mid = Math.floor((left + right) / 2);
+    const square = mid * mid;
 
-    if (mid * mid > x) {
-      right = mid - 1;
-    } else if (mid * mid < x) {
+    if (square === x) {
+      return mid;
+    } else if (square < x) {
       left = mid + 1;
     } else {
-      return mid;
+      right = mid - 1;
     }
   }
 
   return right;
 };
 
-// Solution 2
+/**
+ * Solution 2
+ *
+ * Newton-Raphson Method
+ *
+ * Complexities:
+ *   N - Value of `x`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} x
+ * @return {number}
+ */
 var solution2 = function (x) {
-  let result = 1;
-  while (result * result <= x) {
-    result++;
-  }
-  return result - 1;
-};
+  if (x === 0) return 0;
 
-// Solution 3
-var solution3 = function (x) {
-  let start = 0;
-  let end = x;
-  let res = 0;
-
-  while (start < end) {
-    res = Math.ceil((start + end) / 2); // 1.
-
-    if (res * res <= x && (res + 1) * (res + 1) > x) {
-      return res; // 2.
-    }
-
-    if (res * res < x) {
-      start = res; // 3.
-    } else {
-      end = res; // 4.
-    }
+  let r = x;
+  while (r * r > x) {
+    r = Math.floor((r + x / r) / 2);
   }
 
-  return res;
+  return r;
 };
