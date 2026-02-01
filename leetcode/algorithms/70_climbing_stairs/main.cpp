@@ -6,8 +6,11 @@ class ClimbingStairs {
 public:
     /**
      * DP (Dynamic Programming)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   N - Value of `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     int climbStairs(int n) {
         if (n < 3) {
@@ -32,23 +35,40 @@ public:
     /**
      * Solution 1
      *
-     * Recursion (Time Limit Exceeded)
-     * - Time Complexity: O(2ᴺ)
-     * - Space Complexity: O(1)
+     * DP (Dynamic Programming)
+     *
+     * Complexities:
+     *   N - Value of `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int solution1(int n) {
-        if (n < 3) {
+        if (n <= 2) {
             return n;
         }
-        return solution1(n - 1) + solution1(n - 2);
+
+        int prev2 = 1;
+        int prev1 = 2;
+        
+        for (int i = 3; i <= n; ++i) {
+            int current = prev1 + prev2;
+            
+            prev2 = prev1;
+            prev1 = current;
+        }
+
+        return prev1;
     }
 
     /**
      * Solution 2
      *
-     * DP (Dynamic Programming)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * DP (Dynamic Programming) using Array
+     *
+     * Complexities:
+     *   N - Value of `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     int solution2(int n) {
         if (n <= 2) {
@@ -56,39 +76,13 @@ public:
         }
 
         vector<int> dp(n + 1);
-
         dp[1] = 1;
         dp[2] = 2;
-
-        for (int i = 3; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
+        
+        for (int i = 3; i <= n; ++i) {
+            dp[i] = dp[i-1] + dp[i-2];
         }
-
+        
         return dp[n];
-    }
-
-    /**
-     * Solution 3
-     *
-     * DP (Dynamic Programming): Space Optimization
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
-     */
-    int solution3(int n) {
-        if (n <= 2) {
-            return n;
-        }
-
-        int two_steps_before = 1;
-        int one_step_before = 2;
-
-        for (int i = 3; i <= n; i++) {
-            int current_ways = one_step_before + two_steps_before;
-
-            two_steps_before = one_step_before;
-            one_step_before = current_ways;
-        }
-
-        return one_step_before;
     }
 };
