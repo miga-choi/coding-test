@@ -1,8 +1,11 @@
 class ClimbingStairs {
   /**
-   * DP (Dynamic Programming)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * DP (Dynamic Programming) with Array
+   *
+   * Complexities:
+   *   N - Value of `n`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   public int climbStairs(int n) {
     if (n < 3) {
@@ -26,51 +29,42 @@ class ClimbingStairs {
   /**
    * Solution 1
    *
-   * Recursion (Time Limit Exceeded)
-   * - Time Complexity: O(2ᴺ)
-   * - Space Complexity: O(1)
+   * DP (Dynamic Programming)
+   *
+   * Complexities:
+   *   N - Value of `n`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public int solution1(int n) {
     if (n <= 2) {
       return n;
     }
-    return climbStairs(n - 1) + climbStairs(n - 2);
+
+    int prev2 = 1;
+    int prev1 = 2;
+
+    for (int i = 3; i <= n; i++) {
+      int current = prev1 + prev2;
+
+      prev2 = prev1;
+      prev1 = current;
+    }
+
+    return prev1;
   }
 
   /**
    * Solution 2
    *
-   * DP (Dynamic Programming): Top-down with Memoization
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
-   */
-  private int climbStairsMemo(int n, int[] memo) {
-    if (n <= 2) {
-      return n;
-    }
-
-    if (memo[n] > 0) {
-      return memo[n];
-    }
-
-    memo[n] = climbStairsMemo(n - 1, memo) + climbStairsMemo(n - 2, memo);
-
-    return memo[n];
-  }
-
-  public int solution2(int n) {
-    int[] memo = new int[n + 1];
-    return climbStairsMemo(n, memo);
-  }
-
-  /**
-   * Solution 3
+   * DP (Dynamic Programming) with Array
    *
-   * DP (Dynamic Programming): Bottom-up with Tabulation
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * Complexities:
+   *   N - Value of `n`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
-  public int solution3(int n) {
+  public int solution2(int n) {
     if (n <= 2) {
       return n;
     }
@@ -84,30 +78,5 @@ class ClimbingStairs {
     }
 
     return dp[n];
-  }
-
-  /**
-   * Solution 4
-   *
-   * DP (Dynamic Programming): Space Optimization
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
-   */
-  public int solution4(int n) {
-    if (n <= 2) {
-      return n;
-    }
-
-    int twoStepsBack = 1;
-    int oneStepBack = 2;
-
-    for (int i = 3; i <= n; i++) {
-      int currentWays = twoStepsBack + oneStepBack;
-
-      twoStepsBack = oneStepBack;
-      oneStepBack = currentWays;
-    }
-
-    return oneStepBack;
   }
 }
