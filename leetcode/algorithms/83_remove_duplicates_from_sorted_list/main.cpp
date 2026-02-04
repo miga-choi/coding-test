@@ -10,8 +10,11 @@ class RemoveDuplicatesFromSortedList {
 public:
     /**
      * Iteration
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * 
+     * Complexities:
+     *   N - Size of `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     ListNode* deleteDuplicates(ListNode* head) {
         ListNode* curr_head = head;
@@ -30,25 +33,54 @@ public:
 
     // Solution
     /**
+     * Solution 1
+     *
      * Iteration
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Size of `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
-    ListNode* solution(ListNode* head) {
-        if (!head || !head->next) {
+    ListNode* solution1(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
             return head;
         }
 
-        ListNode* current = head;
+        ListNode* curr = head;
 
-        while (current && current->next) {
-            if (current->val == current->next->val) {
-                current->next = current->next->next;
+        while (curr != nullptr && curr->next != nullptr) {
+            if (curr->val == curr->next->val) {
+                ListNode* temp = curr->next;
+                
+                curr->next = curr->next->next;
+                
+                delete temp;
             } else {
-                current = current->next;
+                curr = curr->next;
             }
         }
 
         return head;
+    }
+
+    /**
+     * Solution 2
+     *
+     * Recursion
+     *
+     * Complexities:
+     *   N - Size of `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    ListNode* solution2(ListNode* head) {
+        if (!head || !head->next) {
+            return head;
+        }
+
+        head->next = solution2(head->next);
+
+        return head->val == head->next->val ? head->next : head;
     }
 };
