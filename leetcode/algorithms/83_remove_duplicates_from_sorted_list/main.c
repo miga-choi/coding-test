@@ -7,8 +7,11 @@ struct ListNode {
 
 /**
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Size of `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 struct ListNode* deleteDuplicates(struct ListNode* head) {
     struct ListNode* curr_head = head;
@@ -27,11 +30,16 @@ struct ListNode* deleteDuplicates(struct ListNode* head) {
 
 // Solution
 /**
+ * Solution 1
+ *
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ *
+ * Complexities:
+ *   N - Size of `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
-struct ListNode* solution(struct ListNode* head) {
+struct ListNode* solution1(struct ListNode* head) {
     if (head == NULL || head->next == NULL) {
         return head;
     }
@@ -40,11 +48,35 @@ struct ListNode* solution(struct ListNode* head) {
 
     while (current != NULL && current->next != NULL) {
         if (current->val == current->next->val) {
+            struct ListNode* temp = current->next;
+            
             current->next = current->next->next;
+            
+            free(temp);
         } else {
             current = current->next;
         }
     }
 
     return head;
+}
+
+/**
+ * Solution 2
+ *
+ * Recursion
+ *
+ * Complexities:
+ *   N - Size of `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+struct ListNode* solution2(struct ListNode* head) {
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    head->next = solution2(head->next);
+
+    return head->val == head->next->val ? head->next : head;
 }
