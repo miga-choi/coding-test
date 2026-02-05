@@ -18,8 +18,11 @@ class RemoveDuplicatesFromSortedList {
 
   /**
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Size of `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public ListNode deleteDuplicates(ListNode head) {
     ListNode currHead = head;
@@ -38,25 +41,50 @@ class RemoveDuplicatesFromSortedList {
 
   // Solution
   /**
+   * Solution 1
+   * 
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Size of `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
-  public ListNode solution(ListNode head) {
-    if (head == null) {
-      return null;
+  public ListNode solution1(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
     }
 
-    ListNode current = head;
+    ListNode curr = head;
 
-    while (current != null && current.next != null) {
-      if (current.val == current.next.val) {
-        current.next = current.next.next;
+    while (curr != null && curr.next != null) {
+      if (curr.val == curr.next.val) {
+        curr.next = curr.next.next;
       } else {
-        current = current.next;
+        curr = curr.next;
       }
     }
 
     return head;
+  }
+
+  /**
+   * Solution 2
+   * 
+   * Recursion
+   *
+   * Complexities:
+   *   N - Size of `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
+  public ListNode solution2(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    head.next = solution2(head.next);
+
+    return head.val == head.next.val ? head.next : head;
   }
 }
