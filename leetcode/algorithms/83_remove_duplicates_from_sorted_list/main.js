@@ -5,9 +5,13 @@ function ListNode(val, next) {
 
 /**
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
  *
+ * Complexities:
+ *   N - Size of `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} head
  * @return {ListNode}
  */
@@ -28,21 +32,27 @@ var deleteDuplicates = function (head) {
 
 // Solution
 /**
- * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Solution 1
  *
+ * Iteration
+ *
+ * Complexities:
+ *   N - Size of `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} head
  * @return {ListNode}
  */
-var solution = function (head) {
-  if (head === null || head.next === null) {
+var solution1 = function (head) {
+  if (!head || !head.next) {
     return head;
   }
 
   let current = head;
 
-  while (current !== null && current.next !== null) {
+  while (current && current.next) {
     if (current.val === current.next.val) {
       current.next = current.next.next;
     } else {
@@ -51,4 +61,28 @@ var solution = function (head) {
   }
 
   return head;
+};
+
+/**
+ * Solution 2
+ *
+ * Recursion
+ *
+ * Complexities:
+ *   N - Size of `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var solution2 = function (head) {
+  if (!head || !head.next) {
+    return head;
+  }
+
+  head.next = solution2(head.next);
+
+  return head.val == head.next.val ? head.next : head;
 };
