@@ -7,8 +7,11 @@ class ListNode {
 class RemoveDuplicatesFromSortedList {
   /**
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Size of `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   ListNode? deleteDuplicates(ListNode? head) {
     ListNode? currHead = head;
@@ -27,11 +30,16 @@ class RemoveDuplicatesFromSortedList {
 
   // Solution
   /**
+   * Solution 1
+   * 
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Size of `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
-  ListNode? solution(ListNode? head) {
+  ListNode? solution1(ListNode? head) {
     if (head == null || head.next == null) {
       return head;
     }
@@ -47,5 +55,25 @@ class RemoveDuplicatesFromSortedList {
     }
 
     return head;
+  }
+
+  /**
+   * Solution 2
+   * 
+   * Recursion
+   *
+   * Complexities:
+   *   N - Size of `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
+  ListNode? solution2(ListNode? head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    head.next = solution2(head.next);
+
+    return head.val == head.next!.val ? head.next : head;
   }
 }
