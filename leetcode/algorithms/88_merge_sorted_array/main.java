@@ -1,10 +1,12 @@
-import java.util.Arrays;
-
 class MergeSortedArray {
   /**
-   * Three Pointers: from end to begin
-   * - Time Complexity: O(M+N)
-   * - Time Complexity: O(1)
+   * Three Pointers from the End
+   *
+   * Complexities:
+   *   M - Size of `nums1`
+   *   N - Size of `nums2`
+   *   - Time Complexity: O(M + N)
+   *   - Time Complexity: O(1)
    */
   public void merge(int[] nums1, int m, int[] nums2, int n) {
     int p1 = m - 1;
@@ -25,13 +27,36 @@ class MergeSortedArray {
 
 
   // Solution
-  // Solution 1: STL
-  public void solution1(int[] nums1, int m, int[] nums2, int n) {
-    for (int j = 0, i = m; j < n; j++) {
-      nums1[i] = nums2[j];
-      i++;
+  /**
+   * Three Pointers from the End
+   *
+   * Complexities:
+   *   M - Size of `nums1`
+   *   N - Size of `nums2`
+   *   - Time Complexity: O(M + N)
+   *   - Time Complexity: O(1)
+   */
+  public void solution(int[] nums1, int m, int[] nums2, int n) {
+    int p1 = m - 1;
+    int p2 = n - 1;
+    int p = m + n - 1;
+
+    while (p1 >= 0 && p2 >= 0) {
+      if (nums1[p1] > nums2[p2]) {
+        nums1[p] = nums1[p1];
+        p1--;
+      } else {
+        nums1[p] = nums2[p2];
+        p2--;
+      }
+      p--;
     }
-    Arrays.sort(nums1);
+
+    while (p2 >= 0) {
+      nums1[p] = nums2[p2];
+      p2--;
+      p--;
+    }
   }
 
   // Solution 2: Two Pointer
