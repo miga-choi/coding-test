@@ -1,8 +1,12 @@
 class MergeSortedArray {
   /**
-   * Three Pointers: from end to begin
-   * - Time Complexity: O(M+N)
-   * - Time Complexity: O(1)
+   * Three Pointers from the End
+   * 
+   * Complexities:
+   *   M - Size of `nums1`
+   *   N - Size of `nums2`
+   *   - Time Complexity: O(M + N)
+   *   - Time Complexity: O(1)
    */
   void merge(List<int> nums1, int m, List<int> nums2, int n) {
     int p1 = m - 1;
@@ -23,20 +27,35 @@ class MergeSortedArray {
 
 
   // Solution
+  /**
+   * Three Pointers from the End
+   * 
+   * Complexities:
+   *   M - Size of `nums1`
+   *   N - Size of `nums2`
+   *   - Time Complexity: O(M + N)
+   *   - Time Complexity: O(1)
+   */
   void solution(List<int> nums1, int m, List<int> nums2, int n) {
-    int i = m - 1, j = n - 1;
-    while (i >= 0 && j >= 0) {
-      if (nums1[i] >= nums2[j]) {
-        nums1[i + j + 1] = nums1[i];
-        i--;
+    int p1 = m - 1;
+    int p2 = n - 1;
+    int p = m + n - 1;
+
+    while (p1 >= 0 && p2 >= 0) {
+      if (nums1[p1] > nums2[p2]) {
+        nums1[p] = nums1[p1];
+        p1--;
       } else {
-        nums1[i + j + 1] = nums2[j];
-        j--;
+        nums1[p] = nums2[p2];
+        p2--;
       }
+      p--;
     }
-    while (j >= 0) {
-      nums1[j] = nums2[j];
-      j--;
+
+    while (p2 >= 0) {
+      nums1[p] = nums2[p2];
+      p2--;
+      p--;
     }
   }
 }
