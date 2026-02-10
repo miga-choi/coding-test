@@ -12,8 +12,11 @@ struct TreeNode {
 
 /**
  * Recursion
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - Size of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 void getVal(struct TreeNode* node, int* array, int* returnSize) {
     if (node) {
@@ -38,39 +41,39 @@ int* inorderTraversal(struct TreeNode* root, int* returnSize) {
  * Solution 1
  * 
  * Recursion
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ *
+ * Complexities:
+ *   N - Size of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
- void inorder_recursive(struct TreeNode* node, int** result, int* size, int* capacity) {
-    if (node == NULL) {
+int countNodes(struct TreeNode* root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+
+void inorder(struct TreeNode* root, int* arr, int* idx) {
+    if (root == NULL) {
         return;
     }
 
-    inorder_recursive(node->left, result, size, capacity);
-
-    if (*size >= *capacity) {
-        *capacity *= 2;
-        *result = (int*)realloc(*result, sizeof(int) * (*capacity));
-    }
-
-    (*result)[(*size)++] = node->val;
-
-    inorder_recursive(node->right, result, size, capacity);
+    inorder(root->left, arr, idx);
+    arr[(*idx)++] = root->val;
+    inorder(root->right, arr, idx);
 }
 
 int* solution1(struct TreeNode* root, int* returnSize) {
-    if (root == NULL) {
-        *returnSize = 0;
-        return NULL;
-    }
+    int count = countNodes(root);
 
-    int capacity = 10;
-    int size = 0;
-    int* result = (int*)malloc(sizeof(int) * capacity);
+    int* result = (int*)malloc(sizeof(int) * count);
 
-    inorder_recursive(root, &result, &size, &capacity);
+    int idx = 0;
+    inorder(root, result, &idx);
 
-    *returnSize = size;
+    *returnSize = count;
     return result;
 }
 
@@ -78,46 +81,34 @@ int* solution1(struct TreeNode* root, int* returnSize) {
  * Solution 2
  * 
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ *
+ * Complexities:
+ *   N - Size of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
- #define MAX_STACK_SIZE 1000
-struct TreeNode* stack[MAX_STACK_SIZE];
-int top = -1;
-
-void push(struct TreeNode* node) { stack[++top] = node; }
-
-struct TreeNode* pop() { return stack[top--]; }
-
-bool is_empty() { return top == -1; }
+#define MAX_NODES 100
 
 int* solution2(struct TreeNode* root, int* returnSize) {
+    int* result = (int*)malloc(sizeof(int) * MAX_NODES);
     *returnSize = 0;
-    if (root == NULL) {
-        return NULL;
-    }
 
-    int capacity = 10;
-    int* result = (int*)malloc(sizeof(int) * capacity);
+    struct TreeNode* stack[MAX_NODES];
+    int top = -1;
 
-    struct TreeNode* current = root;
-    top = -1;
+    struct TreeNode* curr = root;
 
-    while (current != NULL || !is_empty()) {
-        while (current != NULL) {
-            push(current);
-            current = current->left;
+    while (curr != NULL || top != -1) {
+        while (curr != NULL) {
+            stack[++top] = curr;
+            curr = curr->left;
         }
 
-        current = pop();
+        curr = stack[top--];
+        
+        result[(*returnSize)++] = curr->val;
 
-        if (*returnSize >= capacity) {
-            capacity *= 2;
-            result = (int*)realloc(result, sizeof(int) * capacity);
-        }
-        result[(*returnSize)++] = current->val;
-
-        current = current->right;
+        curr = curr->right;
     }
 
     return result;
