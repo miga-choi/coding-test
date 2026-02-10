@@ -15,8 +15,11 @@ class BinaryTreeInorderTraversal {
 public:
     /**
      * Recursion
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     *
+     * Complexities:
+     *   N - Size of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     void getVal(TreeNode* node, vector<int>& array) {
         if (node != nullptr) {
@@ -38,91 +41,59 @@ public:
     // Solution
     /**
      * Solution 1
-     * 
+     *
      * Recursion
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     *
+     * Complexities:
+     *   N - Size of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
-    void inorder_recursive(TreeNode* node, vector<int>& result) {
+    void inorder(TreeNode* node, vector<int>& result) {
         if (node == nullptr) {
             return;
         }
 
-        inorder_recursive(node->left, result);
-
+        inorder(node->left, result);
         result.push_back(node->val);
-
-        inorder_recursive(node->right, result);
+        inorder(node->right, result);
     }
 
     vector<int> solution1(TreeNode* root) {
         vector<int> result;
 
-        inorder_recursive(root, result);
+        inorder(root, result);
 
         return result;
     }
 
     /**
      * Solution 2
-     * 
+     *
      * Iteration
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     *
+     * Complexities:
+     *   N - Size of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     vector<int> solution2(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> s;
-        TreeNode* current = root;
-
-        while (current != nullptr || !s.empty()) {
-            while (current != nullptr) {
-                s.push(current);
-                current = current->left;
-            }
-
-            current = s.top();
-            s.pop();
-            result.push_back(current->val);
-
-            current = current->right;
-        }
-        
-        return result;
-    }
-
-    /**
-     * Solution 3
-     * 
-     * Morris Traversal
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
-     */
-    vector<int> solution3(TreeNode* root) {
-        vector<int> result;
+        stack<TreeNode*> st;
         TreeNode* curr = root;
-        TreeNode* predecessor = nullptr;
 
-        while (curr != nullptr) {
-            if (curr->left == nullptr) {
-                result.push_back(curr->val);
-                curr = curr->right;
-            } else {
-                predecessor = curr->left;
-
-                while (predecessor->right != nullptr && predecessor->right != curr) {
-                    predecessor = predecessor->right;
-                }
-
-                if (predecessor->right == nullptr) {
-                    predecessor->right = curr;
-                    curr = curr->left;
-                } else {
-                    predecessor->right = nullptr;
-                    result.push_back(curr->val);
-                    curr = curr->right;
-                }
+        while (curr != nullptr || !st.empty()) {
+            while (curr != nullptr) {
+                st.push(curr);
+                curr = curr->left;
             }
+
+            curr = st.top();
+            st.pop();
+
+            result.push_back(curr->val);
+
+            curr = curr->right;
         }
 
         return result;
