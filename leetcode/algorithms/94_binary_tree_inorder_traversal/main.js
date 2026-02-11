@@ -6,9 +6,13 @@ function TreeNode(val, left, right) {
 
 /**
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
  *
+ * Complexities:
+ *   N - Size of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -36,9 +40,13 @@ var inorderTraversal = function (root) {
  * Solution 1
  *
  * Recursion
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
  *
+ * Complexities:
+ *   N - Size of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -46,7 +54,7 @@ function solution1(root) {
   const result = [];
 
   function traverse(node) {
-    if (node === null) {
+    if (!node) {
       return;
     }
 
@@ -64,9 +72,13 @@ function solution1(root) {
  * Solution 2
  *
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
  *
+ * Complexities:
+ *   N - Size of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -85,45 +97,6 @@ function solution2(root) {
     result.push(current.val);
 
     current = current.right;
-  }
-
-  return result;
-}
-
-/**
- * Solution 3
- *
- * Morris Traversal
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
- *
- * @param {TreeNode} root
- * @return {number[]}
- */
-function solution3(root) {
-  const result = [];
-  let current = root;
-
-  while (current !== null) {
-    if (current.left === null) {
-      result.push(current.val);
-      current = current.right;
-    } else {
-      let predecessor = current.left;
-
-      while (predecessor.right !== null && predecessor.right !== current) {
-        predecessor = predecessor.right;
-      }
-
-      if (predecessor.right === null) {
-        predecessor.right = current;
-        current = current.left;
-      } else {
-        predecessor.right = null;
-        result.push(current.val);
-        current = current.right;
-      }
-    }
   }
 
   return result;
