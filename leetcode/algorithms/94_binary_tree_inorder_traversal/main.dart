@@ -8,8 +8,11 @@ class TreeNode {
 class BinaryTreeInorderTraversal {
   /**
    * Recursion
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Complexities:
+   *   N - Size of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   List<int> inorderTraversal(TreeNode? root) {
     if (root == null) {
@@ -41,85 +44,60 @@ class BinaryTreeInorderTraversal {
   // Solution
   /**
    * Solution 1
-   * 
+   *
    * Recursion
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Complexities:
+   *   N - Size of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
-  void _inorderHelper(TreeNode? node, List<int> result) {
+  void _inorder(TreeNode? node, List<int> result) {
     if (node == null) {
       return;
     }
 
-    _inorderHelper(node.left, result);
+    _inorder(node.left, result);
+
     result.add(node.val);
-    _inorderHelper(node.right, result);
+
+    _inorder(node.right, result);
   }
 
   List<int> solution1(TreeNode? root) {
     List<int> result = [];
-    _inorderHelper(root, result);
+
+    _inorder(root, result);
+
     return result;
   }
 
   /**
    * Solution 2
-   * 
+   *
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Complexities:
+   *   N - Size of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   List<int> solution2(TreeNode? root) {
     List<int> result = [];
     List<TreeNode> stack = [];
-    TreeNode? current = root;
+    TreeNode? curr = root;
 
-    while (current != null || stack.isNotEmpty) {
-      while (current != null) {
-        stack.add(current);
-        current = current.left;
+    while (curr != null || stack.isNotEmpty) {
+      while (curr != null) {
+        stack.add(curr);
+        curr = curr.left;
       }
 
-      current = stack.removeLast();
-      result.add(current.val);
+      curr = stack.removeLast();
 
-      current = current.right;
-    }
+      result.add(curr.val);
 
-    return result;
-  }
-
-  /**
-   * Solution 3
-   * 
-   * Morris Traversal
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
-   */
-  List<int> solution3(TreeNode? root) {
-    List<int> result = [];
-    TreeNode? current = root;
-
-    while (current != null) {
-      if (current.left == null) {
-        result.add(current.val);
-        current = current.right;
-      } else {
-        TreeNode predecessor = current.left!;
-
-        while (predecessor.right != null && predecessor.right != current) {
-          predecessor = predecessor.right!;
-        }
-
-        if (predecessor.right == null) {
-          predecessor.right = current;
-          current = current.left;
-        } else {
-          predecessor.right = null;
-          result.add(current.val);
-          current = current.right;
-        }
-      }
+      curr = curr.right;
     }
 
     return result;
