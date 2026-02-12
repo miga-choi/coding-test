@@ -9,11 +9,14 @@ class TreeNode:
 
 
 class BinaryTreeInorderTraversal:
-    ##
+    """
     # Iteration
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
     #
+    # Complexities:
+    #   N - Size of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         stack: List[TreeNode] = []
         result: List[TreeNode] = []
@@ -31,35 +34,42 @@ class BinaryTreeInorderTraversal:
 
 
     # Solution
-    ##
+    """
     # Solution 1
     #
     # Recursion
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
     #
+    # Complexities:
+    #   N - Size of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution1(self, root: Optional[TreeNode]) -> List[int]:
         result = []
 
-        def inorder(node: Optional[TreeNode]):
+        def dfs(node):
             if not node:
                 return
 
-            inorder(node.left)
+            dfs(node.left)
+
             result.append(node.val)
-            inorder(node.right)
 
-        inorder(root)
+            dfs(node.right)
 
+        dfs(root)
         return result
 
-    ##
+    """
     # Solution 2
     #
     # Iteration
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
     #
+    # Complexities:
+    #   N - Size of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution2(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         stack = []
@@ -71,39 +81,9 @@ class BinaryTreeInorderTraversal:
                 current = current.left
 
             current = stack.pop()
+
             result.append(current.val)
 
             current = current.right
-
-        return result
-
-    ##
-    # Solution 3
-    #
-    # Morris Traversal
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
-    #
-    def solution3(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
-        current = root
-
-        while current:
-            if not current.left:
-                result.append(current.val)
-                current = current.right
-            else:
-                predecessor = current.left
-
-                while predecessor.right and predecessor.right != current:
-                    predecessor = predecessor.right
-
-                if not predecessor.right:
-                    predecessor.right = current
-                    current = current.left
-                else:
-                    predecessor.right = None
-                    result.append(current.val)
-                    current = current.right
 
         return result
