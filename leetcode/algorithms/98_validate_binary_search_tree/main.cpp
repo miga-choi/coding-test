@@ -15,8 +15,12 @@ class ValidateBinarySearchTree {
 public:
     /**
      * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * 
+     * Complexities:
+     *   N - Size of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     bool helper(TreeNode* node, long min_val, long max_val) {
         if (node == nullptr) {
@@ -38,27 +42,59 @@ public:
 
     // Solution
     /**
-     * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * Solution 1
+     * 
+     * Recursive with Range
+     * 
+     * Complexities:
+     *   N - Size of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
-    bool isValid(TreeNode* node, long long min_val, long long max_val) {
+    bool validate(TreeNode* node, long long minVal, long long maxVal) {
         if (node == nullptr) {
             return true;
         }
 
-        if (node->val <= min_val || node->val >= max_val) {
+        if (node->val <= minVal || node->val >= maxVal) {
             return false;
         }
 
-        return isValid(node->left, min_val, node->val) &&
-               isValid(node->right, node->val, max_val);
+        return validate(node->left, minVal, node->val) && validate(node->right, node->val, maxVal);
     }
 
-    bool solution(TreeNode* root) {
-        long long min_limit = numeric_limits<long long>::min();
-        long long max_limit = numeric_limits<long long>::max();
+    bool solution1(TreeNode* root) {
+        return validate(root, LLONG_MIN, LLONG_MAX);
+    }
 
-        return isValid(root, min_limit, max_limit);
+    /**
+     * Solution 2
+     * 
+     * Inorder Traversal
+     * 
+     * Complexities:
+     *   N - Size of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
+    long long prevValue = LLONG_MIN;
+
+    bool solution2(TreeNode* root) {
+        if (root == nullptr) {
+            return true;
+        }
+
+        if (!solution2(root->left)) {
+            return false;
+        }
+
+        if (root->val <= prevValue) {
+            return false;
+        }
+        prevValue = root->val;
+
+        return solution2(root->right);
     }
 };
