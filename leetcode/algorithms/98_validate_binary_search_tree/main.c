@@ -10,8 +10,12 @@ struct TreeNode {
 
 /**
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - Size of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 bool helper(struct TreeNode* node, long min_val, long max_val) {
     if (!node) {
@@ -33,23 +37,26 @@ bool isValidBST(struct TreeNode* root) {
 
 // Solution
 /**
- * Recursion
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Recursive with Range
+ * 
+ * Complexities:
+ *   N - Size of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
-bool isValidBST_helper(struct TreeNode* node, long long min_val, long long max_val) {
+ bool validate(struct TreeNode* node, long long min, long long max) {
     if (node == NULL) {
         return true;
     }
 
-    if ((long long)node->val <= min_val || (long long)node->val >= max_val) {
+    if (node->val <= min || node->val >= max) {
         return false;
     }
 
-    return isValidBST_helper(node->left, min_val, node->val) &&
-           isValidBST_helper(node->right, node->val, max_val);
+    return validate(node->left, min, node->val) && validate(node->right, node->val, max);
 }
 
 bool solution(struct TreeNode* root) {
-    return isValidBST_helper(root, LONG_MIN, LONG_MAX);
+    return validate(root, LLONG_MIN, LLONG_MAX);
 }

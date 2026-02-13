@@ -26,9 +26,9 @@ class BinaryTreeInorderTraversal {
    * Iteration
    *
    * Complexities:
-   * N - Size of `root`
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   *   N - Size of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   public List<Integer> inorderTraversal(TreeNode root) {
     List<TreeNode> totalRoot = new ArrayList<>();
