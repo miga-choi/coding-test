@@ -6,8 +6,12 @@ function TreeNode(val, left, right) {
 
 /**
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ *
+ * Complexities:
+ *   N - Size of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 /**
  * @param {TreeNode} node
@@ -24,7 +28,9 @@ var helper = function (node, minVal, maxVal) {
     return false;
   }
 
-  return helper(node.left, minVal, node.val) && helper(node.right, node.val, maxVal);
+  return (
+    helper(node.left, minVal, node.val) && helper(node.right, node.val, maxVal)
+  );
 };
 
 /**
@@ -40,17 +46,21 @@ var isValidBST = function (root) {
 /**
  * Solution 1
  *
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Recursive with Range
+ *
+ * Complexities:
+ *   N - Size of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 /**
  * @param {TreeNode} root
  * @return {boolean}
  */
 var solution1 = function (root) {
-  function validate(node, min, max) {
-    if (node === null) {
+  const validate = (node, min, max) => {
+    if (!node) {
       return true;
     }
 
@@ -58,8 +68,10 @@ var solution1 = function (root) {
       return false;
     }
 
-    return validate(node.left, min, node.val) && validate(node.right, node.val, max);
-  }
+    return (
+      validate(node.left, min, node.val) && validate(node.right, node.val, max)
+    );
+  };
 
   return validate(root, -Infinity, Infinity);
 };
@@ -67,19 +79,23 @@ var solution1 = function (root) {
 /**
  * Solution 2
  *
- * Recursion: Inorder Traversal
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Inorder Traversal
+ *
+ * Complexities:
+ *   N - Size of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 /**
  * @param {TreeNode} root
  * @return {boolean}
  */
 var solution2 = function (root) {
-  let prev = null;
+  let prev = -Infinity;
 
-  function inorder(node) {
-    if (node === null) {
+  const inorder = (node) => {
+    if (!node) {
       return true;
     }
 
@@ -87,13 +103,13 @@ var solution2 = function (root) {
       return false;
     }
 
-    if (prev !== null && node.val <= prev) {
+    if (node.val <= prev) {
       return false;
     }
     prev = node.val;
 
     return inorder(node.right);
-  }
+  };
 
   return inorder(root);
 };
