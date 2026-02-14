@@ -1,4 +1,3 @@
-import java.util.Stack;
 
 class ValidateBinarySearchTree {
     public class TreeNode {
@@ -22,8 +21,12 @@ class ValidateBinarySearchTree {
 
     /**
      * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * 
+     * Complexities:
+     *   N - Size of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     private boolean helper(TreeNode node, long minVal, long maxVal) {
         if (node == null) {
@@ -44,13 +47,15 @@ class ValidateBinarySearchTree {
 
     // Solution
     /**
-     * Solution 1
-     * 
      * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     * 
+     * Complexities:
+     *   N - Size of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
-    private boolean isValid(TreeNode node, Integer min, Integer max) {
+    private boolean validate(TreeNode node, Integer min, Integer max) {
         if (node == null) {
             return true;
         }
@@ -58,48 +63,14 @@ class ValidateBinarySearchTree {
         if (min != null && node.val <= min) {
             return false;
         }
-
         if (max != null && node.val >= max) {
             return false;
         }
 
-        return isValid(node.left, min, node.val) && isValid(node.right, node.val, max);
+        return validate(node.left, min, node.val) && validate(node.right, node.val, max);
     }
 
     public boolean solution1(TreeNode root) {
-        return isValid(root, null, null);
-    }
-
-    /**
-     * Solution 2
-     * 
-     * Iteration: Inorder Traversal
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
-     */
-    public boolean solution2(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
-        Integer prev = null;
-
-        TreeNode current = root;
-
-        while (current != null || !stack.isEmpty()) {
-            while (current != null) {
-                stack.push(current);
-                current = current.left;
-            }
-
-            current = stack.pop();
-
-            if (prev != null && current.val <= prev) {
-                return false;
-            }
-
-            prev = current.val;
-
-            current = current.right;
-        }
-
-        return true;
+        return validate(root, null, null);
     }
 }
