@@ -8,8 +8,12 @@ class TreeNode {
 class ValidateBinarySearchTree {
   /**
    * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * 
+   * Complexities:
+   *   N - Size of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   bool _helper(TreeNode? node, int? minVal, int? maxVal) {
     if (node == null) {
@@ -37,11 +41,15 @@ class ValidateBinarySearchTree {
   /**
    * Solution 1
    * 
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * Recursive with Range
+   *
+   * Complexities:
+   *   N - Size of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
-  bool _isValid(TreeNode? node, int? min, int? max) {
+  bool _validate(TreeNode? node, int? min, int? max) {
     if (node == null) {
       return true;
     }
@@ -54,38 +62,46 @@ class ValidateBinarySearchTree {
       return false;
     }
 
-    return _isValid(node.left, min, node.val) &&
-        _isValid(node.right, node.val, max);
+    return _validate(node.left, min, node.val) &&
+        _validate(node.right, node.val, max);
   }
 
   bool solution1(TreeNode? root) {
-    return _isValid(root, null, null);
+    return _validate(root, null, null);
   }
 
   /**
    * Solution 2
    * 
-   * Recursion: Inorder Traversal
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * Inorder Traversal
+   * 
+   * Complexities:
+   *   N - Size of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
-  int? prevVal;
+  int? prev;
 
-  bool solution2(TreeNode? root) {
-    if (root == null) {
+  bool _inorder(TreeNode? node) {
+    if (node == null) {
       return true;
     }
 
-    if (!solution2(root.left)) {
+    if (!_inorder(node.left)) {
       return false;
     }
 
-    if (prevVal != null && root.val <= prevVal!) {
+    if (prev != null && node.val <= prev!) {
       return false;
     }
+    prev = node.val;
 
-    prevVal = root.val;
+    return _inorder(node.right);
+  }
 
-    return isValidBST(root.right);
+  bool solution2(TreeNode? root) {
+    prev = null;
+    return _inorder(root);
   }
 }
