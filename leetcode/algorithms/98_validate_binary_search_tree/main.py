@@ -12,8 +12,12 @@ class TreeNode:
 class ValidateBinarySearchTree:
     """
     # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
+    #
+    # Complexities:
+    #   N - Size of `node`
+    #   H - Height of `node`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
     """
     def helper(self, node: Optional[TreeNode], min_val: int, max_val: int):
         if node == None:
@@ -32,70 +36,53 @@ class ValidateBinarySearchTree:
     """
     # Solution 1
     #
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
+    # Recursive with Range
+    #
+    # Complexities:
+    #   N - Size of `node`
+    #   H - Height of `node`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
     """
     def solution1(self, root: Optional[TreeNode]) -> bool:
-        def validate(node, low=-float("inf"), high=float("inf")):
+        def validate(node: Optional[TreeNode], low: float, high: float) -> bool:
             if not node:
                 return True
 
             if not (low < node.val < high):
                 return False
 
-            return validate(node.left, low, node.val) and validate(node.right, node.val, high)
+            return (validate(node.left, low, node.val) and validate(node.right, node.val, high))
 
-        return validate(root)
+        return validate(root, float('-inf'), float('inf'))
 
     """
     # Solution 2
     #
-    # Iteration: Inorder Traversal
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
+    # Inorder Traversal
+    #
+    # Complexities:
+    #   N - Size of `node`
+    #   H - Height of `node`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
     """
     def solution2(self, root: Optional[TreeNode]) -> bool:
-        inorder_result = []
+        stack = []
+        prev = float('-inf')
+        current = root
 
-        def inorder(node):
-            if not node:
-                return
+        while stack or current:
+            while current:
+                stack.append(current)
+                current = current.left
 
-            inorder(node.left)
-            inorder_result.append(node.val)
-            inorder(node.right)
+            current = stack.pop()
 
-        inorder(root)
-
-        for i in range(len(inorder_result) - 1):
-            if inorder_result[i] >= inorder_result[i + 1]:
+            if current.val <= prev:
                 return False
+
+            prev = current.val
+            current = current.right
 
         return True
-
-    """
-    # Solution 3
-    #
-    # Iteration: Inorder Traversal
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
-    """
-    def solution3(self, root: Optional[TreeNode]) -> bool:
-        self.prev_val = -float('inf')
-
-        def inorder(node):
-            if not node:
-                return True
-
-            if not inorder(node.left):
-                return False
-
-            if node.val <= self.prev_val:
-                return False
-
-            self.prev_val = node.val
-
-            return inorder(node.right)
-
-        return inorder(root)
