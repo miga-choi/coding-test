@@ -5,10 +5,17 @@ function TreeNode(val, left, right) {
 }
 
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Recursion - DFS
  *
+ * Complexities:
+ *   M - The number of nodes in `p`
+ *   N - The number of nodes in `q`
+ *   H𝗉 - The heights of `p`
+ *   H𝗊 - The heights of `q`
+ *   - Time Complexity: O(min(M, N))
+ *   - Space Complexity: O(min(H𝗉, H𝗊))
+ */
+/**
  * @param {TreeNode} p
  * @param {TreeNode} q
  * @return {boolean}
@@ -30,20 +37,27 @@ var isSameTree = function (p, q) {
 /**
  * Solution 1
  *
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Recursion - DFS
  *
+ * Complexities:
+ *   M - The number of nodes in `p`
+ *   N - The number of nodes in `q`
+ *   H𝗉 - The heights of `p`
+ *   H𝗊 - The heights of `q`
+ *   - Time Complexity: O(min(M, N))
+ *   - Space Complexity: O(min(H𝗉, H𝗊))
+ */
+/**
  * @param {TreeNode} p
  * @param {TreeNode} q
  * @return {boolean}
  */
 function solution1(p, q) {
-  if (p === null && q === null) {
+  if (!p && !q) {
     return true;
   }
 
-  if (p === null || q === null || p.val !== q.val) {
+  if (!p || !q || p.val !== q.val) {
     return false;
   }
 
@@ -53,62 +67,37 @@ function solution1(p, q) {
 /**
  * Solution 2
  *
- * Iteration: DFS (Stack)
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Iteration - BFS
  *
+ * Complexities:
+ *   M - The number of nodes in `p`
+ *   N - The number of nodes in `q`
+ *   H𝗉 - The heights of `p`
+ *   H𝗊 - The heights of `q`
+ *   - Time Complexity: O(min(M, N))
+ *   - Space Complexity: O(min(H𝗉, H𝗊))
+ */
+/**
  * @param {TreeNode} p
  * @param {TreeNode} q
  * @return {boolean}
  */
 function solution2(p, q) {
-  const stack = [[p, q]];
-
-  while (stack.length > 0) {
-    const [nodeP, nodeQ] = stack.pop();
-
-    if (nodeP === null && nodeQ === null) {
-      continue;
-    }
-
-    if (nodeP === null || nodeQ === null || nodeP.val !== nodeQ.val) {
-      return false;
-    }
-
-    stack.push([nodeP.right, nodeQ.right]);
-    stack.push([nodeP.left, nodeQ.left]);
-  }
-
-  return true;
-}
-
-/**
- * Solution 3
- *
- * Iteration: BFS (Queue)
- * - Time Complexity: O(N)
- * - Space Complexity: O(W)
- *
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {boolean}
- */
-function solution3(p, q) {
   const queue = [[p, q]];
 
   while (queue.length > 0) {
-    const [nodeP, nodeQ] = queue.shift();
+    const [node1, node2] = queue.shift();
 
-    if (nodeP === null && nodeQ === null) {
+    if (!node1 && !node2) {
       continue;
     }
 
-    if (nodeP === null || nodeQ === null || nodeP.val !== nodeQ.val) {
+    if (!node1 || !node2 || node1.val !== node2.val) {
       return false;
     }
 
-    queue.push([nodeP.left, nodeQ.left]);
-    queue.push([nodeP.right, nodeQ.right]);
+    queue.push([node1.left, node2.left]);
+    queue.push([node1.right, node2.right]);
   }
 
   return true;
