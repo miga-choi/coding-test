@@ -10,11 +10,17 @@ class TreeNode:
 
 
 class SameTree:
-    ##
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    """
+    # Recursion - DFS
     #
+    # Complexities:
+    #   M - The number of nodes in `p`
+    #   N - The number of nodes in `q`
+    #   Hp - The heights of `p`
+    #   Hq - The heights of `q`
+    #   - Time Complexity: O(min(M, N))
+    #   - Space Complexity: O(min(Hp, Hq))
+    """
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if p is None and q is None:
             return True
@@ -26,34 +32,49 @@ class SameTree:
 
 
     # Solution
-    ##
+    """
     # Solution 1
     #
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    # Recursion - DFS
     #
+    # Complexities:
+    #   M - The number of nodes in `p`
+    #   N - The number of nodes in `q`
+    #   Hp - The heights of `p`
+    #   Hq - The heights of `q`
+    #   - Time Complexity: O(min(M, N))
+    #   - Space Complexity: O(min(Hp, Hq))
+    """
     def solution1(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if not p and not q:
             return True
 
-        if not p or not q or p.val != q.val:
+        if not p or not q:
+            return False
+
+        if p.val != q.val:
             return False
 
         return self.solution1(p.left, q.left) and self.solution1(p.right, q.right)
 
-    ##
+    """
     # Solution 2
     #
-    # Iteration: DFS (Stack)
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    # Iteration - BFS
     #
+    # Complexities:
+    #   M - The number of nodes in `p`
+    #   N - The number of nodes in `q`
+    #   Hp - The heights of `p`
+    #   Hq - The heights of `q`
+    #   - Time Complexity: O(min(M, N))
+    #   - Space Complexity: O(min(Hp, Hq))
+    """
     def solution2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        stack = [(p, q)]
+        queue = deque([(p, q)])
 
-        while stack:
-            node_p, node_q = stack.pop()
+        while queue:
+            node_p, node_q = queue.popleft()
 
             if not node_p and not node_q:
                 continue
@@ -61,29 +82,7 @@ class SameTree:
             if not node_p or not node_q or node_p.val != node_q.val:
                 return False
 
-            stack.append((node_p.right, node_q.right))
-            stack.append((node_p.left, node_q.left))
-
-        return True
-
-    ##
-    # Solution 3
-    #
-    # Iteration: BFS (Queue)
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(W)
-    #
-    def solution3(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        queue = deque([(p, q)])
-
-        while queue:
-            node_p, node_q = queue.popleft()
-
-            if not self.check(node_p, node_q):
-                return False
-
-            if node_p and node_q:
-                queue.append((node_p.left, node_q.left))
-                queue.append((node_p.right, node_q.right))
+            queue.append((node_p.left, node_q.left))
+            queue.append((node_p.right, node_q.right))
 
         return True
