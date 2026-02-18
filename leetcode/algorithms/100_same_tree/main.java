@@ -1,6 +1,5 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 class SameTree {
   public class TreeNode {
@@ -23,9 +22,15 @@ class SameTree {
   }
 
   /**
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   M - The number of nodes in `p`
+   *   N - The number of nodes in `q`
+   *   H𝗉 - The heights of `p`
+   *   H𝗊 - The heights of `q`
+   *   - Time Complexity: O(min(M, N))
+   *   - Space Complexity: O(min(H𝗉, H𝗊))
    */
   public boolean isSameTree(TreeNode p, TreeNode q) {
     if (p == null && q == null) {
@@ -43,17 +48,27 @@ class SameTree {
   // Solution
   /**
    * Solution 1
-   * 
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   M - The number of nodes in `p`
+   *   N - The number of nodes in `q`
+   *   H𝗉 - The heights of `p`
+   *   H𝗊 - The heights of `q`
+   *   - Time Complexity: O(min(M, N))
+   *   - Space Complexity: O(min(H𝗉, H𝗊))
    */
   public boolean solution1(TreeNode p, TreeNode q) {
     if (p == null && q == null) {
       return true;
     }
 
-    if (p == null || q == null || p.val != q.val) {
+    if (p == null || q == null) {
+      return false;
+    }
+
+    if (p.val != q.val) {
       return false;
     }
 
@@ -62,50 +77,21 @@ class SameTree {
 
   /**
    * Solution 2
-   * 
-   * Iteration: DFS (Stack)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Iteration - BFS
+   *
+   * Complexities:
+   *   M - The number of nodes in `p`
+   *   N - The number of nodes in `q`
+   *   H𝗉 - The heights of `p`
+   *   H𝗊 - The heights of `q`
+   *   - Time Complexity: O(min(M, N))
+   *   - Space Complexity: O(min(H𝗉, H𝗊))
    */
   public boolean solution2(TreeNode p, TreeNode q) {
-    Stack<TreeNode> stack = new Stack<>();
-
-    stack.push(p);
-    stack.push(q);
-
-    while (!stack.isEmpty()) {
-      TreeNode nodeQ = stack.pop();
-      TreeNode nodeP = stack.pop();
-
-      if (nodeP == null && nodeQ == null) {
-        continue;
-      }
-
-      if (nodeP == null || nodeQ == null || nodeP.val != nodeQ.val) {
-        return false;
-      }
-
-      stack.push(nodeP.left);
-      stack.push(nodeQ.left);
-      stack.push(nodeP.right);
-      stack.push(nodeQ.right);
-    }
-
-    return true;
-  }
-
-  /**
-   * Solution 3
-   * 
-   * Iteration: BFS (Queue)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(W)
-   */
-  public boolean solution3(TreeNode p, TreeNode q) {
     Queue<TreeNode> queue = new LinkedList<>();
-
-    queue.offer(p);
-    queue.offer(q);
+    queue.add(p);
+    queue.add(q);
 
     while (!queue.isEmpty()) {
       TreeNode nodeP = queue.poll();
@@ -119,10 +105,10 @@ class SameTree {
         return false;
       }
 
-      queue.offer(nodeP.left);
-      queue.offer(nodeQ.left);
-      queue.offer(nodeP.right);
-      queue.offer(nodeQ.right);
+      queue.add(nodeP.left);
+      queue.add(nodeQ.left);
+      queue.add(nodeP.right);
+      queue.add(nodeQ.right);
     }
 
     return true;
