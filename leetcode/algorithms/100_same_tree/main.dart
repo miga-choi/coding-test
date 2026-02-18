@@ -29,17 +29,27 @@ class SameTree {
   // Solution
   /**
    * Solution 1
-   * 
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   M - The number of nodes in `p`
+   *   N - The number of nodes in `q`
+   *   Hp - The heights of `p`
+   *   Hq - The heights of `q`
+   *   - Time Complexity: O(min(M, N))
+   *   - Space Complexity: O(min(Hp, Hq))
    */
   bool solution1(TreeNode? p, TreeNode? q) {
     if (p == null && q == null) {
       return true;
     }
 
-    if (p == null || q == null || p.val != q.val) {
+    if (p == null || q == null) {
+      return false;
+    }
+
+    if (p.val != q.val) {
       return false;
     }
 
@@ -48,21 +58,25 @@ class SameTree {
 
   /**
    * Solution 2
-   * 
-   * Iteration: DFS (Stack)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Iteration - BFS
+   *
+   * Complexities:
+   *   M - The number of nodes in `p`
+   *   N - The number of nodes in `q`
+   *   Hp - The heights of `p`
+   *   Hq - The heights of `q`
+   *   - Time Complexity: O(min(M, N))
+   *   - Space Complexity: O(min(Hp, Hq))
    */
   bool solution2(TreeNode? p, TreeNode? q) {
-    List<TreeNode?> stackP = [];
-    List<TreeNode?> stackQ = [];
+    Queue<TreeNode?> queue = Queue();
+    queue.add(p);
+    queue.add(q);
 
-    stackP.add(p);
-    stackQ.add(q);
-
-    while (stackP.isNotEmpty) {
-      TreeNode? nodeP = stackP.removeLast();
-      TreeNode? nodeQ = stackQ.removeLast();
+    while (queue.isNotEmpty) {
+      TreeNode? nodeP = queue.removeFirst();
+      TreeNode? nodeQ = queue.removeFirst();
 
       if (nodeP == null && nodeQ == null) {
         continue;
@@ -72,44 +86,10 @@ class SameTree {
         return false;
       }
 
-      stackP.add(nodeP.left);
-      stackQ.add(nodeQ.left);
-
-      stackP.add(nodeP.right);
-      stackQ.add(nodeQ.right);
-    }
-
-    return true;
-  }
-
-  /**
-   * Solution 3
-   * 
-   * Iteration: BFS (Queue)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(W)
-   */
-  bool solution3(TreeNode? p, TreeNode? q) {
-    Queue<TreeNode?> queue = Queue();
-    queue.add(p);
-    queue.add(q);
-
-    while (queue.isNotEmpty) {
-      TreeNode? node1 = queue.removeFirst();
-      TreeNode? node2 = queue.removeFirst();
-
-      if (node1 == null && node2 == null) {
-        continue;
-      }
-
-      if (node1 == null || node2 == null || node1.val != node2.val) {
-        return false;
-      }
-
-      queue.add(node1.left);
-      queue.add(node2.left);
-      queue.add(node1.right);
-      queue.add(node2.right);
+      queue.add(nodeP.left);
+      queue.add(nodeQ.left);
+      queue.add(nodeP.right);
+      queue.add(nodeQ.right);
     }
 
     return true;

@@ -27,10 +27,10 @@ class SameTree {
    * Complexities:
    *   M - The number of nodes in `p`
    *   N - The number of nodes in `q`
-   *   H𝗉 - The heights of `p`
-   *   H𝗊 - The heights of `q`
+   *   Hp - The heights of `p`
+   *   Hq - The heights of `q`
    *   - Time Complexity: O(min(M, N))
-   *   - Space Complexity: O(min(H𝗉, H𝗊))
+   *   - Space Complexity: O(min(Hp, Hq))
    */
   public boolean isSameTree(TreeNode p, TreeNode q) {
     if (p == null && q == null) {
@@ -54,10 +54,10 @@ class SameTree {
    * Complexities:
    *   M - The number of nodes in `p`
    *   N - The number of nodes in `q`
-   *   H𝗉 - The heights of `p`
-   *   H𝗊 - The heights of `q`
+   *   Hp - The heights of `p`
+   *   Hq - The heights of `q`
    *   - Time Complexity: O(min(M, N))
-   *   - Space Complexity: O(min(H𝗉, H𝗊))
+   *   - Space Complexity: O(min(Hp, Hq))
    */
   public boolean solution1(TreeNode p, TreeNode q) {
     if (p == null && q == null) {
@@ -83,10 +83,10 @@ class SameTree {
    * Complexities:
    *   M - The number of nodes in `p`
    *   N - The number of nodes in `q`
-   *   H𝗉 - The heights of `p`
-   *   H𝗊 - The heights of `q`
+   *   Hp - The heights of `p`
+   *   Hq - The heights of `q`
    *   - Time Complexity: O(min(M, N))
-   *   - Space Complexity: O(min(H𝗉, H𝗊))
+   *   - Space Complexity: O(min(Hp, Hq))
    */
   public boolean solution2(TreeNode p, TreeNode q) {
     Queue<TreeNode> queue = new LinkedList<>();

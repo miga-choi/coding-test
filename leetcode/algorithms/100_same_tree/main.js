@@ -10,10 +10,10 @@ function TreeNode(val, left, right) {
  * Complexities:
  *   M - The number of nodes in `p`
  *   N - The number of nodes in `q`
- *   H𝗉 - The heights of `p`
- *   H𝗊 - The heights of `q`
+ *   Hp - The heights of `p`
+ *   Hq - The heights of `q`
  *   - Time Complexity: O(min(M, N))
- *   - Space Complexity: O(min(H𝗉, H𝗊))
+ *   - Space Complexity: O(min(Hp, Hq))
  */
 /**
  * @param {TreeNode} p
@@ -42,10 +42,10 @@ var isSameTree = function (p, q) {
  * Complexities:
  *   M - The number of nodes in `p`
  *   N - The number of nodes in `q`
- *   H𝗉 - The heights of `p`
- *   H𝗊 - The heights of `q`
+ *   Hp - The heights of `p`
+ *   Hq - The heights of `q`
  *   - Time Complexity: O(min(M, N))
- *   - Space Complexity: O(min(H𝗉, H𝗊))
+ *   - Space Complexity: O(min(Hp, Hq))
  */
 /**
  * @param {TreeNode} p
@@ -72,10 +72,10 @@ function solution1(p, q) {
  * Complexities:
  *   M - The number of nodes in `p`
  *   N - The number of nodes in `q`
- *   H𝗉 - The heights of `p`
- *   H𝗊 - The heights of `q`
+ *   Hp - The heights of `p`
+ *   Hq - The heights of `q`
  *   - Time Complexity: O(min(M, N))
- *   - Space Complexity: O(min(H𝗉, H𝗊))
+ *   - Space Complexity: O(min(Hp, Hq))
  */
 /**
  * @param {TreeNode} p

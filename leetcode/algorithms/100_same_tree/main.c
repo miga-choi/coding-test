@@ -13,10 +13,10 @@ struct TreeNode {
  * Complexities:
  *   M - The number of nodes in `p`
  *   N - The number of nodes in `q`
- *   H𝗉 - The heights of `p`
- *   H𝗊 - The heights of `q`
+ *   Hp - The heights of `p`
+ *   Hq - The heights of `q`
  *   - Time Complexity: O(min(M, N))
- *   - Space Complexity: O(min(H𝗉, H𝗊))
+ *   - Space Complexity: O(min(Hp, Hq))
  */
 bool isSameTree(struct TreeNode* p, struct TreeNode* q) {
     if (!p && !q) {
@@ -38,10 +38,10 @@ bool isSameTree(struct TreeNode* p, struct TreeNode* q) {
  * Complexities:
  *   M - The number of nodes in `p`
  *   N - The number of nodes in `q`
- *   H𝗉 - The heights of `p`
- *   H𝗊 - The heights of `q`
+ *   Hp - The heights of `p`
+ *   Hq - The heights of `q`
  *   - Time Complexity: O(min(M, N))
- *   - Space Complexity: O(min(H𝗉, H𝗊))
+ *   - Space Complexity: O(min(Hp, Hq))
  */
 bool solution(struct TreeNode* p, struct TreeNode* q) {
     if (p == NULL && q == NULL) {
