@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <stddef.h>
 
 struct TreeNode {
     int val;
@@ -6,6 +7,15 @@ struct TreeNode {
     struct TreeNode* right;
 };
 
+/**
+ * Recursion: DFS
+ * 
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
 bool checkNode(struct TreeNode* leftNode, struct TreeNode* rightNode) {
     if (!leftNode && !rightNode) {
         return true;
@@ -24,19 +34,36 @@ bool isSymmetric(struct TreeNode *root) {
 
 
 // Solution
-bool solution_isMirror(struct TreeNode* left, struct TreeNode* right) {
-    if (!left && !right) {
+/**
+ * Recursion - DFS
+ * 
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+ bool isMirror(struct TreeNode* t1, struct TreeNode* t2) {
+    if (t1 == NULL && t2 == NULL) {
         return true;
     }
-    if (!left || !right) {
+    
+    if (t1 == NULL || t2 == NULL) {
         return false;
     }
-    return (left->val == right->val) && solution_isMirror(left->left, right->right) && solution_isMirror(left->right, right->left);
+    
+    if (t1->val != t2->val) {
+        return false;
+    }
+    
+    return isMirror(t1->left, t2->right) && isMirror(t1->right, t2->left);
 }
 
-bool solution(struct TreeNode *root) {
-    if (!root) {
+bool solution(struct TreeNode* root) {
+    if (root == NULL) {
         return true;
     }
-    return solution_isMirror(root->left, root->right);
+    
+    return isMirror(root->left, root->right);
 }
+
