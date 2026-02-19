@@ -12,6 +12,15 @@ class SymmetricTree {
     };
 
 public:
+    /**
+     * Recursion: DFS
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The heights of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     bool isSymmetric(TreeNode* root) {
         return checkNode(root->left, root->right);
     }
@@ -30,54 +39,82 @@ public:
 
 
     // Solution
-    // Solution 1: Recursive
+    /**
+     * Solution 1
+     *
+     * Recursion - DFS
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The heights of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     bool solution1(TreeNode* root) {
-        if (!root) {
+        if (root == nullptr) {
             return true;
         }
-        return solution1_isMirror(root->left, root->right);
+
+        return isMirror(root->left, root->right);
     }
 
-    bool solution1_isMirror(TreeNode* left, TreeNode* right) {
-        if (!left && !right) {
+    bool isMirror(TreeNode* t1, TreeNode* t2) {
+        if (t1 == nullptr && t2 == nullptr) {
             return true;
         }
-        if (!left || !right) {
+
+        if (t1 == nullptr || t2 == nullptr) {
             return false;
         }
-        return (left->val == right->val) && solution1_isMirror(left->left, right->right) && solution1_isMirror(left->right, right->left);
+
+        if (t1->val != t2->val) {
+            return false;
+        }
+
+        return isMirror(t1->left, t2->right) && isMirror(t1->right, t2->left);
     }
 
-    // Solution 2: Iterative
+    /**
+     * Solution 2
+     *
+     * Iteration
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The heights of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     bool solution2(TreeNode* root) {
-        TreeNode* left;
-        TreeNode* right;
         if (!root) {
             return true;
         }
 
-        queue<TreeNode*> q1, q2;
-        q1.push(root->left);
-        q2.push(root->right);
-        while (!q1.empty() && !q2.empty()) {
-            left = q1.front();
-            q1.pop();
-            right = q2.front();
-            q2.pop();
-            if (NULL == left && NULL == right) {
+        queue<TreeNode*> q;
+        q.push(root->left);
+        q.push(root->right);
+
+        while (!q.empty()) {
+            TreeNode* t1 = q.front();
+            q.pop();
+            TreeNode* t2 = q.front();
+            q.pop();
+
+            if (!t1 && !t2) {
                 continue;
             }
-            if (NULL == left || NULL == right) {
+
+            if (!t1 || !t2 || t1->val != t2->val) {
                 return false;
             }
-            if (left->val != right->val) {
-                return false;
-            }
-            q1.push(left->left);
-            q1.push(left->right);
-            q2.push(right->right);
-            q2.push(right->left);
+
+            q.push(t1->left);
+            q.push(t2->right);
+
+            q.push(t1->right);
+            q.push(t2->left);
         }
+
         return true;
     }
 };
