@@ -1,4 +1,5 @@
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class SymmetricTree {
   public class TreeNode {
@@ -20,6 +21,15 @@ class SymmetricTree {
     }
   }
 
+  /**
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   N - The number of nodes in `root`
+   *   H - The heights of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
   public boolean isSymmetric(TreeNode root) {
     if (root == null) {
       return true;
@@ -48,74 +58,78 @@ class SymmetricTree {
 
 
   // Solution
-  // Solution 1: Recursive
+  /**
+   * Solution 1
+   *
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   N - The number of nodes in `root`
+   *   H - The heights of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
   public boolean solution1(TreeNode root) {
-    return root == null || solution1_isSymmetricHelp(root.left, root.right);
-  }
-
-  private boolean solution1_isSymmetricHelp(TreeNode left, TreeNode right) {
-    if (left == null || right == null) {
-      return left == right;
+    if (root == null) {
+      return true;
     }
 
-    if (left.val != right.val) {
+    return isMirror(root.left, root.right);
+  }
+
+  private boolean isMirror(TreeNode t1, TreeNode t2) {
+    if (t1 == null && t2 == null) {
+      return true;
+    }
+
+    if (t1 == null || t2 == null) {
       return false;
     }
 
-    return (solution1_isSymmetricHelp(left.left, right.right) &&
-        solution1_isSymmetricHelp(left.right, right.left));
+    if (t1.val != t2.val) {
+      return false;
+    }
+
+    return isMirror(t1.left, t2.right) && isMirror(t1.right, t2.left);
   }
 
-  // Solution 2: Non-recursive (use Stack):
+  /**
+   * Solution 2
+   *
+   * Iteration
+   *
+   * Complexities:
+   *   N - The number of nodes in `root`
+   *   H - The heights of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
   public boolean solution2(TreeNode root) {
     if (root == null) {
       return true;
     }
 
-    Stack<TreeNode> stack = new Stack<TreeNode>();
-    TreeNode left, right;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root.left);
+    queue.add(root.right);
 
-    if (root.left != null) {
-      if (root.right == null) {
-        return false;
-      }
-      stack.push(root.left);
-      stack.push(root.right);
-    } else if (root.right != null) {
-      return false;
-    }
+    while (!queue.isEmpty()) {
+      TreeNode t1 = queue.poll();
+      TreeNode t2 = queue.poll();
 
-    while (!stack.empty()) {
-      if (stack.size() % 2 != 0) {
-        return false;
+      if (t1 == null && t2 == null) {
+        continue;
       }
 
-      right = stack.pop();
-      left = stack.pop();
-
-      if (right.val != left.val) {
+      if (t1 == null || t2 == null || t1.val != t2.val) {
         return false;
       }
 
-      if (left.left != null) {
-        if (right.right == null) {
-          return false;
-        }
-        stack.push(left.left);
-        stack.push(right.right);
-      } else if (right.right != null) {
-        return false;
-      }
+      queue.add(t1.left);
+      queue.add(t2.right);
 
-      if (left.right != null) {
-        if (right.left == null) {
-          return false;
-        }
-        stack.push(left.right);
-        stack.push(right.left);
-      } else if (right.left != null) {
-        return false;
-      }
+      queue.add(t1.right);
+      queue.add(t2.left);
     }
 
     return true;
