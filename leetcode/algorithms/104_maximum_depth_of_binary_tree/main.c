@@ -25,14 +25,14 @@ int maxDepth(struct TreeNode* root) {
 
 // Solution
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Recursion - DFS
+ * 
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
-int max(int a, int b) {
-    return (a > b) ? a : b;
-}
-
 int solution(struct TreeNode* root) {
     if (root == NULL) {
         return 0;
@@ -41,5 +41,5 @@ int solution(struct TreeNode* root) {
     int leftDepth = solution(root->left);
     int rightDepth = solution(root->right);
 
-    return 1 + max(leftDepth, rightDepth);
+    return (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
 }
