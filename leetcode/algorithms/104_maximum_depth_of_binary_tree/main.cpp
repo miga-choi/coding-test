@@ -16,9 +16,13 @@ class MaximumDepthOfBinaryTree {
 
 public:
     /**
-     * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * Recursion - DFS
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The heights of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     int maxDepth(TreeNode* root) {
         if (root == nullptr) {
@@ -36,9 +40,13 @@ public:
     /**
      * Solution 1
      * 
-     * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * Recursion - DFS
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The heights of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     int solution1(TreeNode* root) {
         if (root == nullptr) {
@@ -53,10 +61,14 @@ public:
 
     /**
      * Solution 2
-     * 
-     * Iteration: BFS (Queue)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(W)
+     *
+     * Iteration - BFS
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The heights of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     int solution2(TreeNode* root) {
         if (root == nullptr) {
@@ -85,40 +97,5 @@ public:
         }
 
         return depth;
-    }
-
-    /**
-     * Solution 3
-     * 
-     * Iteration: DFS (Stack)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
-     */
-    int solution3(TreeNode* root) {
-        if (root == nullptr) {
-            return 0;
-        }
-
-        stack<pair<TreeNode*, int>> s;
-        s.push({root, 1});
-
-        int max_depth = 0;
-
-        while (!s.empty()) {
-            pair<TreeNode*, int> current = s.top();
-            s.pop();
-
-            TreeNode* node = current.first;
-            int depth = current.second;
-
-            if (node) {
-                max_depth = max(max_depth, depth);
-
-                s.push({node->right, depth + 1});
-                s.push({node->left, depth + 1});
-            }
-        }
-
-        return max_depth;
     }
 };
