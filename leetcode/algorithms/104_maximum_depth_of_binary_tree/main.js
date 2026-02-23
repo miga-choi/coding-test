@@ -5,10 +5,15 @@ function TreeNode(val, left, right) {
 }
 
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Recursion - DFS
  *
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {number}
  */
@@ -23,15 +28,19 @@ var maxDepth = function (root) {
   return (left > right ? left : right) + 1;
 };
 
-
 // Solution
 /**
  * Solution 1
  *
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * Recursion - DFS
  *
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {number}
  */
@@ -49,10 +58,15 @@ var solution1 = function (root) {
 /**
  * Solution 2
  *
- * Iteration: BFS (Queue)
- * - Time Complexity: O(N)
- * - Space Complexity: O(W)
+ * Iteration - BFS
  *
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {number}
  */
