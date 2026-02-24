@@ -8,13 +8,15 @@ class TreeNode {
   TreeNode([this.val = 0, this.left, this.right]);
 }
 
-typedef _NodeDepthRecord = (TreeNode node, int depth);
-
 class MaximumDepthOfBinaryTree {
   /**
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   N - The number of nodes in `root`
+   *   H - The heights of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   int maxDepth(TreeNode? root) {
     if (root == null) {
@@ -31,28 +33,36 @@ class MaximumDepthOfBinaryTree {
   // Solution
   /**
    * Solution 1
-   * 
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Recursion - DFS
+   *
+   * Complexities:
+   *   N - The number of nodes in `root`
+   *   H - The heights of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   int solution1(TreeNode? root) {
     if (root == null) {
       return 0;
     }
 
-    int leftDepth = maxDepth(root.left);
-    int rightDepth = maxDepth(root.right);
+    int leftDepth = solution1(root.left);
+    int rightDepth = solution1(root.right);
 
     return max(leftDepth, rightDepth) + 1;
   }
 
   /**
    * Solution 2
-   * 
-   * Iteration: BFS (Queue)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(W)
+   *
+   * Iteration - BFS
+   *
+   * Complexities:
+   *   N - The number of nodes in `root`
+   *   H - The heights of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   int solution2(TreeNode? root) {
     if (root == null) {
@@ -64,55 +74,23 @@ class MaximumDepthOfBinaryTree {
     int depth = 0;
 
     while (queue.isNotEmpty) {
-      depth++;
       int levelSize = queue.length;
 
       for (int i = 0; i < levelSize; i++) {
-        TreeNode currentNode = queue.removeFirst();
+        TreeNode node = queue.removeFirst();
 
-        if (currentNode.left != null) {
-          queue.add(currentNode.left!);
+        if (node.left != null) {
+          queue.add(node.left!);
         }
-        if (currentNode.right != null) {
-          queue.add(currentNode.right!);
+
+        if (node.right != null) {
+          queue.add(node.right!);
         }
       }
+
+      depth++;
     }
 
     return depth;
-  }
-
-  /**
-   * Solution 3
-   * 
-   * Iteration: DFS (Stack)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
-   */
-  int solution3(TreeNode? root) {
-    if (root == null) {
-      return 0;
-    }
-
-    List<_NodeDepthRecord> stack = [];
-    stack.add((root, 1));
-    int maxD = 0;
-
-    while (stack.isNotEmpty) {
-      _NodeDepthRecord current = stack.removeLast();
-      TreeNode node = current.$1;
-      int depth = current.$2;
-
-      maxD = max(maxD, depth);
-
-      if (node.right != null) {
-        stack.add((node.right!, depth + 1));
-      }
-      if (node.left != null) {
-        stack.add((node.left!, depth + 1));
-      }
-    }
-
-    return maxD;
   }
 }
