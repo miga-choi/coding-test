@@ -2,9 +2,11 @@
 #include <vector>
 using namespace std;
 
-class Solution {
+class IntegerToRoman {
 public:
     /**
+     * Greedy
+     * 
      * Complexities:
      *   - Time Complexity: O(1)
      *   - Space Complexity: O(1)
@@ -85,6 +87,7 @@ public:
 
         return result;
     }
+
 
     // Solution
     /**
