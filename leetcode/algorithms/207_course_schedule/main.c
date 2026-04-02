@@ -11,7 +11,7 @@
  *   - Time Complexity: O(V + E)
  *   - Space Complexity: O(V + E)
  */
-bool canFinish(int numCourses, int** prerequisites, int prerequisitesSize, int* prerequisitesColSize) {
+bool solution(int numCourses, int** prerequisites, int prerequisitesSize, int* prerequisitesColSize) {
     int* inDegree = (int*)calloc(numCourses, sizeof(int));
     int* outDegree = (int*)calloc(numCourses, sizeof(int));
 
