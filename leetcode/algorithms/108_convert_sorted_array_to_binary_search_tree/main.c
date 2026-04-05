@@ -7,7 +7,10 @@ struct TreeNode {
 };
 
 /**
+ * Divide-and-conquer
+ * 
  * Complexities:
+ *   N - `numsSize`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(logᴺ)
  */
@@ -37,7 +40,10 @@ struct TreeNode* sortedArrayToBST(int* nums, int numsSize) {
 
 // Solution
 /**
+ * Divide-and-conquer
+ * 
  * Complexities:
+ *   N - `numsSize`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(logᴺ)
  */
