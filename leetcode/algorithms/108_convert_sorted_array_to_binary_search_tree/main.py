@@ -10,6 +10,14 @@ class TreeNode:
 
 
 class ConvertSortedArrayToBinarySearchTree:
+    """
+    # Divide-and-conquer
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(logᴺ)
+    """
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         if nums is None or len(nums) is 0:
             return None
@@ -24,41 +32,26 @@ class ConvertSortedArrayToBinarySearchTree:
 
 
     # Solution
-    # Solution 1: Recursion
-    def solution1(self, nums: List[int]) -> Optional[TreeNode]:
-        total_nums = len(nums)
-        if not total_nums:
-            return None
-
-        mid_node = total_nums // 2
-        return TreeNode(
-            nums[mid_node],
-            self.solution1(nums[:mid_node]),
-            self.solution1(nums[mid_node + 1 :]),
-        )
-
-    # Solution 2: Recursion
-    def solution2(self, nums: List[int]) -> Optional[TreeNode]:
-        if not nums:
-            return None
-
-        mid = len(nums) // 2
-
-        root = TreeNode(nums[mid])
-        root.left = self.solution2(nums[:mid])
-        root.right = self.solution2(nums[mid + 1 :])
-
-        return root
-
-    # Solution 3:
-    def solution3(self, nums: List[int]) -> Optional[TreeNode]:
-        def convert(left, right):
+    """
+    # Divide-and-conquer
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(logᴺ)
+    """
+    def solution(self, nums: List[int]) -> Optional[TreeNode]:
+        def build_bst(left: int, right: int) -> Optional[TreeNode]:
             if left > right:
                 return None
+            
             mid = (left + right) // 2
+            
             node = TreeNode(nums[mid])
-            node.left = convert(left, mid - 1)
-            node.right = convert(mid + 1, right)
+            
+            node.left = build_bst(left, mid - 1)
+            node.right = build_bst(mid + 1, right)
+            
             return node
-
-        return convert(0, len(nums) - 1)
+        
+        return build_bst(0, len(nums) - 1)
