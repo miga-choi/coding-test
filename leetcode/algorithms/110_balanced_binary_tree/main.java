@@ -19,9 +19,13 @@ class BalancedBinaryTree {
   }
 
   /**
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * DFS
+   *
+   * Complexities:
+   *   N - Number of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   private int getMaxDepth(TreeNode node) {
     if (node == null) {
@@ -52,10 +56,18 @@ class BalancedBinaryTree {
 
   // Solution
   /**
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * DFS
+   *
+   * Complexities:
+   *   N - Number of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
+  public boolean solution(TreeNode root) {
+    return checkHeight(root) != -1;
+  }
+
   private int checkHeight(TreeNode node) {
     if (node == null) {
       return 0;
@@ -76,9 +88,5 @@ class BalancedBinaryTree {
     }
 
     return Math.max(leftHeight, rightHeight) + 1;
-  }
-
-  public boolean solution(TreeNode root) {
-    return checkHeight(root) != -1;
   }
 }
