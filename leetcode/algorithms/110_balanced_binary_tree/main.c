@@ -8,9 +8,13 @@ struct TreeNode {
 };
 
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * DFS
+ * 
+ * Complexities:
+ *   N - Number of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 int getMaxDepth(struct TreeNode* node) {
     if (!node) {
@@ -41,25 +45,29 @@ bool isBalanced(struct TreeNode* root) {
 
 // Solution
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * DFS
+ * 
+ * Complexities:
+ *   N - Number of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
 
-int check_balance_and_get_height(struct TreeNode* node) {
+int checkHeight(struct TreeNode* node) {
     if (node == NULL) {
         return 0;
     }
 
-    int leftHeight = check_balance_and_get_height(node->left);
+    int leftHeight = checkHeight(node->left);
     if (leftHeight == -1) {
         return -1;
     }
 
-    int rightHeight = check_balance_and_get_height(node->right);
+    int rightHeight = checkHeight(node->right);
     if (rightHeight == -1) {
         return -1;
     }
@@ -72,5 +80,5 @@ int check_balance_and_get_height(struct TreeNode* node) {
 }
 
 bool solution(struct TreeNode* root) {
-    return check_balance_and_get_height(root) != -1;
+    return checkHeight(root) != -1;
 }
