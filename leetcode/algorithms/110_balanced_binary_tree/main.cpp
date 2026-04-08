@@ -14,9 +14,13 @@ class BalancedBinaryTree {
 
 public:
     /**
-     * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * DFS
+     *
+     * Complexities:
+     *   N - Number of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     int getMaxDepth(TreeNode* node) {
         if (node == nullptr) {
@@ -47,33 +51,37 @@ public:
 
     // Solution
     /**
-     * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * DFS
+     *
+     * Complexities:
+     *   N - Number of `node`
+     *   H - Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
-    int getHeightAndCheckBalance(TreeNode* node) {
+    int checkHeight(TreeNode* node) {
         if (node == nullptr) {
             return 0;
         }
 
-        int leftHeight = getHeightAndCheckBalance(node->left);
+        int leftHeight = checkHeight(node->left);
         if (leftHeight == -1) {
             return -1;
         }
 
-        int rightHeight = getHeightAndCheckBalance(node->right);
+        int rightHeight = checkHeight(node->right);
         if (rightHeight == -1) {
             return -1;
         }
 
-        if (abs(leftHeight - rightHeight) > 1) {
+        if (std::abs(leftHeight - rightHeight) > 1) {
             return -1;
         }
 
-        return 1 + max(leftHeight, rightHeight);
+        return 1 + std::max(leftHeight, rightHeight);
     }
 
     bool solution(TreeNode* root) {
-        return getHeightAndCheckBalance(root) != -1;
+        return checkHeight(root) != -1;
     }
 };
