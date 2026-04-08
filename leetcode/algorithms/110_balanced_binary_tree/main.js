@@ -5,9 +5,13 @@ function TreeNode(val, left, right) {
 }
 
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * DFS
+ *
+ * Complexities:
+ *   N - Number of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 /**
  * @param {TreeNode} node
@@ -46,18 +50,19 @@ var isBalanced = function (root) {
 
 // Solution
 /**
- * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * DFS
  *
+ * Complexities:
+ *   N - Number of `node`
+ *   H - Height of `node`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {boolean}
  */
 var solution = function (root) {
-  /**
-   * @param {TreeNode} node
-   * @returns {number}
-   */
   function checkHeight(node) {
     if (node === null) {
       return 0;
@@ -77,7 +82,7 @@ var solution = function (root) {
       return -1;
     }
 
-    return 1 + Math.max(leftHeight, rightHeight);
+    return Math.max(leftHeight, rightHeight) + 1;
   }
 
   return checkHeight(root) !== -1;
