@@ -9,11 +9,15 @@ class TreeNode:
 
 
 class BalancedBinaryTree:
-    ##
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    """
+    # DFS
     #
+    # Complexities:
+    #   N - Number of `node`
+    #   H - Height of `node`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
+    """
     def checkDepth(self, node: Optional[TreeNode]) -> int:
         if node is None:
             return 0
@@ -38,53 +42,31 @@ class BalancedBinaryTree:
 
 
     # Solution
-    ##
-    # Solution 1
+    """
+    # DFS
     #
-    # Recursion: DFS (Top-down)
-    # - Time Complexity: O(N * Logᴺ)
-    # - Space Complexity: O(H)
-    #
-    def height(self, node: Optional[TreeNode]) -> int:
-        if not node:
-            return 0
-        return 1 + max(self.height(node.left), self.height(node.right))
-
-    def solution1(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
-
-        left_h = self.height(root.left)
-        right_h = self.height(root.right)
-
-        if abs(left_h - right_h) > 1:
-            return False
-
-        return self.isBalanced(root.left) and self.isBalanced(root.right)
-
-    ##
-    # Solution 2
-    #
-    # Recursion: DFS (Bottom-up)
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
-    #
-    def solution2(self, root: Optional[TreeNode]) -> bool:
+    # Complexities:
+    #   N - Number of `node`
+    #   H - Height of `node`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
+    """
+    def solution(self, root: Optional[TreeNode]) -> bool:
         def check_height(node: Optional[TreeNode]) -> int:
             if not node:
                 return 0
-
+            
             left_height = check_height(node.left)
             if left_height == -1:
                 return -1
-
+            
             right_height = check_height(node.right)
             if right_height == -1:
                 return -1
-
+            
             if abs(left_height - right_height) > 1:
                 return -1
-
-            return 1 + max(left_height, right_height)
-
+            
+            return max(left_height, right_height) + 1
+            
         return check_height(root) != -1
