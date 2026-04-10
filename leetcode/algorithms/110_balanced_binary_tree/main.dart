@@ -9,9 +9,13 @@ class TreeNode {
 
 class BalancedBinaryTree {
   /**
-   * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * DFS
+   *
+   * Complexities:
+   *   N - Number of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   int _getMaxDepth(TreeNode? node) {
     if (node == null) {
@@ -42,52 +46,29 @@ class BalancedBinaryTree {
 
   // Solution
   /**
-   * Solution 1
+   * DFS
    *
-   * Recursion: DFS (Top-down)
-   * - Time Complexity: O(N * Logᴺ)
-   * - Space Complexity: O(H)
+   * Complexities:
+   *   N - Number of `node`
+   *   H - Height of `node`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
-  int _getHeight(TreeNode? node) {
+  bool solution(TreeNode? root) {
+    return _checkHeightAndBalance(root) != -1;
+  }
+
+  int _checkHeightAndBalance(TreeNode? node) {
     if (node == null) {
       return 0;
     }
 
-    return 1 + max(_getHeight(node.left), _getHeight(node.right));
-  }
-
-  bool solution1(TreeNode? root) {
-    if (root == null) {
-      return true;
-    }
-
-    int leftHeight = _getHeight(root.left);
-    int rightHeight = _getHeight(root.right);
-    if ((leftHeight - rightHeight).abs() > 1) {
-      return false;
-    }
-
-    return isBalanced(root.left) && isBalanced(root.right);
-  }
-
-  /**
-   * Solution 2
-   *
-   * Recursion: DFS (Bottom-up)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
-   */
-  int _checkHeight(TreeNode? node) {
-    if (node == null) {
-      return 0;
-    }
-
-    int leftHeight = _checkHeight(node.left);
+    int leftHeight = _checkHeightAndBalance(node.left);
     if (leftHeight == -1) {
       return -1;
     }
 
-    int rightHeight = _checkHeight(node.right);
+    int rightHeight = _checkHeightAndBalance(node.right);
     if (rightHeight == -1) {
       return -1;
     }
@@ -97,9 +78,5 @@ class BalancedBinaryTree {
     }
 
     return 1 + max(leftHeight, rightHeight);
-  }
-
-  bool solution2(TreeNode? root) {
-    return _checkHeight(root) != -1;
   }
 }
