@@ -1,4 +1,4 @@
-#include <stdlib.h> // NULL
+#include <stdlib.h>
 
 struct TreeNode {
     int val;
@@ -8,8 +8,12 @@ struct TreeNode {
 
 /**
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The heights of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 int maxDepth(struct TreeNode* root) {
     if (!root) {
