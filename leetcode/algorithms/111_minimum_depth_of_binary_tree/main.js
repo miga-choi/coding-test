@@ -6,8 +6,12 @@ function TreeNode(val, left, right) {
 
 /**
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Width of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  *
  * @param {TreeNode} root
  * @return {number}
@@ -33,14 +37,18 @@ var minDepth = function (root) {
  * Solution 1
  *
  * Iteration: BFS (Queue)
- * - Time Complexity: O(N)
- * - Space Complexity: O(W)
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   W - Width of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(W)
  *
  * @param {TreeNode} root
  * @return {number}
  */
 var solution1 = function (root) {
-  if (root === null) {
+  if (!root) {
     return 0;
   }
 
@@ -57,10 +65,10 @@ var solution1 = function (root) {
         return depth;
       }
 
-      if (node.left !== null) {
+      if (node.left) {
         queue.push(node.left);
       }
-      if (node.right !== null) {
+      if (node.right) {
         queue.push(node.right);
       }
     }
@@ -75,23 +83,28 @@ var solution1 = function (root) {
  * Solution 2
  *
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  *
  * @param {TreeNode} root
  * @return {number}
  */
 var solution2 = function (root) {
-  if (root === null) {
+  if (!root) {
     return 0;
   }
 
-  const leftDepth = solution2(root.left);
-  const rightDepth = solution2(root.right);
-
-  if (root.left === null || root.right === null) {
-    return 1 + leftDepth + rightDepth;
+  if (root.left === null) {
+    return solution2(root.right) + 1;
   }
 
-  return 1 + Math.min(leftDepth, rightDepth);
+  if (root.right === null) {
+    return solution2(root.left) + 1;
+  }
+
+  return Math.min(solution2(root.left), solution2(root.right)) + 1;
 };

@@ -46,7 +46,7 @@ public:
      *
      * Complexities:
      *   N - Number of nodes in `root`
-     *   H - Width of `root`
+     *   W - Width of `root`
      *   - Time Complexity: O(N)
      *   - Space Complexity: O(W)
      */
@@ -92,7 +92,7 @@ public:
      *   N - Number of nodes in `root`
      *   H - Height of `root`
      *   - Time Complexity: O(N)
-     *   - Space Complexity: O(W)
+     *   - Space Complexity: O(H)
      */
     int solution2(TreeNode* root) {
         if (root == nullptr) {
