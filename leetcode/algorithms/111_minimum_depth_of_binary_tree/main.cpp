@@ -15,8 +15,12 @@ class MinimumDepthOfBinaryTree {
 public:
     /**
      * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * 
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   H - Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     int minDepth(TreeNode* root) {
         if (root == nullptr) {
@@ -37,17 +41,21 @@ public:
     // Solution
     /**
      * Solution 1
-     * 
+     *
      * Iteration: BFS (Queue)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(W)
+     *
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   H - Width of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(W)
      */
     int solution1(TreeNode* root) {
         if (root == nullptr) {
             return 0;
         }
 
-        queue<TreeNode*> q;
+        std::queue<TreeNode*> q;
         q.push(root);
         int depth = 1;
 
@@ -55,33 +63,36 @@ public:
             int levelSize = q.size();
 
             for (int i = 0; i < levelSize; ++i) {
-                TreeNode* node = q.front();
+                TreeNode* curr = q.front();
                 q.pop();
 
-                if (node->left == nullptr && node->right == nullptr) {
+                if (curr->left == nullptr && curr->right == nullptr) {
                     return depth;
                 }
 
-                if (node->left) {
-                    q.push(node->left);
+                if (curr->left != nullptr) {
+                    q.push(curr->left);
                 }
-                if (node->right) {
-                    q.push(node->right);
+                if (curr->right != nullptr) {
+                    q.push(curr->right);
                 }
             }
-
             depth++;
         }
 
-        return 0;
+        return depth;
     }
 
     /**
      * Solution 2
      * 
      * Recursion: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * 
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   H - Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(W)
      */
     int solution2(TreeNode* root) {
         if (root == nullptr) {
@@ -92,16 +103,13 @@ public:
             return 1;
         }
 
-        int leftDepth = solution2(root->left);
-        int rightDepth = solution2(root->right);
-
         if (root->left == nullptr) {
-            return 1 + rightDepth;
+            return 1 + solution2(root->right);
         }
         if (root->right == nullptr) {
-            return 1 + leftDepth;
+            return 1 + solution2(root->left);
         }
 
-        return 1 + min(leftDepth, rightDepth);
+        return 1 + min(solution2(root->left), solution2(root->right));
     }
 };
