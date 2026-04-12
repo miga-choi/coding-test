@@ -8,8 +8,12 @@ struct TreeNode {
 
 /**
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 int minDepth(struct TreeNode* root) {
     if (!root) {
@@ -30,9 +34,14 @@ int minDepth(struct TreeNode* root) {
 // Solution
 /**
  * Recursion: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
+ // 두 수 중 작은 값을 구하는 헬퍼 함수
 int min(int a, int b) {
     return (a < b) ? a : b;
 }
@@ -42,12 +51,16 @@ int minDepth(struct TreeNode* root) {
         return 0;
     }
 
-    int leftDepth = minDepth(root->left);
-    int rightDepth = minDepth(root->right);
-
-    if (leftDepth == 0 || rightDepth == 0) {
-        return 1 + leftDepth + rightDepth;
-    } else {
-        return 1 + min(leftDepth, rightDepth);
+    if (root->left == NULL && root->right == NULL) {
+        return 1;
     }
+
+    if (root->left == NULL) {
+        return 1 + minDepth(root->right);
+    }
+    if (root->right == NULL) {
+        return 1 + minDepth(root->left);
+    }
+
+    return 1 + min(minDepth(root->left), minDepth(root->right));
 }
