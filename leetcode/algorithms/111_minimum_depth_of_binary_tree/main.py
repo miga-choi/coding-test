@@ -10,11 +10,15 @@ class TreeNode:
 
 
 class MinimumDepthOfBinaryTree:
-    ##
+    """
     # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
     #
+    # Complexities:
+    #   N - Number of nodes in `root`
+    #   H - Height of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
+    """
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:
             return 0
@@ -29,45 +33,57 @@ class MinimumDepthOfBinaryTree:
 
 
     # Solution
-    ##
+    """
     # Solution 1
     #
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    # Iteration: BFS (Queue)
     #
+    # Complexities:
+    #   N - Number of nodes in `root`
+    #   W - Width of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(W)
+    """
     def solution1(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-
-        left_depth = self.minDepth(root.left)
-        right_depth = self.minDepth(root.right)
-
-        if not root.left or not root.right:
-            return 1 + left_depth + right_depth
-
-        return 1 + min(left_depth, right_depth)
-
-    ##
-    # Solution 2
-    #
-    # Iteration: BFS (Queue)
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(W)
-    #
-    def solution2(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-
+        
         queue = deque([(root, 1)])
-
+        
         while queue:
             node, depth = queue.popleft()
-
+            
             if not node.left and not node.right:
                 return depth
-
+            
             if node.left:
                 queue.append((node.left, depth + 1))
             if node.right:
                 queue.append((node.right, depth + 1))
+                
+        return 0
+
+    """
+    # Solution 2
+    #
+    # Recursion: DFS
+    #
+    # Complexities:
+    #   N - Number of nodes in `root`
+    #   H - Height of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
+    """
+    def solution2(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        if not root.left and not root.right:
+            return 1
+        
+        if not root.left:
+            return self.solution2(root.right) + 1
+        if not root.right:
+            return self.solution2(root.left) + 1
+        
+        return min(self.solution2(root.left), self.solution2(root.right)) + 1
