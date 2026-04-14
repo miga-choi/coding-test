@@ -11,8 +11,12 @@ class TreeNode {
 class MinimumDepthOfBinaryTree {
   /**
    * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * 
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   int minDepth(TreeNode? root) {
     if (root == null) {
@@ -35,8 +39,12 @@ class MinimumDepthOfBinaryTree {
    * Solution 1
    * 
    * Iteration: BFS (Queue)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(W)
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   W - Width of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(W)
    */
   int solution1(TreeNode? root) {
     if (root == null) {
@@ -51,17 +59,17 @@ class MinimumDepthOfBinaryTree {
       int levelSize = queue.length;
 
       for (int i = 0; i < levelSize; i++) {
-        TreeNode currentNode = queue.removeFirst();
+        TreeNode current = queue.removeFirst();
 
-        if (currentNode.left == null && currentNode.right == null) {
+        if (current.left == null && current.right == null) {
           return depth;
         }
 
-        if (currentNode.left != null) {
-          queue.add(currentNode.left!);
+        if (current.left != null) {
+          queue.add(current.left!);
         }
-        if (currentNode.right != null) {
-          queue.add(currentNode.right!);
+        if (current.right != null) {
+          queue.add(current.right!);
         }
       }
 
@@ -75,21 +83,25 @@ class MinimumDepthOfBinaryTree {
    * Solution 2
    * 
    * Recursion: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   * 
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   int solution2(TreeNode? root) {
     if (root == null) {
       return 0;
     }
 
-    int leftDepth = solution2(root.left);
-    int rightDepth = solution2(root.right);
-
-    if (leftDepth == 0 || rightDepth == 0) {
-      return leftDepth + rightDepth + 1;
-    } else {
-      return min(leftDepth, rightDepth) + 1;
+    if (root.left == null) {
+      return solution2(root.right) + 1;
     }
+    if (root.right == null) {
+      return solution2(root.left) + 1;
+    }
+
+    return min(solution2(root.left), solution2(root.right)) + 1;
   }
 }
