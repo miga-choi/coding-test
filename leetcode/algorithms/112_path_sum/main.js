@@ -5,6 +5,15 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * Recursion - DFS
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {number} targetSum_
  * @param {number} sum_
  * @param {TreeNode} node_
@@ -41,39 +50,65 @@ var hasPathSum = function (root, targetSum) {
 
 
 // Solution
-// Solution 1: Recursion
+/**
+ * Solution 1
+ *
+ * Recursion - DFS
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
 var solution1 = function (root, targetSum) {
-  if (!root) {
+  if (root === null) {
     return false;
   }
 
-  if (!root.left && !root.right) {
-    // check leaf
+  if (root.left === null && root.right === null) {
     return targetSum === root.val;
-  } else {
-    // continue DFS
-    return (
-      solution1(root.left, targetSum - root.val) ||
-      solution1(root.right, targetSum - root.val)
-    );
   }
+
+  const remainingSum = targetSum - root.val;
+
+  return (
+    solution1(root.left, remainingSum) || solution1(root.right, remainingSum)
+  );
 };
 
-// Solution 2:
+/**
+ * Solution 2
+ *
+ * Iteration - DFS with Stack
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
 var solution2 = function (root, targetSum) {
-  // If the tree is empty i.e. root is NULL, return false...
-  if (root == null) {
+  if (root === null) {
     return false;
   }
 
-  // If there is only a single root node and the value of root node is equal to the targetSum...
-  if (root.val == targetSum && root.left == null && root.right == null) {
-    return true;
+  const stack = [[root, targetSum - root.val]];
+
+  while (stack.length > 0) {
+    const [node, currentTarget] = stack.pop();
+
+    if (node.left === null && node.right === null && currentTarget === 0) {
+      return true;
+    }
+
+    if (node.right !== null) {
+      stack.push([node.right, currentTarget - node.right.val]);
+    }
+    if (node.left !== null) {
+      stack.push([node.left, currentTarget - node.left.val]);
+    }
   }
 
-  // Call the same function recursively for left and right subtree...
-  return (
-    solution2(root.left, targetSum - root.val) ||
-    solution2(root.right, targetSum - root.val)
-  );
+  return false;
 };
