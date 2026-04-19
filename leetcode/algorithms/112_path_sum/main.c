@@ -8,7 +8,7 @@ struct TreeNode {
 };
 
 /**
- * Recursion: DFS
+ * Recursion - DFS
  * 
  * Complexities:
  *   N - Number of nodes in `root`
@@ -41,7 +41,7 @@ bool hasPathSum(struct TreeNode* root, int targetSum) {
 
 // Solution
 /**
- * Recursion: DFS
+ * Recursion - DFS
  * 
  * Complexities:
  *   N - Number of nodes in `root`

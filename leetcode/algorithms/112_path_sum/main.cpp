@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stack>
+#include <utility>
 using namespace std;
 
 class PathSum {
@@ -13,6 +13,15 @@ class PathSum {
     };
 
 public:
+    /**
+     * Recursion: DFS
+     *
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   H - Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     bool hasPathSum(TreeNode* root, int targetSum) {
         if (root == nullptr) {
             return false;
@@ -29,41 +38,66 @@ public:
 
 
     // Solution
-    // Solution 1: Recursive
+    /**
+     * Solution 1
+     * 
+     * Recursion - DFS
+     *
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   H - Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     bool solution1(TreeNode* root, int targetSum) {
-        if (root == NULL) {
+        if (root == nullptr) {
             return false;
         }
-        if (root->val == targetSum && root->left == NULL && root->right == NULL) {
-            return true;
+
+        if (root->left == nullptr && root->right == nullptr) {
+            return targetSum == root->val;
         }
-        return solution1(root->left, targetSum - root->val) || solution1(root->right, targetSum - root->val);
+
+        int remainingSum = targetSum - root->val;
+
+        return solution1(root->left, remainingSum) || solution1(root->right, remainingSum);
     }
 
-    // Solution 2: Iterative
+    /**
+     * Solution 2
+     * 
+     * Iteration - DFS with Stack
+     *
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   H - Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     bool solution2(TreeNode* root, int targetSum) {
-        if (root == NULL) {
+        if (!root) {
             return false;
         }
-        stack<pair<TreeNode*, int>> stack;
-        stack.push({root, root->val});
-        while (!stack.empty()) {
-            TreeNode* current = stack.top().first;
-            int total_sum = stack.top().second;
-            stack.pop();
-            if (current->right) {
-                stack.push({current->right, total_sum + current->right->val});
-            }
 
-            if (current->left) {
-                stack.push({current->left, total_sum + current->left->val});
-            }
+        stack<pair<TreeNode*, int>> st;
+        st.push({root, targetSum});
 
-            // if its a leaf and total sum is found
-            if (!current->right && !current->left && total_sum == targetSum) {
+        while (!st.empty()) {
+            auto [node, currentSum] = st.top();
+            st.pop();
+
+            if (!node->left && !node->right && currentSum == node->val) {
                 return true;
             }
+
+            if (node->right) {
+                st.push({node->right, currentSum - node->val});
+            }
+            if (node->left) {
+                st.push({node->left, currentSum - node->val});
+            }
         }
+
         return false;
     }
 };
