@@ -2,8 +2,17 @@ from typing import List
 
 
 class PascalsTriangle:
+    """
+    # DP
+    # 
+    # Complexities:
+    #   N - `numRows`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(N²)
+    """
     def generate(self, numRows: int) -> List[List[int]]:
         result = []
+
         for i in range(0, numRows):
             row = []
             for j in range(0, i + 1):
@@ -11,63 +20,54 @@ class PascalsTriangle:
                     row.append(1)
                 else:
                     row.append(result[i - 1][j - 1] + result[i - 1][j])
+
             result.append(row)
+
         return result
 
 
     # Solution
-    # Solution 1: Recursion
+    """
+    # Solution 1
+    #
+    # DP
+    # 
+    # Complexities:
+    #   N - `numRows`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(N²)
+    """
     def solution1(self, numRows: int) -> List[List[int]]:
-        if numRows == 0:
-            return []
-        if numRows == 1:
-            return [[1]]
+        triangle = []
 
-        prevRows = self.generate(numRows - 1)
-        newRow = [1] * numRows
-
-        for i in range(1, numRows - 1):
-            newRow[i] = prevRows[-1][i - 1] + prevRows[-1][i]
-
-        prevRows.append(newRow)
-        return prevRows
-
-    # Solution 2: Combinatorial Formula
-    def solution2(self, numRows: int) -> List[List[int]]:
-        result = []
-        if numRows == 0:
-            return result
-
-        first_row = [1]
-        result.append(first_row)
-
-        for i in range(1, numRows):
-            prev_row = result[i - 1]
-            current_row = [1]
+        for i in range(numRows):
+            row = [1] * (i + 1)
 
             for j in range(1, i):
-                current_row.append(prev_row[j - 1] + prev_row[j])
+                row[j] = triangle[i-1][j-1] + triangle[i-1][j]
 
-            current_row.append(1)
-            result.append(current_row)
+            triangle.append(row)
 
-        return result
+        return triangle
 
-    # Solution 3: Dynamic Programming with 1D Array
-    def solution3(self, numRows: int) -> List[List[int]]:
-        if numRows == 0:
-            return []
-        if numRows == 1:
-            return [[1]]
+    """
+    # Solution 2
+    #
+    # Pythonic Way - zip
+    # 
+    # Complexities:
+    #   N - `numRows`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(N²)
+    """
+    def solution2(self, numRows: int) -> List[List[int]]:
+        triangle = [[1]]
 
-        prev_rows = self.generate(numRows - 1)
-        prev_row = prev_rows[-1]
-        current_row = [1]
+        for _ in range(numRows - 1):
+            prev_row = triangle[-1]
 
-        for i in range(1, numRows - 1):
-            current_row.append(prev_row[i - 1] + prev_row[i])
+            new_row = [a + b for a, b in zip([0] + prev_row, prev_row + [0])]
 
-        current_row.append(1)
-        prev_rows.append(current_row)
+            triangle.append(new_row)
 
-        return prev_rows
+        return triangle
