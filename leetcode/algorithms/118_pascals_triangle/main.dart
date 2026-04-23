@@ -1,4 +1,12 @@
 class PascalsTriangle {
+  /**
+   * DP
+   * 
+   * Complexities:
+   *   N - `numRows`
+   *   - Time Complexity: O(N²)
+   *   - Space Complexity: O(N²)
+   */
   List<List<int>> generate(int numRows) {
     List<List<int>> result = List<List<int>>.empty(growable: true);
 
@@ -19,20 +27,26 @@ class PascalsTriangle {
 
 
   // Solution
+  /**
+   * DP
+   * 
+   * Complexities:
+   *   N - `numRows`
+   *   - Time Complexity: O(N²)
+   *   - Space Complexity: O(N²)
+   */
   List<List<int>> solution(int numRows) {
-    List<List<int>> triangle = [];
-
     if (numRows <= 0) {
-      return triangle;
+      return [];
     }
+
+    List<List<int>> triangle = [];
 
     for (int i = 0; i < numRows; i++) {
       List<int> row = List.filled(i + 1, 1);
 
-      if (i >= 2) {
-        for (int j = 1; j < i; j++) {
-          row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
-        }
+      for (int j = 1; j < i; j++) {
+        row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
       }
 
       triangle.add(row);
