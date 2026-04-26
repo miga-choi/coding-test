@@ -1,15 +1,19 @@
 #include <limits.h>
 
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Greedy
+ * 
+ * Complexities:
+ *   N - `pricesSize`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 int maxProfit(int* prices, int pricesSize) {
     int profit = 0;
     int minPrice = 100000;
 
     for (int i = 0; i < pricesSize; i++) {
-        if (prices[i] < min) {
+        if (prices[i] < minPrice) {
             minPrice = prices[i];
         }
 
@@ -25,33 +29,28 @@ int maxProfit(int* prices, int pricesSize) {
 
 // Solution
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Greedy
+ * 
+ * Complexities:
+ *   N - `pricesSize`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
-int min(int a, int b) {
-    return a < b ? a : b;
-}
-
-int max(int a, int b) {
-    return a > b ? a : b;
-}
-
-int solution(int* prices, int pricesSize) {
+int maxProfit(int* prices, int pricesSize) {
     if (pricesSize < 2) {
         return 0;
     }
 
-    int minPrice = INT_MAX;
-    int maxProfit = 0;
+    int min_price = INT_MAX;
+    int max_profit = 0;
 
     for (int i = 0; i < pricesSize; i++) {
-        int currentPrice = prices[i];
-
-        minPrice = min(minPrice, currentPrice);
-
-        int potentialProfit = currentPrice - minPrice;
-        maxProfit = max(maxProfit, potentialProfit);
+        if (prices[i] < min_price) {
+            min_price = prices[i];
+        } else if (prices[i] - min_price > max_profit) {
+            max_profit = prices[i] - min_price;
+        }
     }
 
-    return maxProfit;
+    return max_profit;
 }
