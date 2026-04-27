@@ -6,8 +6,12 @@ using namespace std;
 class BestTimeToBuyAndSellStock {
 public:
     /**
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Greedy
+     *
+     * Complexities:
+     *   N - Size of `prices`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int maxProfit(vector<int>& prices) {
         int minPrice = 100000;
@@ -30,24 +34,23 @@ public:
 
     // Solution
     /**
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Greedy
+     *
+     * Complexities:
+     *   N - Size of `prices`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
-    int maxProfit(vector<int>& prices) {
-        if (prices.size() < 2) {
-            return 0;
+    int solution(vector<int>& prices) {
+        int min_price = INT_MAX; 
+        int max_profit = 0;
+
+        for (int price : prices) {
+            min_price = min(min_price, price);
+            
+            max_profit = max(max_profit, price - min_price);
         }
 
-        int minPrice = numeric_limits<int>::max();
-        int maxProfit = 0;
-
-        for (int currentPrice : prices) {
-            minPrice = min(minPrice, currentPrice);
-
-            int potentialProfit = currentPrice - minPrice;
-            maxProfit = max(maxProfit, potentialProfit);
-        }
-
-        return maxProfit;
+        return max_profit;
     }
 };
