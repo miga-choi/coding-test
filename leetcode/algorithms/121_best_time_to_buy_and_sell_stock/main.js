@@ -1,7 +1,12 @@
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Greedy
  *
+ * Complexities:
+ *   N - Size of `prices`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} prices
  * @return {number}
  */
@@ -26,17 +31,18 @@ var maxProfit = function (prices) {
 
 // Solution
 /**
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Greedy
  *
+ * Complexities:
+ *   N - Size of `prices`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} prices
  * @return {number}
  */
 const solution = (prices) => {
-  if (prices.length < 2) {
-    return 0;
-  }
-
   let minPrice = Infinity;
   let maxProfit = 0;
 
