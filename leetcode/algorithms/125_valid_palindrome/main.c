@@ -3,9 +3,12 @@
 #include <string.h>
 
 /**
- * Two-Pointer
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Two-Pointers
+ * 
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 bool isPalindrome(char* s) {
     int prefix = 0;
@@ -42,9 +45,12 @@ bool isPalindrome(char* s) {
 
 // Solution
 /**
- * Two-Pointer
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Two-Pointers
+ * 
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 bool solution(char* s) {
     int left = 0;
