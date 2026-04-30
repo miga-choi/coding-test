@@ -1,8 +1,12 @@
 /**
- * Two-Pointer
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Regex
  *
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @return {boolean}
  */
@@ -25,10 +29,14 @@ var isPalindrome = function (s) {
 /**
  * Solution 1
  *
- * Compare strings
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * Regex
  *
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @return {boolean}
  */
@@ -43,10 +51,14 @@ var solution1 = function (s) {
 /**
  * Solution 2
  *
- * Two-Pointer
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Two-Pointers
  *
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @return {boolean}
  */
@@ -54,14 +66,21 @@ var solution2 = function (s) {
   let left = 0;
   let right = s.length - 1;
 
-  const alphanumeric = /^[a-z0-9]+$/i;
+  const isAlphanumeric = (char) => {
+    const code = char.charCodeAt(0);
+    return (
+      (code >= 48 && code <= 57) ||
+      (code >= 65 && code <= 90) ||
+      (code >= 97 && code <= 122)
+    );
+  };
 
   while (left < right) {
-    while (left < right && !alphanumeric.test(s[left])) {
+    while (left < right && !isAlphanumeric(s[left])) {
       left++;
     }
 
-    while (left < right && !alphanumeric.test(s[right])) {
+    while (left < right && !isAlphanumeric(s[right])) {
       right--;
     }
 
