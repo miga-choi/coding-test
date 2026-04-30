@@ -5,9 +5,12 @@ using namespace std;
 class ValidPalindrome {
 public:
     /**
-     * Two-Pointer
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Two-Pointers
+     *
+     * Complexities:
+     *   N - Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     bool isPalindrome(string s) {
         int prefix = 0;
@@ -40,13 +43,14 @@ public:
 
     // Solution
     /**
-     * Solution 1
-     * 
-     * Two-Pointer
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Two-Pointers
+     *
+     * Complexities:
+     *   N - Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
-    bool solution1(string s) {
+    bool solution(string s) {
         int left = 0;
         int right = s.length() - 1;
 
@@ -54,7 +58,7 @@ public:
             while (left < right && !isalnum(s[left])) {
                 left++;
             }
-
+            
             while (left < right && !isalnum(s[right])) {
                 right--;
             }
@@ -68,26 +72,5 @@ public:
         }
 
         return true;
-    }
-
-    /**
-     * Solution 2
-     * 
-     * Compare two strings
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
-     */
-    bool solution2(string s) {
-        string filtered_s;
-
-        for (char c : s) {
-            if (isalnum(c)) {
-                filtered_s += tolower(c);
-            }
-        }
-
-        return equal(filtered_s.begin(),
-                     filtered_s.begin() + filtered_s.size() / 2,
-                     filtered_s.rbegin());
     }
 };
