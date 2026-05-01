@@ -1,8 +1,11 @@
 class ValidPalindrome {
-  /*
-   * Two-Pointer
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+  /**
+   * Regex
+   *
+   * Complexities:
+   *   N - Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public boolean isPalindrome(String s) {
     s = s.toLowerCase().replaceAll("[^a-z0-9]", "");
@@ -18,59 +21,54 @@ class ValidPalindrome {
 
 
   // Solution
-  /*
+  /**
    * Solution 1
    * 
-   * Compare strings
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   * Regex
+   *
+   * Complexities:
+   *   N - Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public boolean solution1(String s) {
-    StringBuilder filteredChars = new StringBuilder();
+    String cleaned = s.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
 
-    for (char c : s.toCharArray()) {
-      if (Character.isLetterOrDigit(c)) {
-        filteredChars.append(Character.toLowerCase(c));
-      }
-    }
+    String reversed = new StringBuilder(cleaned).reverse().toString();
 
-    String original = filteredChars.toString();
-    String reversed = filteredChars.reverse().toString();
-
-    return original.equals(reversed);
+    return cleaned.equals(reversed);
   }
 
   /*
    * Solution 2
    * 
-   * Two-Pointer
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Two-Pointers
+   * 
+   * Complexities:
+   *   N - Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public boolean solution2(String s) {
     int left = 0;
     int right = s.length() - 1;
 
     while (left < right) {
-      char leftChar = s.charAt(left);
-      char rightChar = s.charAt(right);
+      char charLeft = s.charAt(left);
+      char charRight = s.charAt(right);
 
-      if (!Character.isLetterOrDigit(leftChar)) {
+      if (!Character.isLetterOrDigit(charLeft)) {
         left++;
-        continue;
-      }
-
-      if (!Character.isLetterOrDigit(rightChar)) {
+      } else if (!Character.isLetterOrDigit(charRight)) {
         right--;
-        continue;
-      }
+      } else {
+        if (Character.toLowerCase(charLeft) != Character.toLowerCase(charRight)) {
+          return false;
+        }
 
-      if (Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
-        return false;
+        left++;
+        right--;
       }
-
-      left++;
-      right--;
     }
 
     return true;
