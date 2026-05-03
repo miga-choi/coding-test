@@ -24,9 +24,13 @@ public:
 class CloneGraph {
 public:
     /**
-     * Recursion: DFS + Hash table
-     * - Time Complexity: O(V + E)
-     * - Space Complexity: O(V)
+     * HashMap + DFS
+     *
+     * Complexities:
+     *   V - Number of Vertex in `s`
+     *   E - Number of Edge in `s`
+     *   - Time Complexity: O(V + E)
+     *   - Space Complexity: O(V)
      */
     unordered_map<Node*, Node*> node_map;
 
@@ -53,69 +57,33 @@ public:
 
     // Solution
     /**
-     * Solution 1
-     * 
-     * Recursion: DFS + Hash table
-     * - Time Complexity: O(V + E)
-     * - Space Complexity: O(V)
+     * HashMap + DFS
+     *
+     * Complexities:
+     *   V - Number of Vertex in `s`
+     *   E - Number of Edge in `s`
+     *   - Time Complexity: O(V + E)
+     *   - Space Complexity: O(V)
      */
-    unordered_map<Node*, Node*> visited_map;
+    unordered_map<Node*, Node*> visited;
 
-    Node* solution1(Node* node) {
+    Node* cloneGraph(Node* node) {
         if (node == nullptr) {
             return nullptr;
         }
 
-        if (visited_map.count(node)) {
-            return visited_map[node];
+        if (visited.find(node) != visited.end()) {
+            return visited[node];
         }
 
-        Node* cloned_node = new Node(node->val);
+        Node* cloneNode = new Node(node->val);
 
-        visited_map[node] = cloned_node;
+        visited[node] = cloneNode;
 
         for (Node* neighbor : node->neighbors) {
-            cloned_node->neighbors.push_back(solution1(neighbor));
+            cloneNode->neighbors.push_back(cloneGraph(neighbor));
         }
 
-        return cloned_node;
-    }
-
-    /**
-     * Solution 2
-     * 
-     * Iteration: BFS + Hash table + Queue
-     * - Time Complexity: O(V + E)
-     * - Space Complexity: O(V)
-     */
-    Node* solution2(Node* node) {
-        if (!node) {
-            return nullptr;
-        }
-
-        unordered_map<Node*, Node*> visited_map;
-        queue<Node*> q;
-
-        Node* cloned_head = new Node(node->val);
-        visited_map[node] = cloned_head;
-        q.push(node);
-
-        while (!q.empty()) {
-            Node* current_original = q.front();
-            q.pop();
-
-            for (Node* neighbor_original : current_original->neighbors) {
-                if (visited_map.find(neighbor_original) == visited_map.end()) {
-                    Node* neighbor_cloned = new Node(neighbor_original->val);
-                    visited_map[neighbor_original] = neighbor_cloned;
-                    q.push(neighbor_original);
-                }
-
-                visited_map[current_original]->neighbors.push_back(
-                    visited_map[neighbor_original]);
-            }
-        }
-
-        return cloned_head;
+        return cloneNode;
     }
 };
