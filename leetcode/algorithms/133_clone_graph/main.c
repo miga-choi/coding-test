@@ -7,9 +7,13 @@ struct Node {
 };
 
 /**
- * Recursion: DFS + Array
- * - Time Complexity: O(V + E)
- * - Space Complexity: O(V)
+ * Recursion - DFS
+ * 
+ * Complexities:
+ *   V - Number of Vertex in `s`
+ *   E - Number of Edge in `s`
+ *   - Time Complexity: O(V + E)
+ *   - Space Complexity: O(V)
  */
 struct Node* getClonedNode(struct Node** node_array, struct Node* origin) {
     if (origin == NULL) {
@@ -43,49 +47,52 @@ struct Node* cloneGraph(struct Node* s) {
 
 // Solution
 /**
- * Recursion: DFS + Array
- * - Time Complexity: O(V + E)
- * - Space Complexity: O(V)
+ * Recursion - DFS
+ * 
+ * Complexities:
+ *   V - Number of Vertex in `s`
+ *   E - Number of Edge in `s`
+ *   - Time Complexity: O(V + E)
+ *   - Space Complexity: O(V)
  */
-struct Node* dfs(struct Node** visited_map, struct Node* original_node) {
-    if (original_node == NULL) {
+struct Node* dfs_clone(struct Node* node, struct Node** visited) {
+    if (node == NULL) {
         return NULL;
     }
 
-    if (visited_map[original_node->val - 1] != NULL) {
-        return visited_map[original_node->val - 1];
+    if (visited[node->val] != NULL) {
+        return visited[node->val];
     }
 
     struct Node* cloned_node = (struct Node*)malloc(sizeof(struct Node));
-    if (cloned_node == NULL)
-        return NULL;
-
-    cloned_node->val = original_node->val;
-    cloned_node->numNeighbors = original_node->numNeighbors;
-    cloned_node->neighbors = (struct Node**)malloc(sizeof(struct Node*) * original_node->numNeighbors);
-    if (cloned_node->neighbors == NULL) {
-        free(cloned_node);
-        return NULL;
+    cloned_node->val = node->val;
+    cloned_node->numNeighbors = node->numNeighbors;
+    
+    if (node->numNeighbors > 0) {
+        cloned_node->neighbors = (struct Node**)malloc(sizeof(struct Node*) * node->numNeighbors);
+    } else {
+        cloned_node->neighbors = NULL;
     }
 
-    visited_map[original_node->val - 1] = cloned_node;
+    visited[node->val] = cloned_node;
 
-    for (int i = 0; i < original_node->numNeighbors; i++) {
-        cloned_node->neighbors[i] =
-            dfs(visited_map, original_node->neighbors[i]);
+    for (int i = 0; i < node->numNeighbors; i++) {
+        cloned_node->neighbors[i] = dfs_clone(node->neighbors[i], visited);
     }
 
     return cloned_node;
 }
 
-struct Node* solution(struct Node* s) {
-    struct Node** visited_map = (struct Node**)calloc(101, sizeof(struct Node*));
-    if (visited_map == NULL)
+struct Node *cloneGraph(struct Node *s) {
+    if (s == NULL) {
         return NULL;
+    }
 
-    struct Node* result = dfs(visited_map, s);
-
-    free(visited_map);
-
+    struct Node** visited = (struct Node**)calloc(101, sizeof(struct Node*));
+    
+    struct Node* result = dfs_clone(s, visited);
+    
+    free(visited);
+    
     return result;
 }
