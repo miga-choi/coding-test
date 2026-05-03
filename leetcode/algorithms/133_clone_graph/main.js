@@ -1,18 +1,22 @@
-function _Node(val, neighbors) {
+function Node(val, neighbors) {
   this.val = val === undefined ? 0 : val;
   this.neighbors = neighbors === undefined ? [] : neighbors;
 }
 
 /**
- * Recursion: DFS + Hash table
- * - Time Complexity: O(V + E)
- * - Space Complexity: O(V)
+ * DFS + HashMap
+ *
+ * Complexities:
+ *   V - Number of Vertex in `s`
+ *   E - Number of Edge in `s`
+ *   - Time Complexity: O(V + E)
+ *   - Space Complexity: O(V)
  */
 const nodeMap = new Map();
 
 /**
- * @param {_Node} node
- * @return {_Node}
+ * @param {Node} node
+ * @return {Node}
  */
 var cloneGraph = function (node) {
   if (node === null) {
@@ -38,27 +42,32 @@ var cloneGraph = function (node) {
 /**
  * Solution 1
  *
- * Recursion: DFS + Hash table
- * - Time Complexity: O(V + E)
- * - Space Complexity: O(V)
+ * DFS
+ *
+ * Complexities:
+ *   V - Number of Vertex in `s`
+ *   E - Number of Edge in `s`
+ *   - Time Complexity: O(V + E)
+ *   - Space Complexity: O(V)
  */
 /**
- * @param {_Node} node
- * @return {_Node}
+ * @param {Node} node
+ * @return {Node}
  */
 var solution1 = function (node) {
+  if (!node) {
+    return null;
+  }
+
   const visited = new Map();
 
   function dfs(originalNode) {
-    if (originalNode === null) {
-      return null;
-    }
-
     if (visited.has(originalNode)) {
       return visited.get(originalNode);
     }
 
-    const cloneNode = new _Node(originalNode.val);
+    const cloneNode = new Node(originalNode.val);
+
     visited.set(originalNode, cloneNode);
 
     for (const neighbor of originalNode.neighbors) {
@@ -74,34 +83,38 @@ var solution1 = function (node) {
 /**
  * Solution 2
  *
- * Iteration: BFS + Hash table + Queue
- * - Time Complexity: O(V + E)
- * - Space Complexity: O(V)
+ * BFS + Queue
+ *
+ * Complexities:
+ *   V - Number of Vertex in `s`
+ *   E - Number of Edge in `s`
+ *   - Time Complexity: O(V + E)
+ *   - Space Complexity: O(V)
  */
 /**
- * @param {_Node} node
- * @return {_Node}
+ * @param {Node} node
+ * @return {Node}
  */
 var solution2 = function (node) {
-  if (node === null) {
+  if (!node) {
     return null;
   }
 
   const visited = new Map();
   const queue = [node];
 
-  visited.set(node, new _Node(node.val));
+  visited.set(node, new Node(node.val));
 
   while (queue.length > 0) {
-    const currentNode = queue.shift();
+    const current = queue.shift();
 
-    for (const neighbor of currentNode.neighbors) {
+    for (const neighbor of current.neighbors) {
       if (!visited.has(neighbor)) {
-        visited.set(neighbor, new _Node(neighbor.val));
+        visited.set(neighbor, new Node(neighbor.val));
         queue.push(neighbor);
       }
 
-      visited.get(currentNode).neighbors.push(visited.get(neighbor));
+      visited.get(current).neighbors.push(visited.get(neighbor));
     }
   }
 
