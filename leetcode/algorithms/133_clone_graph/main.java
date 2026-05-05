@@ -28,9 +28,13 @@ class CloneGraph {
     }
 
     /**
-     * Recursion: DFS + Hash table
-     * - Time Complexity: O(V + E)
-     * - Space Complexity: O(V)
+     * DFS
+     *
+     * Complexities:
+     *   V - Number of Vertex in `s`
+     *   E - Number of Edge in `s`
+     *   - Time Complexity: O(V + E)
+     *   - Space Complexity: O(V)
      */
     private Map<Node, Node> nodeMap = new HashMap<>();
 
@@ -58,10 +62,14 @@ class CloneGraph {
     // Solution
     /**
      * Solution 1
+     * 
+     * DFS
      *
-     * Recursion: DFS + Hash table
-     * - Time Complexity: O(V + E)
-     * - Space Complexity: O(V)
+     * Complexities:
+     *   V - Number of Vertex in `s`
+     *   E - Number of Edge in `s`
+     *   - Time Complexity: O(V + E)
+     *   - Space Complexity: O(V)
      */
     private Map<Node, Node> visitedMap = new HashMap<>();
 
@@ -74,12 +82,12 @@ class CloneGraph {
             return visitedMap.get(node);
         }
 
-        Node clonedNode = new Node(node.val);
+        Node clonedNode = new Node(node.val, new ArrayList<>());
 
         visitedMap.put(node, clonedNode);
 
         for (Node neighbor : node.neighbors) {
-            clonedNode.neighbors.add(solution1(neighbor));
+            clonedNode.neighbors.add(cloneGraph(neighbor));
         }
 
         return clonedNode;
@@ -87,38 +95,37 @@ class CloneGraph {
 
     /**
      * Solution 2
+     * 
+     * BFS
      *
-     * Iteration: BFS + Hash table + Queue
-     * - Time Complexity: O(V + E)
-     * - Space Complexity: O(V)
+     * Complexities:
+     *   V - Number of Vertex in `s`
+     *   E - Number of Edge in `s`
+     *   - Time Complexity: O(V + E)
+     *   - Space Complexity: O(V)
      */
     public Node solution2(Node node) {
         if (node == null) {
             return null;
         }
 
-        Map<Node, Node> _visitedMap = new HashMap<>();
+        Map<Node, Node> visitedMap2 = new HashMap<>();
         Queue<Node> queue = new LinkedList<>();
 
-        Node clonedNode = new Node(node.val);
-
-        _visitedMap.put(node, clonedNode);
-
-        queue.add(node);
+        Node clonedNode = new Node(node.val, new ArrayList<>());
+        visitedMap2.put(node, clonedNode);
+        queue.offer(node);
 
         while (!queue.isEmpty()) {
-            Node currentOriginal = queue.poll();
-            Node currentCloned = _visitedMap.get(currentOriginal);
+            Node current = queue.poll();
 
-            for (Node originalNeighbor : currentOriginal.neighbors) {
-                if (!_visitedMap.containsKey(originalNeighbor)) {
-                    Node clonedNeighbor = new Node(originalNeighbor.val);
-
-                    _visitedMap.put(originalNeighbor, clonedNeighbor);
-                    queue.add(originalNeighbor);
+            for (Node neighbor : current.neighbors) {
+                if (!visitedMap2.containsKey(neighbor)) {
+                    visitedMap2.put(neighbor, new Node(neighbor.val, new ArrayList<>()));
+                    queue.offer(neighbor);
                 }
 
-                currentCloned.neighbors.add(_visitedMap.get(originalNeighbor));
+                visitedMap2.get(current).neighbors.add(visitedMap2.get(neighbor));
             }
         }
 
