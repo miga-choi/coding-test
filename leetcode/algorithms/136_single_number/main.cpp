@@ -7,8 +7,11 @@ class SingleNumber {
 public:
     /**
      * Bit Manipulation
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int singleNumber(vector<int>& nums) {
         int result = 0;
@@ -25,9 +28,12 @@ public:
     /**
      * Solution 1
      * 
-     * Bit Manipulation
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * XOR
+     *
+     * Complexities:
+     *   N - Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int solution1(vector<int>& nums) {
         int result = 0;
@@ -42,9 +48,14 @@ public:
     /**
      * Solution 2
      * 
-     * accumulate
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * STL <numeric> - std::accumulate
+     * 
+     * XOR
+     *
+     * Complexities:
+     *   N - Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int solution2(vector<int>& nums) {
         return accumulate(nums.begin(), nums.end(), 0, bit_xor<int>());
