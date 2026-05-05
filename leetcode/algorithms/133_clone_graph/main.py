@@ -10,9 +10,13 @@ class Node:
 
 class Solution:
     """
-    # Recursion: DFS + Hash table
-    # - Time Complexity: O(V + E)
-    # - Space Complexity: O(V)
+    # DFS
+    #
+    # Complexities:
+    #   V - Number of Vertex in `s`
+    #   E - Number of Edge in `s`
+    #   - Time Complexity: O(V + E)
+    #   - Space Complexity: O(V)
     """
     node_map: dict["Node", "Node"] = {}
 
@@ -37,55 +41,63 @@ class Solution:
     """
     # Solution 1
     #
-    # Recursion: DFS + Hash table
-    # - Time Complexity: O(V + E)
-    # - Space Complexity: O(V)
+    # DFS
+    #
+    # Complexities:
+    #   V - Number of Vertex in `s`
+    #   E - Number of Edge in `s`
+    #   - Time Complexity: O(V + E)
+    #   - Space Complexity: O(V)
     """
     def solution1(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return None
 
-        old_to_new = {}
+        visited = {}
 
-        def dfs(original_node: "Node") -> "Node":
-            if original_node in old_to_new:
-                return old_to_new[original_node]
+        def dfs(curr_node):
+            if curr_node in visited:
+                return visited[curr_node]
 
-            copy_node = Node(original_node.val)
+            clone_node = Node(curr_node.val)
 
-            old_to_new[original_node] = copy_node
+            visited[curr_node] = clone_node
 
-            for neighbor in original_node.neighbors:
-                copy_node.neighbors.append(dfs(neighbor))
+            for neighbor in curr_node.neighbors:
+                clone_node.neighbors.append(dfs(neighbor))
 
-            return copy_node
+            return clone_node
 
         return dfs(node)
 
     """
     # Solution 2
     #
-    # Recursion: DFS + Hash table
-    # - Time Complexity: O(V + E)
-    # - Space Complexity: O(V)
+    # BFS
+    #
+    # Complexities:
+    #   V - Number of Vertex in `s`
+    #   E - Number of Edge in `s`
+    #   - Time Complexity: O(V + E)
+    #   - Space Complexity: O(V)
     """
     def solution2(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return None
 
-        old_to_new = {}
+        visited = {}
 
-        old_to_new[node] = Node(node.val)
+        visited[node] = Node(node.val)
         queue = deque([node])
 
         while queue:
-            original_node = queue.popleft()
+            curr_node = queue.popleft()
 
-            for neighbor in original_node.neighbors:
-                if neighbor not in old_to_new:
-                    old_to_new[neighbor] = Node(neighbor.val)
+            for neighbor in curr_node.neighbors:
+                if neighbor not in visited:
+                    visited[neighbor] = Node(neighbor.val)
                     queue.append(neighbor)
 
-                old_to_new[original_node].neighbors.append(old_to_new[neighbor])
+                visited[curr_node].neighbors.append(visited[neighbor])
 
-        return old_to_new[node]
+        return visited[node]
