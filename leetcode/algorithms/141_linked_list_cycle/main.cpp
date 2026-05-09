@@ -11,8 +11,11 @@ class LinkedListCycle {
 public:
     /**
      * Floyd's Tortoise and Hare Algorithm
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     bool hasCycle(ListNode* head) {
         ListNode* ahead = head;
@@ -33,8 +36,11 @@ public:
     // Solution
     /**
      * Floyd's Tortoise and Hare Algorithm
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     bool solution(ListNode* head) {
         if (head == nullptr || head->next == nullptr) {
