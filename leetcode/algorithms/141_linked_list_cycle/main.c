@@ -8,8 +8,11 @@ struct ListNode {
 
 /**
  * Floyd's Tortoise and Hare Algorithm
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 bool hasCycle(struct ListNode* head) {
     struct ListNode* ahead = head;
@@ -30,16 +33,19 @@ bool hasCycle(struct ListNode* head) {
 // Solution
 /**
  * Floyd's Tortoise and Hare Algorithm
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 bool solution(struct ListNode* head) {
     if (head == NULL || head->next == NULL) {
         return false;
     }
 
-    struct ListNode* slow = head;
-    struct ListNode* fast = head;
+    struct ListNode *slow = head;
+    struct ListNode *fast = head;
 
     while (fast != NULL && fast->next != NULL) {
         slow = slow->next;
