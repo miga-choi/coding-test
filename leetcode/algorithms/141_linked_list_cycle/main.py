@@ -8,6 +8,14 @@ class ListNode:
 
 
 class LinkedListCycle:
+    """
+    # Floyd's Tortoise and Hare Algorithm (Two Pointers)
+    #
+    # Complexities:
+    #   N - Number of nodes in `head`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         ahead: Optional[ListNode] = head
         behind: Optional[ListNode] = head
@@ -23,23 +31,50 @@ class LinkedListCycle:
 
 
     # Solution
-    ##
-    # Floyd's Tortoise and Hare Algorithm
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    """
+    # Solution 1
     #
-    def solution(self, head: ListNode) -> bool:
+    # HashSet
+    #
+    # Complexities:
+    #   N - Number of nodes in `head`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
+    def solution1(self, head: ListNode) -> bool:
+        visited = set()
+        curr = head
+        
+        while curr:
+            if curr in visited:
+                return True
+            visited.add(curr)
+            curr = curr.next
+            
+        return False
+
+    """
+    # Solution 2
+    #
+    # Floyd's Tortoise and Hare Algorithm (Two Pointers)
+    #
+    # Complexities:
+    #   N - Number of nodes in `head`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, head: ListNode) -> bool:
         if not head or not head.next:
             return False
-
+            
         slow = head
-        fast = head.next
-
-        while slow != fast:
-            if not fast or not fast.next:
-                return False
-
+        fast = head
+        
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-
-        return True
+            
+            if slow == fast:
+                return True
+                
+        return False
