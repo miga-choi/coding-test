@@ -1,9 +1,4 @@
 class LinkedListCycle {
-  /**
-   * Floyd's Tortoise and Hare Algorithm
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
-   */
   public class ListNode {
     int val;
     ListNode next;
@@ -14,6 +9,14 @@ class LinkedListCycle {
     }
   }
 
+  /**
+   * Floyd's Tortoise and Hare Algorithm (Two Pointers)
+   *
+   * Complexities:
+   *   N - Number of nodes in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   public boolean hasCycle(ListNode head) {
     ListNode ahead = head;
     ListNode behind = head;
@@ -32,9 +35,12 @@ class LinkedListCycle {
 
   // Solution
   /**
-   * Floyd's Tortoise and Hare Algorithm
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Floyd's Tortoise and Hare Algorithm (Two Pointers)
+   *
+   * Complexities:
+   *   N - Number of nodes in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public boolean solution(ListNode head) {
     if (head == null || head.next == null) {
