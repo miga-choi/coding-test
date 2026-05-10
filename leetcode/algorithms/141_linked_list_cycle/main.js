@@ -4,10 +4,14 @@ function ListNode(val) {
 }
 
 /**
- * Floyd's Tortoise and Hare Algorithm
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Floyd's Tortoise and Hare Algorithm (Two Pointers)
  *
+ * Complexities:
+ *   N - Number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} head
  * @return {boolean}
  */
@@ -29,10 +33,14 @@ var hasCycle = function (head) {
 
 // Solution
 /**
- * Floyd's Tortoise and Hare Algorithm
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Floyd's Tortoise and Hare Algorithm (Two Pointers)
  *
+ * Complexities:
+ *   N - Number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} head
  * @return {boolean}
  */

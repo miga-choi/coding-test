@@ -7,7 +7,7 @@ struct ListNode {
 };
 
 /**
- * Floyd's Tortoise and Hare Algorithm
+ * Floyd's Tortoise and Hare Algorithm (Two Pointers)
  * 
  * Complexities:
  *   N - Number of nodes in `head`
@@ -32,7 +32,7 @@ bool hasCycle(struct ListNode* head) {
 
 // Solution
 /**
- * Floyd's Tortoise and Hare Algorithm
+ * Floyd's Tortoise and Hare Algorithm (Two Pointers)
  * 
  * Complexities:
  *   N - Number of nodes in `head`

@@ -10,7 +10,7 @@ struct ListNode {
 class LinkedListCycle {
 public:
     /**
-     * Floyd's Tortoise and Hare Algorithm
+     * Floyd's Tortoise and Hare Algorithm (Two Pointers)
      *
      * Complexities:
      *   N - Number of nodes in `head`
@@ -35,7 +35,7 @@ public:
 
     // Solution
     /**
-     * Floyd's Tortoise and Hare Algorithm
+     * Floyd's Tortoise and Hare Algorithm (Two Pointers)
      *
      * Complexities:
      *   N - Number of nodes in `head`
