@@ -67,7 +67,7 @@ int* solution1(struct TreeNode* root, int* returnSize) {
 }
 
 /**
- * Solution 1
+ * Solution 2
  * 
  * Iteration
  * 
