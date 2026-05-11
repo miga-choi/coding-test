@@ -5,6 +5,15 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * Iteration
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -34,22 +43,65 @@ var preorderTraversal = function (root) {
 
 
 // Solution
-var solution = function (root) {
+/**
+ * Solution 1
+ *
+ * Recursion
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+var solution1 = function (root) {
+  const result = [];
+
+  function traverse(node) {
+    if (!node) {
+      return;
+    }
+
+    result.push(node.val);
+    traverse(node.left);
+    traverse(node.right);
+  }
+
+  traverse(root);
+  return result;
+};
+
+/**
+ * Solution 2
+ *
+ * Iteration
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   H - Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+var solution2 = function (root) {
   if (!root) {
     return [];
   }
-  var result = [];
-  var stack = [root];
 
-  while (stack.length) {
-    var node = stack.pop();
+  const result = [];
+  const stack = [root];
+
+  while (stack.length > 0) {
+    const node = stack.pop();
     result.push(node.val);
-    if (node.right) {
+
+    if (node.right !== null) {
       stack.push(node.right);
     }
-    if (node.left) {
+
+    if (node.left !== null) {
       stack.push(node.left);
     }
   }
+
   return result;
 };
