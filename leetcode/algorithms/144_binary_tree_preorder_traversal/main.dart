@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 class TreeNode {
   int val;
   TreeNode? left;
@@ -8,6 +6,15 @@ class TreeNode {
 }
 
 class BinaryTreePreorderTraversal {
+  /**
+   * Recursion
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
   void addVal(TreeNode? node, List<int> result) {
     if (node != null) {
       result.add(node.val);
@@ -24,74 +31,67 @@ class BinaryTreePreorderTraversal {
 
 
   // Solution
-  // Solution 1: Recursive with helper Function
-  void preOrder(TreeNode? root, List<int> list) {
-    if (root == null) {
+  /**
+   * Solution 1
+   *
+   * Recursion
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
+  List<int> solution1(TreeNode? root) {
+    List<int> result = [];
+    _dfs(root, result);
+    return result;
+  }
+
+  void _dfs(TreeNode? node, List<int> result) {
+    if (node == null) {
       return;
     }
-    list.add(root.val);
-    preOrder(root.left, list);
-    preOrder(root.right, list);
+
+    result.add(node.val);
+
+    _dfs(node.left, result);
+
+    _dfs(node.right, result);
   }
 
-  List<int> solution1(TreeNode? root) {
-    List<int> list = List.empty(growable: true);
-    preOrder(root, list);
-    return list;
-  }
-
-  // Solution 2: Recursive without Helper Function
-  // Global list to hold our values
-  List<int> preorder = List.empty(growable: true);
-
+  /**
+   * Solution 2
+   *
+   * Iteration
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
   List<int> solution2(TreeNode? root) {
-    // if tree-node is empty than we will return empty list
     if (root == null) {
-      return preorder;
+      return [];
     }
 
-    // else we will add the value into the list
-    preorder.add(root.val);
+    List<int> result = [];
+    List<TreeNode> stack = [root];
 
-    // adding the value from left side
-    solution2(root.left);
+    while (stack.isNotEmpty) {
+      TreeNode current = stack.removeLast();
 
-    // adding OR arranging value from right side
-    solution2(root.right);
+      result.add(current.val);
 
-    return preorder;
-  }
-
-  // Solution 3: Iterative Approach Using Stack
-  List<int> solution3(TreeNode? root) {
-    // Create an array list to store the solution result...
-    List<int> sol = List.empty(growable: true);
-
-    // Return the solution answer if the tree is empty...
-    if (root == null) {
-      return sol;
-    }
-
-    // Create an empty stack and push the root node...
-    Queue<TreeNode?> bag = Queue();
-    bag.add(root);
-
-    // Loop till stack is empty...
-    while (!bag.isEmpty) {
-      // Pop a node from the stack...
-      TreeNode? node = bag.removeLast();
-      sol.add(node!.val);
-
-      // Push the right child of the popped node into the stack...
-      if (node.right != null) {
-        bag.add(node.right);
+      if (current.right != null) {
+        stack.add(current.right!);
       }
-
-      // Push the left child of the popped node into the stack...
-      if (node.left != null) {
-        bag.add(node.left);
+      if (current.left != null) {
+        stack.add(current.left!);
       }
     }
-    return sol; // Return the solution list...
+
+    return result;
   }
 }
