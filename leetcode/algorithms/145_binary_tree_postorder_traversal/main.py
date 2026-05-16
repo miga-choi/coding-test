@@ -9,6 +9,15 @@ class TreeNode:
 
 
 class BinaryTreePostorderTraversal:
+    """
+    * Iteration
+    *
+    * Complexities:
+    *   N - Number of nodes in `root`
+    *   H - Height of `root`
+    *   - Time Complexity: O(N)
+    *   - Space Complexity: O(H)
+    """
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
         nodes = []
@@ -31,23 +40,59 @@ class BinaryTreePostorderTraversal:
 
 
     # Solution
-    def solution(self, root):
-        # Base case...
+    """
+    * Solution 1
+    *
+    * Recursion
+    *
+    * Complexities:
+    *   N - Number of nodes in `root`
+    *   H - Height of `root`
+    *   - Time Complexity: O(N)
+    *   - Space Complexity: O(H)
+    """
+    def solution1(self, root: Optional[TreeNode]) -> List[int]:
+        result = []
+        
+        def traverse(node):
+            if not node:
+                return
+            
+            traverse(node.left)
+            
+            traverse(node.right)
+            
+            result.append(node.val)
+            
+        traverse(root)
+        return result
+
+    """
+    * Solution 2
+    *
+    * Iteration
+    *
+    * Complexities:
+    *   N - Number of nodes in `root`
+    *   H - Height of `root`
+    *   - Time Complexity: O(N)
+    *   - Space Complexity: O(H)
+    """
+    def solution2(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        # Create an array list to store the solution result...
-        sol = []
-        # Create an empty stack and push the root node...
-        bag = [root]
-        # Loop till stack is empty...
-        while bag:
-            # Pop a node from the stack...
-            node = bag.pop()
-            sol.append(node.val)
-            # Push the left child of the popped node into the stack...
+            
+        result = []
+        stack = [root]
+        
+        while stack:
+            node = stack.pop()
+            
+            result.append(node.val)
+            
             if node.left:
-                bag.append(node.left)
-            # Append the right child of the popped node into the stack...
+                stack.append(node.left)
             if node.right:
-                bag.append(node.right)
-        return sol[::-1]  # Return the solution list...
+                stack.append(node.right)
+                
+        return result[::-1]
