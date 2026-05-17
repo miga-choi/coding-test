@@ -1,43 +1,57 @@
+#include <stdlib.h>
+
 struct ListNode {
     int val;
     struct ListNode* next;
 };
 
 /**
- * - Time Complexity: O(M * N)
- * - Space Complexity: O(1)
+ * Two-Pointer
+ * 
+ * Complexities:
+ *   N - Size of `headA`
+ *   M - Size of `headB`
+ *   - Time Complexity: O(M + N)
+ *   - Space Complexity: O(1)
  */
 struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB) {
-    while (headA) {
-        struct ListNode* dummyB = headB;
-
-        while (dummyB) {
-            if (headA == dummyB) {
-                return headA;
-            }
-            dummyB = dummyB->next;
-        }
-
-        headA = headA->next;
+    if (headA == NULL || headB == NULL) {
+        return NULL;
     }
 
-    return headA;
+    struct ListNode* ptrA = headA;
+    struct ListNode* ptrB = headB;
+
+    while (ptrA != ptrB) {
+        ptrA = (ptrA == NULL) ? headB : ptrA->next;
+        ptrB = (ptrB == NULL) ? headA : ptrB->next;
+    }
+
+    return ptrA;
 }
 
 
 // Solution
 /**
  * Two-Pointer
- * - Time Complexity: O(M + N)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Size of `headA`
+ *   M - Size of `headB`
+ *   - Time Complexity: O(M + N)
+ *   - Space Complexity: O(1)
  */
-struct ListNode* solution(struct ListNode* headA, struct ListNode* headB) {
+struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB) {
+    if (headA == NULL || headB == NULL) {
+        return NULL;
+    }
+
     struct ListNode* ptrA = headA;
     struct ListNode* ptrB = headB;
 
     while (ptrA != ptrB) {
-        ptrA = ptrA ? ptrA->next: headB;
-        ptrB = ptrB ? ptrB->next: headA;
+        ptrA = (ptrA == NULL) ? headB : ptrA->next;
+        ptrB = (ptrB == NULL) ? headA : ptrB->next;
     }
 
     return ptrA;
