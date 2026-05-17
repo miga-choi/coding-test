@@ -6,6 +6,15 @@ class TreeNode {
 }
 
 class BinaryTreePostorderTraversal {
+  /**
+   * Recursion
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
   void addVal(TreeNode? node, List<int> result) {
     if (node != null) {
       addVal(node.left, result);
@@ -22,14 +31,67 @@ class BinaryTreePostorderTraversal {
 
 
   // Solution
-  List<int> solution(TreeNode? root) {
+  /**
+   * Solution 1
+   *
+   * Recursion
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
+  List<int> solution1(TreeNode? root) {
+    List<int> result = [];
+    _dfs(root, result);
+    return result;
+  }
+
+  void _dfs(TreeNode? node, List<int> result) {
+    if (node == null) {
+      return;
+    }
+
+    _dfs(node.left, result);
+
+    _dfs(node.right, result);
+
+    result.add(node.val);
+  }
+
+  /**
+   * Solution 2
+   *
+   * Iteration
+   *
+   * Complexities:
+   *   N - Number of nodes in `root`
+   *   H - Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
+   */
+  List<int> solution2(TreeNode? root) {
     if (root == null) {
       return [];
     }
+
     List<int> result = [];
-    result.addAll(postorderTraversal(root.left));
-    result.addAll(postorderTraversal(root.right));
-    result.add(root.val);
-    return result;
+    List<TreeNode> stack = [root];
+
+    while (stack.isNotEmpty) {
+      TreeNode current = stack.removeLast();
+
+      result.add(current.val);
+
+      if (current.left != null) {
+        stack.add(current.left!);
+      }
+      if (current.right != null) {
+        stack.add(current.right!);
+      }
+    }
+
+    return result.reversed.toList();
   }
 }
