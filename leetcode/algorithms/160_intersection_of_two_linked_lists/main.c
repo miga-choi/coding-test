@@ -9,8 +9,8 @@ struct ListNode {
  * Two-Pointer
  * 
  * Complexities:
- *   N - Size of `headA`
- *   M - Size of `headB`
+ *   N - Number of Nodes in `headA`
+ *   M - Number of Nodes in `headB`
  *   - Time Complexity: O(M + N)
  *   - Space Complexity: O(1)
  */
@@ -36,8 +36,8 @@ struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* he
  * Two-Pointer
  * 
  * Complexities:
- *   N - Size of `headA`
- *   M - Size of `headB`
+ *   N - Number of Nodes in `headA`
+ *   M - Number of Nodes in `headB`
  *   - Time Complexity: O(M + N)
  *   - Space Complexity: O(1)
  */

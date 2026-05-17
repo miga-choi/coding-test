@@ -10,42 +10,54 @@ struct ListNode {
 class IntersectionOfTwoLinkedLists {
 public:
     /**
-     * - Time Complexity: O(M * N)
-     * - Space Complexity: O(1)
+     * Two-Pointer
+     *
+     * Complexities:
+     *   N - Number of Nodes in `headA`
+     *   M - Number of Nodes in `headB`
+     *   - Time Complexity: O(M + N)
+     *   - Space Complexity: O(1)
      */
     ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
-        while (headA) {
-            ListNode* dummyB = headB;
-
-            while (dummyB) {
-                if (headA == dummyB) {
-                    return headA;
-                }
-                dummyB = dummyB->next;
-            }
-
-            headA = headA->next;
+        if (headA == nullptr || headB == nullptr) {
+            return nullptr;
         }
-        
-        return headA;
+
+        ListNode* ptrA = headA;
+        ListNode* ptrB = headB;
+
+        while (ptrA != ptrB) {
+            ptrA = (ptrA == nullptr) ? headB : ptrA->next;
+            ptrB = (ptrB == nullptr) ? headA : ptrB->next;
+        }
+
+        return ptrA;
     }
 
 
     // Solution
     /**
      * Two-Pointer
-     * - Time Complexity: O(M + N)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Number of Nodes in `headA`
+     *   M - Number of Nodes in `headB`
+     *   - Time Complexity: O(M + N)
+     *   - Space Complexity: O(1)
      */
     ListNode* solution(ListNode* headA, ListNode* headB) {
-        ListNode* ptrA = headA;
-        ListNode* ptrB = headB;
-
-        while (ptrA != ptrB) {
-            ptrA = ptrA ? ptrA->next : headB;
-            ptrB = ptrB ? ptrB->next : headA;
+        if (headA == nullptr || headB == nullptr) {
+            return nullptr;
         }
 
-        return ptrA;
+        ListNode* pA = headA;
+        ListNode* pB = headB;
+
+        while (pA != pB) {
+            pA = (pA == nullptr) ? headB : pA->next;
+            pB = (pB == nullptr) ? headA : pB->next;
+        }
+
+        return pA;
     }
 };
