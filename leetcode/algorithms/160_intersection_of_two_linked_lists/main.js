@@ -4,42 +4,56 @@ function ListNode(val) {
 }
 
 /**
- * - Time Complexity: O(M * N)
- * - Space Complexity: O(1)
+ * Two-Pointer
  *
+ * Complexities:
+ *   N - Number of Nodes in `headA`
+ *   M - Number of Nodes in `headB`
+ *   - Time Complexity: O(M + N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} headA
  * @param {ListNode} headB
  * @return {ListNode}
  */
 var getIntersectionNode = function (headA, headB) {
-  while (headA) {
-    let dummyB = headB;
-
-    while (dummyB) {
-      if (headA === dummyB) {
-        return headA;
-      }
-      dummyB = dummyB.next;
-    }
-
-    headA = headA.next;
+  if (!headA || !headB) {
+    return null;
   }
 
-  return headA;
+  let ptrA = headA;
+  let ptrB = headB;
+
+  while (ptrA !== ptrB) {
+    ptrA = ptrA === null ? headB : ptrA.next;
+    ptrB = ptrB === null ? headA : ptrB.next;
+  }
+
+  return ptrA;
 };
 
 
 // Solution
 /**
  * Two-Pointer
- * - Time Complexity: O(M + N)
- * - Space Complexity: O(1)
  *
+ * Complexities:
+ *   N - Number of Nodes in `headA`
+ *   M - Number of Nodes in `headB`
+ *   - Time Complexity: O(M + N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} headA
  * @param {ListNode} headB
  * @return {ListNode}
  */
 var solution = function (headA, headB) {
+  if (!headA || !headB) {
+    return null;
+  }
+
   let pA = headA;
   let pB = headB;
 
