@@ -10,34 +10,46 @@ class IntersectionOfTwoLinkedLists {
   }
 
   /**
-   * - Time Complexity: O(M * N)
-   * - Space Complexity: O(1)
+   * Two-Pointer
+   *
+   * Complexities:
+   *   N - Number of Nodes in `headA`
+   *   M - Number of Nodes in `headB`
+   *   - Time Complexity: O(M + N)
+   *   - Space Complexity: O(1)
    */
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-    while (headA != null) {
-      ListNode dummyB = headB;
-
-      while (dummyB != null) {
-        if (headA == dummyB) {
-          return headA;
-        }
-
-        dummyB = dummyB.next;
-      }
-
-      headA = headA.next;
+    if (headA == null || headB == null) {
+      return null;
     }
 
-    return headA;
+    ListNode ptrA = headA;
+    ListNode ptrB = headB;
+
+    while (ptrA != ptrB) {
+      ptrA = (ptrA == null) ? headB : ptrA.next;
+      ptrB = (ptrB == null) ? headA : ptrB.next;
+    }
+
+    return ptrA;
   }
+
 
   // Solution
   /**
    * Two-Pointer
-   * - Time Complexity: O(M + N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Number of Nodes in `headA`
+   *   M - Number of Nodes in `headB`
+   *   - Time Complexity: O(M + N)
+   *   - Space Complexity: O(1)
    */
   public ListNode solution(ListNode headA, ListNode headB) {
+    if (headA == null || headB == null) {
+      return null;
+    }
+
     ListNode ptrA = headA;
     ListNode ptrB = headB;
 
