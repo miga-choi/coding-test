@@ -1,4 +1,10 @@
 /**
+ * Complexities:
+ *   N - `columnNumber`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
  * @param {number} columnNumber
  * @return {string}
  */
@@ -44,20 +50,29 @@ var convertToTitle = function (columnNumber) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   N - `columnNumber`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
+ * @param {number} columnNumber
+ * @return {string}
+ */
 var solution = function (n) {
-  if (n == 0) {
-    return null;
+  const result = [];
+
+  while (columnNumber > 0) {
+    columnNumber--;
+
+    const remainder = columnNumber % 26;
+
+    const char = String.fromCharCode(remainder + 65);
+    result.push(char);
+
+    columnNumber = Math.floor(columnNumber / 26);
   }
-  let result = "";
-  while (n > 0) {
-    let r = n % 26;
-    let d = parseInt(n / 26);
-    if (r == 0) {
-      r = 26;
-      d = d - 1;
-    }
-    result += String.fromCharCode(64 + r);
-    n = d;
-  }
-  return result.split("").reverse().join("");
+
+  return result.reverse().join("");
 };
