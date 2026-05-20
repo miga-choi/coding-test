@@ -1,4 +1,10 @@
 class ExcelSheetColumnTitle {
+  /**
+   * Complexities:
+   *   N - `columnNumber`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(logᴺ)
+   */
   public String convertToTitle(int columnNumber) {
     String[] alphabet = {
         "A",
@@ -41,7 +47,26 @@ class ExcelSheetColumnTitle {
 
 
   // Solution
-  public String solution(int n) {
-    return n == 0 ? "" : convertToTitle(--n / 26) + (char) ('A' + (n % 26));
+  /**
+   * Complexities:
+   *   N - `columnNumber`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(logᴺ)
+   */
+  public String solution(int columnNumber) {
+    StringBuilder sb = new StringBuilder();
+
+    while (columnNumber > 0) {
+      columnNumber--;
+
+      int remainder = columnNumber % 26;
+      char currentChar = (char) ('A' + remainder);
+
+      sb.append(currentChar);
+
+      columnNumber /= 26;
+    }
+
+    return sb.reverse().toString();
   }
 }
