@@ -1,4 +1,10 @@
 class ExcelSheetColumnTitle:
+    """
+    # Complexities:
+    #   N - `columnNumber`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(logᴺ)
+    """
     def convertToTitle(self, columnNumber: int) -> str:
         alphabet = [
             "A",
@@ -39,19 +45,22 @@ class ExcelSheetColumnTitle:
 
 
     # Solution
-    # Solution 1
-    def solution1(self, columnNumber):
-        # Create an empty string for storing the characters...
-        output = ""
-        # Run a while loop while columnNumber is positive...
+    """
+    # Complexities:
+    #   N - `columnNumber`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(logᴺ)
+    """
+    def solution(self, columnNumber):
+        result = []
+        
         while columnNumber > 0:
-            # Subtract 1 from columnNumber and get current character by doing modulo of columnNumber by 26...
-            output = chr(ord("A") + (columnNumber - 1) % 26) + output
-            # Divide columnNumber by 26...
-            columnNumber = (columnNumber - 1) // 26
-        # Return the output string.
-        return output
-
-    # Solution 2
-    def solution2(self, columnNumber):
-        return "" if columnNumber == 0 else self.solution2((columnNumber - 1) / 26) + chr((columnNumber - 1) % 26 + ord("A"))
+            columnNumber -= 1
+            
+            remainder = columnNumber % 26
+            
+            result.append(chr(ord('A') + remainder))
+            
+            columnNumber //= 26
+            
+        return "".join(result[::-1])
