@@ -1,6 +1,11 @@
 #include <string.h>
 #include <math.h>
 
+/**
+ * Complexities:
+ *   - Time Complexity: O(N²)
+ *   - Space Complexity: O(1)
+ */
 int titleToNumber(char* columnTitle) {
     int length = 0;
     while (1) {
@@ -20,11 +25,19 @@ int titleToNumber(char* columnTitle) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 int solution(char* columnTitle) {
-    int output = 0;
-    for (int i = 0; i < strlen(columnTitle); i++) {
-        output *= 26;
-        output += (columnTitle[i] - 'A' + 1);
+    long long result = 0; 
+    
+    for (int i = 0; columnTitle[i] != '\0'; i++) {
+        int char_value = columnTitle[i] - 'A' + 1;
+        
+        result = result * 26 + char_value;
     }
-    return output;
+    
+    return (int)result;
 }
