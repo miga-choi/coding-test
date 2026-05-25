@@ -17,21 +17,21 @@ AB -> 28
 
 ## Example 1:
 
-```java
+```
 Input: columnTitle = "A"
 Output: 1
 ```
 
 ## Example 2:
 
-```java
+```
 Input: columnTitle = "AB"
 Output: 28
 ```
 
 ## Example 3:
 
-```java
+```
 Input: columnTitle = "ZY"
 Output: 701
 ```
