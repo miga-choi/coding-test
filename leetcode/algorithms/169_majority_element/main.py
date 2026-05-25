@@ -1,8 +1,16 @@
-from collections import defaultdict
+from collections import Counter, defaultdict
 from typing import List
 
 
 class MajorityElement:
+    """
+    # HashMap
+    # 
+    # Complexities:
+    #   N - `numsSize`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def majorityElement(self, nums: List[int]) -> int:
         numsMap = {}
         length = len(nums) / 2
@@ -19,31 +27,47 @@ class MajorityElement:
 
 
     # Solution
-    # Solution 1: Sorting
+    """
+    # Solution 1
+    #
+    # HashMap
+    # 
+    # Complexities:
+    #   N - `numsSize`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution1(self, nums: List[int]) -> int:
-        nums.sort()
-        n = len(nums)
-        return nums[n//2]
+        counts = Counter(nums)
+        return max(counts.keys(), key=counts.get)
 
-    # Solution 2: Hash Map
+    """
+    # Solution 2
+    #
+    # Sorting
+    # 
+    # Complexities:
+    #   N - `numsSize`
+    #   - Time Complexity: O(N * logᴺ)
+    #   - Space Complexity: O(1)
+    """
     def solution2(self, nums: List[int]) -> int:
-        n = len(nums)
-        m = defaultdict(int)
-        
-        for num in nums:
-            m[num] += 1
-        
-        n = n // 2
-        for key, value in m.items():
-            if value > n:
-                return key
-        
-        return 0
+        nums.sort()
+        return nums[len(nums) // 2]
 
-    # Solution 3: Moore Voting Algorithm
+    """
+    # Solution 3
+    #
+    # Boyer-Moore Voting Algorithm
+    #
+    # Complexities:
+    #   N - `numsSize`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution3(self, nums: List[int]) -> int:
+        candidate = None
         count = 0
-        candidate = 0
         
         for num in nums:
             if count == 0:
@@ -53,5 +77,5 @@ class MajorityElement:
                 count += 1
             else:
                 count -= 1
-        
+                
         return candidate
