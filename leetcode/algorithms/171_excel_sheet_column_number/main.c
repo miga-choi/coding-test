@@ -3,6 +3,7 @@
 
 /**
  * Complexities:
+ *   N - Size of `columnTitle`
  *   - Time Complexity: O(N²)
  *   - Space Complexity: O(1)
  */
@@ -27,6 +28,7 @@ int titleToNumber(char* columnTitle) {
 // Solution
 /**
  * Complexities:
+ *   N - Size of `columnTitle`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(1)
  */
