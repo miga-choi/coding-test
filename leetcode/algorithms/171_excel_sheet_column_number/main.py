@@ -1,4 +1,10 @@
 class ExcelSheetColumnNumber:
+    """
+    # Complexities:
+    #   N - Size of `columnTitle`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
+    """
     def titleToNumber(self, columnTitle: str) -> int:
         result = 0
 
@@ -9,12 +15,18 @@ class ExcelSheetColumnNumber:
 
 
     # Solution
+    """
+    # Complexities:
+    #   N - Size of `columnTitle`
+    #   - Time Complexity: O(N²)
+    #   - Space Complexity: O(1)
+    """
     def solution(self, columnTitle: str) -> int:
-        ans, pos = 0, 0
+        result = 0
 
-        for letter in reversed(columnTitle):
-            digit = ord(letter) - 64
-            ans += digit * 26**pos
-            pos += 1
+        for char in columnTitle:
+            val = ord(char) - ord('A') + 1
 
-        return ans
+            result = result * 26 + val
+
+        return result
