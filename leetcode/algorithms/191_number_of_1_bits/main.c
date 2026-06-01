@@ -1,5 +1,5 @@
 /**
- * Shift & Mask
+ * Bit Shift & Mask
  * 
  * Complexities:
  *   - Time Complexity: O(1)
