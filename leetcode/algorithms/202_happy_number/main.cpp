@@ -3,6 +3,14 @@ using namespace std;
 
 class HappyNumber {
 public:
+    /**
+     * Floyd's Cycle-Finding Algorithm
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(1)
+     */
     int sum(int n) {
         int sum = 0;
         while (n) {
@@ -33,44 +41,68 @@ public:
 
 
     // Solution
-    // Solution 1: Hash Table
-    int nextNumber1(int n) {
-        int newNumber = 0;
-        while (n != 0) {
-            int num = n % 10;
-            newNumber += num * num;
-            n = n / 10;
+    /**
+     * Solution 1
+     * 
+     * Floyd's Cycle-Finding Algorithm
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(1)
+     */
+    int getNext1(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * digit;
+            n /= 10;
         }
-        return newNumber;
+        return sum;
     }
 
     bool solution1(int n) {
-        unordered_set<int> set;
-        while (n != 1 && !set.count(n)) {
-            set.insert(n);
-            n = nextNumber1(n);
+        int slow = n;
+        int fast = getNext1(n);
+
+        while (fast != 1 && slow != fast) {
+            slow = getNext1(slow);
+            fast = getNext1(getNext1(fast));
         }
-        return n == 1;
+
+        return fast == 1;
     }
 
-    // Solution 2: Floyd's Cycle-Finding Algorithm
-    int nextNumber2(int n) {
-        int newNumber = 0;
-        while (n != 0) {
-            int num = n % 10;
-            newNumber += num * num;
-            n = n / 10;
+    /**
+     * Solution 2
+     * 
+     * unordered_set
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(logᴺ)
+     */
+    int getNext2(int n) {
+        int sum = 0;
+
+        while (n > 0) {
+            int digit = n % 10;
+            sum += digit * digit;
+            n /= 10;
         }
-        return newNumber;
+
+        return sum;
     }
 
     bool solution2(int n) {
-        int slowPointer = n;
-        int fastPointer = nextNumber2(n);
-        while (fastPointer != 1 && fastPointer != slowPointer) {
-            slowPointer = nextNumber2(slowPointer);
-            fastPointer = nextNumber2(nextNumber2(fastPointer));
+        unordered_set<int> seen;
+
+        while (n != 1 && seen.find(n) == seen.end()) {
+            seen.insert(n);
+            n = getNext2(n);
         }
-        return fastPointer == 1;
+
+        return n == 1;
     }
 };
