@@ -40,7 +40,7 @@ var isHappy = function (n) {
  * Complexities:
  *   N - `n`
  *   - Time Complexity: O(logᴺ)
- *   - Space Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
  */
 /**
  * @param {number} n
@@ -81,7 +81,7 @@ var solution1 = function (n) {
  * Complexities:
  *   N - `n`
  *   - Time Complexity: O(logᴺ)
- *   - Space Complexity: O(1)
+ *   - Space Complexity: O(logᴺ)
  */
 /**
  * @param {number} n
