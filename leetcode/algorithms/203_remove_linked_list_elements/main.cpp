@@ -10,6 +10,14 @@ struct ListNode {
 
 class RemoveLinkedListElements {
 public:
+    /**
+     * Dummy Node
+     *
+     * Complexities:
+     *   N - Number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     ListNode* removeElements(ListNode* head, int val) {
         ListNode* result = (ListNode*)malloc(sizeof(ListNode));
         result->next = head;
@@ -28,52 +36,58 @@ public:
 
 
     // Solution
-    // Solution 1: Solving the problem using two pointers.
+    /**
+     * Solution 1
+     * 
+     * Dummy Node
+     *
+     * Complexities:
+     *   N - Number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     ListNode* solution1(ListNode* head, int val) {
-        if (head == nullptr) {
-            return head;
-        }
-        while (head != nullptr && head->val == val) {
-            head = head->next;
-        }
+        ListNode dummy(0);
+        dummy.next = head;
 
-        ListNode* curr = head;
-        ListNode* prev = nullptr;
-        while (curr != nullptr) {
-            if (curr->val == val) {
-                prev->next = curr->next;
-                curr = curr->next;
+        ListNode* curr = &dummy;
+
+        while (curr->next != nullptr) {
+            if (curr->next->val == val) {
+                ListNode* temp = curr->next;
+                
+                curr->next = curr->next->next;
+                
+                delete temp;
             } else {
-                prev = curr;
                 curr = curr->next;
             }
         }
 
-        return head;
+        return dummy.next;
     }
 
-    // Solution 2: Solving the problem using a single pointer.
+    /**
+     * Solution 2
+     * 
+     * Recursion
+     *
+     * Complexities:
+     *   N - Number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     ListNode* solution2(ListNode* head, int val) {
         if (head == nullptr) {
-            return head;
+            return nullptr;
         }
 
-        // This is for the case when a linked list is like this:
-        // 1->1->2->null , val = 1
-        // 1->1->1->null , val = 1
-        while (head != nullptr && head->val == val) {
-            head = head->next;
-        }
+        head->next = solution2(head->next, val);
 
-        ListNode* curr = head;
-        while (curr != nullptr && curr->next != nullptr) {
-            if (curr->next->val == val) {
-                curr->next = curr->next->next;
-                // After doing the above step, I am not updating "curr" because of these type of test cases:
-                // 1->2->3->6->6->6->5->null  val = 6
-            } else {
-                curr = curr->next;
-            }
+        if (head->val == val) {
+            ListNode* nextNode = head->next;
+            delete head;
+            return nextNode;
         }
 
         return head;
