@@ -5,6 +5,14 @@ struct ListNode {
     struct ListNode* next;
 };
 
+/**
+ * Dummy Node
+ * 
+ * Complexities:
+ *   N - Number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 struct ListNode* removeElements(struct ListNode* head, int val) {
     struct ListNode* result = (struct ListNode*)malloc(sizeof(struct ListNode));
     result->next = head;
@@ -23,18 +31,31 @@ struct ListNode* removeElements(struct ListNode* head, int val) {
 
 
 // Solution
+/**
+ * Dummy Node
+ * 
+ * Complexities:
+ *   N - Number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 struct ListNode* solution(struct ListNode* head, int val) {
-    struct ListNode* temp = (struct ListNode*)malloc(sizeof(struct ListNode));
-    temp->next = head;
-    struct ListNode* curr = temp;
+    struct ListNode dummy;
+    dummy.next = head;
+
+    struct ListNode* curr = &dummy;
 
     while (curr->next != NULL) {
         if (curr->next->val == val) {
+            struct ListNode* temp = curr->next;
+            
             curr->next = curr->next->next;
+            
+            free(temp);
         } else {
             curr = curr->next;
         }
     }
-    
-    return temp->next;
+
+    return dummy.next;
 }
