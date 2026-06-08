@@ -16,6 +16,14 @@ class RemoveLinkedListElements {
     }
   }
 
+  /**
+   * Dummy Node
+   *
+   * Complexities:
+   *   N - Number of nodes in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   public ListNode removeElements(ListNode head, int val) {
     if (head == null) {
       return null;
@@ -41,28 +49,50 @@ class RemoveLinkedListElements {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Dummy Node
+   *
+   * Complexities:
+   *   N - Number of nodes in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   public ListNode solution1(ListNode head, int val) {
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
+
+    ListNode curr = dummy;
+
+    while (curr.next != null) {
+      if (curr.next.val == val) {
+        curr.next = curr.next.next;
+      } else {
+        curr = curr.next;
+      }
+    }
+
+    return dummy.next;
+  }
+
+  /**
+   * Solution 2
+   * 
+   * Recursion
+   *
+   * Complexities:
+   *   N - Number of nodes in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
+  public ListNode solution2(ListNode head, int val) {
     if (head == null) {
       return null;
     }
-    head.next = removeElements(head.next, val);
-    return head.val == val ? head.next : head;
-  }
 
-  // solution 2
-  public ListNode solution2(ListNode head, int val) {
-    ListNode fakeHead = new ListNode(-1);
-    fakeHead.next = head;
-    ListNode curr = head, prev = fakeHead;
-    while (curr != null) {
-      if (curr.val == val) {
-        prev.next = curr.next;
-      } else {
-        prev = prev.next;
-      }
-      curr = curr.next;
-    }
-    return fakeHead.next;
+    head.next = solution2(head.next, val);
+
+    return head.val == val ? head.next : head;
   }
 }
