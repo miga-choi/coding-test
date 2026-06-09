@@ -1,5 +1,11 @@
 #include <stdbool.h>
 
+/**
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 bool isIsomorphic(char* s, char* t) {
     char sCharArray[256] = {0};
     char tCharArray[256] = {0};
@@ -18,19 +24,26 @@ bool isIsomorphic(char* s, char* t) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 bool solution(char* s, char* t) {
-    char charArrS[256] = {0};
-    char charArrT[256] = {0};
-    int i = 0;
+    int posS[256] = {0};
+    int posT[256] = {0};
 
-    while (s[i] != 0) {
-        if (charArrS[s[i]] == 0 && charArrT[t[i]] == 0) {
-            charArrS[s[i]] = t[i];
-            charArrT[t[i]] = s[i];
-        } else if (charArrS[s[i]] != t[i] || charArrT[t[i]] != s[i]) {
+    for (int i = 0; s[i] != '\0'; i++) {
+        unsigned char charS = (unsigned char)s[i];
+        unsigned char charT = (unsigned char)t[i];
+
+        if (posS[charS] != posT[charT]) {
             return false;
         }
-        i++;
+
+        posS[charS] = i + 1;
+        posT[charT] = i + 1;
     }
 
     return true;
