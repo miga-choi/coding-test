@@ -1,4 +1,10 @@
 /**
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
@@ -24,28 +30,40 @@ var isIsomorphic = function (s, t) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   N - Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 var solution = function (s, t) {
-  // Base case: for different length of two strings...
-  if (s.length != t.length) {
+  if (s.length !== t.length) {
     return false;
   }
 
-  // Create two maps for s & t strings...
-  const map1 = [256];
-  const map2 = [256];
+  const mapS = new Map();
+  const mapT = new Map();
 
-  // Traverse all elements through the loop...
-  for (let idx = 0; idx < s.length; idx++) {
-    // Compare the maps, if not equal, return false...
-    if (map1[s.charAt(idx)] != map2[t.charAt(idx)]) {
-      return false;
+  for (let i = 0; i < s.length; i++) {
+    const charS = s[i];
+    const charT = t[i];
+
+    if (mapS.has(charS)) {
+      if (mapS.get(charS) !== charT) {
+        return false;
+      }
+    } else {
+      mapS.set(charS, charT);
     }
 
-    // Insert each character if string s and t into seperate map...
-    map1[s.charAt(idx)] = idx + 1;
-    map2[t.charAt(idx)] = idx + 1;
+    if (mapT.has(charT)) {
+      if (mapT.get(charT) !== charS) {
+        return false;
+      }
+    } else {
+      mapT.set(charT, charS);
+    }
   }
 
-  // Otherwise return true...
   return true;
 };
