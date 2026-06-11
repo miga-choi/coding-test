@@ -1,4 +1,10 @@
 class IsomorphicStrings:
+    """
+    # Complexities:
+    #   N - Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def isIsomorphic(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
@@ -16,13 +22,44 @@ class IsomorphicStrings:
 
 
     # Solution
-    def solution(self, s: str, t: str) -> bool:
-        map1 = []
-        map2 = []
-        for idx in s:
-            map1.append(s.index(idx))
-        for idx in t:
-            map2.append(t.index(idx))
-        if map1 == map2:
-            return True
-        return False
+    """
+    # Solution 1
+    #
+    # Complexities:
+    #   N - Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
+    def solution1(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+            
+        map_s = {}
+        map_t = {}
+        
+        for char_s, char_t in zip(s, t):
+            if char_s in map_s:
+                if map_s[char_s] != char_t:
+                    return False
+            else:
+                map_s[char_s] = char_t
+                
+            if char_t in map_t:
+                if map_t[char_t] != char_s:
+                    return False
+            else:
+                map_t[char_t] = char_s
+                
+        return True
+
+    """
+    # Solution 2
+    #
+    # Complexities:
+    #   N - Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, s: str, t: str) -> bool:
+        return len(set(s)) == len(set(t)) == len(set(zip(s, t)))
+
