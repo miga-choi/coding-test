@@ -7,10 +7,13 @@ struct ListNode {
 
 /**
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   N - Number of node in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
-struct ListNode* reverseList_iterative(struct ListNode* head) {
+struct ListNode* reverseList(struct ListNode* head) {
     if (head == NULL || head->next == NULL) {
         return head;
     }
@@ -45,21 +48,22 @@ struct ListNode* reverseList_iterative(struct ListNode* head) {
  * Solution 1
  * 
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * 
+ * Complexities:
+ *   N - Number of node in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 struct ListNode* solution1(struct ListNode* head) {
     struct ListNode* prev = NULL;
-    struct ListNode* current = head;
-    struct ListNode* next_temp = NULL;
+    struct ListNode* curr = head;
+    struct ListNode* nextTemp = NULL;
 
-    while (current != NULL) {
-        next_temp = current->next;
-        
-        current->next = prev;
-        
-        prev = current;
-        current = next_temp;
+    while (curr != NULL) {
+        nextTemp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextTemp;
     }
 
     return prev;
@@ -69,8 +73,11 @@ struct ListNode* solution1(struct ListNode* head) {
  * Solution 2
  * 
  * Recursion
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ * 
+ * Complexities:
+ *   N - Number of node in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
  */
 struct ListNode* solution2(struct ListNode* head) {
     if (head == NULL || head->next == NULL) {
@@ -80,6 +87,7 @@ struct ListNode* solution2(struct ListNode* head) {
     struct ListNode* newHead = solution2(head->next);
 
     head->next->next = head;
+    
     head->next = NULL;
 
     return newHead;
