@@ -5,9 +5,13 @@ function ListNode(val, next) {
 
 /**
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
  *
+ * Complexities:
+ *   N - Number of node in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} head
  * @return {ListNode}
  */
@@ -38,44 +42,60 @@ var reverseList = function (head) {
 
 
 // Solution
-/*
+/**
  * Solution 1
  *
  * Iteration
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ *
+ * Complexities:
+ *   N - Number of node in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
  */
 var solution1 = function (head) {
   let prev = null;
-  let current = head;
-  let nextTemp = null;
+  let curr = head;
 
-  while (current !== null) {
-    nextTemp = current.next;
-    current.next = prev;
-    prev = current;
-    current = nextTemp;
+  while (curr !== null) {
+    const nextTemp = curr.next;
+
+    curr.next = prev;
+
+    prev = curr;
+    curr = nextTemp;
   }
 
   return prev;
 };
 
-/*
+/**
  * Solution 2
  *
  * Recursion
- * - Time Complexity: O(N)
- * - Space Complexity: O(N)
+ *
+ * Complexities:
+ *   N - Number of node in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
  */
 var solution2 = function (head) {
   if (head === null || head.next === null) {
     return head;
   }
 
-  const reversedListHead = solution2(head.next);
+  const reversedHead = solution2(head.next);
 
   head.next.next = head;
+
   head.next = null;
 
-  return reversedListHead;
+  return reversedHead;
 };
