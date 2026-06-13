@@ -13,8 +13,11 @@ class ReverseLinkedList {
 public:
     /**
      * Iteration
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   N - Number of node in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     ListNode* reverseList(ListNode* head) {
         if (head == nullptr || head->next == nullptr) {
@@ -47,20 +50,24 @@ public:
     // Solution
     /**
      * Solution 1
-     * 
+     *
      * Iteration
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Complexities:
+     *   N - Number of node in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     ListNode* solution1(ListNode* head) {
         ListNode* prev = nullptr;
-        ListNode* current = head;
+        ListNode* curr = head;
+        ListNode* nextTemp = nullptr;
 
-        while (current != nullptr) {
-            ListNode* next_temp = current->next;
-            current->next = prev;
-            prev = current;
-            current = next_temp;
+        while (curr != nullptr) {
+            nextTemp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextTemp;
         }
 
         return prev;
@@ -68,21 +75,25 @@ public:
 
     /**
      * Solution 2
-     * 
+     *
      * Recursion
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   N - Number of node in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     ListNode* solution2(ListNode* head) {
         if (head == nullptr || head->next == nullptr) {
             return head;
         }
 
-        ListNode* newHead = reverseList(head->next);
+        ListNode* p = solution2(head->next);
 
         head->next->next = head;
+        
         head->next = nullptr;
 
-        return newHead;
+        return p;
     }
 };
