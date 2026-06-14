@@ -1,11 +1,5 @@
 from typing import Optional, List
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -14,11 +8,14 @@ class ListNode:
 
 
 class ReverseLinkedList:
-    ##
+    """
     # Iteration
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
     #
+    # Complexities:
+    #   N - Number of node in `head`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head == None or head.next == None:
             return head
@@ -42,32 +39,40 @@ class ReverseLinkedList:
 
 
     # Solution
-    ##
+    """
     # Solution 1
     #
     # Iteration
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
     #
+    # Complexities:
+    #   N - Number of node in `head`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, head: Optional[ListNode]) -> Optional[ListNode]:
         prev = None
-        current = head
+        curr = head
 
-        while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
+        while curr:
+            next_node = curr.next
+
+            curr.next = prev
+
+            prev = curr
+            curr = next_node
 
         return prev
 
-    ##
+    """
     # Solution 2
     #
     # Recursion
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(N)
     #
+    # Complexities:
+    #   N - Number of node in `head`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def solution2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head or not head.next:
             return head
@@ -75,6 +80,7 @@ class ReverseLinkedList:
         new_head = self.solution2(head.next)
 
         head.next.next = head
+
         head.next = None
 
         return new_head
