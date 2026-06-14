@@ -20,8 +20,11 @@ class ReverseLinkedList {
 
   /**
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   *
+   * Complexities:
+   *   N - Number of node in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public ListNode reverseList(ListNode head) {
     if (head == null || head.next == null) {
@@ -48,14 +51,16 @@ class ReverseLinkedList {
     return newHead;
   }
 
-
   // Solution
   /**
    * Solution 1
-   * 
+   *
    * Iteration
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   *
+   * Complexities:
+   *   N - Number of node in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   public ListNode solution1(ListNode head) {
     ListNode prev = null;
@@ -73,10 +78,13 @@ class ReverseLinkedList {
 
   /**
    * Solution 2
-   * 
+   *
    * Recursion
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(N)
+   *
+   * Complexities:
+   *   N - Number of node in `head`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   public ListNode solution2(ListNode head) {
     if (head == null || head.next == null) {
