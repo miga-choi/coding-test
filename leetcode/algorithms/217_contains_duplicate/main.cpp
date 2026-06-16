@@ -1,7 +1,5 @@
-#include <algorithm>
-#include <map>
 #include <set>
-#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 
@@ -9,8 +7,10 @@ class ContainsDuplicate {
 public:
     /**
      * Set
-     * - Time Complexity: O(N * logⁿ)
-     * - Space Complexity: O(N)
+     * 
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     bool containsDuplicate(vector<int> &nums) {
         set<int> s;
@@ -31,72 +31,44 @@ public:
     /**
      * Solution 1
      * 
-     * Sort
-     * - Time Complexity: O(N * logⁿ)
-     * - Space Complexity: O(1)
+     * unordered_set
+     * 
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
      */
     bool solution1(vector<int> &nums) {
-        sort(nums.begin(), nums.end());
+        unordered_set<int> seen;
 
-        for (int i = 0; i < nums.size() - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
+        for (int num : nums) {
+            if (seen.count(num)) {
                 return true;
             }
+            seen.insert(num);
         }
 
         return false;
+        // return unordered_set<int>(nums.begin(), nums.end()).size() < nums.size();
     }
 
     /**
      * Solution 2
      * 
-     * Set
-     * - Time Complexity: O(N * logⁿ)
-     * - Space Complexity: O(N)
+     * Sort
+     * 
+     * Complexities:
+     *   - Time Complexity: O(N * logᴺ)
+     *   - Space Complexity: O(1)
      */
     bool solution2(vector<int> &nums) {
-        return nums.size() > set<int>(nums.begin(), nums.end()).size();
-    }
-
-    /**
-     * Solution 3
-     * 
-     * Map
-     * - Time Complexity: O(N * logⁿ)
-     * - Space Complexity: O(N)
-     */
-    bool solution3(vector<int> &nums) {
-        map<int, int> mp;
-
-        for (auto i : nums) {
-            mp[i]++;
+        if (nums.size() <= 1) {
+            return false;
         }
 
-        for (auto i : mp) {
-            if (i.second >= 2) {
-                return true;
-            }
-        }
+        sort(nums.begin(), nums.end());
 
-        return false;
-    }
-
-    /**
-     * Solution 4
-     * 
-     * Unordered Map
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(N)
-     */
-    bool solution4(vector<int> &nums) {
-        unordered_map<int, int> mp;
-
-        for (auto i : nums) {
-            mp[i]++;
-        }
-
-        for (auto i : mp) {
-            if (i.second >= 2) {
+        for (size_t i = 0; i < nums.size() - 1; ++i) {
+            if (nums[i] == nums[i + 1]) {
                 return true;
             }
         }
