@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/**
+ * Brute Force (Time Limit Exceeded)
+ * 
+ * Complexities:
+ *   N - `numsSize`
+ *   - Time Complexity: O(N * K)
+ *   - Space Complexity: O(1)
+ */
 bool containsNearbyDuplicate(int* nums, int numsSize, int k) {
     for (int i = 0; i < numsSize; i++) {
         for (int j = i + 1; j < numsSize; j++) {
@@ -9,47 +17,64 @@ bool containsNearbyDuplicate(int* nums, int numsSize, int k) {
             }
         }
     }
+
     return false;
 }
 
 
 // Solution
-struct HashNode {
-    int key;
-    int value;
-    struct HashNode* next;
-};
+/**
+ * Complexities:
+ *   N - `numsSize`
+ *   - Time Complexity: O(N * logᴺ)
+ *   - Space Complexity: O(N)
+ */
+typedef struct {
+    int val;
+    int index;
+} Element;
+
+int compare(const void* a, const void* b) {
+    Element* elemA = (Element*)a;
+    Element* elemB = (Element*)b;
+
+    if (elemA->val < elemB->val) {
+        return -1;
+    }
+    if (elemA->val > elemB->val) {
+        return 1;
+    }
+
+    return elemA->index - elemB->index;
+}
 
 bool solution(int* nums, int numsSize, int k) {
-    struct HashNode** hashMap = (struct HashNode**)calloc(numsSize, sizeof(struct HashNode*));
+    if (numsSize <= 1 || k <= 0) {
+        return false;
+    }
 
-    for (int i = 0; i < numsSize; ++i) {
-        int currentNum = nums[i];
-        int hashIndex = abs(currentNum) % numsSize;
+    Element* arr = (Element*)malloc(sizeof(Element) * numsSize);
+    if (arr == NULL) {
+        return false;
+    }
 
-        struct HashNode* node = hashMap[hashIndex];
-        while (node) {
-            if (node->key == currentNum) {
-                if (i - node->value <= k) {
-                    free(hashMap);
-                    return true;
-                } else {
-                    node->value = i;
-                    break;
-                }
+    for (int i = 0; i < numsSize; i++) {
+        arr[i].val = nums[i];
+        arr[i].index = i;
+    }
+
+    qsort(arr, numsSize, sizeof(Element), compare);
+
+    for (int i = 0; i < numsSize - 1; i++) {
+        if (arr[i].val == arr[i + 1].val) {
+            if (abs(arr[i].index - arr[i + 1].index) <= k) {
+                free(arr);
+                return true;
             }
-            node = node->next;
-        }
-
-        if (!node) {
-            node = (struct HashNode*)malloc(sizeof(struct HashNode));
-            node->key = currentNum;
-            node->value = i;
-            node->next = hashMap[hashIndex];
-            hashMap[hashIndex] = node;
         }
     }
 
-    free(hashMap);
+    free(arr);
+
     return false;
 }
