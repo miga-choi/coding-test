@@ -1,11 +1,21 @@
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 using namespace std;
 
 class ContainsDuplicateII {
 public:
-    bool containsNearbyDuplicate(vector<int> &nums, int k) {
+    /**
+     * Hash Map
+     * 
+     * Complexities:
+     *   N - `numsSize`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
         unordered_map<int, int> numsMap;
+
         for (int i = 0; i < nums.size(); i++) {
             if (numsMap.count(nums[i]) == 0) {
                 numsMap.insert(make_pair(nums[i], i));
@@ -16,30 +26,61 @@ public:
                 numsMap.find(nums[i])->second = i;
             }
         }
+
         return false;
     }
 
 
     // Solution
-    bool solution(vector<int> &nums, int k) {
-        unordered_map<int, int> mp;
-        int n = nums.size();
+    /**
+     * Solution 1
+     * 
+     * Sliding Window + Hash Set
+     * 
+     * Complexities:
+     *   N - Size of `nums`
+     *   K - `k`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(min(N, K))
+     */
+    bool solution1(vector<int>& nums, int k) {
+        unordered_set<int> window;
 
-        for (int i = 0; i < n; i++) {
-            // mp.count() will tell whatever ith index that I want, have I seen it before?
-            if (mp.count(nums[i])) {
-                // if I have already seen this number, then check for condition abs(i - j) <= k
-                if (abs(i - mp[nums[i]]) <= k) {
-                    return true;
-                }
+        for (int i = 0; i < nums.size(); ++i) {
+            if (i > k) {
+                window.erase(nums[i - k - 1]);
             }
 
-            // if I have not seen this number before, insert the number with its position in the map
-            // and if the number is already present in the map, then update the position of that number
-            mp[nums[i]] = i;
+            if (window.count(nums[i])) {
+                return true;
+            }
+
+            window.insert(nums[i]);
         }
 
-        // after the complete traversal, if we don't find a pair to satisfy the condition, return false
+        return false;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Hash Map
+     * 
+     * Complexities:
+     *   N - Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    bool solution2(vector<int>& nums, int k) {
+        unordered_map<int, int> num_to_index;
+
+        for (int i = 0; i < nums.size(); ++i) {
+            if (num_to_index.count(nums[i]) && (i - num_to_index[nums[i]] <= k)) {
+                return true;
+            }
+            num_to_index[nums[i]] = i;
+        }
+
         return false;
     }
 };
