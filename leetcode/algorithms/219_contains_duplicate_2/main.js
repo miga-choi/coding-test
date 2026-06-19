@@ -1,4 +1,12 @@
 /**
+ * Hash Map
+ *
+ * Complexities:
+ *   N - Size of `nums`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {number[]} nums
  * @param {number} k
  * @return {boolean}
@@ -18,35 +26,61 @@ var containsNearbyDuplicate = function (nums, k) {
 
 
 // Solution
-// Solution 1
+/**
+ * Solution 1
+ *
+ * Hash Set
+ *
+ * Complexities:
+ *   N - Size of `nums`
+ *   K - `k`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(min(N, K))
+ */
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
 function solution1(nums, k) {
-  // Create an empty object to store the last index of each number in nums
-  let map = {};
+  const seen = new Set();
 
-  // Iterate through each number in nums
   for (let i = 0; i < nums.length; i++) {
-    // If the current number is already in map and its last index is within k distance from current index, return true
-    if (map[nums[i]] !== undefined && i - map[nums[i]] <= k) {
+    if (seen.has(nums[i])) {
       return true;
     }
-
-    // Update the last index of the current number to its current index
-    map[nums[i]] = i;
+    seen.add(nums[i]);
   }
 
-  // Return false if no such pair exists
   return false;
+  // return new Set(nums).size !== nums.length;
 }
 
 // Solution 2
+/**
+ * Solution 2
+ *
+ * Sort
+ *
+ * Complexities:
+ *   N - Size of `nums`
+ *   K - `k`
+ *   - Time Complexity: O(N * logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
 function solution2(nums, k) {
-  const hasmap = new Map();
-  for (let idx = 0; idx < nums.length; idx++) {
-    // Check if the difference betweend duplicates is less than k
-    if (idx - hasmap.get(nums[idx]) <= k) {
+  nums.sort((a, b) => a - b);
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] === nums[i + 1]) {
       return true;
     }
-    hasmap.set(nums[idx], idx);
   }
+
   return false;
 }
