@@ -5,6 +5,14 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * DFS
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
  * @param {TreeNode} root
  * @return {number}
  */
@@ -12,36 +20,70 @@ var countNodes = function (root) {
   if (!root) {
     return 0;
   }
+
   return countNodes(root.left) + countNodes(root.right) + 1;
 };
 
 
 // Solution
-var solution = function (root) {
-  function leftDepth(node) {
-    if (!node) {
-      return 0;
-    }
-    return leftDepth(node.left) + 1;
+/**
+ * Solution 1
+ *
+ * DFS
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var solution1 = function (root) {
+  if (!root) {
+    return 0;
   }
 
-  function rightDepth(node) {
-    if (!node) {
-      return 0;
-    }
-    return rightDepth(node.right) + 1;
+  return 1 + solution1(root.left) + solution1(root.right);
+};
+
+/**
+ * Solution 2
+ *
+ * Perfect Binary Tree
+ *
+ * Complexities:
+ *   N - Number of nodes in `root`
+ *   - Time Complexity: O(log₂ᴺ)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var solution2 = function (root) {
+  if (!root) {
+    return 0;
   }
 
-  function traverse(node) {
-    const leftLen = leftDepth(node);
-    const rightLen = rightDepth(node);
-
-    if (leftLen === rightLen) {
-      return Math.pow(2, leftLen) - 1;
-    }
-
-    return traverse(node.left) + traverse(node.right) + 1;
+  let leftDepth = 0;
+  let curr = root;
+  while (curr) {
+    leftDepth++;
+    curr = curr.left;
   }
 
-  return traverse(root);
+  let rightDepth = 0;
+  curr = root;
+  while (curr) {
+    rightDepth++;
+    curr = curr.right;
+  }
+
+  if (leftDepth === rightDepth) {
+    return Math.pow(2, leftDepth) - 1;
+  }
+
+  return 1 + solution2(root.left) + solution2(root.right);
 };
