@@ -7,6 +7,8 @@ struct TreeNode {
 };
 
 /**
+ * DFS
+ * 
  * Complexities:
  *   N - Number of nodes in `root`
  *   - Time Complexity: O(N)
@@ -31,6 +33,8 @@ int countNodes(struct TreeNode* root) {
 
 // Solution
 /**
+ * Perfect Binary Tree
+ * 
  * Complexities:
  *   N - Number of nodes in `root`
  *   - Time Complexity: O(log₂ᴺ)
