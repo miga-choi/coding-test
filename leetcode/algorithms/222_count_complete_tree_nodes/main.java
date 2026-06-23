@@ -18,23 +18,66 @@ class CountCompleteTreeNodes {
         }
     }
 
+    /**
+     * DFS
+     *
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(logᴺ)
+     */
     public int countNodes(TreeNode root) {
         if (root == null) {
             return 0;
         }
+
         return countNodes(root.left) + countNodes(root.right) + 1;
     }
 
 
     // Solution
-    int height(TreeNode root) {
-        return root == null ? -1 : 1 + height(root.left);
+    /**
+     * Perfect Binary Tree
+     *
+     * Complexities:
+     *   N - Number of nodes in `root`
+     *   - Time Complexity: O(log₂ᴺ)
+     *   - Space Complexity: O(logᴺ)
+     */
+    public int solution(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int lh = getLeftHeight(root);
+        int rh = getRightHeight(root);
+
+        if (lh == rh) {
+            return (1 << lh) - 1;
+        }
+
+        return 1 + solution(root.left) + solution(root.right);
     }
 
-    public int solution(TreeNode root) {
-        int h = height(root);
-        return h < 0 ? 0
-                : (height(root.right) == h - 1 ? (1 << h) + countNodes(root.right)
-                        : (1 << h - 1) + countNodes(root.left));
+    private int getLeftHeight(TreeNode node) {
+        int height = 0;
+
+        while (node != null) {
+            height++;
+            node = node.left;
+        }
+
+        return height;
+    }
+
+    private int getRightHeight(TreeNode node) {
+        int height = 0;
+
+        while (node != null) {
+            height++;
+            node = node.right;
+        }
+
+        return height;
     }
 }
