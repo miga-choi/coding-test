@@ -8,6 +8,15 @@ from collections import deque
 # param_3 = obj.top()
 # param_4 = obj.empty()
 
+"""
+# Complexities:
+#   - Time Complexity:
+#     push: O(N)
+#     pop: O(1)
+#     top: O(1)
+#     empty: O(1)
+#   - Space Complexity: O(N)
+"""
 class MyStack:
     def __init__(self):
         self.inputStack = []
@@ -37,36 +46,32 @@ class MyStack:
 
 
 # Solution
+"""
+# Complexities:
+#   - Time Complexity:
+#     push: O(N)
+#     pop: O(1)
+#     top: O(1)
+#     empty: O(1)
+#   - Space Complexity: O(N)
+"""
 class Solution:
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
         self.queue = deque()
 
     def push(self, x: int) -> None:
-        """
-        Push element x onto stack.
-        """
-        tmp = deque([x])
-        tmp.extend(self.queue)
-        self.queue = tmp
+        size = len(self.queue)
+        
+        self.queue.append(x)
+        
+        for _ in range(size):
+            self.queue.append(self.queue.popleft())
 
     def pop(self) -> int:
-        """
-        Removes the element on top of the stack and returns that element.
-        """
         return self.queue.popleft()
 
     def top(self) -> int:
-        """
-        Get the top element.
-        """
         return self.queue[0]
 
     def empty(self) -> bool:
-        """
-        Returns whether the stack is empty.
-        """
-        return len(self.queue) == 0
-
+        return not self.queue
