@@ -65,6 +65,7 @@ MyStack.prototype.empty = function () {
   }
 };
 
+
 // Solution
 /**
  * Complexities:
