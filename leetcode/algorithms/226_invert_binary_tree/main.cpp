@@ -1,5 +1,5 @@
-#include <algorithm>
-#include <queue>
+#include <algorithm> // std::swap
+#include <queue>     // std::queue
 using namespace std;
 
 struct TreeNode {
@@ -15,8 +15,12 @@ class InvertBinaryTree {
 public:
     /**
      * Recursiont: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     *
+     * Complexities:
+     *   N - The Number of nodes in `root`
+     *   H - THe Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     TreeNode* invertTree(TreeNode* root) {
         if (root == nullptr) {
@@ -33,9 +37,15 @@ public:
 
     // Solution
     /**
+     * Solution 1
+     * 
      * Recursiont: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     * 
+     * Complexities:
+     *   N - The Number of nodes in `root`
+     *   H - THe Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     TreeNode* solution1(TreeNode* root) {
         if (root == nullptr) {
@@ -46,16 +56,22 @@ public:
 
         solution1(root->left);
         solution1(root->right);
-        
+
         return root;
     }
 
     /**
+     * Solution 2
+     * 
      * Iteration: BFS (Queue)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(W)
+     * 
+     * Complexities:
+     *   N - The Number of nodes in `root`
+     *   W - THe Width of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(W)
      */
-    TreeNode* solution1(TreeNode* root) {
+    TreeNode* solution2(TreeNode* root) {
         if (root == nullptr) {
             return nullptr;
         }
@@ -64,19 +80,19 @@ public:
         q.push(root);
 
         while (!q.empty()) {
-            TreeNode* current = q.front();
+            TreeNode* curr = q.front();
             q.pop();
 
-            swap(current->left, current->right);
+            swap(curr->left, curr->right);
 
-            if (current->left) {
-                q.push(current->left);
+            if (curr->left != nullptr) {
+                q.push(curr->left);
             }
-            if (current->right) {
-                q.push(current->right);
+            if (curr->right != nullptr) {
+                q.push(curr->right);
             }
         }
-        
+
         return root;
     }
 };
