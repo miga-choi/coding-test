@@ -8,8 +8,12 @@ struct TreeNode {
 
 /**
  * Recursiont: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - The Number of nodes in `root`
+ *   H - THe Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 struct TreeNode* invertTree(struct TreeNode* root) {
     if (!root) {
@@ -27,20 +31,23 @@ struct TreeNode* invertTree(struct TreeNode* root) {
 // Solution
 /**
  * Recursiont: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
+ * 
+ * Complexities:
+ *   N - The Number of nodes in `root`
+ *   H - THe Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 struct TreeNode* solution(struct TreeNode* root) {
     if (root == NULL) {
         return NULL;
     }
 
-    solution(root->left);
-    solution(root->right);
+    struct TreeNode* leftCloned = solution(root->left);
+    struct TreeNode* rightCloned = solution(root->right);
 
-    struct TreeNode* temp = root->left;
-    root->left = root->right;
-    root->right = temp;
-    
+    root->left = rightCloned;
+    root->right = leftCloned;
+
     return root;
 }
