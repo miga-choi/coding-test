@@ -6,9 +6,14 @@ function TreeNode(val, left, right) {
 
 /**
  * Recursiont: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
  *
+ * Complexities:
+ *   N - The Number of nodes in `root`
+ *   H - THe Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {TreeNode}
  */
@@ -30,9 +35,14 @@ var invertTree = function (root) {
  * Solution 1
  *
  * Recursiont: DFS
- * - Time Complexity: O(N)
- * - Space Complexity: O(H)
  *
+ * Complexities:
+ *   N - The Number of nodes in `root`
+ *   H - THe Height of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {TreeNode}
  */
@@ -41,11 +51,12 @@ var solution1 = function (root) {
     return null;
   }
 
-  const invertedLeft = solution1(root.left);
-  const invertedRight = solution1(root.right);
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;
 
-  root.left = invertedRight;
-  root.right = invertedLeft;
+  solution1(root.left);
+  solution1(root.right);
 
   return root;
 };
@@ -54,9 +65,14 @@ var solution1 = function (root) {
  * Solution 2
  *
  * Iteration: BFS (Queue)
- * - Time Complexity: O(N)
- * - Space Complexity: O(W)
  *
+ * Complexities:
+ *   N - The Number of nodes in `root`
+ *   W - THe Width of `root`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(W)
+ */
+/**
  * @param {TreeNode} root
  * @return {TreeNode}
  */
@@ -68,17 +84,17 @@ var solution2 = function (root) {
   const queue = [root];
 
   while (queue.length > 0) {
-    const currentNode = queue.shift();
+    const current = queue.shift();
 
-    const temp = currentNode.left;
-    currentNode.left = currentNode.right;
-    currentNode.right = temp;
+    const temp = current.left;
+    current.left = current.right;
+    current.right = temp;
 
-    if (currentNode.left !== null) {
-      queue.push(currentNode.left);
+    if (current.left !== null) {
+      queue.push(current.left);
     }
-    if (currentNode.right !== null) {
-      queue.push(currentNode.right);
+    if (current.right !== null) {
+      queue.push(current.right);
     }
   }
 
