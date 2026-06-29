@@ -23,8 +23,12 @@ class InvertBinaryTree {
 
     /**
      * Recursiont: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     *
+     * Complexities:
+     *   N - The Number of nodes in `root`
+     *   H - THe Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
@@ -44,29 +48,37 @@ class InvertBinaryTree {
      * Solution 1
      * 
      * Recursiont: DFS
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(H)
+     *
+     * Complexities:
+     *   N - The Number of nodes in `root`
+     *   H - THe Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
      */
     public TreeNode solution1(TreeNode root) {
         if (root == null) {
             return null;
         }
 
-        TreeNode leftSubtree = invertTree(root.left);
-        TreeNode rightSubtree = invertTree(root.right);
+        TreeNode leftInverted = solution1(root.left);
+        TreeNode rightInverted = solution1(root.right);
 
-        root.left = rightSubtree;
-        root.right = leftSubtree;
+        root.left = rightInverted;
+        root.right = leftInverted;
 
         return root;
     }
 
     /**
      * Solution 2
-     * 
+     *
      * Iteration: BFS (Queue)
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(W)
+     *
+     * Complexities:
+     *   N - The Number of nodes in `root`
+     *   W - THe Width of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(W)
      */
     public TreeNode solution2(TreeNode root) {
         if (root == null) {
@@ -77,17 +89,17 @@ class InvertBinaryTree {
         queue.offer(root);
 
         while (!queue.isEmpty()) {
-            TreeNode currentNode = queue.poll();
+            TreeNode current = queue.poll();
 
-            TreeNode temp = currentNode.left;
-            currentNode.left = currentNode.right;
-            currentNode.right = temp;
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
 
-            if (currentNode.left != null) {
-                queue.offer(currentNode.left);
+            if (current.left != null) {
+                queue.offer(current.left);
             }
-            if (currentNode.right != null) {
-                queue.offer(currentNode.right);
+            if (current.right != null) {
+                queue.offer(current.right);
             }
         }
 
