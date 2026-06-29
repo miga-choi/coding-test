@@ -10,11 +10,15 @@ class TreeNode:
 
 
 class InvertBinaryTree:
-    ##
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    """
+    # Recursiont: DFS
     #
+    # Complexities:
+    #   N - The Number of nodes in `root`
+    #   H - THe Height of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
+    """
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if root == None:
             return None
@@ -27,45 +31,53 @@ class InvertBinaryTree:
 
 
     # Solution
-    ##
+    """
     # Solution 1
     #
-    # Recursion: DFS
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(H)
+    # Recursiont: DFS
     #
+    # Complexities:
+    #   N - The Number of nodes in `root`
+    #   H - THe Height of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(H)
+    """
     def solution1(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return None
-
+        
+        root.left, root.right = root.right, root.left
+        
         self.solution1(root.left)
         self.solution1(root.right)
-
-        root.left, root.right = root.right, root.left
-
+        
         return root
 
-    ##
-    # Solution 1
+    """
+    # Solution 2
     #
     # Iteration: BFS (Queue)
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(W)
     #
+    # Complexities:
+    #   N - The Number of nodes in `root`
+    #   W - THe Width of `root`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(W)
+    """
     def solution2(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return None
-
+            
         queue = deque([root])
-
+        
         while queue:
             node = queue.popleft()
-
+            
             node.left, node.right = node.right, node.left
-
+            
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-
+                
         return root
