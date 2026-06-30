@@ -3,6 +3,15 @@
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
+
+/**
+ * Two Pointers
+ * 
+ * Complexities:
+ *   N - `numsSize`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
 char** summaryRanges(int* nums, int numsSize, int* returnSize) {
     char** stringArray = (char**)malloc(sizeof(char*) * 20);
 
@@ -28,8 +37,7 @@ char** summaryRanges(int* nums, int numsSize, int* returnSize) {
         stringArray[count] = (char*)malloc(sizeof(char) * 30);
 
         if (begin < nums[numsSize - 1]) {
-            snprintf(stringArray[count], 30, "%d->%d", begin,
-                     nums[numsSize - 1]);
+            snprintf(stringArray[count], 30, "%d->%d", begin, nums[numsSize - 1]);
         } else {
             snprintf(stringArray[count], 30, "%d", begin);
         }
@@ -42,59 +50,47 @@ char** summaryRanges(int* nums, int numsSize, int* returnSize) {
 
 
 // Solution
-// Solution 1
-char** solution1(int* nums, int numsSize, int* returnSize) {
-    int start = 0;
-    char** final_arr = (char**)malloc(20 * sizeof(char*));
-    int count = 0;
-    for (int k = 0; k < numsSize; k++) {
-        // did "-1" here, since the number will not be stored (too large)
-        if (k == 0 || nums[k] - 1 > nums[k - 1]) {
-            start = nums[k];
-        }
-
-        // we are at the finish line
-        if (k == numsSize - 1 || nums[k] + 1 < nums[k + 1]) {
-            final_arr[count] = (char*)malloc(30 * sizeof(char));
-            if (start < nums[k]) {
-                snprintf(final_arr[count], 28, "%d->%d", start, nums[k]);
-            } else {
-                snprintf(final_arr[count], 28, "%d", start);
-            }
-            printf("%s\n", final_arr[count]);
-            count++;
-        }
-    }
-    *returnSize = count;
-    return final_arr;
-}
-
-// Solution 2
-char** solution2(int* nums, int numsSize, int* returnSize) {
-    *returnSize = 0;
+/**
+ * Two Pointers
+ * 
+ * Complexities:
+ *   N - `numsSize`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+char** solution(int* nums, int numsSize, int* returnSize) {
     if (numsSize == 0) {
+        *returnSize = 0;
         return NULL;
     }
-    int i, count = 0, start = nums[0], prev = nums[0];
-    char** ret = (char**)malloc(sizeof(char*) * 20);
-    ret[0] = (char*)malloc(sizeof(char) * 25);
-    for (i = 1; i < numsSize; i++) {
-        ret[i] = (char*)malloc(sizeof(char) * 25);
-        if (prev != nums[i] - 1) {
-            if (start == prev) {
-                sprintf(ret[count++], "%d", start);
-            } else {
-                sprintf(ret[count++], "%d->%d", start, prev);
-            }
-            start = nums[i];
+
+    char** result = (char**)malloc(sizeof(char*) * numsSize);
+    int count = 0;
+
+    int i = 0;
+    while (i < numsSize) {
+        int start = i;
+
+        while (i + 1 < numsSize && (long long)nums[i + 1] - nums[i] == 1) {
+            i++;
         }
-        prev = nums[i];
+        int end = i;
+
+        char* rangeStr = (char*)malloc(sizeof(char) * 25);
+        
+        if (start == end) {
+            snprintf(rangeStr, 25, "%d", nums[start]);
+        } else {
+            snprintf(rangeStr, 25, "%d->%d", nums[start], nums[end]);
+        }
+
+        result[count++] = rangeStr;
+        i++;
     }
-    if (start == prev) {
-        sprintf(ret[count++], "%d", start);
-    } else {
-        sprintf(ret[count++], "%d->%d", start, prev);
-    }
+
     *returnSize = count;
-    return ret;
+
+    result = (char**)realloc(result, sizeof(char*) * count);
+
+    return result;
 }
