@@ -10,8 +10,12 @@ class TreeNode {
 class InvertBinaryTree {
   /**
    * Recursiont: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Complexities:
+   *   N - The Number of nodes in `root`
+   *   H - THe Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   TreeNode? invertTree(TreeNode? root) {
     if (root == null) {
@@ -29,32 +33,40 @@ class InvertBinaryTree {
   // Solution
   /**
    * Solution 1
-   * 
+   *
    * Recursiont: DFS
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(H)
+   *
+   * Complexities:
+   *   N - The Number of nodes in `root`
+   *   H - THe Height of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(H)
    */
   TreeNode? solution1(TreeNode? root) {
     if (root == null) {
       return null;
     }
 
-    solution1(root.left);
-    solution1(root.right);
-
     TreeNode? temp = root.left;
     root.left = root.right;
     root.right = temp;
+
+    solution1(root.left);
+    solution1(root.right);
 
     return root;
   }
 
   /**
    * Solution 2
-   * 
+   *
    * Iteration: BFS (Queue)
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(W)
+   *
+   * Complexities:
+   *   N - The Number of nodes in `root`
+   *   W - THe Width of `root`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(W)
    */
   TreeNode? solution2(TreeNode? root) {
     if (root == null) {
@@ -65,17 +77,17 @@ class InvertBinaryTree {
     queue.add(root);
 
     while (queue.isNotEmpty) {
-      TreeNode currentNode = queue.removeFirst();
+      TreeNode current = queue.removeFirst();
 
-      TreeNode? temp = currentNode.left;
-      currentNode.left = currentNode.right;
-      currentNode.right = temp;
+      TreeNode? temp = current.left;
+      current.left = current.right;
+      current.right = temp;
 
-      if (currentNode.left != null) {
-        queue.add(currentNode.left!);
+      if (current.left != null) {
+        queue.add(current.left!);
       }
-      if (currentNode.right != null) {
-        queue.add(currentNode.right!);
+      if (current.right != null) {
+        queue.add(current.right!);
       }
     }
 
