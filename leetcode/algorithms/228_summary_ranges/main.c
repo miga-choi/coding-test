@@ -10,7 +10,7 @@
  * Complexities:
  *   N - `numsSize`
  *   - Time Complexity: O(N)
- *   - Space Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 char** summaryRanges(int* nums, int numsSize, int* returnSize) {
     char** stringArray = (char**)malloc(sizeof(char*) * 20);
@@ -56,7 +56,7 @@ char** summaryRanges(int* nums, int numsSize, int* returnSize) {
  * Complexities:
  *   N - `numsSize`
  *   - Time Complexity: O(N)
- *   - Space Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 char** solution(int* nums, int numsSize, int* returnSize) {
     if (numsSize == 0) {
