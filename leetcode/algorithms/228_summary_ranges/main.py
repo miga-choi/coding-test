@@ -2,9 +2,16 @@ from typing import List
 
 
 class SummaryRanges:
+    """
+    # Two Pointers
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def summaryRanges(self, nums: List[int]) -> List[str]:
         result = []
-        x = 0
 
         if len(nums) > 0:
             num = nums[0]
@@ -31,21 +38,29 @@ class SummaryRanges:
 
 
     # Solution
+    """
+    # Two Pointers
+    #
+    # Complexities:
+    #   N - Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution(self, nums: List[int]) -> List[str]:
-        result = []
-        start, end = 0, 0
-
-        while start < len(nums) and end < len(nums):
-            if (end + 1) < len(nums) and nums[end] + 1 == nums[end + 1]:
-                end = end + 1
+        ans = []
+        i = 0
+        n = len(nums)
+        
+        while i < n:
+            j = i
+            while j + 1 < n and nums[j + 1] == nums[j] + 1:
+                j += 1
+            
+            if i == j:
+                ans.append(str(nums[i]))
             else:
-                if nums[start] == nums[end]:
-                    result.append(str(nums[start]))
-                    start = start + 1
-                    end = end + 1
-                else:
-                    result.append(str(nums[start]) + "->" + str(nums[end]))
-                    end = end + 1
-                    start = end
-
-        return result
+                ans.append(f"{nums[i]}->{nums[j]}")
+                
+            i = j + 1
+            
+        return ans
