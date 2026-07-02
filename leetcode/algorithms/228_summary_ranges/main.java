@@ -2,12 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 class SummaryRanges {
+    /**
+     * Two Pointers
+     *
+     * Complexities:
+     *   N - Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public List<String> summaryRanges(int[] nums) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
         if (nums.length > 0) {
             int num = nums[0];
-            List<Integer> numArray = new ArrayList<Integer>();
+            List<Integer> numArray = new ArrayList<>();
             numArray.add(num);
 
             for (int i = 1; i < nums.length; i++) {
@@ -42,41 +50,39 @@ class SummaryRanges {
 
     // Solution
     /**
-     * Question is saying wherever you are finding continous elements then keep them
-     * in an interval
-     * else keep them alone
-     * 
-     * EX-> [0,1,2,4,5,7]
-     *      [0,1,2] --> [0->2] {2-4 in array is breakpoint}
-     *      [4,5] --> [4->5]
-     *      [7] --> [7]
-     * 
-     * Approach
-     * 
-     * Traverse the entire array
-     *     1. keep start at every element and check whether i doesnt reached end and the
-     *        ith element added with 1 gives the next element. If so then keep travelling
-     *        ahead by incrementing i until you find a breakpoint
-     *     2. Once you find a breakpoint where nums[i]+1!=nums[i+1],so at that time
-     *        check whether nums[i]!=start,if so add it to list start+"->"+nums[i]
-     *     3. else add just the start
+     * Two Pointers
+     *
+     * Complexities:
+     *   N - Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     public List<String> solution(int[] nums) {
-        ArrayList<String> al = new ArrayList<>();
+        List<String> result = new ArrayList<>();
 
-        for (int i = 0; i < nums.length; i++) {
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+
+        int n = nums.length;
+        int i = 0;
+
+        while (i < n) {
             int start = nums[i];
-            while (i + 1 < nums.length && nums[i] + 1 == nums[i + 1]) {
+
+            while (i + 1 < n && nums[i] + 1 == nums[i + 1]) {
                 i++;
             }
 
-            if (start != nums[i]) {
-                al.add("" + start + "->" + nums[i]);
+            if (start == nums[i]) {
+                result.add(String.valueOf(start));
             } else {
-                al.add("" + start);
+                result.add(start + "->" + nums[i]);
             }
+
+            i++;
         }
 
-        return al;
+        return result;
     }
 }
