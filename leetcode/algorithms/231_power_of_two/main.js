@@ -1,4 +1,10 @@
 /**
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number} n
  * @return {boolean}
  */
@@ -18,13 +24,13 @@ var isPowerOfTwo = function (n) {
 
 // Solution
 /**
- * solution 1
+ * Solution 1
  *
- * bit manipulation
+ * Bit Manipulation
  *
- * complexities:
- *   - time complexity: o(1)
- *   - space complexity: o(1)
+ * Complexities:
+ *   - Time Complexity: O(1)
+ *   - Space Complexity: O(1)
  */
 /**
  * @param {number} n
