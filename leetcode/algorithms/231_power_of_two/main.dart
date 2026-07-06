@@ -1,4 +1,10 @@
 class PowerOfTwo {
+  /**
+   * Complexities:
+   *   N - `n`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
   bool isPowerOfTwo(int n) {
     if (n <= 0) {
       return false;
@@ -16,22 +22,36 @@ class PowerOfTwo {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   *
+   * Bit Manipulation
+   *
+   * Complexities:
+   *   - Time Complexity: O(1)
+   *   - Space Complexity: O(1)
+   */
   bool solution1(int n) {
+    return n > 0 && (n & (n - 1)) == 0;
+  }
+
+  /**
+   * Solution 2
+   *
+   * Complexities:
+   *   N - `n`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
+  bool solution2(int n) {
     if (n <= 0) {
       return false;
     }
-    while (n > 1) {
-      if (n % 2 != 0) {
-        return false;
-      }
+
+    while (n % 2 == 0) {
       n = n ~/ 2;
     }
-    return true;
-  }
 
-  // Solution 2
-  bool solution2(int n) {
-    return n > 0 && (n & (n - 1)) == 0;
+    return n == 1;
   }
 }
