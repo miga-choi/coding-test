@@ -11,6 +11,15 @@
  * myQueueFree(obj);
 */
 
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
 typedef struct {
     int* input;
     int* output;
@@ -72,120 +81,90 @@ void myQueueFree(MyQueue* obj) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
 typedef struct {
-    int ar[100];
-    int head;
-    int tail;
-    int cnt;
-} Solution1_MyQueue;
+    int* data;
+    int top;
+    int capacity;
+} Stack;
 
-Solution1_MyQueue* solution1_myQueueCreate() {
-    Solution1_MyQueue* obj = malloc(sizeof(Solution1_MyQueue));
-    obj->head = 0;
-    obj->tail = 0;
-    obj->cnt = 0;
+Stack* createStack(int capacity) {
+    Stack* s = (Stack*)malloc(sizeof(Stack));
+    s->data = (int*)malloc(capacity * sizeof(int));
+    s->top = -1;
+    s->capacity = capacity;
+    return s;
+}
+
+void push(Stack* s, int val) {
+    s->data[++(s->top)] = val;
+}
+
+int pop(Stack* s) {
+    return s->data[(s->top)--];
+}
+
+int peek(Stack* s) {
+    return s->data[s->top];
+}
+
+bool isEmpty(Stack* s) {
+    return s->top == -1;
+}
+
+void freeStack(Stack* s) {
+    free(s->data);
+    free(s);
+}
+
+typedef struct {
+    Stack* s1;
+    Stack* s2;
+} SolutionMyQueue;
+
+SolutionMyQueue* solutionMyQueueCreate() {
+    SolutionMyQueue* obj = (SolutionMyQueue*)malloc(sizeof(SolutionMyQueue));
+    obj->s1 = createStack(200);
+    obj->s2 = createStack(200);
     return obj;
 }
 
-void solution1_myQueuePush(Solution1_MyQueue* obj, int x) {
-    if (obj == NULL) {
-        return;
-    }
-
-    obj->cnt++;
-    obj->ar[obj->tail] = x;
-    obj->tail = (obj->tail + 1) % 100;
+void solutionMyQueuePush(SolutionMyQueue* obj, int x) {
+    push(obj->s1, x);
 }
 
-int solution1_myQueuePop(Solution1_MyQueue* obj) {
-    if (obj == NULL) {
-        return NULL;
-    }
-
-    obj->cnt--;
-    obj->head = (obj->head + 1) % 100;
-    return (obj->ar[(obj->head - 1) % 100]);
-}
-
-int solution1_myQueuePeek(Solution1_MyQueue* obj) {
-    if (obj == NULL) {
-        return NULL;
-    }
-
-    return obj->ar[obj->head];
-}
-
-bool solution1_myQueueEmpty(Solution1_MyQueue* obj) {
-    if (obj == NULL) {
-        return false;
-    }
-
-    return (obj->cnt ? false : true);
-}
-
-void solution1_myQueueFree(Solution1_MyQueue* obj) {
-    if (obj == NULL) {
-        return;
-    }
-    free(obj);
-}
-
-// Solution 2
-#define MAX_CALL 100
-
-typedef struct {
-    int* in;     // Keep add new element into stack `in`
-    int* out;    // While `out` is not empty the peek of the queue is the top of `out`
-    int idx_in;  // Pointer points to the last element of array in
-    int idx_out; // Pointer points to the last element of array out
-} Solution2_MyQueue;
-
-Solution2_MyQueue* solution2_myQueueCreate() {
-    Solution2_MyQueue* queue = (Solution2_MyQueue*)malloc(sizeof(Solution2_MyQueue));
-
-    if (queue == NULL) {
-        return NULL;
-    }
-
-    queue->in = (int*)malloc(MAX_CALL * sizeof(int));
-    queue->out = (int*)malloc(MAX_CALL * sizeof(int));
-    queue->idx_in = -1;
-    queue->idx_out = -1;
-
-    return queue;
-}
-
-void solution2_myQueuePush(Solution2_MyQueue* obj, int x) {
-    obj->in[++obj->idx_in] = x;
-}
-
-int solution2_myQueuePop(Solution2_MyQueue* obj) {
-    int front = solution2_myQueuePeek(obj);
-
-    if (front != -1) {
-        obj->idx_out--;
-    }
-
-    return front;
-}
-
-int solution2_myQueuePeek(Solution2_MyQueue* obj) {
-    /* Find fill the out if it's empty */
-    if (obj->idx_out < 0) {
-        while (obj->idx_in >= 0) {
-            obj->out[++obj->idx_out] = obj->in[obj->idx_in--];
+int solutionMyQueuePop(SolutionMyQueue* obj) {
+    if (isEmpty(obj->s2)) {
+        while (!isEmpty(obj->s1)) {
+            push(obj->s2, pop(obj->s1));
         }
     }
-
-    return obj->idx_out < 0 ? -1 : obj->out[obj->idx_out];
+    return pop(obj->s2);
 }
 
-bool solution2_myQueueEmpty(Solution2_MyQueue* obj) {
-    return obj->idx_in == -1 && obj->idx_out == -1;
+int solutionMyQueuePeek(SolutionMyQueue* obj) {
+    if (isEmpty(obj->s2)) {
+        while (!isEmpty(obj->s1)) {
+            push(obj->s2, pop(obj->s1));
+        }
+    }
+    return peek(obj->s2);
 }
 
-void solution2_myQueueFree(Solution2_MyQueue* obj) {
-    free(obj->in);
-    free(obj->out);
+bool solutionMyQueueEmpty(SolutionMyQueue* obj) {
+    return isEmpty(obj->s1) && isEmpty(obj->s2);
+}
+
+void solutionMyQueueFree(SolutionMyQueue* obj) {
+    freeStack(obj->s1);
+    freeStack(obj->s2);
     free(obj);
 }
