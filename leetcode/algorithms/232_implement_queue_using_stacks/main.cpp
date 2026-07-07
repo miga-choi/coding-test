@@ -10,6 +10,15 @@ using namespace std;
  * bool param_4 = obj->empty();
  */
 
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
 class MyQueue {
     stack<int> input, output;
 
@@ -48,29 +57,49 @@ public:
 
 
 // Solution
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
 class Solution {
-    stack<int> input, output;
+private:
+    std::stack<int> input;
+    std::stack<int> output;
+
+    void transfer() {
+        if (output.empty()) {
+            while (!input.empty()) {
+                output.push(input.top());
+                input.pop();
+            }
+        }
+    }
 
 public:
+    Solution() {}
+    
     void push(int x) {
         input.push(x);
     }
-
-    void pop(void) {
-        peek();
+    
+    int pop() {
+        transfer();
+        int topElement = output.top();
         output.pop();
+        return topElement;
     }
-
-    int peek(void) {
-        if (output.empty()) {
-            while (input.size()) {
-                output.push(input.top()), input.pop();
-            }
-        }
+    
+    int peek() {
+        transfer();
         return output.top();
     }
-
-    bool empty(void) {
+    
+    bool empty() {
         return input.empty() && output.empty();
     }
 };
