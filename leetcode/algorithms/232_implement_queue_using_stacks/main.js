@@ -7,6 +7,15 @@
  * var param_4 = obj.empty()
  */
 
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
 var MyQueue = function () {
   this.inputStack = [];
   this.outputStack = [];
@@ -54,47 +63,44 @@ MyQueue.prototype.empty = function () {
 
 
 // Solution
-var Solution = function () {
-  this.stack1 = [];
-  this.stack2 = [];
-  this.front = null;
-};
-
 /**
- * @param {number} x
- * @return {void}
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
  */
-Solution.prototype.push = function (x) {
-  if (this.stack1.length == 0) {
-    this.front = x;
+class Solution {
+  constructor() {
+    this.inStack = [];
+    this.outStack = [];
   }
-  this.stack1.push(x);
-};
 
-/**
- * @return {number}
- */
-Solution.prototype.pop = function () {
-  if (this.stack2.length == 0) {
-    while (this.stack1.length != 0) {
-      this.stack2.push(this.stack1.pop());
+  push(x) {
+    this.inStack.push(x);
+  }
+
+  pop() {
+    this.moveInToOut();
+    return this.outStack.pop();
+  }
+
+  peek() {
+    this.moveInToOut();
+    return this.outStack[this.outStack.length - 1];
+  }
+
+  empty() {
+    return this.inStack.length === 0 && this.outStack.length === 0;
+  }
+
+  moveInToOut() {
+    if (this.outStack.length === 0) {
+      while (this.inStack.length > 0) {
+        this.outStack.push(this.inStack.pop());
+      }
     }
   }
-  return this.stack2.pop();
-};
-
-/**
- * @return {number}
- */
-Solution.prototype.peek = function () {
-  return this.stack2.length == 0
-    ? this.front
-    : this.stack2[this.stack2.length - 1];
-};
-
-/**
- * @return {boolean}
- */
-Solution.prototype.empty = function () {
-  return this.stack1.length == 0 && this.stack2.length == 0;
-};
+}
