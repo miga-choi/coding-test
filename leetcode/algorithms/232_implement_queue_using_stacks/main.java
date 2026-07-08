@@ -9,14 +9,23 @@ import java.util.Stack;
  * boolean param_4 = obj.empty();
  */
 
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
 class ImplementQueueUsingStacks {
     private Stack<Integer> inputStack;
     private Stack<Integer> outputStack;
     private int front;
 
     public ImplementQueueUsingStacks() {
-        inputStack = new Stack<Integer>();
-        outputStack = new Stack<Integer>();
+        inputStack = new Stack<>();
+        outputStack = new Stack<>();
         front = 0;
     }
 
@@ -50,29 +59,47 @@ class ImplementQueueUsingStacks {
 
 
 // Solution
-class ImplementQueueUsingStacks_Solution {
-    Stack<Integer> input = new Stack<Integer>();
-    Stack<Integer> output = new Stack<Integer>();
+/**
+ * Complexities:
+ *   - Time Complexity:
+ *     push(x): O(1)
+ *     pop(): O(1)
+ *     peek(): O(1)
+ *     empty(): O(1)
+ *   - Space Complexity: O(N)
+ */
+class Solution {
+    private Stack<Integer> inStack;
+    private Stack<Integer> outStack;
 
-    public void push(int x) {
-        input.push(x);
+    public Solution() {
+        inStack = new Stack<>();
+        outStack = new Stack<>();
     }
 
-    public void pop() {
-        peek();
-        output.pop();
+    public void push(int x) {
+        inStack.push(x);
+    }
+
+    public int pop() {
+        shiftStacks();
+        return outStack.pop();
     }
 
     public int peek() {
-        if (output.empty()) {
-            while (!input.empty()) {
-                output.push(input.pop());
-            }
-        }
-        return output.peek();
+        shiftStacks();
+        return outStack.peek();
     }
 
     public boolean empty() {
-        return input.empty() && output.empty();
+        return inStack.isEmpty() && outStack.isEmpty();
+    }
+
+    private void shiftStacks() {
+        if (outStack.isEmpty()) {
+            while (!inStack.isEmpty()) {
+                outStack.push(inStack.pop());
+            }
+        }
     }
 }
