@@ -6,11 +6,17 @@ struct ListNode {
     struct ListNode *next;
 };
 
-bool isPalindrome(struct ListNode *head) {
-    struct ListNode *slow = head;
-    struct ListNode *fast = head;
-    struct ListNode *reverse = 0;
-    struct ListNode *temp;
+/**
+ * Complexities:
+ *   N - The number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+bool isPalindrome(struct ListNode* head) {
+    struct ListNode* slow = head;
+    struct ListNode* fast = head;
+    struct ListNode* reverse = 0;
+    struct ListNode* temp;
 
     while (fast && fast->next) {
         fast = fast->next->next;
@@ -35,32 +41,55 @@ bool isPalindrome(struct ListNode *head) {
 
 
 // Solution
-bool solution(struct ListNode *head) {
-    struct ListNode *slow = head;
-    struct ListNode *fast = head;
-    struct ListNode *prev = NULL;
-    struct ListNode *tmp;
+/**
+ * Complexities:
+ *   N - The number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+struct ListNode* reverseList(struct ListNode* head) {
+    struct ListNode* prev = NULL;
+    struct ListNode* curr = head;
 
-    // finding mid point
-    while (fast && fast->next) {
+    while (curr != NULL) {
+        struct ListNode* nextTemp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextTemp;
+    }
+
+    return prev;
+}
+
+bool solution(struct ListNode* head) {
+    if (head == NULL || head->next == NULL) {
+        return true;
+    }
+
+    struct ListNode* slow = head;
+    struct ListNode* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
         fast = fast->next->next;
-        tmp = slow->next;
-        slow->next = prev;
-        prev = slow;
-        slow = tmp;
     }
 
-    // for odd length case as mentioned above
-    slow = (fast ? slow->next : slow);
+    struct ListNode* secondHalfHead = reverseList(slow);
+    
+    struct ListNode* p1 = head;
+    struct ListNode* p2 = secondHalfHead;
+    bool isPalin = true;
 
-    // check if linked lists starting at prev and slow are equal
-    while (slow) {
-        if (slow->val != prev->val) {
-            return false;
-        } else {
-            slow = slow->next;
-            prev = prev->next;
+    while (p2 != NULL) {
+        if (p1->val != p2->val) {
+            isPalin = false;
+            break;
         }
+        p1 = p1->next;
+        p2 = p2->next;
     }
-    return true;
+
+    reverseList(secondHalfHead);
+
+    return isPalin;
 }
