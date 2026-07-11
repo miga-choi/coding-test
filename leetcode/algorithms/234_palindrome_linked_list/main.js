@@ -4,6 +4,12 @@ function ListNode(val, next) {
 }
 
 /**
+ * Complexities:
+ *   N - The number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {ListNode} head
  * @return {boolean}
  */
@@ -43,38 +49,48 @@ var isPalindrome = function (head) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   N - The number of nodes in `head`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
 var solution = function (head) {
+  if (!head || !head.next) {
+    return true;
+  }
+
   let slow = head;
   let fast = head;
-  let prev;
-  let temp;
 
-  while (fast && fast.next) {
+  while (fast !== null && fast.next !== null) {
     slow = slow.next;
     fast = fast.next.next;
   }
 
-  prev = slow;
-  slow = slow.next;
-  prev.next = null;
+  let prev = null;
+  let curr = slow;
 
-  while (slow) {
-    temp = slow.next;
-    slow.next = prev;
-    prev = slow;
-    slow = temp;
+  while (curr !== null) {
+    const nextTemp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = nextTemp;
   }
 
-  fast = head;
-  slow = prev;
+  let p1 = head;
+  let p2 = prev;
 
-  while (slow) {
-    if (fast.val !== slow.val) {
+  while (p2 !== null) {
+    if (p1.val !== p2.val) {
       return false;
-    } else {
-      fast = fast.next;
-      slow = slow.next;
     }
+    p1 = p1.next;
+    p2 = p2.next;
   }
 
   return true;
