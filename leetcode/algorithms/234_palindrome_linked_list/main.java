@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 class PalindromeLinkedList {
     class ListNode {
@@ -19,10 +20,16 @@ class PalindromeLinkedList {
         }
     }
 
+    /**
+     * Complexities:
+     *   N - The number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public boolean isPalindrome(ListNode head) {
         ListNode newHead = head;
-        List<Integer> obverse = new ArrayList<Integer>();
-        List<Integer> reverse = new ArrayList<Integer>();
+        List<Integer> obverse = new ArrayList<>();
+        List<Integer> reverse = new ArrayList<>();
 
         while (newHead != null) {
             obverse.add(newHead.val);
@@ -45,7 +52,7 @@ class PalindromeLinkedList {
         }
 
         for (int i = 0; i < obverse.size(); i++) {
-            if (obverse.get(i) != reverse.get(i)) {
+            if (!Objects.equals(obverse.get(i), reverse.get(i))) {
                 return false;
             }
         }
@@ -55,35 +62,55 @@ class PalindromeLinkedList {
 
 
     // Solution
+    /**
+     * Complexities:
+     *   N - The number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public boolean solution(ListNode head) {
-        ListNode slow = head, fast = head, prev, temp;
+        if (head == null || head.next == null) {
+            return true;
+        }
 
+        ListNode slow = head;
+        ListNode fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        prev = slow;
-        slow = slow.next;
-        prev.next = null;
+        ListNode secondHalfHead = reverse(slow);
 
-        while (slow != null) {
-            temp = slow.next;
-            slow.next = prev;
-            prev = slow;
-            slow = temp;
+        ListNode p1 = head;
+        ListNode p2 = secondHalfHead;
+        boolean isPalindrome = true;
+
+        while (p2 != null) {
+            if (p1.val != p2.val) {
+                isPalindrome = false;
+                break;
+            }
+            p1 = p1.next;
+            p2 = p2.next;
         }
 
-        fast = head;
-        slow = prev;
+        reverse(secondHalfHead);
 
-        while (slow != null) {
-            if (fast.val != slow.val)
-                return false;
-            fast = fast.next;
-            slow = slow.next;
+        return isPalindrome;
+    }
+
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextTemp;
         }
 
-        return true;
+        return prev;
     }
 }
