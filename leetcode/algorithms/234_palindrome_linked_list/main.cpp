@@ -8,6 +8,12 @@ struct ListNode {
 
 class PalindromeLinkedList {
 public:
+    /**
+     * Complexities:
+     *   N - The number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     bool isPalindrome(ListNode* head) {
         struct ListNode* slow = head;
         struct ListNode* fast = head;
@@ -37,40 +43,55 @@ public:
 
 
     // Solution
+    /**
+     * Complexities:
+     *   N - The number of nodes in `head`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+
+        while (curr != nullptr) {
+            ListNode* nextTemp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextTemp;
+        }
+
+        return prev;
+    }
+
     bool solution(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
+            return true;
+        }
+
         ListNode* slow = head;
         ListNode* fast = head;
-        ListNode* prev;
-        ListNode* temp;
-
-        while (fast && fast->next) {
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next->next;
         }
 
-        prev = slow;
-        slow = slow->next;
-        prev->next = nullptr;
+        ListNode* secondHalfHead = reverseList(slow);
 
-        while (slow) {
-            temp = slow->next;
-            slow->next = prev;
-            prev = slow;
-            slow = temp;
-        }
+        ListNode* p1 = head;
+        ListNode* p2 = secondHalfHead;
+        bool isPalin = true;
 
-        fast = head;
-        slow = prev;
-
-        while (slow) {
-            if (fast->val != slow->val) {
-                return false;
-            } else {
-                fast = fast->next;
-                slow = slow->next;
+        while (p2 != nullptr) {
+            if (p1->val != p2->val) {
+                isPalin = false;
+                break;
             }
+            p1 = p1->next;
+            p2 = p2->next;
         }
 
-        return true;
+        reverseList(secondHalfHead);
+
+        return isPalin;
     }
 };
