@@ -1,8 +1,12 @@
 /**
- * Frequency Counter
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Frequency Counting
  *
+ * Complexities:
+ *   N - The size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
@@ -35,10 +39,14 @@ var isAnagram = function (s, t) {
 /**
  * Solution 1
  *
- * Sort
- * - Time Complexity: O(N * logᴺ)
- * - Space Complexity: O(N)
+ * Frequency Counting
  *
+ * Complexities:
+ *   N - The size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
@@ -48,19 +56,28 @@ var solution1 = function (s, t) {
     return false;
   }
 
-  const sortedS = s.split("").sort().join("");
-  const sortedT = t.split("").sort().join("");
+  const charCount = new Array(26).fill(0);
+  const charCodeA = 97;
 
-  return sortedS === sortedT;
+  for (let i = 0; i < s.length; i++) {
+    charCount[s.charCodeAt(i) - charCodeA]++;
+    charCount[t.charCodeAt(i) - charCodeA]--;
+  }
+
+  return charCount.every((count) => count === 0);
 };
 
 /**
  * Solution 2
  *
- * Frequency Counter
- * - Time Complexity: O(N)
- * - Space Complexity: O(1)
+ * Sorting
  *
+ * Complexities:
+ *   N - The size of `s`
+ *   - Time Complexity: O(N * logᴺ)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
@@ -70,22 +87,5 @@ var solution2 = function (s, t) {
     return false;
   }
 
-  const charCount = new Array(26).fill(0);
-  const charCodeA = "a".charCodeAt(0);
-
-  for (let i = 0; i < s.length; i++) {
-    const index = s.charCodeAt(i) - charCodeA;
-    charCount[index]++;
-  }
-
-  for (let i = 0; i < t.length; i++) {
-    const index = t.charCodeAt(i) - charCodeA;
-    charCount[index]--;
-
-    if (charCount[index] < 0) {
-      return false;
-    }
-  }
-
-  return true;
+  return s.split("").sort().join("") === t.split("").sort().join("");
 };
