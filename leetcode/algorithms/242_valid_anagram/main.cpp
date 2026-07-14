@@ -73,7 +73,7 @@ public:
     /**
      * Solution 2
      *
-     * Unicode
+     * unordered_map + Unicode
      * 
      * Complexities:
      *   N - The size of `s`
