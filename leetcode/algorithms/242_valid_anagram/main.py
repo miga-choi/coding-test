@@ -3,11 +3,14 @@ from typing import List
 
 
 class ValidAnagram:
-    ##
-    # Frequency Counter
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    """
+    # Frequency Counting
     #
+    # Complexities:
+    #   N - The size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def isAnagram(self, s: str, t: str) -> bool:
         length: int = len(s)
 
@@ -28,48 +31,34 @@ class ValidAnagram:
 
 
     # Solution
-    ##
+    """
     # Solution 1
+    # 
+    # Frequency Counting
     #
-    # Sorting
-    # - Time Complexity: O(N * logᴺ)
-    # - Space Complexity: O(N)
-    #
+    # Complexities:
+    #   N - The size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
+            
+        return Counter(s) == Counter(t)
 
-        return sorted(s) == sorted(t)
-
-    ##
+    """
     # Solution 2
     #
-    # Hash Table / Dictionary
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    # Sorting
     #
+    # Complexities:
+    #   N - The size of `s`
+    #   - Time Complexity: O(N * logᴺ)
+    #   - Space Complexity: O(N)
+    """
     def solution2(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
-
-        char_counts = {}
-
-        for char in s:
-            char_counts[char] = char_counts.get(char, 0) + 1
-
-        for char in t:
-            if char not in char_counts or char_counts[char] == 0:
-                return False
-            char_counts[char] -= 1
-
-        return True
-
-    ##
-    # Solution 3
-    #
-    # collections.Counter
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
-    #
-    def solution3(self, s: str, t: str) -> bool:
-        return Counter(s) == Counter(t)
+            
+        return sorted(s) == sorted(t)
