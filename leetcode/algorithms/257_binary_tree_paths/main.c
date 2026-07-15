@@ -10,6 +10,16 @@ struct TreeNode {
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
+
+/**
+ * DFS + Backtracking
+ * 
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The height of tree in `root`
+ *   - Time Complexity: O(N * H)
+ *   - Space Complexity: O(N)
+ */
 void calculatePath(struct TreeNode* root, char* string, char** stringArray, int* size) {
     if (!root) {
         return;
@@ -41,35 +51,64 @@ char** binaryTreePaths(struct TreeNode* root, int* returnSize) {
 
 
 // Solution
-#define SIZE_BUFF 100
-
-int size;
-char** ret;
-
-void binaryTreePaths_r(struct TreeNode* root, char* prefix) {
-    if (root == NULL) {
+/**
+ * DFS + Backtracking
+ * 
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The height of tree in `root`
+ *   - Time Complexity: O(N * H)
+ *   - Space Complexity: O(N)
+ */
+void dfs(struct TreeNode* node, int* path, int pathLen, char*** result, int* returnSize, int* capacity) {
+    if (node == NULL) {
         return;
     }
-    char* p = prefix + strlen(prefix);
-    sprintf(p, "%s%d", strlen(prefix) == 0 ? "" : "->", root->val);
-    if (root->left == NULL && root->right == NULL) {
-        ret[size] = calloc(strlen(prefix) + 1, sizeof(char));
-        strcpy(ret[size], prefix);
-        size++;
-    } else {
-        binaryTreePaths_r(root->left, prefix);
-        binaryTreePaths_r(root->right, prefix);
+
+    path[pathLen++] = node->val;
+
+    if (node->left == NULL && node->right == NULL) {
+        if (*returnSize >= *capacity) {
+            *capacity *= 2;
+            *result = (char**)realloc(*result, sizeof(char*) * (*capacity));
+        }
+
+        char* pathStr = (char*)malloc(sizeof(char) * 1000);
+        int pos = 0;
+
+        for (int i = 0; i < pathLen; i++) {
+            if (i > 0) {
+                pos += sprintf(pathStr + pos, "->");
+            }
+            pos += sprintf(pathStr + pos, "%d", path[i]);
+        }
+
+        (*result)[(*returnSize)++] = pathStr;
+        return;
     }
-    *p = '\0';
+
+    if (node->left != NULL) {
+        dfs(node->left, path, pathLen, result, returnSize, capacity);
+    }
+    if (node->right != NULL) {
+        dfs(node->right, path, pathLen, result, returnSize, capacity);
+    }
 }
 
-char** solution(struct TreeNode* root, int* returnSize) {
-    char buff[SIZE_BUFF] = {0};
-    ret = calloc(SIZE_BUFF, sizeof(char*));
-    size = 0;
+char** binaryTreePaths(struct TreeNode* root, int* returnSize) {
+    *returnSize = 0;
+    if (root == NULL) {
+        return NULL;
+    }
 
-    binaryTreePaths_r(root, buff);
+    int capacity = 10;
+    char** result = (char**)malloc(sizeof(char*) * capacity);
+    
+    int path[101];
 
-    *returnSize = size;
-    return ret;
+    dfs(root, path, 0, &result, returnSize, &capacity);
+
+    result = (char**)realloc(result, sizeof(char*) * (*returnSize));
+
+    return result;
 }
