@@ -1,8 +1,11 @@
 class ValidAnagram {
   /**
-   * Frequency Counter
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * Frequency Counting
+   *
+   * Complexities:
+   *   N - The size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   bool isAnagram(String s, String t) {
     int len = s.length;
@@ -32,50 +35,60 @@ class ValidAnagram {
   /**
    * Solution 1
    * 
-   * Sort
-   * - Time Complexity: O(N * logᴺ)
-   * - Space Complexity: O(N)
+   * Frequency Counting
+   *
+   * Complexities:
+   *   N - The size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
    */
   bool solution1(String s, String t) {
     if (s.length != t.length) {
       return false;
     }
 
-    List<String> sChars = s.split('');
-    List<String> tChars = t.split('');
+    final List<int> charCounts = List.filled(26, 0);
+    final int asciiA = 'a'.codeUnitAt(0);
 
-    sChars.sort();
-    tChars.sort();
+    for (int i = 0; i < s.length; i++) {
+      charCounts[s.codeUnitAt(i) - asciiA]++;
+      charCounts[t.codeUnitAt(i) - asciiA]--;
+    }
 
-    return sChars.join('') == tChars.join('');
+    for (int count in charCounts) {
+      if (count != 0) return false;
+    }
+
+    return true;
   }
 
   /**
    * Solution 2
    * 
    * Hash Map
-   * - Time Complexity: O(N)
-   * - Space Complexity: O(1)
+   * 
+   * Complexities:
+   *   N - The size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
    */
   bool solution2(String s, String t) {
     if (s.length != t.length) {
       return false;
     }
 
-    Map<String, int> charCount = {};
+    final Map<String, int> charCounts = {};
 
     for (int i = 0; i < s.length; i++) {
-      charCount[s[i]] = (charCount[s[i]] ?? 0) + 1;
+      String charS = s[i];
+      String charT = t[i];
+
+      charCounts[charS] = (charCounts[charS] ?? 0) + 1;
+      charCounts[charT] = (charCounts[charT] ?? 0) - 1;
     }
 
-    for (int i = 0; i < t.length; i++) {
-      String char = t[i];
-
-      if (!charCount.containsKey(char) || charCount[char] == 0) {
-        return false;
-      }
-
-      charCount[char] = charCount[char]! - 1;
+    for (int count in charCounts.values) {
+      if (count != 0) return false;
     }
 
     return true;
