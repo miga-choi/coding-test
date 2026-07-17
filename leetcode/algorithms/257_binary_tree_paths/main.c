@@ -18,7 +18,7 @@ struct TreeNode {
  *   N - The number of nodes in `root`
  *   H - The height of tree in `root`
  *   - Time Complexity: O(N * H)
- *   - Space Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 void calculatePath(struct TreeNode* root, char* string, char** stringArray, int* size) {
     if (!root) {
@@ -58,7 +58,7 @@ char** binaryTreePaths(struct TreeNode* root, int* returnSize) {
  *   N - The number of nodes in `root`
  *   H - The height of tree in `root`
  *   - Time Complexity: O(N * H)
- *   - Space Complexity: O(N)
+ *   - Space Complexity: O(H)
  */
 void dfs(struct TreeNode* node, int* path, int pathLen, char*** result, int* returnSize, int* capacity) {
     if (node == NULL) {
