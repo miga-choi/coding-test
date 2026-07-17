@@ -5,6 +5,15 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * DFS + Backtracking
+ *
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The height of tree in `root`
+ *   - Time Complexity: O(N * H)
+ *   - Space Complexity: O(H)
+ */
+/**
  * @param {TreeNode} root
  * @return {string[]}
  */
@@ -28,19 +37,37 @@ var binaryTreePaths = function (root) {
 
 
 // Solution
+/**
+ * DFS + Backtracking
+ *
+ * Complexities:
+ *   N - The number of nodes in `root`
+ *   H - The height of tree in `root`
+ *   - Time Complexity: O(N * H)
+ *   - Space Complexity: O(H)
+ */
 var solution = function (root) {
-  if (root === null) {
-    // If null return an empty array
-    return [];
-  } else if (root.left === null && root.right === null) {
-    // If no children return the nodes value itself as a string within an array
-    return [`${root.val}`];
-  } else {
-    // For all child paths add the root to their head one by one.
-    let left = solution(root.left).map((x) => root.val + "->" + x);
-    let right = solution(root.right).map((x) => root.val + "->" + x);
+  const result = [];
 
-    // return the array with the root value attached
-    return [...left, ...right];
+  function dfs(node, currentPath) {
+    if (!node) {
+      return;
+    }
+
+    const nextPath = currentPath
+      ? `${currentPath}->${node.val}`
+      : `${node.val}`;
+
+    if (!node.left && !node.right) {
+      result.push(nextPath);
+      return;
+    }
+
+    dfs(node.left, nextPath);
+    dfs(node.right, nextPath);
   }
+
+  dfs(root, "");
+
+  return result;
 };
