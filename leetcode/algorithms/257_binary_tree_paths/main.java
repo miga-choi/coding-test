@@ -21,8 +21,17 @@ class BinaryTreePaths {
         }
     }
 
+    /**
+     * DFS + Backtracking
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The height of tree in `root`
+     *   - Time Complexity: O(N * H)
+     *   - Space Complexity: O(H)
+     */
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
 
         if (root == null) {
             return result;
@@ -54,23 +63,37 @@ class BinaryTreePaths {
 
 
     // Solution
-    private void searchBT(TreeNode root, String path, List<String> answer) {
-        if (root.left == null && root.right == null) {
-            answer.add(path + root.val);
+    /**
+     * DFS + Backtracking
+     *
+     * Complexities:
+     *   N - The number of nodes in `root`
+     *   H - The height of tree in `root`
+     *   - Time Complexity: O(N * H)
+     *   - Space Complexity: O(H)
+     */
+    public List<String> solution(TreeNode root) {
+        List<String> result = new ArrayList<>();
+
+        if (root != null) {
+            dfs(root, "", result);
         }
-        if (root.left != null) {
-            searchBT(root.left, path + root.val + "->", answer);
-        }
-        if (root.right != null) {
-            searchBT(root.right, path + root.val + "->", answer);
-        }
+
+        return result;
     }
 
-    public List<String> solution(TreeNode root) {
-        List<String> answer = new ArrayList<String>();
-        if (root != null) {
-            searchBT(root, "", answer);
+    private void dfs(TreeNode node, String path, List<String> result) {
+        if (node.left == null && node.right == null) {
+            result.add(path + node.val);
+            return;
         }
-        return answer;
+
+        if (node.left != null) {
+            dfs(node.left, path + node.val + "->", result);
+        }
+
+        if (node.right != null) {
+            dfs(node.right, path + node.val + "->", result);
+        }
     }
 }
