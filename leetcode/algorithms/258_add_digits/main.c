@@ -56,6 +56,7 @@ int solution2(int num) {
             sum += num % 10;
             num /= 10;
         }
+
         num = sum;
     }
 
