@@ -1,5 +1,12 @@
 #include <stdbool.h>
 
+/**
+ * Iterative Division
+ * 
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(N)
+ */
 bool isUgly(int n) {
     while (n > 0) {
         if (n % 5 == 0) {
@@ -21,11 +28,27 @@ bool isUgly(int n) {
 
 
 // Solution
+/**
+ * Iterative Division
+ * 
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(N)
+ */
 bool solution(int n) {
-    for (int i = 2; i < 6 && n; i++) {
-        while (n % i == 0) {
-            n /= i;
-        }
+    if (n <= 0) {
+        return false;
     }
+
+    while (n % 2 == 0) {
+        n /= 2;
+    }
+    while (n % 3 == 0) {
+        n /= 3;
+    }
+    while (n % 5 == 0) {
+        n /= 5;
+    }
+
     return n == 1;
 }
