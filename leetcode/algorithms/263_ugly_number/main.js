@@ -1,4 +1,11 @@
 /**
+ * Iterative Division
+ *
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(N)
+ */
+/**
  * @param {number} n
  * @return {boolean}
  */
@@ -24,22 +31,29 @@ var isUgly = function (n) {
 
 
 // Solution
+/**
+ * Iterative Division
+ *
+ * Complexities:
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(N)
+ */
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
 var solution = function (n) {
   if (n <= 0) {
     return false;
   }
 
-  while (n != 1) {
-    if (n % 2 === 0) {
-      n /= 2;
-    } else if (n % 3 === 0) {
-      n /= 3;
-    } else if (n % 5 === 0) {
-      n /= 5;
-    } else {
-      return false;
+  const factors = [2, 3, 5];
+
+  for (const factor of factors) {
+    while (n % factor === 0) {
+      n = n / factor;
     }
   }
 
-  return true;
+  return n === 1;
 };
