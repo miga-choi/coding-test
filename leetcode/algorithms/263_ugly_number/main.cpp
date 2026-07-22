@@ -1,5 +1,15 @@
+#include <initializer_list>
+using namespace std;
+
 class UglyNumber {
 public:
+    /**
+     * Iterative Division
+     *
+     * Complexities:
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(N)
+     */
     bool isUgly(int n) {
         while (n) {
             if (!(n % 5)) {
@@ -21,12 +31,24 @@ public:
 
 
     // Solution
+    /**
+     * Iterative Division
+     *
+     * Complexities:
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(N)
+     */
     bool solution(int n) {
-        for (int i = 2; i < 6 && n; i++) {
-            while (n % i == 0) {
-                n /= i;
+        if (n <= 0) {
+            return false;
+        }
+
+        for (int factor : {2, 3, 5}) {
+            while (n % factor == 0) {
+                n /= factor;
             }
         }
+
         return n == 1;
     }
 };
