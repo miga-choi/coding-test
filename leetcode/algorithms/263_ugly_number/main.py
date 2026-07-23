@@ -1,4 +1,11 @@
 class UglyNumber:
+    """
+    # Iterative Division
+    #
+    # Complexities:
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(N)
+    """
     def isUgly(self, n: int) -> bool:
         if n < 1:
             return False
@@ -17,13 +24,19 @@ class UglyNumber:
 
 
     # Solution
+    """
+    # Iterative Division
+    #
+    # Complexities:
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(N)
+    """
     def solution(self, num: int) -> bool:
-        if num == 0:
+        if n <= 0:
             return False
-        while num % 5 == 0:
-            num /= 5
-        while num % 3 == 0:
-            num /= 3
-        while num % 2 == 0:
-            num /= 2
-        return num == 1
+
+        for factor in [2, 3, 5]:
+            while n % factor == 0:
+                n //= factor
+
+        return n == 1
