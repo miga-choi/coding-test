@@ -1,4 +1,11 @@
 class UglyNumber {
+  /**
+   * Iterative Division
+   *
+   * Complexities:
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(N)
+   */
   bool isUgly(int n) {
     while (n > 1) {
       if (n % 5 == 0) {
@@ -20,12 +27,26 @@ class UglyNumber {
 
 
   // Solution
+  /**
+   * Iterative Division
+   *
+   * Complexities:
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(N)
+   */
   bool solution(int n) {
-    for (int i = 2; i < 6 && n != 0; i++) {
-      while (n % i == 0) {
-        n = (n / i).floor();
+    if (n <= 0) {
+      return false;
+    }
+
+    final List<int> factors = [2, 3, 5];
+
+    for (int factor in factors) {
+      while (n % factor == 0) {
+        n = n ~/ factor;
       }
     }
+
     return n == 1;
   }
 }
