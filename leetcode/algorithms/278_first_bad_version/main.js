@@ -13,6 +13,12 @@ isBadVersion = function (version) {
 };
 
 /**
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {function} isBadVersion()
  * @return {function}
  */

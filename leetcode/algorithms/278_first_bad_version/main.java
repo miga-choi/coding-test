@@ -7,6 +7,12 @@ class VersionControl {
 }
 
 class FirstBadVersion extends VersionControl {
+    /**
+     * Complexities:
+     * N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(1)
+     */
     public int firstBadVersion(int n) {
         int left = 0;
         int right = n;
@@ -25,42 +31,26 @@ class FirstBadVersion extends VersionControl {
 
 
     // Solution
-    // Solution 1: First Bad Version Left
+    /**
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(1)
+     */
     public int solution1(int n) {
-        int i = 1;
-        int j = n;
+        int left = 1;
+        int right = n;
 
-        while (i < j) {
-            int mid = i + (j - i) / 2;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
 
             if (isBadVersion(mid)) {
-                j = mid;
+                right = mid;
             } else {
-                i = mid + 1;
+                left = mid + 1;
             }
         }
 
-        return i;
-    }
-
-    // Solution 2: First Bad Version Right
-    public int solution2(int n) {
-        if (isBadVersion(1)) {
-            return 1;
-        }
-
-        int i = 1;
-        int j = n;
-
-        while (i < j) {
-            int mid = i + (j - i) / 2 + 1;
-            if (!isBadVersion(mid)) {
-                i = mid;
-            } else {
-                j = mid - 1;
-            }
-        }
-
-        return j + 1;
+        return left;
     }
 }
