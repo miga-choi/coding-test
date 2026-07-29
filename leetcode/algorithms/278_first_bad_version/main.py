@@ -1,12 +1,20 @@
 import math
 
-
 # The isBadVersion API is already defined for you.
 # def isBadVersion(version: int) -> bool:
+
+
 def isBadVersion(version: int) -> bool:
-    return False
+    return True
+
 
 class FirstBadVersion:
+    """
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
     def firstBadVersion(self, n: int) -> int:
         left = 0
         right = n
@@ -22,18 +30,21 @@ class FirstBadVersion:
 
 
     # Solution
-    def solution(self, n):
-        i = 1
-        j = n
+    """
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
+    def solution(self, n: int) -> int:
+        left, right = 1, n
 
-        while i < j:
-            pivot = (i + j) // 2
+        while left < right:
+            mid = left + (right - left) // 2
 
-            if isBadVersion(pivot):
-                # keep track of the leftmost bad version
-                j = pivot
+            if isBadVersion(mid):
+                right = mid
             else:
-                # the one after the rightmost good version
-                i = pivot + 1
+                left = mid + 1
 
-        return i
+        return left
