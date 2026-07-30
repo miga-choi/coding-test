@@ -1,11 +1,19 @@
+#include <algorithm> // swap, stable_partition
 #include <vector>
 using namespace std;
 
 class MoveZeroes {
 public:
+    /**
+     * Complexities:
+     *   N - The size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     void moveZeroes(vector<int>& nums) {
         int newNums[nums.size()];
         int count = 0;
+
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i]) {
                 newNums[count++] = nums[i];
@@ -23,31 +31,42 @@ public:
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * std::swap
+     *
+     * Complexities:
+     *   N - The size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     void solution1(vector<int>& nums) {
-        int j = 0;
+        int lastNonZeroFoundAt = 0;
 
-        // move all the non-zero elements advance
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i < nums.size(); ++i) {
             if (nums[i] != 0) {
-                nums[j++] = nums[i];
+                if (i != lastNonZeroFoundAt) {
+                    swap(nums[lastNonZeroFoundAt], nums[i]);
+                }
+                lastNonZeroFoundAt++;
             }
-        }
-
-        for (; j < nums.size(); j++) {
-            nums[j] = 0;
         }
     }
 
-    // Solution 2
+    /**
+     * Solution 2
+     * 
+     * std::stable_partition
+     *
+     * Complexities:
+     *   N - The size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     void solution2(vector<int>& nums) {
-        int left = 0;
-
-        for (int right = 0; right < nums.size(); right++) {
-            if (nums[right] != 0) {
-                swap(nums[right], nums[left]);
-                left++;
-            }
-        }
+        stable_partition(nums.begin(), nums.end(), [](int n) {
+            return n != 0;
+        });
     }
 };
