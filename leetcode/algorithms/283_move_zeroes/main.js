@@ -26,7 +26,7 @@ var moveZeroes = function (nums) {
 /**
  * Solution 1
  *
- * Two Pointers
+ * Two Pointers Swap
  *
  * Complexities:
  *   N - The size of `nums`

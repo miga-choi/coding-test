@@ -26,7 +26,7 @@ void moveZeroes(int* nums, int numsSize) {
 
 // Solution
 /**
- * Two Pointers with Swap
+ * Two Pointers Swap
  * 
  * Complexities:
  *   N - `numsSize`
