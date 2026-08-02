@@ -1,93 +1,102 @@
 #include <stdbool.h>
 #include <string.h>
 
+/**
+ * Complexities:
+ *   N - The size of `pattern`
+ *   M - The size of `s`
+ *   L - The max size of word
+ *   - Time Complexity: O(M + N * L)
+ *   - Space Complexity: O(M)
+ */
 bool wordPattern(char* pattern, char* s) {
-    int patternNum[26] = {0};
-    int ifPatternNumNull[26] = {0};
-    int wordCount = 0;
-    int wordNum = 0;
-    int patternLength = strlen(pattern);
-
-    for (int i = 0;; i++) {
-        if (wordCount > (patternLength - 1)) {
-            return false;
-        }
-        int alphabetNum = pattern[wordCount] - 97;
-        if (s[i] == ' ' || s[i] == '\0') {
-            if (!ifPatternNumNull[alphabetNum]) {
-                for (int j = 0; j < 26; j++) {
-                    if (j != alphabetNum) {
-                        if (patternNum[j] == wordNum) {
-                            return false;
-                        }
-                    }
-                }
-                ifPatternNumNull[alphabetNum] = 1;
-                patternNum[alphabetNum] = wordNum;
-            } else {
-                if (patternNum[alphabetNum] != wordNum) {
-                    return false;
-                }
-            }
-
-            if (s[i] == '\0') {
-                if (wordCount != (patternLength - 1)) {
-                    return false;
-                }
-                break;
-            }
-            wordNum = 0;
-            wordCount++;
-        } else {
-            wordNum += s[i];
-        }
-    }
-
-    return true;
-}
-
-
-// Solution
-bool solution(char* pattern, char* s) {
     int patternLen = strlen(pattern);
-    int sLen = strlen(s);
 
-    if (patternLen == 0 || sLen == 0) {
-        return false;
-    }
+    char* sCopy = strdup(s);
 
-    char* hashMap[26];
-    memset(hashMap, 0, sizeof(char*) * 26);
+    char* charToWord[26] = {NULL};
 
-    char* word;
-    char* token = strtok(s, " ");
     int i = 0;
+    char* token = strtok(sCopy, " ");
 
     while (token != NULL) {
         if (i >= patternLen) {
             return false;
         }
 
-        word = token;
+        int pIdx = pattern[i] - 'a';
 
-        int index = pattern[i] - 'a';
-        if (hashMap[index] == NULL) {
-            // Check if the word is already mapped to another pattern character
-            for (int j = 0; j < 26; j++) {
-                if (hashMap[j] != NULL && strcmp(hashMap[j], word) == 0) {
+        if (charToWord[pIdx] != NULL) {
+            if (strcmp(charToWord[pIdx], token) != 0) {
+                return false;
+            }
+        } else {
+            for (int k = 0; k < 26; k++) {
+                if (charToWord[k] != NULL && strcmp(charToWord[k], token) == 0) {
                     return false;
                 }
             }
-            hashMap[index] = word;
-        } else {
-            if (strcmp(hashMap[index], word) != 0) {
-                return false;
-            }
+            charToWord[pIdx] = token;
         }
 
-        token = strtok(NULL, " ");
         i++;
+        token = strtok(NULL, " ");
     }
+
+    return i == patternLen;
+}
+
+
+// Solution
+/**
+ * Complexities:
+ *   N - The size of `pattern`
+ *   M - The size of `s`
+ *   L - The max size of word
+ *   - Time Complexity: O(M + N * L)
+ *   - Space Complexity: O(M)
+ */
+bool solution(char* pattern, char* s) {
+    int patternLen = strlen(pattern);
+
+    char* sCopy = strdup(s);
+    if (sCopy == NULL) {
+        return false;
+    }
+
+    char* charToWord[26] = {NULL};
+
+    int i = 0;
+    char* token = strtok(sCopy, " ");
+
+    while (token != NULL) {
+        if (i >= patternLen) {
+            free(sCopy);
+            return false;
+        }
+
+        int pIdx = pattern[i] - 'a';
+
+        if (charToWord[pIdx] != NULL) {
+            if (strcmp(charToWord[pIdx], token) != 0) {
+                free(sCopy);
+                return false;
+            }
+        } else {
+            for (int k = 0; k < 26; k++) {
+                if (charToWord[k] != NULL && strcmp(charToWord[k], token) == 0) {
+                    free(sCopy);
+                    return false;
+                }
+            }
+            charToWord[pIdx] = token;
+        }
+
+        i++;
+        token = strtok(NULL, " ");
+    }
+
+    free(sCopy);
 
     return i == patternLen;
 }
