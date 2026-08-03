@@ -1,7 +1,16 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 class WordPattern {
+    /**
+     * Complexities:
+     *   N - The size of `pattern`
+     *   M - The size of `s`
+     *   - Time Complexity: O(N * M)
+     *   - Space Complexity: O(N + M)
+     */
     public boolean wordPattern(String pattern, String s) {
         String[] sArray = s.split(" ");
 
@@ -9,7 +18,7 @@ class WordPattern {
             return false;
         }
 
-        Map<Character, String> sMap = new HashMap<Character, String>();
+        Map<Character, String> sMap = new HashMap<>();
 
         for (int i = 0; i < sArray.length; i++) {
             if (sMap.get(pattern.charAt(i)) == null) {
@@ -30,18 +39,37 @@ class WordPattern {
 
 
     // Solution
-    public boolean solution(String pattern, String str) {
-        String[] words = str.split(" ");
+    /**
+     * Complexities:
+     *   N - The number of characters' length in `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    public boolean solution(String pattern, String s) {
+        String[] words = s.split(" ");
 
-        if (words.length != pattern.length()) {
+        if (pattern.length() != words.length) {
             return false;
         }
 
-        Map<String, Integer> index = new HashMap<String, Integer>();
+        Map<Character, String> charToWord = new HashMap<>();
+        Set<String> usedWords = new HashSet<>();
 
-        for (Integer i = 0; i < words.length; ++i) {
-            if (index.put(String.valueOf(pattern.charAt(i)), i) != index.put(words[i], i)) {
-                return false;
+        for (int i = 0; i < pattern.length(); i++) {
+            char ch = pattern.charAt(i);
+            String word = words[i];
+
+            if (charToWord.containsKey(ch)) {
+                if (!charToWord.get(ch).equals(word)) {
+                    return false;
+                }
+            } else {
+                if (usedWords.contains(word)) {
+                    return false;
+                }
+
+                charToWord.put(ch, word);
+                usedWords.add(word);
             }
         }
 
