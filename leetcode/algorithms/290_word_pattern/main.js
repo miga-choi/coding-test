@@ -1,4 +1,11 @@
 /**
+ * Complexities:
+ *   N - The size of `pattern`
+ *   M - The size of `s`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(N + M)
+ */
+/**
  * @param {string} pattern
  * @param {string} s
  * @return {boolean}
@@ -32,23 +39,42 @@ var wordPattern = function (pattern, s) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   N - The number of characters' length in `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(N)
+ */
+/**
+ * @param {string} pattern
+ * @param {string} s
+ * @return {boolean}
+ */
 var solution = function (pattern, str) {
-  const words = str.split(/\s+/);
-  const map = new Map();
+  const words = s.split(" ");
 
-  if (words.length !== pattern.length) {
+  if (pattern.length !== words.length) {
     return false;
   }
 
-  if (new Set(words).size !== new Set(pattern).size) {
-    return false;
-  }
+  const charToWord = new Map();
+  const wordToChar = new Map();
 
   for (let i = 0; i < pattern.length; i++) {
-    if (map.has(pattern[i]) && map.get(pattern[i]) !== words[i]) {
-      return false;
+    const char = pattern[i];
+    const word = words[i];
+
+    if (charToWord.has(char)) {
+      if (charToWord.get(char) !== word) return false;
+    } else {
+      charToWord.set(char, word);
     }
-    map.set(pattern[i], words[i]);
+
+    if (wordToChar.has(word)) {
+      if (wordToChar.get(word) !== char) return false;
+    } else {
+      wordToChar.set(word, char);
+    }
   }
 
   return true;
