@@ -1,4 +1,11 @@
 class WordPattern:
+    """
+    # Complexities:
+    #   N - The size of `pattern`
+    #   M - The size of `s`
+    #   - Time Complexity: O(N * M)
+    #   - Space Complexity: O(N + M)
+    """
     def wordPattern(self, pattern: str, s: str) -> bool:
         sArray: list = s.split(" ")
 
@@ -21,26 +28,54 @@ class WordPattern:
 
 
     # Solution
-    def solution(self, pattern: str, str: str) -> bool:
-        # dictionary approach
-        # Time complexity: O(n)
-        # Space complexity: O(n)
-
-        words = str.split(" ")
-        if not len(words) == len(pattern):
+    """
+    # Solution 1
+    #
+    # Two Hash Maps
+    #
+    # Complexities:
+    #   L - The number of characters' length in `s`
+    #   - Time Complexity: O(L)
+    #   - Space Complexity: O(L)
+    """
+    def solution1(self, pattern: str, s: str) -> bool:
+        words = s.split()
+        
+        if len(pattern) != len(words):
             return False
-
-        mapping = dict()  # key is the pattern, value is the word
-
-        for i in range(len(words)):
-            if pattern[i] not in mapping:
-                # values() is a set - fast membership testing - O(1) amortised search
-                if words[i] not in mapping.values():
-                    mapping[pattern[i]] = words[i]
-                else:
+            
+        char_to_word = {}
+        word_to_char = {}
+        
+        for char, word in zip(pattern, words):
+            if char in char_to_word:
+                if char_to_word[char] != word:
                     return False
             else:
-                if not mapping[pattern[i]] == words[i]:
+                char_to_word[char] = word
+                
+            if word in word_to_char:
+                if word_to_char[word] != char:
                     return False
-
+            else:
+                word_to_char[word] = char
+                
         return True
+
+    """
+    # Solution 2
+    #
+    # set & zip
+    #
+    # Complexities:
+    #   L - The number of characters' length in `s`
+    #   - Time Complexity: O(L)
+    #   - Space Complexity: O(L)
+    """
+    def solution2(self, pattern: str, s: str) -> bool:
+        words = s.split()
+        
+        if len(pattern) != len(words):
+            return False
+            
+        return len(set(pattern)) == len(set(words)) == len(set(zip(pattern, words)))
