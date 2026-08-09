@@ -5,10 +5,16 @@
  */
 
 /**
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} nums
  */
 var NumArray = function (nums) {
   this.nums = [];
+
   for (const num of nums) {
     this.nums.push(num);
   }
@@ -21,23 +27,58 @@ var NumArray = function (nums) {
  */
 NumArray.prototype.sumRange = function (left, right) {
   let sum = 0;
+
   for (let i = left; i <= right; i++) {
     sum += this.nums[i];
   }
+
   return sum;
 };
 
 
 // Solution
-var Solution = function (nums) {
-  this.sums = [];
-  var sum = 0;
-  for (var i = 0; i < nums.length; i++) {
-    sum += nums[i];
-    this.sums.push(sum);
+/**
+ * Solution 1
+ *
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ */
+var Solution1_NumArray = function (nums) {
+  this.prefix = new Array(nums.length + 1).fill(0);
+  for (let i = 0; i < nums.length; i++) {
+    this.prefix[i + 1] = this.prefix[i] + nums[i];
   }
 };
 
-Solution.prototype.sumRange = function (i, j) {
-  return this.sums[j] - (i > 0 ? this.sums[i - 1] : 0);
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number}
+ */
+Solution1_NumArray.prototype.sumRange = function (left, right) {
+  return this.prefix[right + 1] - this.prefix[left];
 };
+
+/**
+ * Solution 2
+ *
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+class Solution2_NumArray {
+  constructor(nums) {
+    this.prefix = [0];
+    for (const num of nums) {
+      this.prefix.push(this.prefix[this.prefix.length - 1] + num);
+    }
+  }
+
+  sumRange(left, right) {
+    return this.prefix[right + 1] - this.prefix[left];
+  }
+}
