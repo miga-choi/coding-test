@@ -7,6 +7,11 @@
  * numArrayFree(obj);
 */
 
+/**
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 typedef struct {
     int* numArray;
 } NumArray;
@@ -35,28 +40,31 @@ void numArrayFree(NumArray* obj) {
 
 
 // Solution
+/**
+ * Complexities:
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 typedef struct {
-    int* arr;
+    int* prefix;
 } Solution_NumArray;
 
-Solution_NumArray* solution_numArrayCreate(int* nums, int numsSize) {
-    Solution_NumArray* ptr = (Solution_NumArray*)malloc(sizeof(Solution_NumArray));
-    ptr->arr = (int*)malloc(sizeof(int) * numsSize);
-    for (int i = 0; i < numsSize; i++) {
-        ptr->arr[i] = nums[i];
-    }
-    return ptr;
+Solution_NumArray* numArrayCreate(int* nums, int numsSize) {
+    Solution_NumArray* obj = malloc(sizeof(Solution_NumArray));
+    obj->prefix = malloc((numsSize + 1) * sizeof(int));
+
+    obj->prefix[0] = 0;
+    for (int i = 0; i < numsSize; i++)
+        obj->prefix[i + 1] = obj->prefix[i] + nums[i];
+
+    return obj;
 }
 
-int solution_numArraySumRange(Solution_NumArray* obj, int left, int right) {
-    int sum = 0;
-    for (int i = left; i <= right; i++) {
-        sum += obj->arr[i];
-    }
-    return sum;
+int numArraySumRange(Solution_NumArray* obj, int left, int right) {
+    return obj->prefix[right + 1] - obj->prefix[left];
 }
 
-void solution_numArrayFree(Solution_NumArray* obj) {
-    free(obj->arr);
+void numArrayFree(Solution_NumArray* obj) {
+    free(obj->prefix);
     free(obj);
 }
