@@ -1,3 +1,4 @@
+from itertools import accumulate
 from typing import List
 
 
@@ -5,29 +6,52 @@ from typing import List
 # obj = NumArray(nums)
 # param_1 = obj.sumRange(left,right)
 
-
+"""
+# Complexities:
+#   - Time Complexity: O(N)
+#   - Space Complexity: O(1)
+"""
 class NumArray:
     def __init__(self, nums: List[int]):
         self.nums = nums
 
     def sumRange(self, left: int, right: int) -> int:
         sum = 0
+
         for i in range(left, right + 1):
             sum += self.nums[i]
+
         return sum
 
 
 # Solution
-class Solution:
+"""
+# Solution 1
+#
+# Complexities:
+#   - Time Complexity: O(N)
+#   - Space Complexity: O(1)
+"""
+class Solution1:
     def __init__(self, nums: List[int]):
-        self.sum = []
-        sum_till = 0
-        for i in nums:
-            sum_till += i
-            self.sum.append(sum_till)
+        self.prefix = [0] * (len(nums) + 1)
 
-    def sumRange(self, i: int, j: int) -> int:
-        if i > 0 and j > 0:
-            return self.sum[j] - self.sum[i - 1]
-        else:
-            return self.sum[i or j]
+        for i, x in enumerate(nums):
+            self.prefix[i + 1] = self.prefix[i] + x
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.prefix[right + 1] - self.prefix[left]
+
+"""
+# Solution 2
+#
+# Complexities:
+#   - Time Complexity: O(N)
+#   - Space Complexity: O(1)
+"""
+class Solution2:
+    def __init__(self, nums: List[int]):
+        self.prefix = list(accumulate(nums, initial=0))
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.prefix[right + 1] - self.prefix[left]
