@@ -3,8 +3,12 @@ import java.util.Arrays;
 class CoinChange {
     /**
      * DP (Dynamic Programming)
-     * - Time Complexity: O(M * N)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   N - `amount`
+     *   M - The types of coins
+     *   - Time Complexity: O(M * N)
+     *   - Space Complexity: O(N)
      */
     public int coinChange(int[] coins, int amount) {
         if (amount == 0) {
@@ -34,24 +38,27 @@ class CoinChange {
     // Solution
     /**
      * DP (Dynamic Programming)
-     * - Time Complexity: O(M * N)
-     * - Space Complexity: O(N)
+     *
+     * Complexities:
+     *   N - `amount`
+     *   M - The types of coins
+     *   - Time Complexity: O(M * N)
+     *   - Space Complexity: O(N)
      */
     public int solution(int[] coins, int amount) {
+        int INF = amount + 1;
         int[] dp = new int[amount + 1];
-
-        Arrays.fill(dp, amount + 1);
-
+        Arrays.fill(dp, INF);
         dp[0] = 0;
 
         for (int i = 1; i <= amount; i++) {
             for (int coin : coins) {
-                if (i - coin >= 0) {
+                if (coin <= i && dp[i - coin] != INF) {
                     dp[i] = Math.min(dp[i], dp[i - coin] + 1);
                 }
             }
         }
 
-        return dp[amount] > amount ? -1 : dp[amount];
+        return dp[amount] == INF ? -1 : dp[amount];
     }
 }
