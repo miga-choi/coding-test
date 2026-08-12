@@ -6,7 +6,7 @@ int min(int a, int b) {
  * DP (Dynamic Programming)
  * 
  * Complexities:
- *   N - `amounta
+ *   N - `amount`
  *   M - The types of coins
  *   - Time Complexity: O(M * N)
  *   - Space Complexity: O(N)
@@ -46,7 +46,7 @@ int coinChange(int* coins, int coinsSize, int amount) {
  * DP (Dynamic Programming)
  * 
  * Complexities:
- *   N - `amounta
+ *   N - `amount`
  *   M - The types of coins
  *   - Time Complexity: O(M * N)
  *   - Space Complexity: O(N)

@@ -8,7 +8,7 @@ public:
      * DP (Dynamic Programming)
      *
      * Complexities:
-     *   N - `amounta
+     *   N - `amount`
      *   M - The types of coins
      *   - Time Complexity: O(M * N)
      *   - Space Complexity: O(N)
@@ -48,7 +48,7 @@ public:
      * DP (Dynamic Programming)
      *
      * Complexities:
-     *   N - `amounta
+     *   N - `amount`
      *   M - The types of coins
      *   - Time Complexity: O(M * N)
      *   - Space Complexity: O(N)
