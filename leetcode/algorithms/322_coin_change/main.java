@@ -5,9 +5,9 @@ class CoinChange {
      * DP (Dynamic Programming)
      *
      * Complexities:
-     *   N - `amount`
-     *   M - The types of coins
-     *   - Time Complexity: O(M * N)
+     *   N - The size of `coins`
+     *   M - `amount`
+     *   - Time Complexity: O(N * M)
      *   - Space Complexity: O(N)
      */
     public int coinChange(int[] coins, int amount) {
@@ -40,9 +40,9 @@ class CoinChange {
      * DP (Dynamic Programming)
      *
      * Complexities:
-     *   N - `amount`
-     *   M - The types of coins
-     *   - Time Complexity: O(M * N)
+     *   N - The size of `coins`
+     *   M - `amount`
+     *   - Time Complexity: O(N * M)
      *   - Space Complexity: O(N)
      */
     public int solution(int[] coins, int amount) {

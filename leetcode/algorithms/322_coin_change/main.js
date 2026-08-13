@@ -2,9 +2,9 @@
  * DP (Dynamic Programming)
  *
  * Complexities:
- *   N - `amount`
- *   M - The types of coins
- *   - Time Complexity: O(M * N)
+ *   N - The size of `coins`
+ *   M - `amount`
+ *   - Time Complexity: O(N * M)
  *   - Space Complexity: O(N)
  */
 /**
@@ -43,12 +43,14 @@ var coinChange = function (coins, amount) {
 
 // Solution
 /**
+ * Solution 1
+ *
  * DP (Dynamic Programming)
  *
  * Complexities:
- *   N - `amount`
- *   M - The types of coins
- *   - Time Complexity: O(M * N)
+ *   N - The size of `coins`
+ *   M - `amount`
+ *   - Time Complexity: O(N * M)
  *   - Space Complexity: O(N)
  */
 /**
@@ -56,7 +58,7 @@ var coinChange = function (coins, amount) {
  * @param {number} amount
  * @return {number}
  */
-var solution = function (coins, amount) {
+var solution1 = function (coins, amount) {
   const INF = amount + 1;
   const dp = new Array(amount + 1).fill(INF);
   dp[0] = 0;
@@ -70,4 +72,56 @@ var solution = function (coins, amount) {
   }
 
   return dp[amount] === INF ? -1 : dp[amount];
+};
+
+/**
+ * Solution 2
+ *
+ * BFS
+ *
+ * Complexities:
+ *   N - The size of `coins`
+ *   M - `amount`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(N)
+ */
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var solution2 = function (coins, amount) {
+  if (amount === 0) {
+    return 0;
+  }
+
+  const visited = new Uint8Array(amount + 1);
+  let queue = [0];
+  visited[0] = 1;
+  let steps = 0;
+
+  while (queue.length > 0) {
+    steps++;
+
+    const next = [];
+
+    for (const cur of queue) {
+      for (const coin of coins) {
+        const sum = cur + coin;
+
+        if (sum === amount) {
+          return steps;
+        }
+
+        if (sum < amount && !visited[sum]) {
+          visited[sum] = 1;
+          next.push(sum);
+        }
+      }
+    }
+
+    queue = next;
+  }
+
+  return -1;
 };

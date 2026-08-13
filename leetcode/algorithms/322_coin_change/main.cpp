@@ -8,9 +8,9 @@ public:
      * DP (Dynamic Programming)
      *
      * Complexities:
-     *   N - `amount`
-     *   M - The types of coins
-     *   - Time Complexity: O(M * N)
+     *   N - The size of `coins`
+     *   M - `amount`
+     *   - Time Complexity: O(N * M)
      *   - Space Complexity: O(N)
      */
     int coinChange(vector<int>& coins, int amount) {
@@ -48,9 +48,9 @@ public:
      * DP (Dynamic Programming)
      *
      * Complexities:
-     *   N - `amount`
-     *   M - The types of coins
-     *   - Time Complexity: O(M * N)
+     *   N - The size of `coins`
+     *   M - `amount`
+     *   - Time Complexity: O(N * M)
      *   - Space Complexity: O(N)
      */
     int solution(vector<int>& coins, int amount) {
