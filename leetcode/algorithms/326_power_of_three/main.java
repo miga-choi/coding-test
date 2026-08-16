@@ -1,40 +1,52 @@
 class PowerOfThree {
+    /**
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(log₃ᴺ)
+     *   - Space Complexity: O(1)
+     */
     public boolean isPowerOfThree(int n) {
-        if (Math.log10(n) / Math.log10(3) % 1 == 0) {
-            return true;
+        if (n <= 0) {
+            return false;
         }
-        return false;
+
+        while (n % 3 == 0) {
+            n /= 3;
+        }
+
+        return n == 1;
     }
 
 
     // Solution
-    // Solution 1: Naive Approch using loops
+    /**
+     * Solution 1
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(log₃ᴺ)
+     *   - Space Complexity: O(1)
+     */
     public boolean solution1(int n) {
-        if (n == 0) {
+        if (n <= 0) {
             return false;
         }
-        while (n != 1) {
-            int r = n % 3; // r: remainder
-            n = n / 3;
-            if (r != 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    // Solution 2
-    public boolean solution2(int n) {
-        while (n >= 3) {
-            if (n % 3 != 0)
-                return false;
+        while (n % 3 == 0) {
             n /= 3;
         }
+
         return n == 1;
     }
 
-    // Solution 3: Mathematics
-    public boolean solution3(int n) {
-        return (Math.log10(n) / Math.log10(3)) % 1 == 0;
+    /**
+     * Solution 2
+     *
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
+    public boolean solution2(int n) {
+        return n > 0 && 1162261467 % n == 0;
     }
 }
