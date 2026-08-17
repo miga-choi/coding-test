@@ -1,8 +1,16 @@
+#include <bit> // std::popcount
 #include <vector>
 using namespace std;
 
 class CountingBits {
 public:
+    /**
+     * DP (Dynamic programming)
+     *
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     vector<int> countBits(int n) {
         vector<int> result;
 
@@ -21,43 +29,60 @@ public:
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     * 
+     * DP (Dynamic programming)
+     *
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     vector<int> solution1(int n) {
-        vector<int> ans;
+        vector<int> dp(n + 1);
 
-        // iterating fromt 0 to n
-        for (int i = 0; i <= n; i++) {
-            // sum is initialised as 0
-            int sum = 0;
-            int num = i;
-            // while num not equals zero
-            while (num != 0) {
-                // we have to count 1's in binary representation of i, therefore % 2
-                sum += num % 2;
-                num = num / 2;
-            }
-            // add sum to ans vector
-            ans.push_back(sum);
+        for (int i = 1; i <= n; ++i) {
+            dp[i] = dp[i >> 1] + (i & 1);
         }
 
-        // return
-        return ans;
+        return dp;
     }
 
-    // Solution 2
+    /**
+     * Solution 2
+     * 
+     * DP (Dynamic programming)
+     *
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     vector<int> solution2(int n) {
-        // n+1 as we are going to count from 0 to n
-        vector<int> t(n + 1);
+        vector<int> dp(n + 1);
 
-        // t[0] will be 0 beacuse 0 has count of set bit is 0;
-        t[0] = 0;
-
-        // we can compute current set bit count using previous count as x/2 in O(1) time
-        // i%2 will be 0 for even number ans 1 for odd number
         for (int i = 1; i <= n; ++i) {
-            t[i] = t[i / 2] + i % 2;
+            dp[i] = dp[i & (i - 1)] + 1;
         }
 
-        return t;
+        return dp;
+    }
+    
+    /**
+     * Solution 3
+     * 
+     * DP (Dynamic programming) + std::popcount
+     *
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    vector<int> solution3(int n) {
+        vector<int> ans(n + 1);
+
+        for (int i = 0; i <= n; ++i) {
+            ans[i] = popcount(static_cast<unsigned>(i));
+        }
+
+        return ans;
     }
 };
