@@ -1,18 +1,44 @@
-import math
-
-
 class PowerOfThree:
+    """
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(log₃ᴺ)
+    #   - Space Complexity: O(1)
+    """
     def isPowerOfThree(self, n: int) -> bool:
-        if n > 0 and math.log10(n) / math.log10(3) % 1 == 0:
-            return True
-        return False
+        if n < 1:
+            return False
+
+        while n % 3 == 0:
+            n //= 3
+
+        return n == 1
 
 
     # Solution
-    def solution(self, n: int) -> bool:
-        # Since error exist, can't use float.is_integer() to check
-        # So I choose to check it back
-        if n <= 0:
+    """
+    # Solution 1
+    #
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(log₃ᴺ)
+    #   - Space Complexity: O(1)
+    """
+    def solution1(self, n: int) -> bool:
+        if n < 1:
             return False
-        res = round(math.log(n, 3))
-        return 3**res == n
+
+        while n % 3 == 0:
+            n //= 3
+
+        return n == 1
+
+    """
+    # Solution 2
+    #
+    # Complexities:
+    #   - Time Complexity: O(1)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, n: int) -> bool:
+        return n > 0 and 1162261467 % n == 0
