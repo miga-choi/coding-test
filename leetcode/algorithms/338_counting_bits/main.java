@@ -2,8 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 class CountingBits {
+    /**
+     * Time Complexity should <= O(N)
+     *
+     * Complexities:
+     *   - Time Complexity: O(N * logᴺ)
+     *   - Space Complexity: O(N * logᴺ)
+     */
     public int[] countBits(int n) {
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
 
         for (int i = 0; i <= n; i++) {
             int sum = 0;
@@ -19,13 +26,41 @@ class CountingBits {
 
 
     // Solution
-    public int[] solution(int num) {
-        int[] f = new int[num + 1];
+    /**
+     * Solution 1
+     *
+     * DP (Dynamic programming)
+     *
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    public int[] solution1(int n) {
+        int[] dp = new int[n + 1];
 
-        for (int i = 1; i <= num; i++) {
-            f[i] = f[i >> 1] + (i & 1);
+        for (int i = 1; i <= n; i++) {
+            dp[i] = dp[i >> 1] + (i & 1);
         }
 
-        return f;
+        return dp;
+    }
+
+    /**
+     * Solution 2
+     *
+     * DP (Dynamic programming)
+     *
+     * Complexities:
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    public int[] solution2(int n) {
+        int[] dp = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            dp[i] = dp[i & (i - 1)] + 1;
+        }
+
+        return dp;
     }
 }
