@@ -1,9 +1,19 @@
-#include <vector>
+#include <algorithm> // std::reverse
+#include <utility>   // std::swap
+#include <vector>    // std::vector
 using namespace std;
 
 class ReverseString {
 public:
-    void reverseString(vector<char> &s) {
+    /**
+     * Two pointers
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(1)
+     */
+    void reverseString(vector<char>& s) {
         for (int i = 0; i < s.size() / 2; i++) {
             char temp = s[i];
             s[i] = s[s.size() - i - 1];
@@ -13,16 +23,33 @@ public:
 
 
     // Solution
-    void solution(vector<char> &s) {
-        int i = 0;
-        int j = s.size() - 1;
-
-        while (i <= j) {
-            char temp = s[i];
-            s[i] = s[j];
-            s[j] = temp;
-            i++;
-            j--;
+    /**
+     * Solution 1
+     *
+     * Two pointers
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(1)
+     */
+    void solution1(vector<char>& s) {
+        for (int left = 0, right = s.size() - 1; left < right; ++left, --right) {
+            swap(s[left], s[right]);
         }
+    }
+
+    /**
+     * Solution 2
+     *
+     * std::reverse
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(1)
+     */
+    void solution2(vector<char>& s) {
+        reverse(s.begin(), s.end());
     }
 };
