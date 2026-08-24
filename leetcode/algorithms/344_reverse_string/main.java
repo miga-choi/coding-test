@@ -1,6 +1,12 @@
-import java.util.Stack;
-
 class ReverseString {
+    /**
+     * Two pointers
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(1)
+     */
     public void reverseString(char[] s) {
         for (int i = 0; i < s.length / 2; i++) {
             char temp = s[i];
@@ -11,51 +17,68 @@ class ReverseString {
 
 
     // Solution
-    // Solution 1: Two Pointer's
+    /**
+     * Solution 1
+     *
+     * Two pointers
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(1)
+     */
     public void solution1(char[] s) {
-        int i = 0;
-        int j = s.length - 1;
+        int left = 0, right = s.length - 1;
 
-        while (i <= j) {
-            char temp = s[i];
-            s[i] = s[j];
-            s[j] = temp;
-            i++;
-            j--;
+        while (left < right) {
+            char tmp = s[left];
+            s[left] = s[right];
+            s[right] = tmp;
+            left++;
+            right--;
         }
     }
 
-    // Solution 2: Recursive Call
+    /**
+     * Solution 2
+     *
+     * Two pointers
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(1)
+     */
     public void solution2(char[] s) {
-        int i = 0;
-        int j = s.length - 1;
-        solve(s, i, j);
+        for (int i = 0, j = s.length - 1; i < j; i++, j--) {
+            char tmp = s[i];
+            s[i] = s[j];
+            s[j] = tmp;
+        }
     }
 
-    public void solve(char[] s, int i, int j) {
-        if (i >= j) {
+    /**
+     * Solution 3
+     *
+     * Recursion
+     *
+     * Complexities:
+     *   N - The size of `s`
+     *   - Time Complexities: O(N)
+     *   - Space Complexities: O(N)
+     */
+    public void solution3(char[] s) {
+        helper(s, 0, s.length - 1);
+    }
+
+    private void helper(char[] s, int left, int right) {
+        if (left >= right) {
             return;
         }
-        char temp = s[i];
-        s[i] = s[j];
-        s[j] = temp;
-        solve(s, ++i, --j);
-    }
 
-    // Solution 3: Stack
-    public void solution3(char[] s) {
-        Stack<Character> st = new Stack<>();
-        String str = new String(s);
-        for (int i = 0; i < str.length(); i++) {
-            st.push(s[i]);
-        }
-        char ans[] = new char[s.length];
-        int i = 0;
-        while (st.size() > 0) {
-            s[i++] = st.pop();
-        }
-        for (int j = 0; j < str.length(); j++) {
-            ans[j] = str.charAt(j);
-        }
+        char tmp = s[left];
+        s[left] = s[right];
+        s[right] = tmp;
+        helper(s, left + 1, right - 1);
     }
 }
