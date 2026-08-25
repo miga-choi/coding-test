@@ -1,4 +1,12 @@
 class ReverseString {
+  /**
+   * Two pointers
+   *
+   * Complexities:
+   *   N - The size of `s`
+   *   - Time Complexities: O(N)
+   *   - Space Complexities: O(1)
+   */
   void reverseString(List<String> s) {
     for (int i = 0; i < s.length / 2; i++) {
       String temp = s[i];
@@ -9,35 +17,50 @@ class ReverseString {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   *
+   * Two pointers
+   *
+   * Complexities:
+   *   N - The size of `s`
+   *   - Time Complexities: O(N)
+   *   - Space Complexities: O(1)
+   */
   void solution1(List<String> s) {
-    s.setRange(0, s.length, s.reversed);
-  }
+    var left = 0;
+    var right = s.length - 1;
 
-  // Solution 2
-  void solution2(List<String> s) {
-    // Initialize a variable `left` to 0, which represents the left index of the list
-    int left = 0;
-
-    // Initialize a variable `right` to `s.length - 1`, which represents the right index of the list
-    int right = s.length - 1;
-
-    // Start a `while` loop that iterates as long as `left` is less than `right`
     while (left < right) {
-      // Store the value at index `left` in a temporary variable `tmp`
-      String tmp = s[left];
-
-      // Overwrite the value at index `left` with the value at index `right`
+      final tmp = s[left];
       s[left] = s[right];
-
-      // Overwrite the value at index `right` with the value stored in `tmp`
       s[right] = tmp;
-
-      // Increment `left` by 1
       left++;
-
-      // Decrement `right` by 1
       right--;
     }
+  }
+
+  /**
+   * Solution 2
+   *
+   * Recursion
+   *
+   * Complexities:
+   *   N - The size of `s`
+   *   - Time Complexities: O(N)
+   *   - Space Complexities: O(N)
+   */
+  void solution2(List<String> s, [int left = 0, int? right]) {
+    right ??= s.length - 1;
+
+    if (left >= right) {
+      return;
+    }
+
+    final tmp = s[left];
+    s[left] = s[right];
+    s[right] = tmp;
+
+    solution2(s, left + 1, right - 1);
   }
 }
