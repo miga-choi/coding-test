@@ -1,6 +1,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+/**
+ * Two Pointers 
+ * 
+ * Complexities: 
+ *   N - The size of `s`
+ *   - Time Complexities: O(N)
+ *   - Space Complexities: O(1)
+ */
 char* reverseVowels(char* s) {
     int sLength = 0;
     int vowelsLength = 0;
@@ -43,37 +51,82 @@ char* reverseVowels(char* s) {
 
 
 // Solution
-bool isVowel(char c) {
-    char vowels[] = "aeiouAEIOU";
-
-    for (int i = 0; vowels[i] != '\0'; i++) {
-        if (c == vowels[i]) {
+/**
+ * Solution 1
+ * 
+ * Two Pointers 
+ * 
+ * Complexities: 
+ *   N - The size of `s`
+ *   - Time Complexities: O(N)
+ *   - Space Complexities: O(1)
+ */
+static inline bool isVowel(char c) {
+    switch (c) {
+        case 'a': case 'e': case 'i': case 'o': case 'u':
+        case 'A': case 'E': case 'I': case 'O': case 'U':
             return true;
+        default:
+            return false;
+    }
+}
+
+char* solution1(char* s) {
+    int left = 0, right = (int)strlen(s) - 1;
+
+    while (left < right) {
+        while (left < right && !isVowel(s[left])) {
+            left++;
+        }
+        while (left < right && !isVowel(s[right])) {
+            right--;
+        }
+
+        if (left < right) {
+            char tmp = s[left];
+            s[left] = s[right];
+            s[right] = tmp;
+            left++;
+            right--;
         }
     }
 
-    return false;
+    return s;
 }
 
-char* solution(char* s) {
-    int start = 0;
-    int end = strlen(s) - 1;
+/**
+ * Solution 2
+ * 
+ * Two Pointers 
+ * 
+ * Complexities: 
+ *   N - The size of `s`
+ *   - Time Complexities: O(N)
+ *   - Space Complexities: O(1)
+ */
+static const bool VOWEL[256] = {
+    ['a'] = true, ['e'] = true, ['i'] = true, ['o'] = true, ['u'] = true,
+    ['A'] = true, ['E'] = true, ['I'] = true, ['O'] = true, ['U'] = true,
+};
 
-    while (start < end) {
-        while (start < end && !isVowel(s[start])) {
-            start++;
+char* solution2(char* s) {
+    int left = 0, right = (int)strlen(s) - 1;
+
+    while (left < right) {
+        while (left < right && !VOWEL[(unsigned char)s[left]]) {
+            left++;
         }
-        while (start < end && !isVowel(s[end])) {
-            end--;
+        while (left < right && !VOWEL[(unsigned char)s[right]]) {
+            right--;
         }
 
-        // Swap vowels
-        char temp = s[start];
-        s[start] = s[end];
-        s[end] = temp;
-
-        start++;
-        end--;
+        if (left < right) {
+            char tmp = s[left];
+            s[left] = s[right];
+            s[right] = tmp;
+            left++;
+            right--;
+        }
     }
 
     return s;
