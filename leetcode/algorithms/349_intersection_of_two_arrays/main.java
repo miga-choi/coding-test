@@ -1,10 +1,19 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 class IntersectionOfTwoArrays {
+    /**
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N * M)
+     *   - Space Complexity: O(N)
+     */
     public int[] intersection(int[] nums1, int[] nums2) {
-        Set<Integer> result = new HashSet<Integer>();
+        Set<Integer> result = new HashSet<>();
 
         for (int num1 : nums1) {
             for (int num2 : nums2) {
@@ -19,29 +28,98 @@ class IntersectionOfTwoArrays {
 
 
     // Solution
-    public int[] solution(int[] nums1, int[] nums2) {
-        HashSet<Integer> set = new HashSet<Integer>();
-        ArrayList<Integer> res = new ArrayList<Integer>();
-
-        // Add all elements to set from array 1
-        for (int i = 0; i < nums1.length; i++) {
-            set.add(nums1[i]);
+    /**
+     * Solution 1
+     *
+     * HashSet
+     *
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(N + M)
+     */
+    public int[] solution1(int[] nums1, int[] nums2) {
+        Set<Integer> set = new HashSet<>();
+        for (int x : nums1) {
+            set.add(x);
         }
 
-        for (int j = 0; j < nums2.length; j++) {
-            // If present in array 2 then add to res and remove from set
-            if (set.contains(nums2[j])) {
-                res.add(nums2[j]);
-                set.remove(nums2[j]);
+        List<Integer> result = new ArrayList<>();
+        for (int x : nums2) {
+            if (set.remove(x)) {
+                result.add(x);
             }
         }
 
-        // Convert ArrayList to array
-        int[] arr = new int[res.size()];
-        for (int i = 0; i < res.size(); i++) {
-            arr[i] = res.get(i);
+        int[] ans = new int[result.size()];
+        for (int i = 0; i < ans.length; i++) {
+            ans[i] = result.get(i);
         }
 
-        return arr;
+        return ans;
+    }
+
+    /**
+     * Solution 2
+     *
+     * Sort + Two pointers
+     *
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
+    public int[] solution2(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+
+        int i = 0, j = 0, k = 0;
+        int[] tmp = new int[Math.min(nums1.length, nums2.length)];
+
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                if (k == 0 || tmp[k - 1] != nums1[i])
+                    tmp[k++] = nums1[i];
+                i++;
+                j++;
+            }
+        }
+
+        return Arrays.copyOf(tmp, k);
+    }
+
+    /**
+     * Solution 3
+     *
+     * Constraints
+     *
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
+     */
+    public int[] solution3(int[] nums1, int[] nums2) {
+        boolean[] inFirst = new boolean[1001];
+        for (int x : nums1) {
+            inFirst[x] = true;
+        }
+
+        int[] tmp = new int[1001];
+        int k = 0;
+        for (int x : nums2) {
+            if (inFirst[x]) {
+                tmp[k++] = x;
+                inFirst[x] = false;
+            }
+        }
+
+        return Arrays.copyOf(tmp, k);
     }
 }
