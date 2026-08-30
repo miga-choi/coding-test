@@ -91,10 +91,10 @@ public:
     /**
      * Solution 3
      *
-     * std::unordered_set
+     * Sort + Two pointers
      *
      * Complexities:
-     *   N - The size of `unordered_set`
+     *   N - The size of `nums1`
      *   M - The size of `nums2`
      *   - Time Complexity: O(N * logᴺ + M * logᴹ)
      *   - Space Complexity: O(1)
