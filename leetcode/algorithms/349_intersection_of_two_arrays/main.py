@@ -2,26 +2,65 @@ from typing import List
 
 
 class IntersectionOfTwoArrays:
+    """
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N * M)
+    #   - Space Complexity: O(N)
+    """
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result = []
+
         for num1 in nums1:
             if num1 in nums2:
                 result.append(num1)
+
         return list(set(result))
 
 
     # Solution
-    def solution(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        d = {}
-        res = []
-        for n in nums1:
-            d[n] = 1
+    """
+    # Solution 1
+    #
+    # set
+    #
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N + M)
+    #   - Space Complexity: O(N + M)
+    """
+    def solution1(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        # return list(set(nums1).intersection(nums2))
+        return list(set(nums1) & set(nums2))
 
-        for n in nums2:
-            # Check if n is in dictionary and not in the result
-            if n in d and d[n]:
-                res.append(n)
-                # It will set the value of d[n] = 0 which will indicate we already added n in result
-                d[n] -= 1
+    """
+    # Solution 2
+    #
+    # Sort + Two pointers
+    #
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N * logᴺ + M * logᴹ)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        i = j = 0
+        result = []
 
-        return res
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
+                i += 1
+            elif nums1[i] > nums2[j]:
+                j += 1
+            else:
+                if not result or result[-1] != nums1[i]:
+                    result.append(nums1[i])
+                i += 1
+                j += 1
+
+        return result
