@@ -1,11 +1,20 @@
-#include <stdlib.h>
+#include <stdlib.h> // malloc, qsort
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
+
+/**
+ * Complexities:
+ *   N - `nums1Size`
+ *   M - `nums2Size`
+ *   - Time Complexity: O(N * M)
+ *   - Space Complexity: O(K)
+ */
 int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
     int* result = (int*)malloc(sizeof(int) * 1000);
     int count = 0;
+
     for (int i = 0; i < nums1Size; i++) {
         for (int j = 0; j < nums2Size; j++) {
             if (nums1[i] >= 0 && nums2[j] >= 0 && nums1[i] == nums2[j]) {
@@ -16,66 +25,85 @@ int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* return
             }
         }
     }
+
     *returnSize = count;
     return result;
 }
 
 
 // Solution
-// Solution 1: Sorting
+/**
+ * Solution 1
+ * 
+ * Counting Array
+ * 
+ * Complexities:
+ *   N - `nums1Size`
+ *   M - `nums2Size`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(1)
+ */
+#define MAXV 1001
+
 int* solution1(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
-    int counting1[1001] = {0};
-    int counting2[1001] = {0};
-    
+    int cnt[MAXV] = {0};
+
     for (int i = 0; i < nums1Size; i++) {
-        counting1[nums1[i]]++;
+        cnt[nums1[i]]++;
     }
-    
+
+    int cap = nums1Size < nums2Size ? nums1Size : nums2Size;
+    int* res = malloc(cap * sizeof(int));
+    int k = 0;
+
     for (int i = 0; i < nums2Size; i++) {
-        counting2[nums2[i]]++;
-    }
-    
-    int* res = (int*)malloc((nums1Size + nums2Size) * sizeof(int));
-    int resSize = 0;
-    
-    for (int number = 0; number < 1001; number++) {
-        int mn = counting1[number] < counting2[number] ? counting1[number] : counting2[number];
-        for (int i = 0; i < mn; i++) {
-            res[resSize++] = number;
+        int v = nums2[i];
+        if (cnt[v] > 0) {
+            res[k++] = v;
+            cnt[v]--;
         }
     }
-    
-    *returnSize = resSize;
+
+    *returnSize = k;
     return res;
 }
 
-// Solution 2: Counting
-int compare(const void *a, const void *b) {
-    return (*(int*)a - *(int*)b);
+/**
+ * Solution 2
+ * 
+ * Sorting + Two Pointers
+ * 
+ * Complexities:
+ *   N - `nums1Size`
+ *   M - `nums2Size`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
+static int cmp(const void* a, const void* b) {
+    int x = *(const int*)a, y = *(const int*)b;
+    return (x > y) - (x < y);
 }
 
 int* solution2(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
-    qsort(nums1, nums1Size, sizeof(int), compare);
-    qsort(nums2, nums2Size, sizeof(int), compare);
+    qsort(nums1, nums1Size, sizeof(int), cmp);
+    qsort(nums2, nums2Size, sizeof(int), cmp);
 
-    int ind1 = 0, ind2 = 0;
-    int* res = (int*)malloc((nums1Size + nums2Size) * sizeof(int));
-    int resSize = 0;
+    int cap = nums1Size < nums2Size ? nums1Size : nums2Size;
+    int* res = malloc(cap * sizeof(int));
+    int i = 0, j = 0, k = 0;
 
-    while (ind1 < nums1Size && ind2 < nums2Size) {
-        int n1 = nums1[ind1];
-        int n2 = nums2[ind2];
-        if (n1 == n2) {
-            res[resSize++] = n1;
-            ind1++;
-            ind2++;
-        } else if (n1 > n2) {
-            ind2++;
+    while (i < nums1Size && j < nums2Size) {
+        if (nums1[i] < nums2[j]) {
+            i++;
+        } else if (nums1[i] > nums2[j]) {
+            j++;
         } else {
-            ind1++;
+            res[k++] = nums1[i];
+            i++;
+            j++;
         }
     }
 
-    *returnSize = resSize;
+    *returnSize = k;
     return res;
 }
