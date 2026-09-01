@@ -1,10 +1,20 @@
-#include <map>
-#include <vector>
+#include <algorithm>     // std::sort, std::set_intersection
+#include <array>         // std::array
+#include <iterator>      // std::back_inserter
+#include <unordered_map> // std::unordered_map
+#include <vector>        // std::vector
 using namespace std;
 
 class IntersectionOfTwoArraysII {
 public:
-    vector<int> intersect(vector<int> &nums1, vector<int> &nums2) {
+    /**
+     * Complexities:
+     *   N - `nums1Size`
+     *   M - `nums2Size`
+     *   - Time Complexity: O(N * M)
+     *   - Space Complexity: O(K)
+     */
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
         vector<int> result;
 
         for (int i = 0; i < nums1.size(); i++) {
@@ -22,44 +32,81 @@ public:
 
 
     // Solution
-    // Solution 1: Using map without sort
-    vector<int> solution1(vector<int> &nums1, vector<int> &nums2) {
-        map<int, int> freq;
-        vector<int> ans;
+    /**
+     * Solution 1
+     *
+     * Counting Array
+     *
+     * Complexities:
+     *   N - `nums1Size`
+     *   M - `nums2Size`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
+     */
+    vector<int> solution1(vector<int>& nums1, vector<int>& nums2) {
+        array<int, 1001> cnt{};
 
-        for (int i = 0; i < nums1.size(); i++) {
-            freq[nums1[i]]++;
-        }
+        for (int v : nums1) cnt[v]++;
 
-        for (int i = 0; i < nums2.size(); i++) {
-            if (freq[nums2[i]] > 0) {
-                freq[nums2[i]]--;
-                ans.push_back(nums2[i]);
+        vector<int> res;
+        for (int v : nums2) {
+            if (cnt[v] > 0) {
+                res.push_back(v);
+                cnt[v]--;
             }
         }
 
-        return ans;
+        return res;
     }
 
-    // Solution2: Two pointer with sort
-    vector<int> solution2(vector<int> &nums1, vector<int> &nums2) {
+    /**
+     * Solution 2
+     *
+     * unordered_map
+     *
+     * Complexities:
+     *   N - `nums1Size`
+     *   M - `nums2Size`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
+     */
+    vector<int> solution2(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> cnt;
+        for (int v : nums1) {
+            cnt[v]++;
+        }
+
+        vector<int> res;
+        for (int v : nums2) {
+            auto it = cnt.find(v);
+            if (it != cnt.end() && it->second > 0) {
+                res.push_back(v);
+                --it->second;
+            }
+        }
+
+        return res;
+    }
+
+    /**
+     * Solution 3
+     *
+     * Sorting + Two Pointers
+     *
+     * Complexities:
+     *   N - `nums1Size`
+     *   M - `nums2Size`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
+    vector<int> solution3(vector<int>& nums1, vector<int>& nums2) {
         sort(nums1.begin(), nums1.end());
         sort(nums2.begin(), nums2.end());
 
-        int i = 0, j = 0;
         vector<int> res;
-
-        while (i < nums1.size() && j < nums2.size()) {
-            if (nums1[i] == nums2[j]) {
-                res.push_back(nums1[i]);
-                i++;
-                j++;
-            } else if (nums1[i] < nums2[j]) {
-                i++;
-            } else if (nums1[i] > nums2[j]) {
-                j++;
-            }
-        }
+        set_intersection(nums1.begin(), nums1.end(),
+                         nums2.begin(), nums2.end(),
+                         back_inserter(res));
 
         return res;
     }
