@@ -9,7 +9,7 @@
  *   N - `nums1Size`
  *   M - `nums2Size`
  *   - Time Complexity: O(N * M)
- *   - Space Complexity: O(K)
+ *   - Space Complexity: O(N + M)
  */
 int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
     int* result = (int*)malloc(sizeof(int) * 1000);

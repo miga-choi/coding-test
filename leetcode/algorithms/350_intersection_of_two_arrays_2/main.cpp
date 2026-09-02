@@ -9,10 +9,10 @@ class IntersectionOfTwoArraysII {
 public:
     /**
      * Complexities:
-     *   N - `nums1Size`
-     *   M - `nums2Size`
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
      *   - Time Complexity: O(N * M)
-     *   - Space Complexity: O(K)
+     *   - Space Complexity: O(N + M)
      */
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
         vector<int> result;
@@ -38,8 +38,8 @@ public:
      * Counting Array
      *
      * Complexities:
-     *   N - `nums1Size`
-     *   M - `nums2Size`
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
      *   - Time Complexity: O(N + M)
      *   - Space Complexity: O(1)
      */
@@ -65,8 +65,8 @@ public:
      * unordered_map
      *
      * Complexities:
-     *   N - `nums1Size`
-     *   M - `nums2Size`
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
      *   - Time Complexity: O(N + M)
      *   - Space Complexity: O(1)
      */
@@ -94,8 +94,8 @@ public:
      * Sorting + Two Pointers
      *
      * Complexities:
-     *   N - `nums1Size`
-     *   M - `nums2Size`
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
      *   - Time Complexity: O(N * logᴺ + M * logᴹ)
      *   - Space Complexity: O(1)
      */
