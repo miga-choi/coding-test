@@ -5,9 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 class IntersectionOfTwoArraysII {
+    /**
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N * M)
+     *   - Space Complexity: O(N + M)
+     */
     public int[] intersect(int[] nums1, int[] nums2) {
-        List<Integer> result = new ArrayList<Integer>();
-        Map<Integer, Integer> numsMap = new HashMap<Integer, Integer>();
+        List<Integer> result = new ArrayList<>();
+        Map<Integer, Integer> numsMap = new HashMap<>();
 
         for (Integer num1 : nums1) {
             if (numsMap.get(num1) == null) {
@@ -29,57 +36,99 @@ class IntersectionOfTwoArraysII {
 
 
     // Solution
-    // Solution 1
+    /**
+     * Solution 1
+     *
+     * Map
+     *
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(min(N, M))
+     */
     public int[] solution1(int[] nums1, int[] nums2) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i : nums1) {
-            int freq = map.getOrDefault(i, 0);
-            map.put(i, freq + 1);
+        if (nums1.length > nums2.length) {
+            return intersect(nums2, nums1);
         }
 
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i : nums2) {
-            if (map.get(i) != null && map.get(i) > 0) {
-                list.add(i);
-                map.put(i, map.get(i) - 1);
+        Map<Integer, Integer> count = new HashMap<>();
+        for (int x : nums1) {
+            count.merge(x, 1, Integer::sum);
+        }
+
+        int[] tmp = new int[nums1.length];
+        int k = 0;
+        for (int x : nums2) {
+            int c = count.getOrDefault(x, 0);
+            if (c > 0) {
+                tmp[k++] = x;
+                count.put(x, c - 1);
             }
         }
 
-        int[] ret = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            ret[i] = list.get(i);
-        }
-
-        return ret;
+        return Arrays.copyOf(tmp, k);
     }
 
-    // Solution 2
+    /**
+     * Solution 2
+     *
+     * Sorting + Two Pointers
+     *
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
     public int[] solution2(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);
         Arrays.sort(nums2);
 
-        int n = nums1.length, m = nums2.length;
-        int i = 0, j = 0;
-        List<Integer> list = new ArrayList<>();
+        int i = 0, j = 0, k = 0;
+        int[] tmp = new int[Math.min(nums1.length, nums2.length)];
 
-        while (i < n && j < m) {
-            int a = nums1[i], b = nums2[j];
-            if (a == b) {
-                list.add(a);
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
                 i++;
+            } else if (nums1[i] > nums2[j]) {
                 j++;
-            } else if (a < b) {
-                i++;
             } else {
+                tmp[k++] = nums1[i];
+                i++;
                 j++;
             }
         }
 
-        int[] ret = new int[list.size()];
-        for (int k = 0; k < list.size(); k++) {
-            ret[k] = list.get(k);
+        return Arrays.copyOf(tmp, k);
+    }
+
+    /**
+     * Solution 3
+     *
+     * Constraints
+     *
+     * Complexities:
+     *   N - The size of `nums1`
+     *   M - The size of `nums2`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
+     */
+    public int[] solution3(int[] nums1, int[] nums2) {
+        int[] count = new int[1001];
+        for (int x : nums1) {
+            count[x]++;
         }
 
-        return ret;
+        int[] tmp = new int[Math.min(nums1.length, nums2.length)];
+        int k = 0;
+        for (int x : nums2) {
+            if (count[x] > 0) {
+                tmp[k++] = x;
+                count[x]--;
+            }
+        }
+
+        return Arrays.copyOf(tmp, k);
     }
 }
