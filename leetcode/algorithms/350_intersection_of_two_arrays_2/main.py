@@ -1,7 +1,15 @@
+from collections import Counter, defaultdict
 from typing import List
 
 
 class IntersectionOfTwoArraysII:
+    """
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N * M)
+    #   - Space Complexity: O(N + M)
+    """
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result = []
         numsMap: dict = {}
@@ -21,34 +29,72 @@ class IntersectionOfTwoArraysII:
 
 
     # Solution
-    def solution(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        # Sort both the arrays first...
-        sortedArr1 = sorted(nums1)
-        sortedArr2 = sorted(nums2)
+    """
+    # Solution 1
+    #
+    # collections.Counter
+    #
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N + M)
+    #   - Space Complexity: O(N + M)
+    """
+    def solution1(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list((Counter(nums1) & Counter(nums2)).elements())
 
-        # Use two pointers i and j for the two arrays and initialize both with zero.
-        i = 0
-        j = 0
+    """
+    # Solution 2
+    #
+    # collections.defaultdict
+    #
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N + M)
+    #   - Space Complexity: O(min(N, M))
+    """
+    def solution2(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
 
-        # Create a output list to store the output...
-        output = []
-        while i < len(sortedArr1) and j < len(sortedArr2):
-            # If sortedArr1[i] is less than sortedArr2[j]...
-            # Leave the smaller element and go to next(greater) element in nums1...
-            if sortedArr1[i] < sortedArr2[j]:
+        count = defaultdict(int)
+        for x in nums1:
+            count[x] += 1
+
+        result = []
+        for x in nums2:
+            if count[x] > 0:
+                result.append(x)
+                count[x] -= 1
+
+        return result
+
+    """
+    # Solution 3
+    #
+    # Sorting + Two Pointers
+    #
+    # Complexities:
+    #   N - The size of `nums1`
+    #   M - The size of `nums2`
+    #   - Time Complexity: O(N * logᴺ + M * logᴹ)
+    #   - Space Complexity: O(min(N, M))
+    """
+    def solution3(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        i = j = 0
+        result = []
+
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
                 i += 1
-
-            # If sortedArr1[i] is greater than sortedArr2[j]...
-            # Go to next(greater) element in nums2 array...
-            elif sortedArr2[j] < sortedArr1[i]:
+            elif nums1[i] > nums2[j]:
                 j += 1
-
-            # If both the elements intersected...
-            # Add this element to output & increment both i and j.
             else:
-                output.append(sortedArr1[i])
+                result.append(nums1[i])
                 i += 1
                 j += 1
 
-        # Return the output array...
-        return output
+        return result
