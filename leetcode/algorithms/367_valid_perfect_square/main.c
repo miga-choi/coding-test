@@ -105,7 +105,7 @@ bool solution3(int num) {
  * 
  * Complexities:
  *   N - `num`
- *   - Time Complexity: O(log(logᴺ))
+ *   - Time Complexity: O(logᴺ)
  *   - Space Complexity: O(1)
  */
 bool solution4(int num) {
