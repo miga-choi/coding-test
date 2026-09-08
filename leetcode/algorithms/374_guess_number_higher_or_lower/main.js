@@ -6,9 +6,16 @@
  *               otherwise return 0
  * var guess = function(num) {}
  */
-
 var guess = function (num) {};
 
+/**
+ * Binary Search
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
 /**
  * @param {number} n
  * @return {number}
@@ -30,16 +37,71 @@ var guessNumber = function (n) {
 
 
 // Solution
-var solution = function (n) {
-  let l = 0, r = n - 1;
+/**
+ * Solution 1
+ *
+ * Binary Search
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var solution1 = function (n) {
+  let left = 1;
+  let right = n;
 
-  while (l <= r) {
-    let mid = Math.floor((l + r) / 2);
-    let res = guess(mid);
-    if (res == 0) return mid;
-    else if (res == 1) l = mid + 1;
-    else r = mid - 1;
+  while (left <= right) {
+    const mid = left + Math.floor((right - left) / 2);
+    const res = guess(mid);
+
+    if (res === 0) {
+      return mid;
+    }
+
+    if (res === -1) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
   }
 
-  return l;
+  return -1;
+};
+
+/**
+ * Solution 2
+ *
+ * Recursion
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(logᴺ)
+ */
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var solution2 = function (n) {
+  const search = (left, right) => {
+    const mid = left + Math.floor((right - left) / 2);
+    const res = guess(mid);
+
+    if (res === 0) {
+      return mid;
+    }
+
+    if (res === -1) {
+      return search(left, mid - 1);
+    }
+
+    return search(mid + 1, right);
+  };
+
+  return search(1, n);
 };
