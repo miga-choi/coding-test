@@ -8,7 +8,6 @@
  * 
  *         int guess(int num);
  */
-
 class GuessGame {
     int guess(int num) {
         return 0;
@@ -16,6 +15,14 @@ class GuessGame {
 }
 
 class GuessNumberHigherOrLower extends GuessGame {
+    /**
+     * Binary Search
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(1)
+     */
     public int guessNumber(int n) {
         long left = 0;
         long right = n;
@@ -38,20 +45,61 @@ class GuessNumberHigherOrLower extends GuessGame {
 
 
     // Solution
-    public int solution(int n) {
-        long start = 1, end = n, mid;
+    /**
+     * Solution 1
+     * 
+     * Binary Search
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(1)
+     */
+    public int solution1(int n) {
+        int left = 1, right = n;
 
-        while (start <= end) {
-            mid = (start + end) / 2;
-            if (guess((int) mid) == 0) {
-                return (int) mid;
-            } else if (guess((int) mid) == 1) {
-                start = mid + 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int res = guess(mid);
+
+            if (res == 0) {
+                return mid;
+            } else if (res == -1) {
+                right = mid - 1;
             } else {
-                end = mid - 1;
+                left = mid + 1;
             }
         }
 
         return -1;
+    }
+
+    /**
+     * Solution 2
+     *
+     * Recursion
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(logᴺ)
+     *   - Space Complexity: O(logᴺ)
+     */
+    private int search(int left, int right) {
+        int mid = left + (right - left) / 2;
+        int res = guess(mid);
+
+        if (res == 0) {
+            return mid;
+        }
+
+        if (res == -1) {
+            return search(left, mid - 1);
+        }
+
+        return search(mid + 1, right);
+    }
+
+    public int solution2(int n) {
+        return search(1, n);
     }
 }
