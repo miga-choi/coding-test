@@ -1,15 +1,23 @@
-# The guess API is already defined for you.
-# @param num, your guess
-# @return -1 if num is higher than the picked number
-#          1 if num is lower than the picked number
-#          otherwise return 0
-# def guess(num: int) -> int:
-
+from bisect import bisect_left
 
 class GuessNumberHigherOrLower:
+    # The guess API is already defined for you.
+    # @param num, your guess
+    # @return -1 if num is higher than the picked number
+    #          1 if num is lower than the picked number
+    #          otherwise return 0
+    # def guess(num: int) -> int:
     def guess(num: int) -> int:
         return 0
 
+    """
+    # Binary Search
+    #
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
     def guessNumber(self, n: int) -> int:
         size = n / 2
 
@@ -24,19 +32,41 @@ class GuessNumberHigherOrLower:
 
 
     # Solution
-    def solution(self, n: int) -> int:
-        lowerBound, upperBound = 1, n
+    """
+    # Solution 1
+    # 
+    # Binary Search
+    #
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
+    def solution1(self, n: int) -> int:
+        left, right = 1, n
 
-        # Binary division faster than (lowerBound + upperBound) //2
-        myGuess = (lowerBound + upperBound) >> 1
+        while left <= right:
+            mid = left + (right - left) // 2
+            result = guess(mid)
 
-        # walrus operator ':=' - assigns value of the function to the variable 'res'
-        # and then compare res with 0
-        while (res := self.guess(myGuess)) != 0:
-            if res == 1:
-                lowerBound = myGuess + 1
+            if result == 0:
+                return mid
+            elif result == -1:
+                right = mid - 1
             else:
-                upperBound = myGuess - 1
-            myGuess = (lowerBound + upperBound) >> 1
+                left = mid + 1
 
-        return myGuess
+        return -1
+
+    """
+    # Solution 2
+    # 
+    # bisect.bisect_left
+    #
+    # Complexities:
+    #   N - `n`
+    #   - Time Complexity: O(logᴺ)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, n: int) -> int:
+        return bisect_left(range(1, n + 1), 0, key=lambda x: -self.guess(x))
