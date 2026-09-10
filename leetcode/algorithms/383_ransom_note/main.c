@@ -1,10 +1,22 @@
-#include <stdbool.h>
+#include <stdbool.h> // bool
+#include <string.h>  // strlen
 
+/**
+ * Counting Array
+ * 
+ * Complexities:
+ *   N - The size of `ransomNote`
+ *   M - The size of `magazine`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(1)
+ */
 bool canConstruct(char* ransomNote, char* magazine) {
     int alphabetMap[26] = {0};
+
     for (int i = 0; magazine[i] != '\0'; i++) {
         alphabetMap[magazine[i] - 'a']++;
     }
+
     for (int i = 0; ransomNote[i] != '\0'; i++) {
         if (alphabetMap[ransomNote[i] - 'a'] > 0) {
             alphabetMap[ransomNote[i] - 'a']--;
@@ -12,28 +24,72 @@ bool canConstruct(char* ransomNote, char* magazine) {
             return false;
         }
     }
+
     return true;
 }
 
-bool canConstruct(char* ransomNote, char* magazine) {
-    // Initialize an array of count with the size 26...
-    int counter[26] = {0};
 
-    // Traverse a loop through the entire String of magazine where char ch
-    // stores the char at the index of magazine...
-    for (int i = 0; i < magazine[i] != '\0'; i++) {
-        counter[magazine[i] - 'a']++;
+// Solution
+/**
+ * Solution 1
+ * 
+ * Counting Array
+ * 
+ * Complexities:
+ *   N - The size of `ransomNote`
+ *   M - The size of `magazine`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(1)
+ */
+bool solution1(char* ransomNote, char* magazine) {
+    if (strlen(ransomNote) > strlen(magazine)) {
+        return false;
     }
 
-    // Run another for loop for ransomNote...
-    for (int i = 0; i < ransomNote[i] != '\0'; i++) {
-        // If the charachter doesn't exists in magazine for ransomNote, we
-        // return false...
-        if (counter[ransomNote[i] - 'a']-- <= 0) {
+    int cnt[26] = {0};
+
+    for (int i = 0; magazine[i]; i++) {
+        cnt[magazine[i] - 'a']++;
+    }
+
+    for (int i = 0; ransomNote[i]; i++) {
+        if (--cnt[ransomNote[i] - 'a'] < 0) {
             return false;
         }
     }
 
-    // If nothing goes wrong, return true...
+    return true;
+}
+
+
+/**
+ * Solution 2
+ * 
+ * Complexities:
+ *   N - The size of `ransomNote`
+ *   M - The size of `magazine`
+ *   - Time Complexity: O(N + M)
+ *   - Space Complexity: O(1)
+ */
+bool solution2(char* ransomNote, char* magazine) {
+    if (strlen(ransomNote) > strlen(magazine)) {
+        return false;
+    }
+
+    int cnt[26] = {0};
+
+    for (int i = 0; magazine[i]; i++) {
+        cnt[magazine[i] - 'a']++;
+    }
+    for (int i = 0; ransomNote[i]; i++) {
+        cnt[ransomNote[i] - 'a']--;
+    }
+
+    for (int i = 0; i < 26; i++) {
+        if (cnt[i] < 0) {
+            return false;
+        }
+    }
+
     return true;
 }
