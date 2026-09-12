@@ -6,6 +6,15 @@ using namespace std;
 
 class RansomNote {
 public:
+    /**
+     * Counting Array
+     *
+     * Complexities:
+     *   N - The Size of `ransomNote`
+     *   M - The Size of `magazine`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
+     */
     bool canConstruct(string ransomNote, string magazine) {
         int alphabet[26] = {0};
 
@@ -32,8 +41,8 @@ public:
      * Counting Array
      *
      * Complexities:
-     *   N - The size of `ransomNote`
-     *   M - The size of `magazine`
+     *   N - The Size of `ransomNote`
+     *   M - The Size of `magazine`
      *   - Time Complexity: O(N + M)
      *   - Space Complexity: O(1)
      */
@@ -61,8 +70,8 @@ public:
      * unordered_map
      *
      * Complexities:
-     *   N - The size of `ransomNote`
-     *   M - The size of `magazine`
+     *   N - The Size of `ransomNote`
+     *   M - The Size of `magazine`
      *   - Time Complexity: O(N + M)
      *   - Space Complexity: O(1)
      */
@@ -94,8 +103,8 @@ public:
      * Solution 3
      *
      * Complexities:
-     *   N - The size of `ransomNote`
-     *   M - The size of `magazine`
+     *   N - The Size of `ransomNote`
+     *   M - The Size of `magazine`
      *   - Time Complexity: O(N + M)
      *   - Space Complexity: O(1)
      */
