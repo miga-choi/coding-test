@@ -1,4 +1,13 @@
 class RansomNote {
+  /**
+   * Counting Array
+   *
+   * Complexities:
+   *   N - The size of `ransomNote`
+   *   M - The size of `magazine`
+   *   - Time Complexity: O(N + M)
+   *   - Space Complexity: O(1)
+   */
   bool canConstruct(String ransomNote, String magazine) {
     List<int> alphabetArray = List<int>.filled(26, 0);
 
@@ -19,31 +28,69 @@ class RansomNote {
 
 
   // Solution
-  bool solution(String ransomNote, String magazine) {
+  /**
+   * Solution 1
+   * 
+   * Counting Array
+   *
+   * Complexities:
+   *   N - The Size of `ransomNote`
+   *   M - The Size of `magazine`
+   *   - Time Complexity: O(N + M)
+   *   - Space Complexity: O(1)
+   */
+  bool solution1(String ransomNote, String magazine) {
     if (ransomNote.length > magazine.length) {
       return false;
-    } else if (ransomNote == magazine) {
-      return true;
-    } else if (ransomNote == "") {
-      return true;
     }
 
-    Map<String, int> map = {};
+    final a = 'a'.codeUnitAt(0);
+    final counts = List<int>.filled(26, 0);
 
-    for (int i = 0; i < magazine.length; i++) {
-      if (map.containsKey(magazine[i])) {
-        map[magazine[i]] = map[magazine[i]]! + 1;
-      } else {
-        map[magazine[i]] = 1;
-      }
+    for (final c in magazine.codeUnits) {
+      counts[c - a]++;
     }
 
-    for (int j = 0; j < ransomNote.length; j++) {
-      if (map.containsKey(ransomNote[j]) && map[ransomNote[j]]! > 0) {
-        map[ransomNote[j]] = map[ransomNote[j]]! - 1;
-      } else {
+    for (final c in ransomNote.codeUnits) {
+      if (--counts[c - a] < 0) {
         return false;
       }
+    }
+
+    return true;
+  }
+
+  /**
+   * Solution 2
+   * 
+   * Map
+   *
+   * Complexities:
+   *   N - The Size of `ransomNote`
+   *   M - The Size of `magazine`
+   *   K - The Size of Characters in `magazine`
+   *   - Time Complexity: O(N + M)
+   *   - Space Complexity: O(K)
+   */
+  bool solutio2(String ransomNote, String magazine) {
+    if (ransomNote.length > magazine.length) {
+      return false;
+    }
+
+    final counts = <int, int>{};
+
+    for (final c in magazine.codeUnits) {
+      counts.update(c, (v) => v + 1, ifAbsent: () => 1);
+    }
+
+    for (final c in ransomNote.codeUnits) {
+      final left = counts[c] ?? 0;
+
+      if (left == 0) {
+        return false;
+      }
+
+      counts[c] = left - 1;
     }
 
     return true;
