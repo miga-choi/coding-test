@@ -1,7 +1,17 @@
-from typing import Counter
+from collections import Counter
 
 
 class RansomNote:
+    """
+    # dict
+    #
+    # Complexities:
+    #   N - The Size of `ransomNote`
+    #   M - The Size of `magazine`
+    #   K - The Size of Characters in `magazine`
+    #   - Time Complexity: O(N + M)
+    #   - Space Complexity: O(K)
+    """
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         magazineMap: dict = {}
 
@@ -21,8 +31,45 @@ class RansomNote:
 
 
     # Solution
-    def solution(self, ransomNote, magazine):
-        st1, st2 = Counter(ransomNote), Counter(magazine)
-        if st1 & st2 == st1:
-            return True
-        return False
+    """
+    # Solution 1
+    #
+    # collections.Counter
+    #
+    # Complexities:
+    #   N - The Size of `ransomNote`
+    #   M - The Size of `magazine`
+    #   - Time Complexity: O(N + M)
+    #   - Space Complexity: O(1)
+    """
+    def solution1(self, ransomNote, magazine):
+        return Counter(ransomNote) <= Counter(magazine)
+
+    """
+    # Solution 2
+    #
+    # Counting Array
+    #
+    # Complexities:
+    #   N - The Size of `ransomNote`
+    #   M - The Size of `magazine`
+    #   - Time Complexity: O(N + M)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, ransomNote, magazine):
+        if len(ransomNote) > len(magazine):
+            return False
+
+        count = [0] * 26
+        base = ord('a')
+
+        for c in magazine:
+            count[ord(c) - base] += 1
+
+        for c in ransomNote:
+            idx = ord(c) - base
+            count[idx] -= 1
+            if count[idx] < 0:
+                return False
+
+        return True

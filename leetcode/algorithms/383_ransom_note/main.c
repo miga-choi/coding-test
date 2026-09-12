@@ -5,8 +5,8 @@
  * Counting Array
  * 
  * Complexities:
- *   N - The size of `ransomNote`
- *   M - The size of `magazine`
+ *   N - The Size of `ransomNote`
+ *   M - The Size of `magazine`
  *   - Time Complexity: O(N + M)
  *   - Space Complexity: O(1)
  */
@@ -36,8 +36,8 @@ bool canConstruct(char* ransomNote, char* magazine) {
  * Counting Array
  * 
  * Complexities:
- *   N - The size of `ransomNote`
- *   M - The size of `magazine`
+ *   N - The Size of `ransomNote`
+ *   M - The Size of `magazine`
  *   - Time Complexity: O(N + M)
  *   - Space Complexity: O(1)
  */
@@ -66,8 +66,8 @@ bool solution1(char* ransomNote, char* magazine) {
  * Solution 2
  * 
  * Complexities:
- *   N - The size of `ransomNote`
- *   M - The size of `magazine`
+ *   N - The Size of `ransomNote`
+ *   M - The Size of `magazine`
  *   - Time Complexity: O(N + M)
  *   - Space Complexity: O(1)
  */

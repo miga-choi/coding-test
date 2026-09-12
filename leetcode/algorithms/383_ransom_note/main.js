@@ -2,8 +2,8 @@
  * Map
  *
  * Complexities:
- *   N - The size of `ransomNote`
- *   M - The size of `magazine`
+ *   N - The Size of `ransomNote`
+ *   M - The Size of `magazine`
  *   K - The Size of Characters in `magazine`
  *   - Time Complexity: O(N + M)
  *   - Space Complexity: O(K)
