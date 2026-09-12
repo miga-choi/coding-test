@@ -2,8 +2,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 class RansomNote {
+    /**
+     * HashMap
+     *
+     * Complexities:
+     *   N - The size of `ransomNote`
+     *   M - The size of `magazine`
+     *   K - The Size of Characters in `magazine`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(K)
+     */
     public boolean canConstruct(String ransomNote, String magazine) {
-        Map<Character, Integer> magazineMap = new HashMap<Character, Integer>();
+        Map<Character, Integer> magazineMap = new HashMap<>();
 
         for (int i = 0; i < magazine.length(); i++) {
             if (magazineMap.get(magazine.charAt(i)) != null) {
@@ -26,22 +36,30 @@ class RansomNote {
 
 
     // Solution
+    /**
+     * Counting Array
+     *
+     * Complexities:
+     *   N - The size of `ransomNote`
+     *   M - The size of `magazine`
+     *   - Time Complexity: O(N + M)
+     *   - Space Complexity: O(1)
+     */
     public boolean solution(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) {
             return false;
         }
 
-        int[] alphabets_counter = new int[26];
+        int[] count = new int[26];
 
-        for (char c : magazine.toCharArray()) {
-            alphabets_counter[c - 'a']++;
+        for (int i = 0; i < magazine.length(); i++) {
+            count[magazine.charAt(i) - 'a']++;
         }
 
-        for (char c : ransomNote.toCharArray()) {
-            if (alphabets_counter[c - 'a'] == 0) {
+        for (int i = 0; i < ransomNote.length(); i++) {
+            if (--count[ransomNote.charAt(i) - 'a'] < 0) {
                 return false;
             }
-            alphabets_counter[c - 'a']--;
         }
 
         return true;
