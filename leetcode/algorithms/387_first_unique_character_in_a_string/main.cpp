@@ -1,14 +1,18 @@
-#include <string>
-#include <unordered_map>
-#include <vector>
+#include <algorithm> // std::find_if, std::min
+#include <array>     // std::array
+#include <limits>    // std::numeric_limits
+#include <string>    // std::string
 using namespace std;
 
 class FirstUniqueCharacterInAString {
 public:
     /**
-     * Frequency Counter
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Two-Pass
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int firstUniqChar(string s) {
         int alphabetNumArray[26] = {0};
@@ -26,23 +30,27 @@ public:
         return -1;
     }
 
+
     // Solution
     /**
      * Solution 1
-     * 
-     * Frequency Counter
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Two-Pass
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     int solution1(string s) {
-        vector<int> counts(26, 0);
+        array<int, 26> cnt{};
 
         for (char c : s) {
-            counts[c - 'a']++;
+            cnt[c - 'a']++;
         }
 
-        for (int i = 0; i < s.length(); ++i) {
-            if (counts[s[i] - 'a'] == 1) {
+        for (int i = 0; i < static_cast<int>(s.size()); ++i) {
+            if (cnt[s[i] - 'a'] == 1) {
                 return i;
             }
         }
@@ -53,23 +61,56 @@ public:
     /**
      * Solution 2
      * 
+     * std::find_if
+     * 
      * Hash table
      * - Time Complexity: O(N)
      * - Space Complexity: O(1)
      */
     int solution2(string s) {
-        unordered_map<char, int> counts;
+        array<int, 26> cnt{};
 
         for (char c : s) {
-            counts[c]++;
+            cnt[c - 'a']++;
+        }
+ 
+        auto it = find_if(s.begin(), s.end(), [&cnt](char c) { return cnt[c - 'a'] == 1; });
+
+        return it == s.end() ? -1 : static_cast<int>(it - s.begin());
+    }
+
+    /**
+     * Solution 3
+     *
+     * Indexing + 1.5-Pass
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    int solution3(string s) {
+        array<int, 26> first;
+        array<int, 26> cnt{};
+        first.fill(-1);
+
+        for (int i = 0; i < static_cast<int>(s.size()); ++i) {
+            int c = s[i] - 'a';
+
+            if (cnt[c] == 0) {
+                first[c] = i;
+            }
+
+            cnt[c]++;
         }
 
-        for (int i = 0; i < s.length(); ++i) {
-            if (counts[s[i]] == 1) {
-                return i;
+        int ans = numeric_limits<int>::max();
+        for (int c = 0; c < 26; ++c) {
+            if (cnt[c] == 1) {
+                ans = min(ans, first[c]);
             }
         }
 
-        return -1;
+        return ans == numeric_limits<int>::max() ? -1 : ans;
     }
 };
