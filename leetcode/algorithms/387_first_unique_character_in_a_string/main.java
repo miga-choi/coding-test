@@ -1,12 +1,13 @@
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 class FirstUniqueCharacterInAString {
     /**
-     * Frequency Counter
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     * Counting Array + Two-Pass
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     public int firstUniqChar(String s) {
         int[] alphabetNumArray = new int[26];
@@ -29,22 +30,23 @@ class FirstUniqueCharacterInAString {
     // Solution
     /**
      * Solution 1
-     * 
-     * Frequency Counter
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Counting Array + Two-Pass
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     public int solution1(String s) {
-        int[] counts = new int[26];
+        int[] count = new int[26];
 
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            counts[c - 'a']++;
+            count[s.charAt(i) - 'a']++;
         }
 
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (counts[c - 'a'] == 1) {
+            if (count[s.charAt(i) - 'a'] == 1) {
                 return i;
             }
         }
@@ -54,24 +56,53 @@ class FirstUniqueCharacterInAString {
 
     /**
      * Solution 2
-     * 
-     * Hash table
-     * - Time Complexity: O(N)
-     * - Space Complexity: O(1)
+     *
+     * Counting Array + Indexing + 1.5-Pass
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
      */
     public int solution2(String s) {
-        Map<Character, Integer> counts = new HashMap<>();
-
-        for (char c : s.toCharArray()) {
-            counts.put(c, counts.getOrDefault(c, 0) + 1);
-        }
+        int[] idx = new int[26];
+        Arrays.fill(idx, -1);
 
         for (int i = 0; i < s.length(); i++) {
-            if (counts.get(s.charAt(i)) == 1) {
-                return i;
+            int c = s.charAt(i) - 'a';
+            idx[c] = (idx[c] == -1) ? i : -2;
+        }
+
+        int ans = Integer.MAX_VALUE;
+        for (int v : idx) {
+            if (v >= 0) {
+                ans = Math.min(ans, v);
             }
         }
 
-        return -1;
+        return ans == Integer.MAX_VALUE ? -1 : ans;
+    }
+
+    /**
+     * Solution 3
+     *
+     * indexOf() + lastIndexOf()
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N²)
+     *   - Space Complexity: O(1)
+     */
+    public int solution3(String s) {
+        int min = Integer.MAX_VALUE;
+
+        for (char c = 'a'; c <= 'z'; c++) {
+            int first = s.indexOf(c);
+            if (first != -1 && first == s.lastIndexOf(c)) {
+                min = Math.min(min, first);
+            }
+        }
+
+        return min == Integer.MAX_VALUE ? -1 : min;
     }
 }
