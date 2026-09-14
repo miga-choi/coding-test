@@ -1,7 +1,7 @@
 #include <string.h>
 
 /**
- * Two-Pass
+ * Counting Array + Two-Pass
  * 
  * Complexities:
  *   N - The Size of `s`
@@ -29,7 +29,7 @@ int firstUniqChar(char* s) {
 /**
  * Solution 1
  * 
- * Two-Pass
+ * Counting Array + Two-Pass
  * 
  * Complexities:
  *   N - The Size of `s`
@@ -55,7 +55,7 @@ int solution1(char* s) {
 /**
  * Solution 2
  * 
- * Indexing + 1.5-Pass
+ * Counting Array + Indexing + 1.5-Pass
  * 
  * Complexities:
  *   N - The Size of `s`

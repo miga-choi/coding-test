@@ -7,7 +7,7 @@ using namespace std;
 class FirstUniqueCharacterInAString {
 public:
     /**
-     * Two-Pass
+     * Counting Array + Two-Pass
      *
      * Complexities:
      *   N - The Size of `s`
@@ -35,7 +35,7 @@ public:
     /**
      * Solution 1
      *
-     * Two-Pass
+     * Counting Array + Two-Pass
      *
      * Complexities:
      *   N - The Size of `s`
@@ -61,7 +61,7 @@ public:
     /**
      * Solution 2
      * 
-     * std::find_if
+     * Counting Array +  std::find_if
      * 
      * Hash table
      * - Time Complexity: O(N)
@@ -82,7 +82,7 @@ public:
     /**
      * Solution 3
      *
-     * Indexing + 1.5-Pass
+     * Counting Array + Indexing + 1.5-Pass
      *
      * Complexities:
      *   N - The Size of `s`
