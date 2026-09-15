@@ -1,13 +1,16 @@
+from collections import Counter
 from typing import List
-import collections
 
 
 class FirstUniqueCharacterInAString:
-    ##
-    # Frequency Counter
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    """
+    # Counting Array + Two-Pass
     #
+    # Complexities:
+    #   N - The Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def firstUniqChar(self, s: str) -> int:
         alphabetNumArray: List[int] = [0] * 26
 
@@ -22,61 +25,64 @@ class FirstUniqueCharacterInAString:
 
 
     # Solution
-    ##
+    """
     # Solution 1
     #
-    # Frequency Counter
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    # collections.Counter
     #
+    # Complexities:
+    #   N - The Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, s: str) -> int:
-        counts = {}
+        count = Counter(s)
 
-        for char in s:
-            counts[char] = counts.get(char, 0) + 1
-
-        for i in range(len(s)):
-            if counts[s[i]] == 1:
+        for i, c in enumerate(s):
+            if count[c] == 1:
                 return i
 
         return -1
 
-    ##
+    """
     # Solution 2
     #
-    # Frequency Counter & collections.Counter
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    # Counting Array + Two-Pass
     #
+    # Complexities:
+    #   N - The Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution2(self, s: str) -> int:
-        counts = collections.Counter(s)
+        count = [0] * 26
+        base = ord('a')
 
-        for index, char in enumerate(s):
-            if counts[char] == 1:
-                return index
+        for c in s:
+            count[ord(c) - base] += 1
+
+        for i, c in enumerate(s):
+            if count[ord(c) - base] == 1:
+                return i
 
         return -1
 
-    ##
+    """
     # Solution 3
     #
-    # Hash table
-    # - Time Complexity: O(N)
-    # - Space Complexity: O(1)
+    # dict + Indexing
     #
+    # Complexities:
+    #   N - The Size of `s`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
     def solution3(self, s: str) -> int:
-        char_map = {}
-        duplicate_flag = len(s)
+        seen = {}
 
-        for index, char in enumerate(s):
-            if char not in char_map:
-                char_map[char] = index
-            else:
-                char_map[char] = duplicate_flag
+        for i, c in enumerate(s):
+            seen[c] = i if c not in seen else -1
 
-        min_index = duplicate_flag
-        for index_val in char_map.values():
-            if index_val != duplicate_flag:
-                min_index = min(min_index, index_val)
+        candidates = [i for i in seen.values() if i != -1]
 
-        return min_index if min_index != duplicate_flag else -1
+        return min(candidates) if candidates else -1
