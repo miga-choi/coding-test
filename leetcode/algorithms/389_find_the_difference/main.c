@@ -1,5 +1,13 @@
 #include <string.h>
 
+/**
+ * Counting Array
+ * 
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
 char findTheDifference(char* s, char* t) {
     int alphabetNumArray[26] = {0};
 
@@ -20,12 +28,72 @@ char findTheDifference(char* s, char* t) {
 
 
 // Solution
-char solution(char* s, char* t) {
-    // Passing the diff: (t[i]-s[i]) to t[i+1]
-    for (int i = 0; i < strlen(s); i++) {
-        t[i + 1] += t[i] - s[i];
+/**
+ * Solution 1
+ * 
+ * Counting Array
+ * 
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+char solution1(char* s, char* t) {
+    int cnt[26] = {0};
+
+    for (int i = 0; s[i]; i++) {
+        cnt[s[i] - 'a']++;
     }
 
-    // The diff will be carried over to the last element eventually
-    return t[strlen(t) - 1];
+    for (int i = 0; t[i]; i++) {
+        if (--cnt[t[i] - 'a'] < 0) {
+            return t[i];
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * Solution 2
+ * 
+ * XOR
+ * 
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+char solution2(char* s, char* t) {
+    char x = 0;
+
+    for (int i = 0; s[i]; i++) {
+        x ^= s[i];
+    }
+    for (int i = 0; t[i]; i++) {
+        x ^= t[i];
+    }
+
+    return x;
+}
+
+/**
+ * Solution 3
+ * 
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+char solution3(char* s, char* t) {
+    int sum = 0;
+
+    for (int i = 0; s[i]; i++) {
+        sum -= s[i];
+    }
+    for (int i = 0; t[i]; i++) {
+        sum += t[i];
+    }
+
+    return (char)sum;
 }
