@@ -115,7 +115,7 @@ var solution3 = function (s, t) {
  *
  * Complexities:
  *   N - The Size of `s`
- *   - Time Complexity: O(N logᴺ)
+ *   - Time Complexity: O(N * logᴺ)
  *   - Space Complexity: O(1)
  */
 /**
