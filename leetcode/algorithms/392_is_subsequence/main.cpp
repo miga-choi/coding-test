@@ -1,8 +1,16 @@
-#include <string>
+#include <algorithm> // std::find
+#include <string>    // std::string
 using namespace std;
 
 class IsSubsequence {
 public:
+    /**
+     * Complexities:
+     *   N - The Size of `s`
+     *   M - The Size of `t`
+     *   - Time Complexity: O(M)
+     *   - Space Complexity: O(1)
+     */
     bool isSubsequence(string s, string t) {
         int i = 0;
 
@@ -17,53 +25,55 @@ public:
 
 
     // Solution
-    // Solution 1: Two pointer
+    /**
+     * Solution 1
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   M - The Size of `t`
+     *   - Time Complexity: O(M)
+     *   - Space Complexity: O(1)
+     */
     bool solution1(string s, string t) {
-        int n = s.length(), m = t.length();
+        size_t i = 0;
 
-        // For index of s (or subsequence)
-        int j = 0;
-
-        // Traverse s and t,
-        // and compare current
-        // character of s with
-        // first unmatched char of t,
-        // if matched then move ahead in s
-        for (int i = 0; i < m and j < n; i++) {
-            if (s[j] == t[i]) {
-                j++;
+        for (char c : t) {
+            if (i < s.size() && s[i] == c) {
+                ++i;
             }
         }
 
-        // If all characters of s were found in t
-        return (j == n);
+        return i == s.size();
     }
 
-    // Solution 2: Recursion
+
     int isSubSequence(string &s1, string &s2, int i, int j) {
-        if (i == 0 || j == 0) {
-            return 0;
-        }
-
-        if (s1[i - 1] == s2[j - 1]) {
-            return 1 + isSubSequence(s1, s2, i - 1, j - 1);
-        } else {
-            return isSubSequence(s1, s2, i, j - 1);
-        }
     }
 
+    /**
+     * Solution 2
+     *
+     * std::find
+     * 
+     * Complexities:
+     *   N - The Size of `s`
+     *   M - The Size of `t`
+     *   - Time Complexity: O(M)
+     *   - Space Complexity: O(1)
+     */
     bool solution2(string s, string t) {
-        int m = s.size();
-        int n = t.size();
+        auto it = t.begin();
 
-        if (m > n) {
-            return false;
+        for (char c : s) {
+            it = std::find(it, t.end(), c);
+
+            if (it == t.end()) {
+                return false;
+            }
+
+            ++it;
         }
 
-        if (isSubSequence(s, t, m, n) == m) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 };
