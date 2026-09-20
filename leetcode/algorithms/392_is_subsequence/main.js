@@ -1,4 +1,11 @@
 /**
+ * Complexities:
+ *   N - The Size of `s`
+ *   M - The Size of `t`
+ *   - Time Complexity: O(M)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
@@ -6,42 +13,74 @@
 var isSubsequence = function (s, t) {
   while (s.length > 0) {
     const index = t.indexOf(s[0]);
+
     if (index === -1) {
       return false;
     }
+
     t = t.slice(index + 1, t.length);
     s = s.slice(1, s.length);
   }
+
   return true;
 };
 
 
 // Solution
-var solution = function (s, t) {
-  //! Edge case
-  //! if len of s is greater than len of t,
-  //  return false because s cant be a subsequence of t
-  if (s.length > t.length) {
-    return false;
-  }
+/**
+ * Solution 1
+ *
+ * Two Pointers
+ *
+ * Complexities:
+ *   N - The Size of `s`
+ *   M - The Size of `t`
+ *   - Time Complexity: O(M)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var solution1 = function (s, t) {
+  let i = 0;
 
-  `
-    Example:
-      s='Leetcode'
-      t='Code'
-      here we are trying to find if 'Leetcode' is a subsequence of 'Code' 
-      which is not possible because 'Leetcode' is longer than 'Code'
-  `
-
-  const t_length = t.length;
-  let subsequence = 0;
-
-  for (let i = 0; i < t_length; i++) {
-    if (s[subsequence] === t[i]) {
-      // ! if it is matching, increment subsequence
-      subsequence++;
+  for (let j = 0; j < t.length && i < s.length; j++) {
+    if (s[i] === t[j]) {
+      i++;
     }
   }
 
-  return subsequence === s.length;
+  return i === s.length;
+};
+
+/**
+ * Solution 2
+ *
+ * Two Pointers
+ *
+ * Complexities:
+ *   N - The Size of `s`
+ *   M - The Size of `t`
+ *   - Time Complexity: O(M)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var solution2 = function (s, t) {
+  let i = 0, j = 0;
+
+  while (i < s.length && j < t.length) {
+    if (s[i] === t[j]) {
+      i++;
+    }
+
+    j++;
+  }
+
+  return i === s.length;
 };
