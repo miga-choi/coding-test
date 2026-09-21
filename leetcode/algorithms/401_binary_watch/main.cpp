@@ -1,10 +1,15 @@
-#include <bitset>
-#include <string>
-#include <vector>
+#include <bit>    // std::popcount (C++20)
+#include <string> // std::string, std::to_string
+#include <vector> // std::vector
 using namespace std;
 
 class BinaryWatch {
 public:
+    /**
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
     vector<string> readBinaryWatch(int turnedOn) {
         vector<string> result;
 
@@ -43,17 +48,27 @@ public:
 
 
     // Solution
+    /**
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
     vector<string> solution(int turnedOn) {
-        vector<string> rs;
+        vector<string> res;
 
-        for (int h = 0; h < 12; h++) {
-            for (int m = 0; m < 60; m++) {
-                if (bitset<10>(h << 6 | m).count() == turnedOn) {
-                    rs.emplace_back(to_string(h) + (m < 10 ? ":0" : ":") + to_string(m));
+        for (unsigned h = 0; h < 12; ++h) {
+            int hb = popcount(h);
+            if (hb > turnedOn) {
+                continue;
+            }
+
+            for (unsigned m = 0; m < 60; ++m) {
+                if (hb + popcount(m) == turnedOn) {
+                    res.push_back(to_string(h) + ':' + (m < 10 ? "0" : "") + to_string(m));
                 }
             }
         }
 
-        return rs;
+        return res;
     }
 };
