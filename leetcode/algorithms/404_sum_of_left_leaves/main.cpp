@@ -1,5 +1,4 @@
-#include <queue>
-#include <stack>
+#include <stack> // std::stack
 using namespace std;
 
 struct TreeNode {
@@ -13,29 +12,51 @@ struct TreeNode {
 
 class SumOfLeftLeaves {
 public:
-    // My Solution 1
+    /**
+     * Recursion
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `node`
+     *   H - The Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     int sumOfLeftLeaves1(TreeNode* root) {
         int sum = 0;
+
         if (root) {
             if (root->left) {
                 if (!root->left->left && !root->left->right) {
                     sum += root->left->val;
                 }
             }
+
             sum += sumOfLeftLeaves1(root->left) + sumOfLeftLeaves1(root->right);
         }
+
         return sum;
     }
 
-    // My Solution 2
+    /**
+     * Recursion with Flag
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `node`
+     *   H - The Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     int addLeftVal(TreeNode* root, int isLeft) {
         int sum = 0;
+
         if (root) {
             if (isLeft && !root->left && !root->right) {
                 sum += root->val;
             }
+
             sum += addLeftVal(root->left, 1) + addLeftVal(root->right, 0);
         }
+
         return sum;
     }
 
@@ -45,96 +66,94 @@ public:
 
 
     // Solution
-    // Solution 1: Recursive DFS
+    /**
+     * Solution 1
+     * 
+     * Recursion
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `node`
+     *   H - The Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
+    static bool isLeaf(const TreeNode* n) {
+        return n && !n->left && !n->right;
+    }
+
     int solution1(TreeNode* root, bool isleft = false) {
         if (!root) {
             return 0;
         }
-        if (!root->left && !root->right) {
-            return isleft ? root->val : 0;
-        }
-        return solution1(root->left, true) + solution1(root->right, false);
+
+        int sum = isLeaf(root->left) ? root->left->val : solution1(root->left);
+
+        return sum + solution1(root->right);
     }
 
-    // Solution 2: Iterative DFS
+    /**
+     * Solution 2
+     * 
+     * Recursion
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `node`
+     *   H - The Height of `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
+    int dfs(TreeNode* node, bool isLeft) {
+        if (!node) {
+            return 0;
+        }
+
+        if (!node->left && !node->right) {
+            return isLeft ? node->val : 0;
+        }
+
+        return dfs(node->left, true) + dfs(node->right, false);
+    }
+
     int solution2(TreeNode* root) {
-        stack<pair<TreeNode*, bool>> s;
-        s.push({root, false});
-
-        int ans = 0;
-        while (s.size()) {
-            auto [cur, isLeft] = s.top();
-            s.pop();
-            if (!cur->left && !cur->right && isLeft) {
-                ans += cur->val;
-            }
-            if (cur->right) {
-                s.push({cur->right, false});
-            }
-            if (cur->left) {
-                s.push({cur->left, true});
-            }
-        }
-
-        return ans;
+        return dfs(root, false);
     }
 
-    // Solution 3: BFS
+    /**
+     * Solution 3
+     *
+     * Iteration with Stack
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `node`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     int solution3(TreeNode* root) {
-        queue<pair<TreeNode*, bool>> q;
-        q.push({root, false});
-
-        int ans = 0;
-        while (q.size()) {
-            auto [cur, isLeft] = q.front();
-            q.pop();
-            if (!cur->left && !cur->right && isLeft) {
-                ans += cur->val;
-            }
-            if (cur->right) {
-                q.push({cur->right, false});
-            }
-            if (cur->left) {
-                q.push({cur->left, true});
-            }
+        if (!root) {
+            return 0;
         }
 
-        return ans;
-    }
+        stack<TreeNode*> st;
+        st.push(root);
+        int sum = 0;
 
-    // Solution 4: Morris Traversal
-    int solution4(TreeNode* root) {
-        int ans = 0;
+        while (!st.empty()) {
+            TreeNode* node = st.top();
+            st.pop();
 
-        while (root) {
-            if (root->left) {
-                // find predecessor of root
-                auto pre = root->left;
-
-                while (pre->right && pre->right != root) {
-                    pre = pre->right;
-                }
-
-                // make root as right child of predecessor (temporary link)
-                if (!pre->right) {
-                    pre->right = root;
-                    root = root->left;
+            if (TreeNode* L = node->left) {
+                if (!L->left && !L->right) {
+                    sum += L->val;
                 } else {
-                    // revert the changes - remove temporary link
-                    pre->right = nullptr;
-
-                    // add to sum if node is left child and a leaf
-                    if (pre == root->left && !pre->left) {
-                        ans += pre->val;
-                    }
-
-                    root = root->right;
+                    st.push(L);
                 }
-            } else {
-                root = root->right;
+            }
+
+            if (node->right) {
+                st.push(node->right);
             }
         }
 
-        return ans;
+        return sum;
     }
 };
