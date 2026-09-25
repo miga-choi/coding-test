@@ -7,11 +7,11 @@ struct TreeNode {
 };
 
 /**
- * Recursion
+ * Recursion (DFS)
  * 
  * Complexities:
- *   N - The Numbder of Nodes in `node`
- *   H - The Height of `node`
+ *   N - The Numbder of Nodes in `root`
+ *   H - The Height of `root`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(H)
  */
@@ -32,11 +32,11 @@ int sumOfLeftLeaves1(struct TreeNode* root) {
 }
 
 /**
- * Recursion with Flag
+ * Recursion (DFS) with Flag
  * 
  * Complexities:
- *   N - The Numbder of Nodes in `node`
- *   H - The Height of `node`
+ *   N - The Numbder of Nodes in `root`
+ *   H - The Height of `root`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(H)
  */
@@ -63,11 +63,11 @@ int sumOfLeftLeaves2(struct TreeNode* root) {
 /**
  * Solution 1
  * 
- * Recursion
+ * Recursion (DFS)
  * 
  * Complexities:
- *   N - The Numbder of Nodes in `node`
- *   H - The Height of `node`
+ *   N - The Numbder of Nodes in `root`
+ *   H - The Height of `root`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(H)
  */
@@ -91,11 +91,11 @@ int solution1(struct TreeNode* root) {
 /**
  * Solution 2
  * 
- * Recursion with Flag
+ * Recursion (DFS) with Flag
  * 
  * Complexities:
- *   N - The Numbder of Nodes in `node`
- *   H - The Height of `node`
+ *   N - The Numbder of Nodes in `root`
+ *   H - The Height of `root`
  *   - Time Complexity: O(N)
  *   - Space Complexity: O(H)
  */
@@ -121,9 +121,10 @@ int solution2(struct TreeNode* root) {
  * Iteration with Stack
  * 
  * Complexities:
- *   N - The Numbder of Nodes in `node`
+ *   N - The Numbder of Nodes in `root`
+ *   W - The Width of `root`
  *   - Time Complexity: O(N)
- *   - Space Complexity: O(N)
+ *   - Space Complexity: O(W)
  */
 int solution3(struct TreeNode* root) {
     if (root == NULL) {

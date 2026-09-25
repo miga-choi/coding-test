@@ -13,11 +13,11 @@ struct TreeNode {
 class SumOfLeftLeaves {
 public:
     /**
-     * Recursion
+     * Recursion (DFS)
      *
      * Complexities:
-     *   N - The Numbder of Nodes in `node`
-     *   H - The Height of `node`
+     *   N - The Numbder of Nodes in `root`
+     *   H - The Height of `root`
      *   - Time Complexity: O(N)
      *   - Space Complexity: O(H)
      */
@@ -38,11 +38,11 @@ public:
     }
 
     /**
-     * Recursion with Flag
+     * Recursion (DFS) with Flag
      *
      * Complexities:
-     *   N - The Numbder of Nodes in `node`
-     *   H - The Height of `node`
+     *   N - The Numbder of Nodes in `root`
+     *   H - The Height of `root`
      *   - Time Complexity: O(N)
      *   - Space Complexity: O(H)
      */
@@ -69,11 +69,11 @@ public:
     /**
      * Solution 1
      * 
-     * Recursion
+     * Recursion (DFS)
      *
      * Complexities:
-     *   N - The Numbder of Nodes in `node`
-     *   H - The Height of `node`
+     *   N - The Numbder of Nodes in `root`
+     *   H - The Height of `root`
      *   - Time Complexity: O(N)
      *   - Space Complexity: O(H)
      */
@@ -94,11 +94,11 @@ public:
     /**
      * Solution 2
      * 
-     * Recursion
+     * Recursion (DFS)
      *
      * Complexities:
-     *   N - The Numbder of Nodes in `node`
-     *   H - The Height of `node`
+     *   N - The Numbder of Nodes in `root`
+     *   H - The Height of `root`
      *   - Time Complexity: O(N)
      *   - Space Complexity: O(H)
      */
@@ -121,12 +121,13 @@ public:
     /**
      * Solution 3
      *
-     * Iteration with Stack
+     * Iteration (BFS) with Stack
      *
      * Complexities:
-     *   N - The Numbder of Nodes in `node`
+     *   N - The Numbder of Nodes in `root`
+     *   W - The Width of `root`
      *   - Time Complexity: O(N)
-     *   - Space Complexity: O(N)
+     *   - Space Complexity: O(W)
      */
     int solution3(TreeNode* root) {
         if (!root) {
