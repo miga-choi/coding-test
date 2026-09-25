@@ -1,4 +1,5 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 class SumOfLeftLeaves {
     class TreeNode {
@@ -20,6 +21,15 @@ class SumOfLeftLeaves {
         }
     }
 
+    /**
+     * Recursion (DFS)
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `root`
+     *   H - The Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     public int sumOfLeftLeaves(TreeNode root) {
         if (root == null) {
             return 0;
@@ -42,55 +52,72 @@ class SumOfLeftLeaves {
 
 
     // Solution
-    // Solution 1: Recursive
+    /**
+     * Solution 1
+     * 
+     * Recursion (DFS)
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `root`
+     *   H - The Height of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(H)
+     */
     public int solution1(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
-        int ans = 0;
-        if (root.left != null) {
-            if (root.left.left == null && root.left.right == null) {
-                ans += root.left.val;
-            } else {
-                ans += solution1(root.left);
-            }
+        int sum = 0;
+        TreeNode left = root.left;
+
+        if (left != null && left.left == null && left.right == null) {
+            sum += left.val;
+        } else {
+            sum += sumOfLeftLeaves(left);
         }
 
-        ans += solution1(root.right);
+        sum += sumOfLeftLeaves(root.right);
 
-        return ans;
+        return sum;
     }
 
-    // Solution 2: Iterative
+    /**
+     * Solution 2
+     *
+     * Iteration (BFS) with Deque
+     *
+     * Complexities:
+     *   N - The Numbder of Nodes in `root`
+     *   W - The Width of `root`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(W)
+     */
     public int solution2(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
-        int ans = 0;
+        int sum = 0;
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
-
-        while (!stack.empty()) {
-            TreeNode node = stack.pop();
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
 
             if (node.left != null) {
                 if (node.left.left == null && node.left.right == null) {
-                    ans += node.left.val;
+                    sum += node.left.val;
                 } else {
-                    stack.push(node.left);
+                    queue.offer(node.left);
                 }
             }
 
             if (node.right != null) {
-                if (node.right.left != null || node.right.right != null) {
-                    stack.push(node.right);
-                }
+                queue.offer(node.right);
             }
         }
 
-        return ans;
+        return sum;
     }
 }
