@@ -94,7 +94,7 @@ public:
     /**
      * Solution 2
      * 
-     * Recursion (DFS)
+     * Recursion (DFS) with Flag
      *
      * Complexities:
      *   N - The Numbder of Nodes in `root`
