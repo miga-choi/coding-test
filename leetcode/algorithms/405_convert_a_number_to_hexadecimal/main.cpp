@@ -1,8 +1,16 @@
-#include <string>
+#include <algorithm> // std::reverse
+#include <cstdint>   // std::uint32_t
+#include <format>    // std::format
+#include <string>    // std::string
 using namespace std;
 
 class ConvertANumberToHexadecimal {
 public:
+    /**
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
     string toHex(int num) {
         unsigned int unum = num;
         string hex = "0123456789abcdef";
@@ -21,21 +29,67 @@ public:
 
 
     // Solution
-    string solution(int num) {
-        string HEX = "0123456789abcdef";
-
+    /**
+     * Solution 1
+     * 
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
+    string solution1(int num) {
         if (num == 0) {
             return "0";
         }
 
-        string result;
-        int count = 0;
+        static constexpr char DIGITS[] = "0123456789abcdef";
+        auto u = static_cast<uint32_t>(num);
 
-        while (num && count++ < 8) {
-            result = HEX[(num & 0xf)] + result;
-            num >>= 4;
+        string res;
+        while (u != 0) {
+            res.push_back(DIGITS[u & 0xF]);
+            u >>= 4;
         }
 
-        return result;
+        reverse(res.begin(), res.end());
+
+        return res;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
+    string solution2(int num) {
+        if (num == 0) {
+            return "0";
+        }
+
+        static constexpr char DIGITS[] = "0123456789abcdef";
+        auto u = static_cast<uint32_t>(num);
+
+        string buf(8, '0');
+        int pos = 8;
+        while (u != 0) {
+            buf[--pos] = DIGITS[u & 0xF];
+            u >>= 4;
+        }
+
+        return buf.substr(pos);
+    }
+
+    /**
+     * Solution 3
+     * 
+     * std::format (C++20)
+     * 
+     * Complexities:
+     *   - Time Complexity: O(1)
+     *   - Space Complexity: O(1)
+     */
+    string solution3(int num) {
+        return format("{:x}", static_cast<uint32_t>(num));
     }
 };
