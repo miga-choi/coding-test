@@ -2,6 +2,12 @@ import math
 
 
 class ConvertANumberToHexadecimal:
+    """
+    # Complexities:
+    #   - Time Complexity: O(1)
+    #   - Space Complexity: O(1)
+    #
+    """
     def toHex(self, num: int) -> str:
         hex: slice = [
             "0",
@@ -39,20 +45,37 @@ class ConvertANumberToHexadecimal:
 
 
     # Solution
-    def solution(self, num: int) -> str:
+    """
+    # Solution 1
+    #
+    # Complexities:
+    #   - Time Complexity: O(1)
+    #   - Space Complexity: O(1)
+    #
+    """
+    def solution1(self, num: int) -> str:
         if num == 0:
             return "0"
 
-        map = "0123456789abcdef"
-        result = ""
+        digits = "0123456789abcdef"
+        num &= 0xFFFFFFFF
+        result = []
 
-        # if negative (two's compliment)
-        if num < 0:
-            num += 2**32
+        while num:
+            result.append(digits[num & 0xF])
+            num >>= 4
 
-        while num > 0:
-            digit = num % 16
-            num = (num - digit) // 16
-            result += str(map[digit])
+        return ''.join(reversed(result))
 
-        return result[::-1]
+    """
+    # Solution 2
+    #
+    # Built-in Function
+    #
+    # Complexities:
+    #   - Time Complexity: O(1)
+    #   - Space Complexity: O(1)
+    #
+    """
+    def solution2(self, num: int) -> str:
+        return format(num & 0xFFFFFFFF, "x") if num else "0"
