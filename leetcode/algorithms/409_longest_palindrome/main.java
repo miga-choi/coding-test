@@ -1,11 +1,20 @@
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 class LongestPalindrome {
+    /**
+     * Map
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public int longestPalindrome(String s) {
         int result = 0;
-        Map<Character, Integer> sMap = new HashMap<Character, Integer>();
+        Map<Character, Integer> sMap = new HashMap<>();
 
         for (char c : s.toCharArray()) {
             if (sMap.get(c) == null) {
@@ -16,57 +25,68 @@ class LongestPalindrome {
             }
         }
 
-        if (sMap.size() > 0) {
+        if (!sMap.isEmpty()) {
             result++;
         }
 
         return result;
     }
 
-    // Solution
-    // Solution 1
-    public int solution1(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
 
-        HashSet<Character> hs = new HashSet<Character>();
-        int count = 0;
+    // Solution
+    /**
+     * Solution 1
+     * 
+     * Counting Array
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    public int solution1(String s) {
+        int[] count = new int[128];
 
         for (int i = 0; i < s.length(); i++) {
-            if (hs.contains(s.charAt(i))) {
-                hs.remove(s.charAt(i));
-                count++;
-            } else {
-                hs.add(s.charAt(i));
+            count[s.charAt(i)]++;
+        }
+
+        int length = 0;
+        boolean hasOdd = false;
+        for (int c : count) {
+            length += c / 2 * 2;
+
+            if (c % 2 == 1) {
+                hasOdd = true;
             }
         }
 
-        if (!hs.isEmpty()) {
-            return count * 2 + 1;
-        }
-
-        return count * 2;
+        return hasOdd ? length + 1 : length;
     }
 
-
-    // Solution 2
+    /**
+     * Solution 2
+     * 
+     * Set Toggle
+     *
+     * Complexities:
+     *   N - The Size of `s`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public int solution2(String s) {
-        int oddCount = 0;
-        Map<Character, Integer> map = new HashMap<>();
+        Set<Character> set = new HashSet<>();
+        int length = 0;
 
-        for (char ch : s.toCharArray()) {
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
-            if (map.get(ch) % 2 == 1)
-                oddCount++;
-            else
-                oddCount--;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (!set.add(c)) {
+                set.remove(c);
+                length += 2;
+            }
         }
 
-        if (oddCount > 1) {
-            return s.length() - oddCount + 1;
-        }
-
-        return s.length();
+        return set.isEmpty() ? length : length + 1;
     }
 }
