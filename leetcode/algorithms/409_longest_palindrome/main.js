@@ -1,4 +1,12 @@
 /**
+ * Counting Array
+ *
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} s
  * @return {number}
  */
@@ -24,16 +32,94 @@ var longestPalindrome = function (s) {
 
 
 // Solution
-var solution = function (s) {
-  let ans = 0;
-  let keys = {};
+/**
+ * Solution 1
+ *
+ * Counting Array
+ *
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var solution1 = function (s) {
+  const count = new Array(128).fill(0);
 
-  for (let char of s) {
-    keys[char] = (keys[char] || 0) + 1;
-    if (keys[char] % 2 == 0) {
-      ans += 2;
+  for (let i = 0; i < s.length; i++) {
+    count[s.charCodeAt(i)]++;
+  }
+
+  let length = 0;
+  let hasOdd = false;
+
+  for (const c of count) {
+    length += c - (c % 2);
+    if (c % 2 === 1) {
+      hasOdd = true;
     }
   }
 
-  return s.length > ans ? ans + 1 : ans;
+  return length + (hasOdd ? 1 : 0);
+};
+
+/**
+ * Solution 2
+ *
+ * Count The Odd Numbers
+ *
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var solution2 = function (s) {
+  const odd = new Set();
+
+  for (const c of s) {
+    if (odd.has(c)) {
+      odd.delete(c);
+    } else {
+      odd.add(c);
+    }
+  }
+
+  return s.length - odd.size + (odd.size > 0 ? 1 : 0);
+};
+
+/**
+ * Solution 3
+ *
+ * Count The Odd Numbers
+ *
+ * Complexities:
+ *   N - The Size of `s`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var solution3 = function (s) {
+  const odd = new Set();
+  let length = 0;
+
+  for (const c of s) {
+    if (odd.has(c)) {
+      odd.delete(c);
+      length += 2;
+    } else {
+      odd.add(c);
+    }
+  }
+
+  return length + (odd.size > 0 ? 1 : 0);
 };
