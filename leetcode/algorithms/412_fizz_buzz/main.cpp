@@ -1,8 +1,15 @@
-#include <vector>
+#include <string> // std::string
+#include <vector> // std::vector
 using namespace std;
 
 class FizzBuzz {
 public:
+    /**
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     vector<string> fizzBuzz(int n) {
         vector<string> result;
 
@@ -23,23 +30,65 @@ public:
 
 
     // Solution
-    vector<string> solution(int n) {
-        vector<string> res(n);
+    /**
+     * Solution 1
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    vector<string> solution1(int n) {
+        vector<string> res;
+        res.reserve(n);
 
-        for (int i = 1; i <= n; i++) {
-            res[i - 1] = to_string(i);
+        for (int i = 1; i <= n; ++i) {
+            if (i % 15 == 0) {
+                res.emplace_back("FizzBuzz");
+            } else if (i % 3 == 0) {
+                res.emplace_back("Fizz");
+            } else if (i % 5 == 0) {
+                res.emplace_back("Buzz");
+            } else {
+                res.push_back(std::to_string(i));
+            }
         }
 
-        for (int i = 2; i < n; i += 3) {
-            res[i] = "Fizz";
-        }
+        return res;
+    }
 
-        for (int i = 4; i < n; i += 5) {
-            res[i] = "Buzz";
-        }
+    /**
+     * Solution 2
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    vector<string> solution2(int n) {
+        vector<string> res;
+        res.reserve(n);
+        int c3 = 0, c5 = 0;
 
-        for (int i = 14; i < n; i += 15) {
-            res[i] = "FizzBuzz";
+        for (int i = 1; i <= n; ++i) {
+            ++c3; ++c5;
+
+            if (c3 == 3 && c5 == 5) {
+                res.emplace_back("FizzBuzz");
+            } else if (c3 == 3) {
+                res.emplace_back("Fizz");
+            } else if (c5 == 5) {
+                res.emplace_back("Buzz");
+            } else {
+                res.push_back(std::to_string(i));
+            }
+
+            if (c3 == 3) {
+                c3 = 0;
+            }
+            if (c5 == 5) {
+                c5 = 0;
+            }
         }
 
         return res;
