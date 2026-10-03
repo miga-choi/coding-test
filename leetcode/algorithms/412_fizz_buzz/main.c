@@ -1,9 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>  // snprintf
+#include <stdlib.h> // malloc
+#include <string.h> // strcpy
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+/**
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
  */
 char** fizzBuzz(int n, int* returnSize) {
     char** result = (char**)malloc(sizeof(char*) * n);
@@ -27,47 +34,75 @@ char** fizzBuzz(int n, int* returnSize) {
 
 
 // Solution
-char** solution(int n, int* returnSize) {
-    int i;
+/**
+ * Solution 1
+ * 
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+char** solution1(int n, int* returnSize) {
+    char** res = malloc(n * sizeof(char*));
 
-    // since n = number of elements to be returned
+    for (int i = 1; i <= n; i++) {
+        char* s = malloc(9);
+
+        if (i % 15 == 0) {
+            strcpy(s, "FizzBuzz");
+        } else if (i % 3 == 0) {
+            strcpy(s, "Fizz");
+        } else if (i % 5 == 0) {
+            strcpy(s, "Buzz");
+        } else {
+            snprintf(s, 9, "%d", i);
+        }
+
+        res[i - 1] = s;
+    }
+
     *returnSize = n;
 
-    // the string of strings where the right elements will be copied
-    char** answer;
+    return res;
+}
 
-    // every string contains at most 5 character (max number is 10000 => 5
-    // characters)
-    char str[5];
+/**
+ * Solution 2
+ * 
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+char** solution2(int n, int* returnSize) {
+    char** res = malloc(n * sizeof(char*));
+    int c3 = 0, c5 = 0;
 
-    // first number we want to return is 1
-    i = 1;
+    for (int i = 1; i <= n; i++) {
+        c3++; c5++;
+        char* s = malloc(9);
 
-    answer = NULL;
-
-    // our string of strings will have the same number of element than the returning one (n)
-    answer = malloc(sizeof(*answer) * n);
-
-    if (!answer) {
-        // securizing our malloc => returning NULL if something went wrong
-        return (answer);
-    }
-
-    while (i <= n) {
-        if (i % 15 == 0) {
-            // NB we need to start duplicating from position 0 => (i - 1)
-            answer[i - 1] = strdup("FizzBuzz");
-        } else if (i % 3 == 0) {
-            answer[i - 1] = strdup("Fizz");
-        } else if (i % 5 == 0) {
-            answer[i - 1] = strdup("Buzz");
+        if (c3 == 3 && c5 == 5) {
+            strcpy(s, "FizzBuzz");
+        } else if (c3 == 3) {
+            strcpy(s, "Fizz");
+        } else if (c5 == 5) {
+            strcpy(s, "Buzz");
         } else {
-            // converting integer i into char and storing it in str
-            sprintf(str, "%d", i);
-            answer[i - 1] = strdup(str);
+            snprintf(s, 9, "%d", i);
         }
-        i++;
+
+        if (c3 == 3) {
+            c3 = 0;
+        }
+        if (c5 == 5) {
+            c5 = 0;
+        }
+
+        res[i - 1] = s;
     }
-    
-    return answer;
+
+    *returnSize = n;
+
+    return res;
 }
