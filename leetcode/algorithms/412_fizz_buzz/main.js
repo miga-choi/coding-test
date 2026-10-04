@@ -1,4 +1,10 @@
 /**
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number} n
  * @return {string[]}
  */
@@ -22,8 +28,99 @@ var fizzBuzz = function (n) {
 
 
 // Solution
-var solution = function (n) {
-  return new Array(n)
-    .fill(0)
-    .map((a, i) => (++i % 3 ? "" : "Fizz") + (i % 5 ? "" : "Buzz") || "" + i);
+/**
+ * Solution 1
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var solution1 = function (n) {
+  const result = new Array(n);
+
+  for (let i = 1; i <= n; i++) {
+    if (i % 15 === 0) {
+      result[i - 1] = "FizzBuzz";
+    } else if (i % 3 === 0) {
+      result[i - 1] = "Fizz";
+    } else if (i % 5 === 0) {
+      result[i - 1] = "Buzz";
+    } else {
+      result[i - 1] = String(i);
+    }
+  }
+
+  return result;
+};
+
+/**
+ * Solution 2
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var solution2 = function (n) {
+  const result = [];
+
+  for (let i = 1; i <= n; i++) {
+    let s = "";
+
+    if (i % 3 === 0) {
+      s += "Fizz";
+    }
+    if (i % 5 === 0) {
+      s += "Buzz";
+    }
+
+    result.push(s || String(i));
+  }
+
+  return result;
+};
+
+/**
+ * Solution 3
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var solution3 = function (n) {
+  const result = [];
+  let fizz = 0, buzz = 0;
+
+  for (let i = 1; i <= n; i++) {
+    fizz++;
+    buzz++;
+    let s = "";
+
+    if (fizz === 3) {
+      s += "Fizz";
+      fizz = 0;
+    }
+    if (buzz === 5) {
+      s += "Buzz";
+      buzz = 0;
+    }
+
+    result.push(s || String(i));
+  }
+
+  return result;
 };
