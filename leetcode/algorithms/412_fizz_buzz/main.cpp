@@ -1,5 +1,7 @@
-#include <string> // std::string
-#include <vector> // std::vector
+#include <array>   //std::array
+#include <string>  // std::string
+#include <utility> // std::pair
+#include <vector>  // std::vector
 using namespace std;
 
 class FizzBuzz {
@@ -89,6 +91,38 @@ public:
             if (c5 == 5) {
                 c5 = 0;
             }
+        }
+
+        return res;
+    }
+
+    /**
+     * Solution 3
+     *
+     * Complexities:
+     *   N - `n`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    vector<string> solution3(int n) {
+        static const array<pair<int, const char*>, 2> RULES{{
+            {3, "Fizz"},
+            {5, "Buzz"},
+        }};
+
+        vector<string> res;
+        res.reserve(n);
+
+        for (int i = 1; i <= n; ++i) {
+            string s;
+
+            for (const auto &[d, word] : RULES) {
+                if (i % d == 0) {
+                    s += word;
+                }
+            }
+
+            res.push_back(s.empty() ? to_string(i) : move(s));
         }
 
         return res;

@@ -102,8 +102,44 @@ var solution2 = function (n) {
  * @return {string[]}
  */
 var solution3 = function (n) {
+  const rules = [
+    [3, "Fizz"],
+    [5, "Buzz"],
+  ];
+
   const result = [];
-  let fizz = 0, buzz = 0;
+
+  for (let i = 1; i <= n; i++) {
+    let s = "";
+
+    for (const [divisor, word] of rules) {
+      if (i % divisor === 0) {
+        s += word;
+      }
+    }
+
+    result.push(s || String(i));
+  }
+
+  return result;
+};
+
+/**
+ * Solution 4
+ *
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(N)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var solution4 = function (n) {
+  const result = [];
+  let fizz = 0,
+    buzz = 0;
 
   for (let i = 1; i <= n; i++) {
     fizz++;
