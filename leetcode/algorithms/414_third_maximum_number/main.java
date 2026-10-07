@@ -1,6 +1,13 @@
 import java.util.Arrays;
+import java.util.TreeSet;
 
 class ThirdMaximumNumber {
+    /**
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
     public int thirdMax(int[] nums) {
         nums = Arrays.stream(nums).distinct().toArray();
 
@@ -16,26 +23,81 @@ class ThirdMaximumNumber {
 
 
     // Solution
-    public int solution(int[] nums) {
-        Integer max1 = null;
-        Integer max2 = null;
-        Integer max3 = null;
+    /**
+     * Solution 1
+     * 
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    public int solution1(int[] nums) {
+        long first = Long.MIN_VALUE, second = Long.MIN_VALUE, third = Long.MIN_VALUE;
 
-        for (Integer n : nums) {
-            if (n.equals(max1) || n.equals(max2) || n.equals(max3))
+        for (int n : nums) {
+            if (n == first || n == second || n == third) {
                 continue;
-            if (max1 == null || n > max1) {
-                max3 = max2;
-                max2 = max1;
-                max1 = n;
-            } else if (max2 == null || n > max2) {
-                max3 = max2;
-                max2 = n;
-            } else if (max3 == null || n > max3) {
-                max3 = n;
+            }
+
+            if (n > first) {
+                third = second;
+                second = first;
+                first = n;
+            } else if (n > second) {
+                third = second;
+                second = n;
+            } else if (n > third) {
+                third = n;
             }
         }
 
-        return max3 == null ? max1 : max3;
+        return third == Long.MIN_VALUE ? (int) first : (int) third;
+    }
+
+    /**
+     * Solution 2
+     * 
+     * TreeSet
+     * 
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    public int solution2(int[] nums) {
+        TreeSet<Integer> set = new TreeSet<>();
+
+        for (int n : nums) {
+            set.add(n);
+
+            if (set.size() > 3) {
+                set.pollFirst();
+            }
+        }
+
+        return set.size() == 3 ? set.first() : set.last();
+    }
+
+    /**
+     * Solution 3
+     * 
+     * Sorting
+     * 
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N * logᴺ)
+     *   - Space Complexity: O(1)
+     */
+    public int solution3(int[] nums) {
+        Arrays.sort(nums);
+
+        int count = 1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] != nums[i + 1] && ++count == 3) {
+                return nums[i];
+            }
+        }
+
+        return nums[nums.length - 1];
     }
 }
