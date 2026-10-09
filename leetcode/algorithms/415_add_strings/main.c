@@ -1,6 +1,13 @@
-#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h> // malloc
+#include <string.h> // strlen
 
+/**
+ * Complexities:
+ *   N - The Size of `num1`
+ *   M - The Size of `num2`
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(1)
+ */
 char* addStrings(char* num1, char* num2) {
   int num1Length = 0;
   int num2Length = 0;
@@ -48,25 +55,78 @@ char* addStrings(char* num1, char* num2) {
 
 
 // Solution
-char* solution(char* num1, char* num2) {
-  int sizeNum1 = strlen(num1);
-  int sizeNum2 = strlen(num2);
-  int sizeOutput = (sizeNum1 > sizeNum2 ? sizeNum1 : sizeNum2) + 1;
-  char* output = (char*)malloc(sizeOutput + 1);
-  int sum = 0;
+/**
+ * Solution 2
+ * 
+ * Complexities:
+ *   N - The Size of `num1`
+ *   M - The Size of `num2`
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(1)
+ */
+char* solution1(char* num1, char* num2) {
+    int i = (int)strlen(num1) - 1;
+    int j = (int)strlen(num2) - 1;
+    int maxLen = (i > j ? i : j) + 1;
 
-  output[sizeOutput] = '\0';
+    char* res = malloc(maxLen + 2);
+    int k = 0, carry = 0;
 
-  while (sizeNum1 > 0 || sizeNum2 > 0 || sum > 0) {
-    if (sizeNum1 > 0) {
-      sum += num1[--sizeNum1] - '0';
+    while (i >= 0 || j >= 0 || carry) {
+        int d = carry;
+        if (i >= 0) {
+          d += num1[i--] - '0';
+        }
+        if (j >= 0) {
+          d += num2[j--] - '0';
+        }
+
+        res[k++] = (char)('0' + d % 10);
+        carry = d / 10;
     }
-    if (sizeNum2 > 0) {
-      sum += num2[--sizeNum2] - '0';
-    }
-    output[--sizeOutput] = sum % 10 + '0';
-    sum /= 10;
-  }
+    res[k] = '\0';
 
-  return output + sizeOutput;
+    for (int l = 0, r = k - 1; l < r; l++, r--) {
+        char t = res[l];
+        res[l] = res[r];
+        res[r] = t;
+    }
+
+    return res;
+}
+
+/**
+ * Solution 2
+ * 
+ * Complexities:
+ *   N - The Size of `num1`
+ *   M - The Size of `num2`
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(1)
+ */
+char* solution2(char* num1, char* num2) {
+    int i = (int)strlen(num1) - 1;
+    int j = (int)strlen(num2) - 1;
+    int len = (i > j ? i : j) + 2;
+
+    char* res = malloc(len + 1);
+    res[len] = '\0';
+    int k = len - 1, carry = 0;
+
+    while (i >= 0 || j >= 0 || carry) {
+        int d = carry;
+        if (i >= 0) {
+          d += num1[i--] - '0';
+        }
+        if (j >= 0) {
+          d += num2[j--] - '0';
+        }
+        res[k--] = (char)('0' + d % 10);
+        carry = d / 10;
+    }
+
+    int start = k + 1;
+    if (start > 0) {memmove(res, res + start, len - start + 1);}
+
+    return res;
 }
