@@ -1,6 +1,12 @@
-import 'dart:math';
+import 'dart:collection'; // SplayTreeSet
 
 class ThirdMaximumNumber {
+  /**
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int thirdMax(List<int> nums) {
     int first = nums.first;
     int second = -(2 << 30) - 1;
@@ -24,61 +30,73 @@ class ThirdMaximumNumber {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int solution1(List<int> nums) {
-    nums.sort();
+    int? first, second, third;
 
-    Set<int> data = nums.toSet();
-    int count = data.length;
+    for (final x in nums) {
+      if (x == first || x == second || x == third) {
+        continue;
+      }
 
-    if (data.length <= 2) {
-      return data.last;
-    } else {
-      return data.elementAt(count - 3);
-    }
-  }
-
-  // Solution 2
-  int _indexOfMinValue(List<int> nums) {
-    if (nums.isEmpty) {
-      throw ArgumentError(nums);
-    }
-    int result = 0;
-    for (int i = 1; i < nums.length; i++) {
-      if (nums[i] < nums[result]) {
-        result = i;
+      if (first == null || x > first) {
+        third = second;
+        second = first;
+        first = x;
+      } else if (second == null || x > second) {
+        third = second;
+        second = x;
+      } else if (third == null || x > third) {
+        third = x;
       }
     }
-    return result;
+
+    return third ?? first!;
   }
 
+  /**
+   * Solution 2
+   * 
+   * SplayTreeSet
+   * 
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int solution2(List<int> nums) {
-    const nth = 3;
-    List<int> topN = <int>[];
-    int minIndex = 0;
+    final top = SplayTreeSet<int>();
 
-    for (int n in nums) {
-      insertIntoTopN:
-      if (topN.length < nth || n > topN[minIndex]) {
-        for (int v in topN) {
-          if (n == v) {
-            // Don't insert, it's already there.
-            break insertIntoTopN;
-          }
-        }
-        if (topN.length < nth) {
-          topN.add(n);
-        } else {
-          topN[minIndex] = n;
-        }
-        minIndex = _indexOfMinValue(topN);
+    for (final x in nums) {
+      top.add(x);
+
+      if (top.length > 3) {
+        top.remove(top.first);
       }
     }
 
-    if (topN.length < nth) {
-      return topN.reduce(max);
-    }
+    return top.length == 3 ? top.first : top.last;
+  }
 
-    return topN[minIndex];
+  /**
+   * Solution 3
+   * 
+   * Sorting
+   * 
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N * logᴺ)
+   *   - Space Complexity: O(N)
+   */
+  int solution3(List<int> nums) {
+    final distinct = nums.toSet().toList()..sort((a, b) => b.compareTo(a));
+    return distinct.length >= 3 ? distinct[2] : distinct[0];
   }
 }
