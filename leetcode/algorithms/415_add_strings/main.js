@@ -1,4 +1,11 @@
 /**
+ * Complexities:
+ *   N - The Size of `num1`
+ *   M - The Size of `num2`
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {string} num1
  * @param {string} num2
  * @return {string}
@@ -34,19 +41,37 @@ var addStrings = function (num1, num2) {
 
 
 // Solution
+/**
+ * Two Pointers
+ *
+ * Complexities:
+ *   N - The Size of `num1`
+ *   M - The Size of `num2`
+ *   - Time Complexity: O(max(N, M))
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {string} num1
+ * @param {string} num2
+ * @return {string}
+ */
 var solution = function (num1, num2) {
   let i = num1.length - 1;
   let j = num2.length - 1;
   let carry = 0;
-  let sum = "";
+  const result = [];
 
-  for (; i >= 0 || j >= 0 || carry > 0; i--, j--) {
-    const digit1 = i < 0 ? 0 : num1.charAt(i) - "0";
-    const digit2 = j < 0 ? 0 : num2.charAt(j) - "0";
-    const digitsSum = digit1 + digit2 + carry;
-    sum = `${digitsSum % 10}${sum}`;
-    carry = Math.floor(digitsSum / 10);
+  while (i >= 0 || j >= 0 || carry > 0) {
+    const d1 = i >= 0 ? num1.charCodeAt(i) - 48 : 0;
+    const d2 = j >= 0 ? num2.charCodeAt(j) - 48 : 0;
+    const sum = d1 + d2 + carry;
+
+    result.push(sum % 10);
+    carry = Math.floor(sum / 10);
+
+    i--;
+    j--;
   }
 
-  return sum;
+  return result.reverse().join("");
 };

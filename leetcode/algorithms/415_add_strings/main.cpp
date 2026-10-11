@@ -47,6 +47,8 @@ public:
     // Solution
     /**
      * Solution 1
+     * 
+     * Two Pointers
      *
      * Complexities:
      *   N - The Size of `num1`
@@ -82,6 +84,8 @@ public:
 
     /**
      * Solution 2
+     * 
+     * Two Pointers
      *
      * Complexities:
      *   N - The Size of `num1`

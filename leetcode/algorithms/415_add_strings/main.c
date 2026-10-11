@@ -56,8 +56,10 @@ char* addStrings(char* num1, char* num2) {
 
 // Solution
 /**
- * Solution 2
- * 
+ * Solution 1
+ *
+ * Two Pointers
+ *
  * Complexities:
  *   N - The Size of `num1`
  *   M - The Size of `num2`
@@ -98,6 +100,8 @@ char* solution1(char* num1, char* num2) {
 /**
  * Solution 2
  * 
+ * Two Pointers
+ * 
  * Complexities:
  *   N - The Size of `num1`
  *   M - The Size of `num2`
@@ -126,7 +130,9 @@ char* solution2(char* num1, char* num2) {
     }
 
     int start = k + 1;
-    if (start > 0) {memmove(res, res + start, len - start + 1);}
+    if (start > 0) {
+      memmove(res, res + start, len - start + 1);
+    }
 
     return res;
 }
