@@ -1,6 +1,13 @@
 import 'dart:math';
 
 class AddStrings {
+  /**
+   * Complexities:
+   *   N - The Size of `num1`
+   *   M - The Size of `num2`
+   *   - Time Complexity: O(max(N, M))
+   *   - Space Complexity: O(1)
+   */
   String addStrings(String num1, String num2) {
     String num = "";
 
@@ -14,8 +21,12 @@ class AddStrings {
     int up = 0;
 
     for (int i = 1; i <= numLength; i++) {
-      int _num1 = num1Length - i >= 0 ? int.parse(num1Array[num1Length - i]) : 0;
-      int _num2 = num2Length - i >= 0 ? int.parse(num2Array[num2Length - i]) : 0;
+      int _num1 = num1Length - i >= 0
+          ? int.parse(num1Array[num1Length - i])
+          : 0;
+      int _num2 = num2Length - i >= 0
+          ? int.parse(num2Array[num2Length - i])
+          : 0;
       int _num = _num1 + _num2 + up;
 
       if (_num > 9) {
@@ -33,62 +44,66 @@ class AddStrings {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Two Pointers
+   *
+   * Complexities:
+   *   N - The Size of `num1`
+   *   M - The Size of `num2`
+   *   - Time Complexity: O(max(N, M))
+   *   - Space Complexity: O(1)
+   */
   String solution1(String num1, String num2) {
-    final StringBuffer sb = StringBuffer();
+    const zero = 48;
+    final a = num1.codeUnits;
+    final b = num2.codeUnits;
 
-    int i = num1.length - 1;
-    int j = num2.length - 1;
-    int carry = 0;
+    var i = a.length - 1;
+    var j = b.length - 1;
+    var carry = 0;
 
-    while (i >= 0 || j >= 0) {
-      int sum = carry;
+    final buf = List<int>.filled(
+      (a.length > b.length ? a.length : b.length) + 1,
+      0,
+    );
+    var k = buf.length;
 
-      if (i >= 0) {
-        sum += (num1.codeUnitAt(i--) - '0'.codeUnitAt(0));
-      }
-      if (j >= 0) {
-        sum += (num2.codeUnitAt(j--) - '0'.codeUnitAt(0));
-      }
+    while (i >= 0 || j >= 0 || carry != 0) {
+      final x = i >= 0 ? a[i--] - zero : 0;
+      final y = j >= 0 ? b[j--] - zero : 0;
+      final sum = x + y + carry;
+      buf[--k] = zero + sum % 10;
+      carry = sum ~/ 10;
+    }
 
+    return String.fromCharCodes(buf, k);
+  }
+
+  /**
+   * Solution 2
+   * 
+   * StringBuffer + Reverse
+   *
+   * Complexities:
+   *   N - The Size of `num1`
+   *   M - The Size of `num2`
+   *   - Time Complexity: O(max(N, M))
+   *   - Space Complexity: O(1)
+   */
+  String solution2(String num1, String num2) {
+    final sb = StringBuffer();
+    var i = num1.length - 1, j = num2.length - 1, carry = 0;
+
+    while (i >= 0 || j >= 0 || carry != 0) {
+      final x = i >= 0 ? num1.codeUnitAt(i--) - 48 : 0;
+      final y = j >= 0 ? num2.codeUnitAt(j--) - 48 : 0;
+      final sum = x + y + carry;
       sb.write(sum % 10);
       carry = sum ~/ 10;
     }
 
-    if (carry != 0) {
-      sb.write(carry);
-    }
     return sb.toString().split('').reversed.join();
-  }
-
-  // Solution 2
-  String solution2(String num1, String num2) {
-    int carry = 0;
-    int i = num1.length - 1;
-    int j = num2.length - 1;
-    String ans = "";
-
-    String addString(String s1, String s2, int i, int j, int c, String ans) {
-      if (c == 0 && i < 0 && j < 0) {
-        return ans.split('').reversed.join();
-      }
-
-      if (i >= 0) {
-        c += int.parse(s1[i]);
-        i--;
-      }
-
-      if (j >= 0) {
-        c += int.parse(s2[j]);
-        j--;
-      }
-
-      ans += String.fromCharCode(c % 10 + '0'.codeUnitAt(0));
-      c = c ~/ 10;
-
-      return addString(s1, s2, i, j, c, ans);
-    }
-
-    return addString(num1, num2, i, j, carry, ans);
   }
 }
