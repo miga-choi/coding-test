@@ -1,4 +1,13 @@
 class AddStrings {
+    /**
+     * Two Pointers
+     *
+     * Complexities:
+     *   N - The Size of `num1`
+     *   M - The Size of `num2`
+     *   - Time Complexity: O(max(N, M))
+     *   - Space Complexity: O(1)
+     */
     public String addStrings(String num1, String num2) {
         String result = "";
         int length = num1.length() > num2.length() ? num1.length() : num2.length();
@@ -34,15 +43,26 @@ class AddStrings {
 
 
     // Solution
+    /**
+     * Two Pointers
+     *
+     * Complexities:
+     *   N - The Size of `num1`
+     *   M - The Size of `num2`
+     *   - Time Complexity: O(max(N, M))
+     *   - Space Complexity: O(1)
+     */
     public String solution(String num1, String num2) {
         StringBuilder sb = new StringBuilder();
-        int carry = 0;
+        int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
 
-        for (int i = num1.length() - 1, j = num2.length() - 1; i >= 0 || j >= 0 || carry == 1; i--, j--) {
-            int x = i < 0 ? 0 : num1.charAt(i) - '0';
-            int y = j < 0 ? 0 : num2.charAt(j) - '0';
-            sb.append((x + y + carry) % 10);
-            carry = (x + y + carry) / 10;
+        while (i >= 0 || j >= 0 || carry != 0) {
+            int a = (i >= 0) ? num1.charAt(i--) - '0' : 0;
+            int b = (j >= 0) ? num2.charAt(j--) - '0' : 0;
+
+            int sum = a + b + carry;
+            sb.append((char) (sum % 10 + '0'));
+            carry = sum / 10;
         }
 
         return sb.reverse().toString();
