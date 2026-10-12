@@ -1,75 +1,102 @@
-#include <sstream>
-#include <string>
+#include <cstddef> // std::size_t
+#include <sstream> // std::istringstream
+#include <string>  // std::string
 using namespace std;
 
 class NumberOfSegmentsInAString {
 public:
+  /**
+   * Status flag
+   * 
+   * Complexities:
+   *   N - The Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int countSegments(string s) {
-    int count = 0;
-    int begin = 0;
+      int count = 0;
+      int begin = 0;
 
-    for (char c : s) {
-      if (c != ' ') {
-        begin = 1;
+      for (char c : s) {
+          if (c != ' ') {
+              begin = 1;
+          }
+          if (begin && c == ' ') {
+              count++;
+              begin = 0;
+          }
       }
-      if (begin && c == ' ') {
-        count++;
-        begin = 0;
-      }
-    }
 
-    return count + begin;
+      return count + begin;
   }
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   *
+   * Complexities:
+   *   N - The Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int solution1(string s) {
-    int res = 0;
+      int count = 0;
 
-    s.push_back(' ');
-
-    for (int i = 1; i < s.size(); ++i) {
-      if (s[i] == ' ' && s[i - 1] != ' ') {
-        ++res;
+      for (size_t i = 0; i < s.size(); ++i) {
+          if (s[i] != ' ' && (i == 0 || s[i - 1] == ' ')) {
+              ++count;
+          }
       }
-    }
 
-    return res;
+      return count;
   }
 
-  // Solution 2: Brute force
+  /**
+   * Solution 2
+   * 
+   * Status Flag
+   *
+   * Complexities:
+   *   N - The Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   int solution2(string s) {
-    istringstream iss(s);
+      int count = 0;
+      bool inSeg = false;
 
-    string word;
-    int count = 0;
+      for (char c : s) {
+          if (c == ' ') {
+              inSeg = false;
+          } else if (!inSeg) {
+              inSeg = true;
+              ++count;
+          }
+      }
 
-    while (iss >> word) {
-      count++;
-    }
-
-    return count;
+      return count;
   }
 
-  // Solution 3: Efficient Method
+  /**
+   * Solution 3
+   * 
+   * std::istringstream
+   *
+   * Complexities:
+   *   N - The Size of `s`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
   int solution3(string s) {
-    int count = 0;
-    bool inSegment = false;
+      istringstream iss(s);
+      string word;
+      int count = 0;
 
-    for (char c : s) {
-      if (c != ' ') {
-        // If the character is not a space, we are in a segment
-        if (!inSegment) {
-          inSegment = true;
-          count++;
-        }
-      } else {
-        // If the character is a space, we are not in a segment
-        inSegment = false;
+      while (iss >> word) {
+          ++count;
       }
-    }
 
-    return count;
+      return count;
   }
 };
