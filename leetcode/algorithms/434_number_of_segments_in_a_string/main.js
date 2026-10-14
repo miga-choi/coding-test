@@ -4,7 +4,7 @@
  * Complexities:
  *   N - The Size of `s`
  *   - Time Complexity: O(N)
- *   - Space Complexity: O(1)
+ *   - Space Complexity: O(N)
  */
 /**
  * @param {string} s
@@ -81,7 +81,7 @@ var solution2 = function (s) {
  * Complexities:
  *   N - The Size of `s`
  *   - Time Complexity: O(N)
- *   - Space Complexity: O(1)
+ *   - Space Complexity: O(N)
  */
 /**
  * @param {string} s
@@ -99,7 +99,7 @@ var solution3 = function (s) {
  * Complexities:
  *   N - The Size of `s`
  *   - Time Complexity: O(N)
- *   - Space Complexity: O(1)
+ *   - Space Complexity: O(N)
  */
 /**
  * @param {string} s

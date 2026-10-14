@@ -7,7 +7,7 @@ class NumberOfSegmentsInAString {
      * Complexities:
      *   N - The Size of `s`
      *   - Time Complexity: O(N)
-     *   - Space Complexity: O(1)
+     *   - Space Complexity: O(N)
      */
     public int countSegments(String s) {
         return Arrays.stream(s.split(" ")).filter(v -> !v.equals("")).toArray().length;
@@ -69,7 +69,7 @@ class NumberOfSegmentsInAString {
      * Complexities:
      *   N - The Size of `s`
      *   - Time Complexity: O(N)
-     *   - Space Complexity: O(1)
+     *   - Space Complexity: O(N)
      */
     public int solution3(String s) {
         s = s.trim();
