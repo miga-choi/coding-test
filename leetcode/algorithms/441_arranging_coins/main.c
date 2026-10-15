@@ -1,5 +1,11 @@
-#include <math.h>
+#include <math.h> // sqrt
 
+/**
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(√N)
+ *   - Space Complexity: O(1)
+ */
 int arrangeCoins(int n) {
   int level = 0;
 
@@ -13,55 +19,69 @@ int arrangeCoins(int n) {
 
 
 // Solution
-// Solution 1: Iterative Approach
+/**
+ * Solution 1
+ * 
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(√N)
+ *   - Space Complexity: O(1)
+ */
 int solution1(int n) {
-  // which row we are on
-  int i = 1;
+    int k = 0;
 
-  // checking to see if we have used all our coins
-  while (n > 0) {
-    // increasing our row
-    i++;
+    while (n > k) {
+        k++;
+        n -= k;
+    }
 
-    // adding coins to our row
-    n = n - i;
-  }
-
-  // we return our current row minus one because the last row is our completed row
-  return i - 1;
+    return k;
 }
 
-// Solution 2: Binary Search Approach
+/**
+ * Solution 2
+ * 
+ * Binary Search
+ * 
+ * Complexities:
+ *   N - `n`
+ *   - Time Complexity: O(logᴺ)
+ *   - Space Complexity: O(1)
+ */
 int solution2(int n) {
-  // we use "long" because we may get an integer overflow
-  long left = 0;
-  long right = n;
+    long long lo = 0, hi = n;
 
-  while (left <= right) {
-    long pivot = left + (right - left) / 2;
-    long coinsUsed = pivot * (pivot + 1) / 2;
-    if (coinsUsed == n) {
-      return (int)pivot;
-    }
-    if (n < coinsUsed) {
-      right = pivot - 1;
-    } else {
-      left = pivot + 1;
-    }
-  }
+    while (lo < hi) {
+        long long mid = lo + (hi - lo + 1) / 2;
 
-  // cast as an "int" because it was initiliazed as a "long"
-  return (int)right;
+        if (mid * (mid + 1) / 2 <= n) {
+            lo = mid;
+        } else {
+            hi = mid - 1;
+        }
+    }
+
+    return (int)lo;
 }
 
-// Solution 3: Math Approach (using algebra)
+/**
+ * Solution 3
+ * 
+ * Quadratic Formula
+ * 
+ * Complexities:
+ *   - Time Complexity: O(1)
+ *   - Space Complexity: O(1)
+ */
 int solution3(int n) {
-  // cast "n" to "long" to avoid integer overflow
-  return (int)(sqrt(2 * (long)n + 0.25) - 0.5);
-}
+    long long k = (long long)((sqrt(8.0 * n + 1) - 1) / 2);
 
-// Solution 4: Math Approach (using Quadratic Formula)
-int solution4(int n) {
-  // cast "n" to "long" to avoid integer overflow
-  return (int)(-1 + (sqrt(1 + 8 * (long)n))) / 2;
+    while (k * (k + 1) / 2 > n) {
+        k--;
+    }
+    while ((k + 1) * (k + 2) / 2 <= n) {
+        k++;
+    }
+
+    return (int)k;
 }
