@@ -1,6 +1,12 @@
-import 'dart:math';
+import 'dart:math' as math; // sqrt
 
 class ArrangingCoins {
+  /**
+   * Complexities:
+   *   N - `n`
+   *   - Time Complexity: O(√N)
+   *   - Space Complexity: O(1)
+   */
   int arrangeCoins(int n) {
     int level = 0;
 
@@ -14,68 +20,73 @@ class ArrangingCoins {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   *
+   * Complexities:
+   *   N - `n`
+   *   - Time Complexity: O(√N)
+   *   - Space Complexity: O(1)
+   */
   int solution1(int n) {
-    int sum = 0;
+    var row = 0;
 
-    for (int i = 1; i <= n; i++) {
-      sum += i;
-      if (sum > n) {
-        return i - 1;
-      } else if (sum == n) {
-        return i;
-      }
+    while (n > row) {
+      row++;
+      n -= row;
     }
 
-    return 0;
+    return row;
   }
 
-  // Solution 2: Iterative Approach
+  /**
+   * Solution 2
+   *
+   * Binary Search
+   *
+   * Complexities:
+   *   N - `n`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
   int solution2(int n) {
-    // which row we are on
-    int i = 1;
-
-    // checking to see if we have used all our coins
-    while (n > 0) {
-      // increasing our row
-      i++;
-
-      // adding coins to our row
-      n = n - i;
-    }
-
-    // we return our current row minus one because the last row is our completed row
-    return i - 1;
-  }
-
-  // Solution 3: Binary Search Approach
-  int solution3(int n) {
-    int left = 0;
-    int right = n;
+    var left = 0;
+    var right = n;
 
     while (left <= right) {
-      int pivot = (left + (right - left) / 2).floor();
-      int coinsUsed = (pivot * (pivot + 1) / 2).floor();
-      if (coinsUsed == n) {
-        return pivot;
-      }
-      if (n < coinsUsed) {
-        right = pivot - 1;
+      final mid = left + (right - left) ~/ 2;
+      final need = mid * (mid + 1) ~/ 2;
+
+      if (need <= n) {
+        left = mid + 1;
       } else {
-        left = pivot + 1;
+        right = mid - 1;
       }
     }
 
     return right;
   }
 
-  // Solution 4: Math Approach (using algebra)
-  int solution4(int n) {
-    return (sqrt(2 * n + 0.25) - 0.5).toInt();
-  }
+  /**
+   * Solution 3
+   *
+   * Quadratic Formula
+   *
+   * Complexities:
+   *   - Time Complexity: O(1)
+   *   - Space Complexity: O(1)
+   */
+  int solution3(int n) {
+    var k = ((math.sqrt(8 * n + 1) - 1) / 2).floor();
 
-  // Solution 5: Math Approach (using Quadratic Formula)
-  int solution5(int n) {
-    return ((-1 + (sqrt(1 + 8 * n))) / 2).toInt();
+    while (k * (k + 1) ~/ 2 > n) {
+      k--;
+    }
+
+    while ((k + 1) * (k + 2) ~/ 2 <= n) {
+      k++;
+    }
+
+    return k;
   }
 }
