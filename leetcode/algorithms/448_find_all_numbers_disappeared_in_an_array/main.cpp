@@ -1,130 +1,118 @@
-#include <unordered_set>
-#include <vector>
+#include <cstdlib> // std::abs
+#include <vector>  // std::vector
 using namespace std;
 
 class FindAllNumbersDisappearedInAnArray {
 public:
-  vector<int> findDisappearedNumbers(vector<int>& nums) {
-    vector<int> numArray(nums.size(), 0);
+    /**
+     * Auxiliary array
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> numArray(nums.size(), 0);
 
-    for (int num : nums) {
-      numArray[num - 1] = 1;
+        for (int num : nums) {
+            numArray[num - 1] = 1;
+        }
+
+        vector<int> result;
+
+        for (int i = 1; i <= nums.size(); i++) {
+            if (!numArray[i] - 1) {
+                result.push_back(i);
+            }
+        }
+
+        return result;
     }
 
-    vector<int> result;
+    // Solution
+    /**
+     * Solution 1
+     *
+     * Auxiliary array
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    vector<int> solution1(vector<int>& nums) {
+        int n = static_cast<int>(nums.size());
+        vector<bool> seen(n + 1, false);
 
-    for (int i = 1; i <= nums.size(); i++) {
-      if (!numArray[i] - 1) {
-        result.push_back(i);
-      }
+        for (int x : nums) {
+            seen[x] = true;
+        }
+
+        vector<int> res;
+        for (int v = 1; v <= n; ++v) {
+            if (!seen[v]) {
+                res.push_back(v);
+            }
+        }
+
+        return res;
     }
 
-    return result;
-  }
+    /**
+     * Solution 2
+     *
+     * Negative Marking
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    vector<int> solution2(vector<int>& nums) {
+        for (int x : nums) {
+            int idx = abs(x) - 1;
+            nums[idx] = -abs(nums[idx]);
+        }
 
-  
-  // Solution
-  // Solution 1: Brute-Force
-  vector<int> solution1(vector<int>& nums) {
-    vector<int> ans;
+        vector<int> res;
+        for (int i = 0; i < static_cast<int>(nums.size()); ++i) {
+            if (nums[i] > 0) {
+                res.push_back(i + 1);
+            } else {
+                nums[i] = -nums[i];
+            }
+        }
 
-    for (int i = 1; i <= size(nums); i++) {
-      // linear search in nums for each i
-      if (find(begin(nums), end(nums), i) == end(nums)) {
-        ans.push_back(i);
-      }
+        return res;
     }
 
-    return ans;
-  }
+    /**
+     * Solution 3
+     *
+     * Cyclic Sort
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(1)
+     */
+    vector<int> solution3(vector<int>& nums) {
+        int n = static_cast<int>(nums.size());
 
-  // Solution 2: Sort & Binary-Search
-  vector<int> solution2(vector<int>& nums) {
-    sort(begin(nums), end(nums));
-    vector<int> ans;
+        for (int i = 0; i < n; ++i) {
+            while (nums[i] != nums[nums[i] - 1]) {
+                swap(nums[i], nums[nums[i] - 1]);
+            }
+        }
 
-    for (int i = 1; i <= size(nums); i++) {
-      // binary search in nums for each i
-      if (!binary_search(begin(nums), end(nums), i)) {
-        ans.push_back(i);
-      }
+        vector<int> res;
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] != i + 1) {
+                res.push_back(i + 1);
+            }
+        }
+
+        return res;
     }
-
-    return ans;
-  }
-
-  // Solution 3: HashSet
-  vector<int> solution3(vector<int>& nums) {
-    // insert every nums[i] in hashset
-    unordered_set<int> s(begin(nums), end(nums));
-
-    vector<int> ans(size(nums) - size(s));
-
-    for (int i = 1, j = 0; i <= size(nums); i++) {
-      // add all elements not found in hashset to ans
-      if (!s.count(i)) {
-        ans[j++] = i;
-      }
-    }
-
-    return ans;
-  }
-
-  // Solution 4: Boolean array
-  vector<int> solution4(vector<int>& nums) {
-    vector<bool> seen(size(nums) + 1);
-    vector<int> ans;
-
-    for (auto c : nums) {
-      seen[c] = true;
-    }
-
-    for (int i = 1; i <= size(nums); i++) {
-      if (!seen[i]) {
-        ans.push_back(i);
-      }
-    }
-
-    return ans;
-  }
-
-  // Solution 5: Placing Elements at Correct Index - Space Optimized
-  vector<int> solution5(vector<int>& nums) {
-    vector<int> ans;
-
-    for (auto &c : nums) {
-      while (nums[c - 1] != c) {
-        // swap till correct index place of c is not occupied by c itself
-        swap(c, nums[c - 1]);
-      }
-    }
-
-    for (int i = 1; i <= size(nums); i++) {
-      // correct index place of i is not occupied by i itself
-      if (i != nums[i - 1]) {
-        ans.push_back(i);
-      }
-    }
-
-    return ans;
-  }
-
-  // Solution 6: Mark as seen by Negation - Space Optimized
-  vector<int> solution6(vector<int>& nums) {
-    vector<int> ans;
-
-    for (int c : nums) {
-      // mark c is present by negating nums[c-1]
-      nums[abs(c) - 1] = -abs(nums[abs(c) - 1]);
-    }
-
-    for (int i = 0; i < size(nums); i++) {
-      // nums[i] > 0 means i+1 isnt present in nums
-      if (nums[i] > 0) {
-        ans.push_back(i + 1);
-      }
-    }
-
-    return ans;
-  }
 };
