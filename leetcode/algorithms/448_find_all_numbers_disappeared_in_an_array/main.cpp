@@ -5,7 +5,7 @@ using namespace std;
 class FindAllNumbersDisappearedInAnArray {
 public:
     /**
-     * Auxiliary array
+     * Auxiliary Array
      *
      * Complexities:
      *   N - The Size of `nums`
@@ -34,7 +34,7 @@ public:
     /**
      * Solution 1
      *
-     * Auxiliary array
+     * Auxiliary Array
      *
      * Complexities:
      *   N - The Size of `nums`

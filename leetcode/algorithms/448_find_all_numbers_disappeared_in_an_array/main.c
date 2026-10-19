@@ -6,7 +6,7 @@
  */
 
 /**
- * Auxiliary array
+ * Auxiliary Array
  * 
  * Complexities:
  *   N - `numsSize`
@@ -37,7 +37,7 @@ int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
 /**
  * Solution 1
  * 
- * Auxiliary array
+ * Auxiliary Array
  * 
  * Complexities:
  *   N - `numsSize`
