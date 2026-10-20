@@ -2,6 +2,14 @@ from typing import List
 
 
 class FindAllNumbersDisappearedInAnArray:
+    """
+    # Auxiliary Array
+    #
+    # Complexities:
+    #   N - The Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         result: List[int] = []
         length = len(nums) + 1
@@ -21,13 +29,50 @@ class FindAllNumbersDisappearedInAnArray:
 
 
     # Solution
-    def solution(self, nums: List[int]) -> List[int]:
-        # For each number i in nums,
-        # we mark the number that i points as negative.
-        # Then we filter the list, get all the indexes
-        # who points to a positive number
-        for i in range(len(nums)):
-            index = abs(nums[i]) - 1
-            nums[index] = -abs(nums[index])
+    """
+    # Solution 1
+    #
+    # Set
+    #
+    # Complexities:
+    #   N - The Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
+    def solution1(self, nums: List[int]) -> List[int]:
+        seen = set(nums)
+        return [x for x in range(1, len(nums) + 1) if x not in seen]
 
-        return [i + 1 for i in range(len(nums)) if nums[i] > 0]
+    """
+    # Solution 2
+    #
+    # Negative Marking
+    #
+    # Complexities:
+    #   N - The Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(N)
+    """
+    def solution2(self, nums: List[int]) -> List[int]:
+        for x in nums:
+            idx = abs(x) - 1
+            nums[idx] = -abs(nums[idx])
+
+        return [i + 1 for i, x in enumerate(nums) if x > 0]
+
+    """
+    # Solution 3
+    #
+    # Cyclic Sort
+    #
+    # Complexities:
+    #   N - The Size of `nums`
+    #   - Time Complexity: O(N)
+    #   - Space Complexity: O(1)
+    """
+    def solution3(self, nums: List[int]) -> List[int]:
+        for x in nums:
+            idx = abs(x) - 1
+            nums[idx] = -abs(nums[idx])
+
+        return [i + 1 for i, x in enumerate(nums) if x > 0]
