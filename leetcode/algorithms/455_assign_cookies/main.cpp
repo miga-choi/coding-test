@@ -1,8 +1,19 @@
-#include <vector>
+#include <algorithm> // std::sort
+#include <cstddef>   // std::size_t
+#include <vector>    // std::vector
 using namespace std;
 
 class AssignCookies {
 public:
+    /**
+     * Sorting + Greedy
+     *
+     * Complexities:
+     *   N - The Size of `g`
+     *   M - The Size of `s`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
     int findContentChildren(vector<int>& g, vector<int>& s) {
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
@@ -20,30 +31,58 @@ public:
 
 
     // Solution
-    int solution(vector<int>& g, vector<int>& s) {
-        int cookiesNums = s.size();
-
-        if (cookiesNums == 0) {
-            return 0;
-        }
-
+    /**
+     * Solution 1
+     * 
+     * Sorting + Greedy
+     *
+     * Complexities:
+     *   N - The Size of `g`
+     *   M - The Size of `s`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
+    int solution1(vector<int>& g, vector<int>& s) {
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
 
-        int maxNum = 0;
-        int cookieIndex = cookiesNums - 1;
-        int childIndex = g.size() - 1;
-
-        while (cookieIndex >= 0 && childIndex >= 0) {
-            if (s[cookieIndex] >= g[childIndex]) {
-                maxNum++;
-                cookieIndex--;
-                childIndex--;
-            } else {
-                childIndex--;
+        size_t i = 0;
+        for (int cookie : s) {
+            if (i == g.size()) {
+                break;
+            }
+            if (cookie >= g[i]) {
+                ++i;
             }
         }
 
-        return maxNum;
+        return static_cast<int>(i);
+    }
+
+    /**
+     * Solution 2
+     * 
+     * Sorting + Greedy
+     *
+     * Complexities:
+     *   N - The Size of `g`
+     *   M - The Size of `s`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
+    int solution2(vector<int>& g, vector<int>& s) {
+        sort(g.begin(), g.end());
+        sort(s.begin(), s.end());
+
+        int j = static_cast<int>(s.size()) - 1;
+        int count = 0;
+        for (int i = static_cast<int>(g.size()) - 1; i >= 0 && j >= 0; --i) {
+            if (s[j] >= g[i]) {
+                ++count;
+                --j;
+            }
+        }
+
+        return count;
     }
 };
