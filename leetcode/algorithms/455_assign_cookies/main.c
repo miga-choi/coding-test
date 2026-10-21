@@ -1,8 +1,15 @@
-#include <stdlib.h>
+#include <stdlib.h> // qsort
 
-// Custom comparator
+/**
+ * Sorting + Greedy
+ * 
+ * Complexities:
+ *   N - `gSize`
+ *   M - `sSize`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
 int comp(const void* a, const void* b) {
-    // If a is smaller, positive value will be returned
     return (*(int*)a - *(int*)b);
 }
 
@@ -23,33 +30,58 @@ int findContentChildren(int* g, int gSize, int* s, int sSize) {
 
 
 // Solution
-int cmp(const void* a, const void* b) {
-    return *(int*)a - *(int*)b;
+static int cmp(const void* a, const void* b) {
+    int x = *(const int*)a, y = *(const int*)b;
+    return (x > y) - (x < y);
 }
 
-int solution(int* g, int gSize, int* s, int sSize) {
-    /* Sort two arrays */
+/**
+ * Solution 1
+ * 
+ * Sorting + Greedy
+ * 
+ * Complexities:
+ *   N - `gSize`
+ *   M - `sSize`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
+int solution1(int* g, int gSize, int* s, int sSize) {
     qsort(g, gSize, sizeof(int), cmp);
     qsort(s, sSize, sizeof(int), cmp);
 
-    int result = 0;
     int i = 0;
-    int j = 0;
-
-    /* Using two pointers to search that the content the child could get smaller as possile cookie */
-    while (i < gSize && j < sSize) {
-        // Skip the cookie no child want it
-        while (j < sSize && g[i] > s[j]) {
-            ++j;
+    for (int j = 0; j < sSize && i < gSize; j++) {
+        if (s[j] >= g[i]) {
+            i++;
         }
-
-        if (i < gSize && j < sSize) {
-            ++result;
-        }
-
-        ++i;
-        ++j;
     }
 
-    return result;
+    return i;
+}
+
+/**
+ * Solution 2
+ * 
+ * Sorting + Greedy
+ * 
+ * Complexities:
+ *   N - `gSize`
+ *   M - `sSize`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
+int solution2(int* g, int gSize, int* s, int sSize) {
+    qsort(g, gSize, sizeof(int), cmp);
+    qsort(s, sSize, sizeof(int), cmp);
+
+    int j = sSize - 1, count = 0;
+    for (int i = gSize - 1; i >= 0 && j >= 0; i--) {
+        if (s[j] >= g[i]) {
+            count++;
+            j--;
+        }
+    }
+
+    return count;
 }
