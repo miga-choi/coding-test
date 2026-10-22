@@ -1,4 +1,13 @@
 /**
+ * Sorting + Greedy
+ *
+ * Complexities:
+ *   N - The Size of `g`
+ *   M - The Size of `s`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} g
  * @param {number[]} s
  * @return {number}
@@ -19,14 +28,70 @@ var findContentChildren = function (g, s) {
 
 
 // Solution
-var solution = function (g, s) {
+/**
+ * Solution 1
+ *
+ * Sorting + Greedy
+ *
+ * Complexities:
+ *   N - The Size of `g`
+ *   M - The Size of `s`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var solution1 = function (g, s) {
   g.sort((a, b) => a - b);
   s.sort((a, b) => a - b);
 
-  let j = 0, res = 0;
-  for (let num of s) {
-    if (num >= g[j]) res++, j++;
+  let child = 0;
+  let cookie = 0;
+
+  while (child < g.length && cookie < s.length) {
+    if (s[cookie] >= g[child]) {
+      child++;
+    }
+    cookie++;
   }
 
-  return res;
+  return child;
+};
+
+/**
+ * Solution 2
+ *
+ * Sorting + Greedy
+ *
+ * Complexities:
+ *   N - The Size of `g`
+ *   M - The Size of `s`
+ *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var solution2 = function (g, s) {
+  g.sort((a, b) => a - b);
+  s.sort((a, b) => a - b);
+
+  let child = g.length - 1;
+  let cookie = s.length - 1;
+  let count = 0;
+
+  while (child >= 0 && cookie >= 0) {
+    if (s[cookie] >= g[child]) {
+      count++;
+      cookie--;
+    }
+    child--;
+  }
+
+  return count;
 };
