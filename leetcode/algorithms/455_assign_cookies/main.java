@@ -1,6 +1,15 @@
 import java.util.Arrays;
 
 class AssignCookies {
+    /**
+     * Sorting + Greedy
+     * 
+     * Complexities:
+     *   N - `gSize`
+     *   M - `sSize`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
     public int findContentChildren(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);
@@ -20,15 +29,25 @@ class AssignCookies {
 
 
     // Solution
+    /**
+     * Sorting + Greedy
+     * 
+     * Complexities:
+     *   N - `gSize`
+     *   M - `sSize`
+     *   - Time Complexity: O(N * logᴺ + M * logᴹ)
+     *   - Space Complexity: O(1)
+     */
     public int solution(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);
 
-        int i = 0;
-        for (int j = 0; i < g.length && j < s.length; j++) {
-            if (g[i] <= s[j]) {
+        int i = 0, j = 0;
+        while (i < g.length && j < s.length) {
+            if (s[j] >= g[i]) {
                 i++;
             }
+            j++;
         }
 
         return i;
