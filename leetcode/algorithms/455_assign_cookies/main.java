@@ -5,8 +5,8 @@ class AssignCookies {
      * Sorting + Greedy
      * 
      * Complexities:
-     *   N - `gSize`
-     *   M - `sSize`
+     *   N - The Size of `g`
+     *   M - The Size of `s`
      *   - Time Complexity: O(N * logᴺ + M * logᴹ)
      *   - Space Complexity: O(1)
      */
@@ -33,8 +33,8 @@ class AssignCookies {
      * Sorting + Greedy
      * 
      * Complexities:
-     *   N - `gSize`
-     *   M - `sSize`
+     *   N - The Size of `g`
+     *   M - The Size of `s`
      *   - Time Complexity: O(N * logᴺ + M * logᴹ)
      *   - Space Complexity: O(1)
      */
