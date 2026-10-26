@@ -1,83 +1,131 @@
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 class _132Pattern {
+    /**
+     * Monotonic Stack
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     public boolean find132pattern(int[] nums) {
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
         int third = -Double.valueOf(Math.pow(10, 9)).intValue();
+
         for (int i = nums.length - 1; i >= 0; i--) {
             if (nums[i] < third) {
                 return true;
             }
+
             while (!stack.empty() && stack.lastElement() < nums[i]) {
                 third = stack.pop();
             }
+
             stack.add(nums[i]);
         }
+
         return false;
     }
 
 
     // Solution
-    // Solution 1: Naive O(n^3) solution
+    /**
+     * Solution 1
+     * 
+     * Monotonic Stack
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
     public boolean solution1(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                for (int k = j + 1; k < nums.length; k++) {
-                    if (nums[i] < nums[k] && nums[k] < nums[j])
-                        return true;
+        Deque<Integer> stack = new ArrayDeque<>();
+        int third = Integer.MIN_VALUE;
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] < third) {
+                return true;
+            }
+
+            while (!stack.isEmpty() && stack.peek() < nums[i]) {
+                third = stack.pop();
+            }
+
+            stack.push(nums[i]);
+        }
+
+        return false;
+    }
+
+    /**
+     * Solution 2
+     *
+     * Prefix Minimum + Monotonic Stack
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N)
+     *   - Space Complexity: O(N)
+     */
+    public boolean solution2(int[] nums) {
+        int n = nums.length;
+        if (n < 3) {
+            return false;
+        }
+
+        int[] minLeft = new int[n];
+        minLeft[0] = Integer.MAX_VALUE;
+
+        for (int j = 1; j < n; j++) {
+            minLeft[j] = Math.min(minLeft[j - 1], nums[j - 1]);
+        }
+
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (int j = n - 1; j >= 0; j--) {
+            if (minLeft[j] < nums[j]) {
+                while (!stack.isEmpty() && stack.peek() <= minLeft[j]) {
+                    stack.pop();
+                }
+
+                if (!stack.isEmpty() && stack.peek() < nums[j]) {
+                    return true;
                 }
             }
+
+            stack.push(nums[j]);
         }
+
         return false;
     }
 
-    // Solution 2: Improved O(n^2) solution
-    public boolean solution2(int[] nums) {
-        for (int j = 0, min = Integer.MAX_VALUE; j < nums.length; j++) {
-            min = Math.min(nums[j], min);
-            if (min == nums[j])
-                continue;
-
-            for (int k = nums.length - 1; k > j; k--) {
-                if (min < nums[k] && nums[k] < nums[j])
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    // Solution 3: Optimized O(n) solution
+    /**
+     * Solution 3
+     *
+     * Brute Force
+     *
+     * Complexities:
+     *   N - The Size of `nums`
+     *   - Time Complexity: O(N³)
+     *   - Space Complexity: O(1)
+     */
     public boolean solution3(int[] nums) {
-        int[] arr = Arrays.copyOf(nums, nums.length);
+        for (int j = 1; j < nums.length - 1; j++) {
+            for (int i = 0; i < j; i++) {
+                if (nums[i] >= nums[j]) {
+                    continue;
+                }
 
-        for (int i = 1; i < nums.length; i++) {
-            arr[i] = Math.min(nums[i - 1], arr[i - 1]);
-        }
-
-        for (int j = nums.length - 1, top = nums.length; j >= 0; j--) {
-            if (nums[j] <= arr[j])
-                continue;
-            while (top < nums.length && arr[top] <= arr[j])
-                top++;
-            if (top < nums.length && nums[j] > arr[top])
-                return true;
-            arr[--top] = nums[j];
-        }
-
-        return false;
-    }
-
-    // Solution 4: One-pass O(n) solution
-    public boolean solution4(int[] nums) {
-        int n = nums.length, top = n, third = Integer.MIN_VALUE;
-
-        for (int i = n - 1; i >= 0; i--) {
-            if (nums[i] < third)
-                return true;
-            while (top < n && nums[i] > nums[top])
-                third = nums[top++];
-            nums[--top] = nums[i];
+                for (int k = j + 1; k < nums.length; k++) {
+                    if (nums[i] < nums[k] && nums[k] < nums[j]) {
+                        return true;
+                    }
+                }
+            }
         }
 
         return false;
