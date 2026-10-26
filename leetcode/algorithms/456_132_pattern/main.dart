@@ -1,6 +1,14 @@
 import 'dart:math';
 
 class OneThreeTwoPattern {
+  /**
+   * Monotonic Stack (In-place)
+   *
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(1)
+   */
   bool find132pattern(List<int> nums) {
     int peak = nums.length;
     int min = pow(-10, 9).floor();
@@ -9,10 +17,12 @@ class OneThreeTwoPattern {
       if (nums[i] < min) {
         return true;
       }
+
       while (peak < nums.length && nums[i] > nums[peak]) {
         min = nums[peak];
         peak++;
       }
+
       peak--;
       nums[peak] = nums[i];
     }
@@ -22,43 +32,107 @@ class OneThreeTwoPattern {
 
 
   // Solution
-  bool solution(List<int> nums) {
-    int n = nums.length;
-    List<int> minLeft = List<int>.filled(n, 0);
-    int minNum = nums[0];
+  /**
+   * Solution 1
+   * 
+   * Monotonic Stack
+   *
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
+  bool solution1(List<int> nums) {
+    final stack = <int>[];
+    int? third;
 
-    for (int i = 0; i < n; i++) {
-      minLeft[i] = minNum;
-      minNum = min(minNum, nums[i]);
-    }
+    for (var i = nums.length - 1; i >= 0; i--) {
+      final x = nums[i];
 
-    Stack<int> numbers = Stack<int>();
-
-    for (int j = n - 1; j >= 0; j--) {
-      while (numbers.isNotEmpty && nums[j] > numbers.peek) {
-        if (numbers.pop() > minLeft[j]) {
-          return true;
-        }
+      if (third != null && x < third) {
+        return true;
       }
-      numbers.push(nums[j]);
+
+      while (stack.isNotEmpty && stack.last < x) {
+        third = stack.removeLast();
+      }
+
+      stack.add(x);
     }
 
     return false;
   }
-}
 
-class Stack<E> {
-  final List<E> _list = <E>[];
+  /**
+   * Solution 2
+   *
+   * Prefix Minimum + Monotonic Stack
+   *
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N)
+   *   - Space Complexity: O(N)
+   */
+  bool solution2(List<int> nums) {
+    final n = nums.length;
 
-  void push(E value) => _list.add(value);
+    if (n < 3) {
+      return false;
+    }
 
-  E pop() => _list.removeLast();
+    final minLeft = List<int>.filled(n, 0);
+    minLeft[0] = nums[0];
 
-  E get peek => _list.last;
+    for (var i = 1; i < n; i++) {
+      minLeft[i] = nums[i] < minLeft[i - 1] ? nums[i] : minLeft[i - 1];
+    }
 
-  bool get isEmpty => _list.isEmpty;
-  bool get isNotEmpty => _list.isNotEmpty;
+    final stack = <int>[];
 
-  @override
-  String toString() => _list.toString();
+    for (var j = n - 1; j >= 1; j--) {
+      if (nums[j] <= minLeft[j]) {
+        continue;
+      }
+
+      while (stack.isNotEmpty && stack.last <= minLeft[j]) {
+        stack.removeLast();
+      }
+
+      if (stack.isNotEmpty && stack.last < nums[j]) {
+        return true;
+      }
+
+      stack.add(nums[j]);
+    }
+
+    return false;
+  }
+
+  /**
+   * Solution 3
+   *
+   * Prefix Minimum + Brute Force
+   *
+   * Complexities:
+   *   N - The Size of `nums`
+   *   - Time Complexity: O(N²)
+   *   - Space Complexity: O(1)
+   */
+  bool solution3(List<int> nums) {
+    var minI = nums[0];
+
+    for (var j = 1; j < nums.length; j++) {
+      for (var k = j + 1; k < nums.length; k++) {
+        if (minI < nums[k] && nums[k] < nums[j]) {
+          return true;
+        }
+      }
+
+      if (nums[j] < minI) {
+        minI = nums[j];
+      }
+    }
+
+    return false;
+  }
 }
