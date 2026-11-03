@@ -8,8 +8,8 @@ public:
      * Matrix Traversal + Neighbor Check
      *
      * Complexities:
-     *   R - `rows`
-     *   C - `cols`
+     *   R - The Number of Row in `grid`
+     *   C - The Number of Column in `grid`
      *   - Time Complexity: O(R * C)
      *   - Space Complexity: O(1)
      */
@@ -42,8 +42,8 @@ public:
      * Matrix Traversal + Neighbor Check
      *
      * Complexities:
-     *   R - `rows`
-     *   C - `cols`
+     *   R - The Number of Row in `grid`
+     *   C - The Number of Column in `grid`
      *   - Time Complexity: O(R * C)
      *   - Space Complexity: O(1)
      */
@@ -82,8 +82,8 @@ public:
      * Counting Land and Shared Edges
      *
      * Complexities:
-     *   R - `rows`
-     *   C - `cols`
+     *   R - The Number of Row in `grid`
+     *   C - The Number of Column in `grid`
      *   - Time Complexity: O(R * C)
      *   - Space Complexity: O(1)
      */
@@ -115,8 +115,8 @@ public:
      * Depth-First Search (DFS)
      *
      * Complexities:
-     *   R - `rows`
-     *   C - `cols`
+     *   R - The Number of Row in `grid`
+     *   C - The Number of Column in `grid`
      *   - Time Complexity: O(R * C)
      *   - Space Complexity: O(R * C)
      */
