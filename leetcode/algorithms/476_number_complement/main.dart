@@ -1,4 +1,12 @@
 class NumberComplement {
+  /**
+   * Double Bit Reversal
+   * 
+   * Complexities:
+   *   N - The Bit Length of `num`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
   int findComplement(int num) {
     int startsWithZeroCount = 0;
     int zeroCountDone = 0;
@@ -28,30 +36,56 @@ class NumberComplement {
 
 
   // Solution
-  // Solution 1
+  /**
+   * Solution 1
+   * 
+   * Bit Length Mask + XOR
+   * 
+   * Complexities:
+   *   - Time Complexity: O(1)
+   *   - Space Complexity: O(1)
+   */
   int solution1(int num) {
-    String onescomplement = '';
-
-    var bynarynum = '';
-
-    bynarynum = num.toRadixString(2);
-
-    for (int i = 0; i < bynarynum.length; i++) {
-      if (bynarynum[i] == '0') {
-        onescomplement += '1';
-      } else if (bynarynum[i] == '1') {
-        onescomplement += '0';
-      }
-    }
-
-    int val = int.parse(onescomplement, radix: 2);
-
-    return val;
+    final mask = (1 << num.bitLength) - 1;
+    return num ^ mask;
   }
 
-  // Solution 2
+  /**
+   * Solution 2
+   * 
+   * Bit Smearing + XOR
+   * 
+   * Complexities:
+   *   - Time Complexity: O(1)
+   *   - Space Complexity: O(1)
+   */
   int solution2(int num) {
-    final int mask = (1 << num.bitLength) - 1;
+    var mask = num;
+    mask |= mask >> 1;
+    mask |= mask >> 2;
+    mask |= mask >> 4;
+    mask |= mask >> 8;
+    mask |= mask >> 16;
+    return num ^ mask;
+  }
+
+  /**
+   * Solution 3
+   * 
+   * Iterative Mask Building + XOR
+   * 
+   * Complexities:
+   *   N - The Bit Length of `num`
+   *   - Time Complexity: O(logᴺ)
+   *   - Space Complexity: O(1)
+   */
+  int solution3(int num) {
+    var mask = 1;
+
+    while (mask < num) {
+      mask = (mask << 1) | 1;
+    }
+
     return num ^ mask;
   }
 }
