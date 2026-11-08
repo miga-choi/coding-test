@@ -2,7 +2,7 @@
  * String Conversion (Binary String Flip)
  *
  * Complexities:
- *   N - The Bit Length of 'num'
+ *   N - The Bit Length of `num`
  *   - Time Complexity: O(N²)
  *   - Space Complexity: O(N)
  */
@@ -33,7 +33,7 @@ var findComplement = function (num) {
  * Bit-by-Bit Construction
  *
  * Complexities:
- *   N - The Bit Length of 'num'
+ *   N - The Bit Length of `num`
  *   - Time Complexity: O(logᴺ)
  *   - Space Complexity: O(1)
  */
@@ -62,7 +62,7 @@ var solution1 = function (num) {
  * Bit Mask + XOR
  *
  * Complexities:
- *   N - `num`
+ *   N - The Bit Length of `num`
  *   - Time Complexity: O(logᴺ)
  *   - Space Complexity: O(1)
  */
@@ -127,7 +127,7 @@ var solution4 = function (num) {
  * String Conversion
  *
  * Complexities:
- *   N - The Bit Length of 'num'
+ *   N - The Bit Length of `num`
  *   - Time Complexity: O(logᴺ)
  *   - Space Complexity: O(logᴺ)
  */

@@ -8,7 +8,7 @@ public:
      * Left-Shifting Inverted Mask + XOR
      *
      * Complexities:
-     *   N - `num`
+     *   N - The Bit Length of `num`
      *   - Time Complexity: O(logᴺ)
      *   - Space Complexity: O(1)
      */

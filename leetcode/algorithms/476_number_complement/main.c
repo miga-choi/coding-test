@@ -4,7 +4,7 @@
  * Double Bit Reversal + Trailing Zero Restoration
  * 
  * Complexities:
- *   N - `num`
+ *   N - The Bit Length of `num`
  *   - Time Complexity: O(logᴺ)
  *   - Space Complexity: O(1)
  */

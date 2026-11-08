@@ -3,7 +3,7 @@ class NumberComplement {
      * String Conversion (Binary String Flip)
      *
      * Complexities:
-     *   N - The Bit Length of 'num'
+     *   N - The Bit Length of `num`
      *   - Time Complexity: O(N²)
      *   - Space Complexity: O(N)
      */
@@ -30,7 +30,7 @@ class NumberComplement {
      * Bit Manipulation (Mask + XOR)
      *
      * Complexities:
-     *   N - The Bit Length of 'num'
+     *   N - The Bit Length of `num`
      *   - Time Complexity: O(logᴺ)
      *   - Space Complexity: O(1)
      */
@@ -50,7 +50,7 @@ class NumberComplement {
      * Bit Manipulation (Highest Bit Propagation)
      *
      * Complexities:
-     *   N - The Bit Length of 'num'
+     *   N - The Bit Length of `num`
      *   - Time Complexity: O(logᴺ)
      *   - Space Complexity: O(1)
      */
@@ -70,7 +70,7 @@ class NumberComplement {
      * Bit Manipulation (Built-in Bit Length)
      *
      * Complexities:
-     *   N - The Bit Length of 'num'
+     *   N - The Bit Length of `num`
      *   - Time Complexity: O(logᴺ)
      *   - Space Complexity: O(1)
      */
