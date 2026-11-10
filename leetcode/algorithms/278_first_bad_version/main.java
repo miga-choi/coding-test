@@ -9,7 +9,7 @@ class VersionControl {
 class FirstBadVersion extends VersionControl {
     /**
      * Complexities:
-     * N - `n`
+     *   N - `n`
      *   - Time Complexity: O(logᴺ)
      *   - Space Complexity: O(1)
      */
@@ -37,7 +37,7 @@ class FirstBadVersion extends VersionControl {
      *   - Time Complexity: O(logᴺ)
      *   - Space Complexity: O(1)
      */
-    public int solution1(int n) {
+    public int solution(int n) {
         int left = 1;
         int right = n;
 
