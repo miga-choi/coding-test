@@ -1,4 +1,12 @@
 /**
+ * Single Pass Counting
+ *
+ * Complexities:
+ *   n - The Size of `nums`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} nums
  * @return {number}
  */
@@ -22,44 +30,123 @@ var findMaxConsecutiveOnes = function (nums) {
 
 
 // Solution
-// Solution 1
-var solution = function (nums) {
-  let max = 0, curr = 0;
-  for (let k of nums) {
-    max = Math.max(max, (curr += k));
-    if (!k) curr = 0;
+/**
+ * Solution 1
+ *
+ * Single Pass Counting
+ *
+ * Complexities:
+ *   n - The Size of `nums`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var solution1 = function (nums) {
+  let max = 0;
+  let count = 0;
+
+  for (const num of nums) {
+    if (num === 1) {
+      count++;
+      if (count > max) max = count;
+    } else {
+      count = 0;
+    }
   }
+
   return max;
 };
 
-// Solution 2
+/**
+ * Solution 2
+ *
+ * Single Pass Counting
+ *
+ * Complexities:
+ *   n - The Size of `nums`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 var solution2 = function (nums) {
-  let max = 0, curr = 0;
-  for (let k of nums) {
-    max = Math.max(max, (curr += k));
-    if (!k) curr = 0;
+  let max = 0,
+    count = 0;
+
+  for (const num of nums) {
+    count = (count + 1) * num;
+    max = Math.max(max, count);
   }
+
   return max;
 };
 
-// Solution 3
+/**
+ * Solution 3
+ *
+ * Sliding Window (Streak Start Index)
+ *
+ * Complexities:
+ *   n - The Size of `nums`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 var solution3 = function (nums) {
-  return nums.join("").split("0").reduce((max, ones) => Math.max(max, ones.length), 0);
-};
+  let max = 0;
+  let start = 0;
 
-// Solution 4
-var solution4 = function (nums) {
-  return Math.max(...nums.join("").split("0").map((ones) => ones.length));
-};
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      start = i + 1;
+    } else {
+      max = Math.max(max, i - start + 1);
+    }
+  }
 
-// Solution 5
-var solution5 = function (nums) {
-  return Math.max(...(nums.join("").match(/1+/g) || [""]).map((ones) => ones.length));
-};
-
-// Solution 6
-var solution6 = function (nums) {
-  let str = nums.join(""), max = nums.length + 1;
-  while (!~str.indexOf("1".repeat(--max)) && max);
   return max;
+};
+
+/**
+ * Solution 4
+ *
+ * Join + Split
+ *
+ * Complexities:
+ *   n - The Size of `nums`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var solution4 = function (nums) {
+  return Math.max(...nums.join("").split("0").map((s) => s.length));
+};
+
+/**
+ * Solution 5
+ *
+ * Join + Split
+ *
+ * Complexities:
+ *   n - The Size of `nums`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var solution5 = function (nums) {
+  return nums.join('').split('0').reduce((m, s) => Math.max(m, s.length), 0);
 };
