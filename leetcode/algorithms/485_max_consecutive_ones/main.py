@@ -1,7 +1,16 @@
+from itertools import groupby
 from typing import List
 
 
 class MaxConsecutiveOnes:
+    """
+    # Running Counter
+    #
+    # Complexities:
+    #   n - The Size of `nums`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(1)
+    """
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
         result = 0
         curr = 0
@@ -18,15 +27,50 @@ class MaxConsecutiveOnes:
 
 
     # Solution
-    def solution(self, nums: List[int]) -> int:
-        cnt = 0
-        ans = 0
+    """
+    # Solution 1
+    #
+    # Running Counter
+    #
+    # Complexities:
+    #   n - The Size of `nums`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(1)
+    """
+    def solution1(self, nums: List[int]) -> int:
+        count = best = 0
 
-        for num in nums:
-            if num == 1:
-                cnt += 1
-                ans = max(ans, cnt)
+        for x in nums:
+            if x == 1:
+                count += 1
+                best = max(best, count)
             else:
-                cnt = 0
+                count = 0
 
-        return ans
+        return best
+
+    """
+    # Solution 2
+    #
+    # Run-Length Grouping
+    #
+    # Complexities:
+    #   n - The Size of `nums`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(1)
+    """
+    def solution2(self, nums: List[int]) -> int:
+        return max((sum(1 for _ in group) for key, group in groupby(nums) if key == 1), default=0)
+
+    """
+    # Solution 3
+    #
+    # String Splitting
+    #
+    # Complexities:
+    #   n - The Size of `nums`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(n)
+    """
+    def solution3(self, nums: List[int]) -> int:
+        return max(map(len, ''.join(map(str, nums)).split('0')))
