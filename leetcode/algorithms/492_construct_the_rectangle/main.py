@@ -3,6 +3,14 @@ from typing import List
 
 
 class ConstructTheRectangle:
+    """
+    # Downward Search from Square Root
+    #
+    # Complexities:
+    #   n - `area`
+    #   - Time Complexity: O(√n)
+    #   - Space Complexity: O(1)
+    """
     def constructRectangle(self, area: int) -> List[int]:
         w = math.floor(math.sqrt(area))
 
@@ -13,18 +21,39 @@ class ConstructTheRectangle:
 
 
     # Solution
+    """
     # Solution 1
+    #
+    # Downward Search from Square Root
+    #
+    # Complexities:
+    #   n - `area`
+    #   - Time Complexity: O(√n)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, area: int) -> List[int]:
-        for l in range(int(area**0.5), 0, -1):
-            if area % l == 0:
-                return [area // l, l]
+        w = math.isqrt(area)
 
+        while area % w != 0:
+            w -= 1
+
+        return [area // w, w]
+
+    """
     # Solution 2
+    #
+    # Divisor Enumeration
+    #
+    # Complexities:
+    #   n - `area`
+    #   - Time Complexity: O(√n)
+    #   - Space Complexity: O(1)
+    """
     def solution2(self, area: int) -> List[int]:
-        mid = int(math.sqrt(area))
+        best = 1
 
-        while mid > 0:
-            if area % mid == 0:
-                return [int(area / mid), int(mid)]
+        for w in range(1, math.isqrt(area) + 1):
+            if area % w == 0:
+                best = w
 
-            mid -= 1
+        return [area // best, best]
