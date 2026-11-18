@@ -1,4 +1,12 @@
 /**
+ * Pairwise Gap
+ *
+ * Complexities:
+ *   n - The Size of `timeSeries`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} timeSeries
  * @param {number} duration
  * @return {number}
@@ -21,24 +29,61 @@ var findPoisonedDuration = function (timeSeries, duration) {
 
 
 // Solution
-var solution = function (timeSeries, duration) {
-  let ans = 0;
+/**
+ * Solution 1
+ *
+ * Pairwise Gap
+ *
+ * Complexities:
+ *   n - The Size of `timeSeries`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+var solution1 = function (timeSeries, duration) {
+  let total = 0;
 
-  for (let i = 0, len = timeSeries.length; i < len; i++) {
-    if (i === len - 1) {
-      ans += duration;
-      continue;
-    }
-
-    let curItem = timeSeries[i],
-      nextItem = timeSeries[i + 1];
-
-    if (curItem + duration <= nextItem) {
-      ans += duration;
-    } else {
-      ans += nextItem - curItem;
-    }
+  for (let i = 0; i < timeSeries.length - 1; i++) {
+    total += Math.min(duration, timeSeries[i + 1] - timeSeries[i]);
   }
 
-  return ans;
+  return total + duration;
+};
+
+/**
+ * Solution 2
+ *
+ * Interval Merging (Track End Time)
+ *
+ * Complexities:
+ *   n - The Size of `timeSeries`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+var solution2 = function (timeSeries, duration) {
+  let total = 0;
+  let end = 0;
+
+  for (const t of timeSeries) {
+    const newEnd = t + duration;
+
+    if (t >= end) {
+      total += duration;
+    } else {
+      total += newEnd - end;
+    }
+
+    end = newEnd;
+  }
+
+  return total;
 };
