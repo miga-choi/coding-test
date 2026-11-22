@@ -3,6 +3,14 @@ from typing import List
 
 
 class KeyboardRow:
+    """
+    # Row Lookup Table + First-Letter Row Check
+    #
+    # Complexities:
+    #   i - Length of iᵗʰ Word in `words`
+    #   - Time Complexity: O(Σ lenᵢ²)
+    #   - Space Complexity: O(1)
+    """
     def findWords(self, words: List[str]) -> List[str]:
         result = []
 
@@ -38,20 +46,56 @@ class KeyboardRow:
 
 
     # Solution
+    """
     # Solution 1
+    #
+    # Set Subset Check
+    #
+    # Complexities:
+    #   n - Sum of The Number of Characters in `words`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(1)
+    """
     def solution1(self, words: List[str]) -> List[str]:
-        line1: set = set("qwertyuiop")
-        line2: set = set("asdfghjkl")
-        line3: set = set("zxcvbnm")
-        ret: List[str] = []
+        rows = [set("qwertyuiop"), set("asdfghjkl"), set("zxcvbnm")]
 
-        for word in words:
-            w = set(word.lower())
-            if w <= line1 or w <= line2 or w <= line3:
-                ret.append(word)
+        return [w for w in words if any(set(w.lower()) <= row for row in rows)]
 
-        return ret
-
+    """
     # Solution 2
+    #
+    # Character-to-Row Mapping
+    #
+    # Complexities:
+    #   n - Sum of The Number of Characters in `words`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(1)
+    """
     def solution2(self, words: List[str]) -> List[str]:
-        return filter(re.compile("(?i)([qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*)$").match, words)
+        rows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+        row_of = {c: i for i, row in enumerate(rows) for c in row}
+
+        result = []
+
+        for w in words:
+            lw = w.lower()
+            target = row_of[lw[0]]
+
+            if all(row_of[c] == target for c in lw):
+                result.append(w)
+
+        return result
+
+    """
+    # Solution 3
+    #
+    # Regular Expression Matching
+    #
+    # Complexities:
+    #   n - Sum of The Number of Characters in `words`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(1)
+    """
+    def solution3(self, words: List[str]) -> List[str]:
+        pattern = re.compile(r"[qwertyuiop]*|[asdfghjkl]*|[zxcvbnm]*", re.IGNORECASE)
+        return [w for w in words if pattern.fullmatch(w)]
