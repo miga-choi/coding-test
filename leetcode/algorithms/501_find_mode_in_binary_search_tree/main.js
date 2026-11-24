@@ -8,6 +8,14 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * In-order Traversal to Array + Two-Pass Run Counting
+ *
+ * Complexities:
+ *   n - The Number of Nodes in `root`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(n)
+ */
+/**
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -44,33 +52,152 @@ var findMode = function (root) {
 
 
 // Solution
-var solution = function (root) {
-  const counts = {};
-  let maxCount = 0;
-  const modes = [];
+/**
+ * Solution 1
+ *
+ * Hash Map + DFS
+ *
+ * Complexities:
+ *   n - The Number of Nodes in `root`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(n)
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var solution1 = function (root) {
+  const freq = new Map();
 
-  const inorder = function (node) {
+  const dfs = (node) => {
+    if (!node) {
+      return;
+    }
+
+    freq.set(node.val, (freq.get(node.val) ?? 0) + 1);
+    dfs(node.left);
+    dfs(node.right);
+  };
+
+  dfs(root);
+
+  let maxCount = 0;
+  for (const c of freq.values()) {
+    if (c > maxCount) {
+      maxCount = c;
+    }
+  }
+
+  const modes = [];
+  for (const [val, c] of freq) {
+    if (c === maxCount) {
+      modes.push(val);
+    }
+  }
+
+  return modes;
+};
+
+/**
+ * Solution 2
+ *
+ * In-order Traversal (Sorted Sequence Counting)
+ *
+ * Complexities:
+ *   n - The Number of Nodes in `root`
+ *   h - The Height of `root`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(h)
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var solution2 = function (root) {
+  let prev = null;
+  let count = 0;
+  let maxCount = 0;
+  let modes = [];
+
+  const visit = (val) => {
+    count = val === prev ? count + 1 : 1;
+    prev = val;
+
+    if (count > maxCount) {
+      maxCount = count;
+      modes = [val];
+    } else if (count === maxCount) {
+      modes.push(val);
+    }
+  };
+
+  const inorder = (node) => {
     if (!node) {
       return;
     }
 
     inorder(node.left);
-
-    const count = (counts[node.val] || 0) + 1;
-    counts[node.val] = count;
-
-    if (count > maxCount) {
-      maxCount = count;
-      modes.length = 0;
-      modes.push(node.val);
-    } else if (count === maxCount) {
-      modes.push(node.val);
-    }
-
+    visit(node.val);
     inorder(node.right);
   };
 
   inorder(root);
+
+  return modes;
+};
+
+/**
+ * Solution 3
+ *
+ * Morris In-order Traversal
+ *
+ * Complexities:
+ *   n - The Number of Nodes in `root`
+ *   h - The Height of `root`
+ *   - Time Complexity: O(n)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var solution3 = function (root) {
+  let prev = null, count = 0, maxCount = 0, modes = [];
+
+  const visit = (val) => {
+    count = val === prev ? count + 1 : 1;
+    prev = val;
+
+    if (count > maxCount) {
+      maxCount = count;
+      modes = [val];
+    } else if (count === maxCount) {
+      modes.push(val);
+    }
+  };
+
+  let cur = root;
+  while (cur) {
+    if (!cur.left) {
+      visit(cur.val);
+      cur = cur.right;
+    } else {
+      let pred = cur.left;
+
+      while (pred.right && pred.right !== cur) {
+        pred = pred.right;
+      }
+
+      if (!pred.right) {
+        pred.right = cur;
+        cur = cur.left;
+      } else {
+        pred.right = null;
+        visit(cur.val);
+        cur = cur.right;
+      }
+    }
+  }
 
   return modes;
 };
