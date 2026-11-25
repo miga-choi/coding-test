@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List, Optional
 
 
@@ -10,6 +11,14 @@ class TreeNode:
 
 
 class FindModeInBinarySearchTree:
+    """
+    # In-order Traversal to Array + Two-Pass Run Counting
+    #
+    # Complexities:
+    #   n - The Number of Nodes in `root`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(n)
+    """
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
         map = {}
         result = []
@@ -39,29 +48,113 @@ class FindModeInBinarySearchTree:
 
 
     # Solution
-    prev = None
-    max_count = 0
-    current_count = 0
-    result = []
+    """
+    # Solution 1
+    #
+    # In-order Traversal to Array + Two-Pass Run Counting
+    #
+    # Complexities:
+    #   n - The Number of Nodes in `root`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(n)
+    """
+    def solution1(self, root: Optional[TreeNode]) -> List[int]:
+        count = Counter()
+        stack = [root]
 
-    def solution(self, root: Optional[TreeNode]) -> List[int]:
-        self.dfs(root)
-        return self.result
+        while stack:
+            node = stack.pop()
+            count[node.val] += 1
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
 
-    def dfs(self, node):
-        if not node:
-            return
+        max_count = max(count.values())
 
-        self.dfs(node.left)
+        return [val for val, c in count.items() if c == max_count]
 
-        self.current_count = 1 if node.val != self.prev else self.current_count + 1
+    """
+    # Solution 2
+    #
+    # In-order Traversal
+    #
+    # Complexities:
+    #   n - The Number of Nodes in `root`
+    #   h - The Height of `root`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(h)
+    """
+    def solution2(self, root: Optional[TreeNode]) -> List[int]:
+        prev = None
+        count = max_count = 0
+        modes = []
 
-        if self.current_count == self.max_count:
-            self.result.append(node.val)
-        elif self.current_count > self.max_count:
-            self.result = [node.val]
-            self.max_count = self.current_count
+        def visit(val: int) -> None:
+            nonlocal prev, count, max_count, modes
+            count = count + 1 if val == prev else 1
+            prev = val
+            if count > max_count:
+                max_count = count
+                modes = [val]
+            elif count == max_count:
+                modes.append(val)
 
-        self.prev = node.val
+        stack, node = [], root
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            visit(node.val)
+            node = node.right
 
-        self.dfs(node.right)
+        return modes
+
+    """
+    # Solution 3
+    #
+    # Morris Traversal
+    #
+    # Complexities:
+    #   n - The Number of Nodes in `root`
+    #   - Time Complexity: O(n)
+    #   - Space Complexity: O(n)
+    """
+    def solution3(self, root: Optional[TreeNode]) -> List[int]:
+        prev = None
+        count = max_count = 0
+        modes = []
+
+        def visit(val: int) -> None:
+            nonlocal prev, count, max_count, modes
+            count = count + 1 if val == prev else 1
+            prev = val
+
+            if count > max_count:
+                max_count = count
+                modes = [val]
+            elif count == max_count:
+                modes.append(val)
+
+        cur = root
+
+        while cur:
+            if not cur.left:
+                visit(cur.val)
+                cur = cur.right
+            else:
+                pred = cur.left
+
+                while pred.right and pred.right is not cur:
+                    pred = pred.right
+
+                if not pred.right:
+                    pred.right = cur
+                    cur = cur.left
+                else:
+                    pred.right = None
+                    visit(cur.val)
+                    cur = cur.right
+
+        return modes
