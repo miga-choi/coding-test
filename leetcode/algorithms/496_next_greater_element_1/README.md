@@ -1,4 +1,4 @@
-# 96. Next Greater Element I
+# 496. Next Greater Element I
 
 The **next greater element** of some element `x` in an array is the **first greater** element that is **to the right** of `x` in the same array.
 
