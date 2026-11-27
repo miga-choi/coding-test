@@ -1,4 +1,13 @@
 /**
+ * Brute Force with Found Flag
+ *
+ * Complexities:
+ *   n - The Size of `nums1`
+ *   m - The Size of `nums2`
+ *   - Time Complexity: O(n * m)
+ *   - Space Complexity: O(1)
+ */
+/**
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number[]}
@@ -26,56 +35,96 @@ var nextGreaterElement = function (nums1, nums2) {
 
 
 // Solution
-// Solution 1: Brute Force
+/**
+ * Solution 1
+ *
+ * Brute Force
+ *
+ * Complexities:
+ *   n - The Size of `nums1`
+ *   m - The Size of `nums2`
+ *   - Time Complexity: O(n * m)
+ *   - Space Complexity: O(1)
+ */
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
 var solution1 = function (nums1, nums2) {
-  const ans = [];
+  return nums1.map((x) => {
+    const start = nums2.indexOf(x);
 
-  for (let i = 0; i < nums1.length; i++) {
-    let max = -1;
-
-    for (let j = 0; j < nums2.length; j++) {
-      let index = j;
-
-      if (nums1[i] === nums2[j]) {
-        // Found element in nums2 that matches current element in nums1
-        while (index !== nums2.length) {
-          // Iterate through remaining elements in nums2 to find next greater element
-          if (nums2[index] > nums1[i]) {
-            // Update max if we find a greater element
-            max = nums2[index];
-            break;
-          }
-          index++;
-        }
+    for (let j = start + 1; j < nums2.length; j++) {
+      if (nums2[j] > x) {
+        return nums2[j];
       }
     }
 
-    ans.push(max);
-  }
-
-  return ans;
+    return -1;
+  });
 };
 
-// Solution 2: Stack
+/**
+ * Solution 2
+ *
+ * Monotonic Stack + Hash Map
+ *
+ * Complexities:
+ *   n - The Size of `nums1`
+ *   m - The Size of `nums2`
+ *   - Time Complexity: O(n + m)
+ *   - Space Complexity: O(m)
+ */
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
 var solution2 = function (nums1, nums2) {
-  // map for next greater element
-  const map = new Map();
+  const nextGreater = new Map();
   const stack = [];
 
-  for (let num of nums2) {
-    while (stack.length && stack[stack.length - 1] < num) {
-      // Pop elements from stack and update map with next greater element
-      map.set(stack.pop(), num);
+  for (const cur of nums2) {
+    while (stack.length > 0 && stack[stack.length - 1] < cur) {
+      nextGreater.set(stack.pop(), cur);
     }
-    // Push current element onto stack
-    stack.push(num);
+    stack.push(cur);
   }
 
-  for (let i = 0; i < nums1.length; i++) {
-    // Check if each element in nums1 has a next greater element in map
-    // Update element in nums1 with next greater element or -1
-    nums1[i] = map.has(nums1[i]) ? map.get(nums1[i]) : -1;
+  return nums1.map((x) => nextGreater.get(x) ?? -1);
+};
+
+/**
+ * Solution 3
+ *
+ * Monotonic Stack (Right to Left)
+ *
+ * Complexities:
+ *   n - The Size of `nums1`
+ *   m - The Size of `nums2`
+ *   - Time Complexity: O(n + m)
+ *   - Space Complexity: O(m)
+ */
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var solution3 = function (nums1, nums2) {
+  const nextGreater = new Map();
+  const stack = [];
+
+  for (let i = nums2.length - 1; i >= 0; i--) {
+    const cur = nums2[i];
+
+    while (stack.length > 0 && stack[stack.length - 1] <= cur) {
+      stack.pop();
+    }
+
+    nextGreater.set(cur, stack.length > 0 ? stack[stack.length - 1] : -1);
+    stack.push(cur);
   }
 
-  return nums1;
+  return nums1.map((x) => nextGreater.get(x));
 };
